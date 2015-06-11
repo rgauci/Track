@@ -34,27 +34,30 @@
     <color name="dark_purple_A700">#6200EA</color>
     <!-- Deep Purple -->
 
-    <!-- Pink -->
-    <color name="pink_50">#FCE4EC</color>
-    <color name="pink_100">#F8BBD0</color>
-    <color name="pink_200">#F48FB1</color>
-    <color name="pink_300">#F06292</color>
-    <color name="pink_400">#EC407A</color>
-    <color name="pink_500">#E91E63</color>
-    <color name="pink_600">#D81B60</color>
-    <color name="pink_700">#C2185B</color>
-    <color name="pink_800">#AD1457</color>
-    <color name="pink_900">#880E4F</color>
-    <color name="pink_A100">#FF80AB</color>
-    <color name="pink_A200">#FF4081</color>
-    <color name="pink_A400">#F50057</color>
-    <color name="pink_A700">#C51162</color>
-    <!-- Pink -->
+    <color name="primary">@color/dark_purple_500</color>
+    <color name="primary_dark">@color/dark_purple_700</color>
+    <color name="primary_light">@color/dark_purple_100</color>
+    <color name="accent">@color/purple_200</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="text_icons">#ffffff</color>
+    <color name="divider">#B6B6B6</color>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">@color/primary</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <!-- colorAccent is used as the default value for colorControlActivated,
+             which is used to tint widgets -->
+        <item name="colorAccent">@color/accent</item>
+        <!-- primary text color -->
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <!-- secondary text color (e.g. underneath text -->
+        <item name="android:textColorSecondary">@color/secondary_text</item>
+    <!-- You can also set colorControlNormal, colorControlActivated
+         colorControlHighlight, and colorSwitchThumbNormal. -->
     </style>
 
 </resources>

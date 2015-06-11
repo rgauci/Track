@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".StudyConfiguration"
+            android:label="@string/title_activity_study_configuration"
+            android:parentActivityName=".ResearcherSetup" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="informatics.uk.ac.ed.esm.ResearcherSetup" />
+        </activity>
     </application>
 
 </manifest>
