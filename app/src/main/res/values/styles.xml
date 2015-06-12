@@ -56,6 +56,7 @@
         <item name="android:textColorPrimary">@color/primary_text</item>
         <!-- secondary text color (e.g. underneath text -->
         <item name="android:textColorSecondary">@color/secondary_text</item>
+        <item name="background">@color/purple_500</item>
     <!-- You can also set colorControlNormal, colorControlActivated
          colorControlHighlight, and colorSwitchThumbNormal. -->
     </style>

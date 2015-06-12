@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/researcherSetup"
+            android:text="@string/title_activity_researcher_setup"
             android:id="@+id/textView"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -45,7 +45,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_above="@+id/fab">
+            android:layout_above="@+id/btnNext">
 
             <EditText
                 android:layout_width="match_parent"
@@ -106,17 +106,18 @@
         </LinearLayout>
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/btnNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:src="@drawable/fab_add"
+            android:src="@drawable/ic_done_white_24dp"
             fab:fab_colorNormal="@color/primary"
             fab:fab_colorPressed="@color/primary_dark"
             fab:fab_colorRipple="@color/accent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:onClick="btnNext_onClick" />
 
     </RelativeLayout>
 

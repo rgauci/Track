@@ -1,9 +1,11 @@
 package informatics.uk.ac.ed.esm;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class ResearcherSetup extends ActionBarActivity {
@@ -34,5 +36,10 @@ public class ResearcherSetup extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void btnNext_onClick(View view){
+        Intent intent = new Intent(this, StudyConfiguration.class);
+        startActivity(intent);
     }
 }
