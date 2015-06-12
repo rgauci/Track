@@ -42,7 +42,7 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
             android:layout_alignParentStart="true"
             android:rowOrderPreserved="true"
             android:id="@+id/gridLayout"
-            android:layout_above="@+id/btnNext">
+            android:layout_alignParentBottom="true">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -367,7 +367,9 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
             fab:fab_colorRipple="@color/primary_dark"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:onClick="btnNext_onClick" />
+
     </RelativeLayout>
 
 </RelativeLayout>

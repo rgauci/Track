@@ -5,6 +5,7 @@
 
     <string name="title_activity_researcher_setup">Researcher Setup</string>
     <string name="title_activity_study_configuration">Study Configuration</string>
+    <string name="title_activity_user_account_setup">User Account Setup</string>
 
     <string name="startDate">Start Date</string>
     <string name="duration">Duration</string>
@@ -18,8 +19,10 @@
     <string name="defaultDateFormat">dd-MMM-yyyy</string>
     <string name="defaultDuration">6</string>
     <string name="defaultSamplesPerDay">8</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="samples">samples</string>
+
+
+    <string name="Participant">Participant\ </string>
+    <string name="ParticipantIdPlaceholder"><![CDATA[<Participant ID>]]></string>
 
 </resources>

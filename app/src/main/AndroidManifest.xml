@@ -18,7 +18,13 @@
         </activity>
         <activity
             android:name=".StudyConfiguration"
-            android:label="@string/title_activity_study_configuration" >
+            android:label="@string/app_name"
+            android:parentActivityName=".ResearcherSetup" >=
+        </activity>
+        <activity
+            android:name=".UserAccountSetup"
+            android:label="@string/app_name"
+            android:parentActivityName=".StudyConfiguration" >=
         </activity>
     </application>
 
