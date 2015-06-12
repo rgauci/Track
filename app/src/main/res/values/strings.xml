@@ -6,9 +6,20 @@
     <string name="title_activity_researcher_setup">Researcher Setup</string>
     <string name="title_activity_study_configuration">Study Configuration</string>
 
-    <string name="startDate">Start Date:</string>
-    <string name="duration">Duration:</string>
-    <string name="samplesPerDay">Samples / Day:</string>
-    <string name="dailyStartTime">Daily Start Time:</string>
-    <string name="dailyEndTime">Daily End Time:</string>
+    <string name="startDate">Start Date</string>
+    <string name="duration">Duration</string>
+    <string name="samplesPerDay">Samples per Day</string>
+    <string name="dailyStartTime">Daily Start Time</string>
+    <string name="dailyEndTime">Daily End Time</string>
+    <string name="days">days</string>
+
+    <string name="defaultStartTime">07:30</string>
+    <string name="defaultEndTime">22:30</string>
+    <string name="defaultDateFormat">dd-MMM-yyyy</string>
+    <string name="defaultDuration">6</string>
+    <string name="defaultSamplesPerDay">8</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="samples">samples</string>
+
 </resources>
