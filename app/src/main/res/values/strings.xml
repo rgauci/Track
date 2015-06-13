@@ -24,5 +24,13 @@
 
     <string name="Participant">Participant\ </string>
     <string name="ParticipantIdPlaceholder"><![CDATA[<Participant ID>]]></string>
+    <string name="title_activity_setup_complete">Setup Complete</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="demoSuggestion">Would you like a short demo?</string>
+    <string name="setupCompleteTitleMessage">All Done!</string>
+    <string name="setupCompleteMessage">You\'re set up and ready to go.</string>
+    <string name="demoNo">No, I got this.</string>
+    <string name="demoYes">Yes please!</string>
 
 </resources>

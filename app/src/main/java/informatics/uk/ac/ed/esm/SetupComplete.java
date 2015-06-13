@@ -1,26 +1,24 @@
 package informatics.uk.ac.ed.esm;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 
-public class UserAccountSetup extends AppCompatActivity {
+public class SetupComplete extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_account_setup);
+        setContentView(R.layout.activity_setup_complete);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_user_account_setup, menu);
+        getMenuInflater().inflate(R.menu.menu_setup_complete, menu);
         return true;
     }
 
@@ -37,10 +35,5 @@ public class UserAccountSetup extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void btnNext_onClick(View view) {
-        Intent intent = new Intent(this, SetupComplete.class);
-        startActivity(intent);
     }
 }

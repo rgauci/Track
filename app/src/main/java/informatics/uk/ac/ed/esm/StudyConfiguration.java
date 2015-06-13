@@ -3,6 +3,7 @@ package informatics.uk.ac.ed.esm;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-public class StudyConfiguration extends ActionBarActivity {
+public class StudyConfiguration extends AppCompatActivity {
 
     private TextView txtStartDate;
 
