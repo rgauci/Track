@@ -23,7 +23,7 @@
 
 
     <string name="Participant">Participant\ </string>
-    <string name="ParticipantIdPlaceholder"><![CDATA[<Participant ID>]]></string>
+    <string name="ParticipantIdPlaceholder">&lt;Participant ID&gt;</string>
     <string name="title_activity_setup_complete">Setup Complete</string>
 
     <string name="hello_world">Hello world!</string>
@@ -32,5 +32,8 @@
     <string name="setupCompleteMessage">You\'re set up and ready to go.</string>
     <string name="demoNo">No, I got this.</string>
     <string name="demoYes">Yes please!</string>
+    <string name="title_activity_demo_intro">Demo</string>
+    <string name="StartDemo">Start Demo</string>
+    <string name="demoIntro">This demo will guide you through a short tour of different question types you may encounter when using the app.\n\nNone of the answers you provide during the demo will be saved, this is merely for you to practise.</string>
 
 </resources>

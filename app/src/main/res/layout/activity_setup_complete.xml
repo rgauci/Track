@@ -41,7 +41,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/setupCompleteTitleMessage"
             android:id="@+id/textView4"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -49,21 +49,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/demoNo"
-            android:id="@+id/button"
+            android:id="@+id/btnDemoNo"
+            android:theme="@style/RaisedButtonTransparent"
             android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/button2"
-            android:layout_toStartOf="@+id/button2"
-            android:theme="@style/RaisedButtonTransparent"/>
+            android:layout_toLeftOf="@+id/btnDemoYes"
+            android:layout_toStartOf="@+id/btnDemoYes" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/demoYes"
-            android:id="@+id/button2"
+            android:id="@+id/btnDemoYes"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:theme="@style/RaisedButtonColoured"/>
+            android:theme="@style/RaisedButtonColoured"
+            android:layout_gravity="right|bottom" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,7 +73,7 @@
             android:text="@string/demoSuggestion"
             android:id="@+id/textView5"
             android:layout_marginBottom="50dp"
-            android:layout_above="@+id/button"
+            android:layout_above="@+id/btnDemoNo"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 

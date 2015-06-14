@@ -114,14 +114,14 @@
              colorControlHighlight, and colorSwitchThumbNormal. -->
     </style>
 
-    <style name="RaisedButtonColoured" parent="Base.Widget.AppCompat.Button">
+    <style name="RaisedButtonColoured" parent="Widget.AppCompat.Button">
         <item name="colorButtonNormal">@color/primary</item>
         <item name="android:textColor">@color/text_icons</item>
         <item name="colorControlHighlight">@color/accent</item>
         <item name="colorControlActivated">@color/primary_dark</item>
     </style>
 
-    <style name="RaisedButtonTransparent" parent="Base.Widget.AppCompat.Button">
+    <style name="RaisedButtonTransparent" parent="Widget.AppCompat.Button">
         <item name="colorButtonNormal">@color/background_floating_material_light</item>
     </style>
 
