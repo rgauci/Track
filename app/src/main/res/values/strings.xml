@@ -6,6 +6,8 @@
     <string name="title_activity_researcher_setup">Researcher Setup</string>
     <string name="title_activity_study_configuration">Study Configuration</string>
     <string name="title_activity_user_account_setup">User Account Setup</string>
+    <string name="title_activity_demo_intro">Demo</string>
+    <string name="title_activity_demo_free_text">Free-Text Demo</string>
 
     <string name="startDate">Start Date</string>
     <string name="duration">Duration</string>
@@ -32,8 +34,9 @@
     <string name="setupCompleteMessage">You\'re set up and ready to go.</string>
     <string name="demoNo">No, I got this.</string>
     <string name="demoYes">Yes please!</string>
-    <string name="title_activity_demo_intro">Demo</string>
     <string name="StartDemo">Start Demo</string>
     <string name="demoIntro">This demo will guide you through a short tour of different question types you may encounter when using the app.\n\nNone of the answers you provide during the demo will be saved, this is merely for you to practise.</string>
+    <string name="demoFreeTextQuestion">What is your favourite colour?</string>
+    <string name="demoFreeTextExplanation">This is a free-text question. Click on the textbox to bring up the keyboard and write a short answer.</string>
 
 </resources>

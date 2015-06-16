@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "informatics.uk.ac.ed.esm"
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
