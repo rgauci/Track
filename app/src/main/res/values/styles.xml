@@ -125,6 +125,10 @@
         <item name="android:drawableRight">@drawable/ic_ic_ic_navigate_next_white_large_24dp</item>
     </style>
 
+    <style name="RaisedButtonColoured_Previous" parent="RaisedButtonColoured">
+        <item name="android:drawableRight">@drawable/ic_ic_ic_navigate_before_white_large_24dp</item>
+    </style>
+
     <style name="RaisedButtonTransparent" parent="Widget.AppCompat.Button">
         <item name="colorButtonNormal">@color/background_floating_material_light</item>
     </style>
@@ -133,8 +137,12 @@
         <item name="android:textColor">@color/primary_text</item>
     </style>
 
+    <style name="QuestionText" parent="android:style/TextAppearance.Medium">
+        <item name="android:layout_marginBottom">@dimen/bottom_margin</item>
+    </style>
+
     <style name="ExplanationText" parent="android:style/TextAppearance.Small">
-        <item name="android:layout_marginTop">50dp</item>
+        <item name="android:layout_marginTop">48dp</item>
     </style>
 
     <style name="HorizontalDivider">

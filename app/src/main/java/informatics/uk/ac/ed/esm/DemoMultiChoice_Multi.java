@@ -10,22 +10,32 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class DemoIntro extends AppCompatActivity {
+public class DemoMultiChoice_Multi extends AppCompatActivity {
 
-    Button btnStartDemo;
+    private Button btnNext;
+    private Button btnPrevious;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo_intro);
+        setContentView(R.layout.activity_demo_multi_choice__multi);
 
-        btnStartDemo = (Button) findViewById(R.id.btnStartDemo);
+        /* set onClick listeners */
+        btnNext = (Button) findViewById(R.id.btnNext);
+        btnPrevious = (Button) findViewById(R.id.btnPrevious);
 
-        btnStartDemo.setOnClickListener(new Button.OnClickListener() {
+        btnNext.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DemoIntro.this, DemoFreeText.class);
+                Intent intent = new Intent(DemoMultiChoice_Multi.this, DemoScale.class);
                 startActivity(intent);
+            }
+        });
+
+        btnPrevious.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DemoMultiChoice_Multi.super.onBackPressed();
             }
         });
     }
@@ -33,7 +43,7 @@ public class DemoIntro extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_demo_intro, menu);
+        getMenuInflater().inflate(R.menu.menu_demo_multi_choice__multi, menu);
         return true;
     }
 
@@ -50,10 +60,5 @@ public class DemoIntro extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void btnStartDemo_onClick(View view) {
-        Intent intent = new Intent(this, DemoFreeText.class);
-        startActivity(intent);
     }
 }

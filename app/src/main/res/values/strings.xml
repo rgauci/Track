@@ -6,8 +6,13 @@
     <string name="title_activity_researcher_setup">Researcher Setup</string>
     <string name="title_activity_study_configuration">Study Configuration</string>
     <string name="title_activity_user_account_setup">User Account Setup</string>
+    <string name="title_activity_setup_complete">Setup Complete</string>
     <string name="title_activity_demo_intro">Demo</string>
     <string name="title_activity_demo_free_text">Free-Text Demo</string>
+    <string name="title_activity_demo_multi_choice__single">
+        Multiple Choice, Single Answer Demo</string>
+    <string name="title_activity_demo_multi_choice__multi">
+        Multiple Choice, Multiple Answer Demo</string>
 
     <string name="startDate">Start Date</string>
     <string name="duration">Duration</string>
@@ -26,7 +31,6 @@
 
     <string name="Participant">Participant\ </string>
     <string name="ParticipantIdPlaceholder">&lt;Participant ID&gt;</string>
-    <string name="title_activity_setup_complete">Setup Complete</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="demoSuggestion">Would you like a short demo?</string>
@@ -38,5 +42,30 @@
     <string name="demoIntro">This demo will guide you through a short tour of different question types you may encounter when using the app.\n\nNone of the answers you provide during the demo will be saved, this is merely for you to practise.</string>
     <string name="demoFreeTextQuestion">What is your favourite colour?</string>
     <string name="demoFreeTextExplanation">This is a free-text question. Click on the textbox to bring up the keyboard and write a short answer.</string>
+
+    <string name="demoMultiChoiceSingleQuestion">What day is it today?</string>
+    <string name="mon">Monday</string>
+    <string name="tue">Tuesday</string>
+    <string name="wed">Wednesday</string>
+    <string name="thu">Thursday</string>
+    <string name="fri">Friday</string>
+    <string name="sat">Saturday</string>
+    <string name="sun">Sunday</string>
+    <string name="demoMultiChoiceSingleExplanation">This is a multiple choice,
+        <b>single</b> answer question. Select one option and proceed using the <i>next</i> button below.</string>
+
+    <string name="demoMultiChoiceMultiQuestion">What type of music do you like?</string>
+    <string name="musicOption1">Classic</string>
+    <string name="musicOption2">Country</string>
+    <string name="musicOption3">Electronic</string>
+    <string name="musicOption4">Hip Hop</string>
+    <string name="musicOption5">Indie</string>
+    <string name="musicOption6">Jazz</string>
+    <string name="musicOption7">Pop</string>
+    <string name="musicOption8">Rock</string>
+    <string name="musicOption9">RnB</string>
+    <string name="demoMultiChoiceMultiExplanation">This is a multiple choice,
+        <b>multiple</b> answer question. Tick all the options that apply.</string>
+    <string name="title_activity_demo_scale">Scale Demo</string>
 
 </resources>

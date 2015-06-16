@@ -1,0 +1,135 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="informatics.uk.ac.ed.esm.DemoMultiChoice_Multi">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/BodyLayout"
+        android:id="@+id/bodyLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView"
+            android:layout_gravity="right"
+            android:layout_above="@+id/btnNext">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:gravity="left|center_vertical"
+                android:layout_above="@+id/btnNext">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/demoMultiChoiceSingleQuestion"
+                    android:id="@+id/textView8"
+                    style="@style/QuestionText" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/musicOption1"
+                    android:id="@+id/checkBox2"
+                    android:checked="false" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/musicOption2"
+                    android:id="@+id/checkBox3"
+                    android:checked="false" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/musicOption3"
+                    android:id="@+id/checkBox4" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/musicOption4"
+                    android:id="@+id/checkBox8" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/musicOption5"
+                    android:id="@+id/checkBox9" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/musicOption6"
+                    android:id="@+id/checkBox6" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/musicOption7"
+                    android:id="@+id/checkBox7" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/musicOption8"
+                    android:id="@+id/checkBox"
+                    android:checked="false" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/musicOption9"
+                    android:id="@+id/checkBox10"
+                    android:checked="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/demoMultiChoiceMultiExplanation"
+                    android:id="@+id/txtViewExp"
+                    style="@style/ExplanationText"
+                    android:autoText="false" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:layout_width="@dimen/navigation_button_width"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnNext"
+            android:layout_gravity="right"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:theme="@style/RaisedButtonColoured_Next" />
+
+        <Button
+            android:layout_width="@dimen/navigation_button_width"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnPrevious"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:theme="@style/RaisedButtonColoured_Next"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            style="@style/RaisedButtonColoured_Previous" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
