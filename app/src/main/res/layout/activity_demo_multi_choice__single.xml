@@ -39,11 +39,10 @@
             android:id="@+id/btnPrevious"
             android:layout_gravity="right"
             android:gravity="center"
-            android:theme="@style/RaisedButtonColoured_Next"
+            android:theme="@style/RaisedButtonColoured_Previous"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            style="@style/RaisedButtonColoured_Previous" />
+            android:layout_alignParentStart="true"/>
 
         <LinearLayout
             android:orientation="vertical"

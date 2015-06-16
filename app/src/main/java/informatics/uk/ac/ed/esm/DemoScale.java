@@ -1,18 +1,43 @@
 package informatics.uk.ac.ed.esm;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class DemoScale extends AppCompatActivity {
+
+    private Button btnNext;
+    private Button btnPrevious;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo_scale);
+
+        /* set onClick listeners */
+        btnNext = (Button) findViewById(R.id.btnNext);
+        btnPrevious = (Button) findViewById(R.id.btnPrevious);
+
+        btnNext.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DemoScale.this, DemoScale.class);
+                startActivity(intent);
+            }
+        });
+
+        btnPrevious.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DemoScale.super.onBackPressed();
+            }
+        });
     }
 
     @Override

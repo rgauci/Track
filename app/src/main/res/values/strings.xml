@@ -13,6 +13,7 @@
         Multiple Choice, Single Answer Demo</string>
     <string name="title_activity_demo_multi_choice__multi">
         Multiple Choice, Multiple Answer Demo</string>
+    <string name="title_activity_demo_scale">Scale Demo</string>
 
     <string name="startDate">Start Date</string>
     <string name="duration">Duration</string>
@@ -66,6 +67,11 @@
     <string name="musicOption9">RnB</string>
     <string name="demoMultiChoiceMultiExplanation">This is a multiple choice,
         <b>multiple</b> answer question. Tick all the options that apply.</string>
-    <string name="title_activity_demo_scale">Scale Demo</string>
+
+    <string name="demoScaleQuestion">How hungry are you at the moment?</string>
+    <string name="demoScaleLowest">not at all</string>
+    <string name="demoScaleHighest">starving</string>
+    <string name="demoScaleExplanation">This is a scale-type question.
+        Drag the slider to answer.</string>
 
 </resources>
