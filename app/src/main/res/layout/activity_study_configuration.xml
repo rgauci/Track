@@ -274,7 +274,9 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
                 android:layout_column="1"
                 style="@style/ListItem"
                 android:layout_height="72dp"
-                android:layout_width="wrap_content">
+                android:layout_width="match_parent"
+                android:onClick="lytStartTime_OnClick"
+                android:id="@+id/lytStartTime">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -287,8 +289,8 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/defaultStartTime"
-                    android:id="@+id/textView14"/>
+                    android:text="@string/defaultTimeFormat"
+                    android:id="@+id/txtStartTime"/>
 
             </LinearLayout>
 
@@ -318,11 +320,13 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="72dp"
                 android:layout_row="7"
                 android:layout_column="1"
-                style="@style/ListItem">
+                style="@style/ListItem"
+                android:onClick="lytEndTime_OnClick"
+                android:id="@+id/lytEndTime">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -335,8 +339,8 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/defaultEndTime"
-                    android:id="@+id/textView16" />
+                    android:text="@string/defaultTimeFormat"
+                    android:id="@+id/txtEndTime" />
             </LinearLayout>
 
             <View

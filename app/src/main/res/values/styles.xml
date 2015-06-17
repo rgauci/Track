@@ -110,8 +110,15 @@
         <item name="background">@color/purple_500</item>
         <item name="android:textAppearanceMedium">@style/MediumText</item>
         <item name="actionMenuTextColor">@color/primary</item>
+        <item name="android:dialogTheme">@style/DialogTheme</item>
         <!-- You can also set colorControlNormal, colorControlActivated
              colorControlHighlight, and colorSwitchThumbNormal. -->
+    </style>
+
+    <style name="DialogTheme" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
     </style>
 
     <style name="RaisedButtonColoured" parent="Widget.AppCompat.Button">

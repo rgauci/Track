@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="defaultStartTime_Hour">07</integer>
+    <integer name="defaultStartTime_Minute">30</integer>
+    <integer name="defaultEndTime_Hour">22</integer>
+    <integer name="defaultEndTime_Minute">30</integer>
+</resources>
