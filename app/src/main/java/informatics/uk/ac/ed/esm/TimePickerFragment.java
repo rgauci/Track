@@ -1,13 +1,12 @@
 package informatics.uk.ac.ed.esm;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.widget.TimePicker;
-
-import java.util.Calendar;
 
 public class TimePickerFragment extends DialogFragment
     implements TimePickerDialog.OnTimeSetListener {
@@ -17,7 +16,11 @@ public class TimePickerFragment extends DialogFragment
     public static final String ARG_MINUTE = "minute";
 
     private int pickerId;
-    private TimePickerDialogListener listener;
+    private TimePickerDialogListener callbackListener;
+
+    public interface TimePickerDialogListener {
+        void onTimeSet(int pickerId, TimePicker view, int hourOfDay, int minute);
+    }
 
     @Override @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -29,23 +32,27 @@ public class TimePickerFragment extends DialogFragment
         minute = args.getInt(ARG_MINUTE);
 
         pickerId = args.getInt(ARG_PICKER_ID);
-        listener =
-                getActivity() instanceof  TimePickerDialogListener ?
-                        (TimePickerDialogListener) getActivity()
-                        : null;
 
         // Create a new instance of DatePickerDialog and return it
         return new TimePickerDialog(getActivity(), this, hour, minute, true);
     }
 
     @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        if (listener != null) {
-            listener.onTimeSet(pickerId, view, hourOfDay, minute);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            callbackListener = (TimePickerDialogListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                + " must implement TimePickerDialogListener");
         }
     }
 
-    public interface TimePickerDialogListener {
-        void onTimeSet(int pickerId, TimePicker view, int hourOfDay, int minute);
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        callbackListener.onTimeSet(pickerId, view, hourOfDay, minute);
     }
 }

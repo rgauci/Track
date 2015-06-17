@@ -19,10 +19,12 @@ import java.util.GregorianCalendar;
 
 
 public class StudyConfiguration extends FragmentActivity
-        implements DatePickerDialog.OnDateSetListener, TimePickerFragment.TimePickerDialogListener {
+        implements DatePickerFragment.DatePickerDialogListener,
+            TimePickerFragment.TimePickerDialogListener {
 
-    private final static int START_TIMEPICKER_ID = 0;
-    private final static int END_TIMEPICKER_ID = 1;
+    private final static int START_DATEPICKER_ID = 0;
+    private final static int START_TIMEPICKER_ID = 1;
+    private final static int END_TIMEPICKER_ID = 2;
 
     private TextView txtVwStartDate;
     private TextView txtVwStartTime;
@@ -113,7 +115,7 @@ public class StudyConfiguration extends FragmentActivity
     }
 
     public void lytStartDate_onClick(View view) {
-        this.showDatePicker(this.startDate);
+        this.showDatePicker(this.startDate, START_DATEPICKER_ID);
     }
 
     public void lytStartTime_OnClick(View view) {
@@ -124,8 +126,9 @@ public class StudyConfiguration extends FragmentActivity
         this.showTimePicker(this.endTime_hour, this.endTime_minute, END_TIMEPICKER_ID);
     }
 
-    public void showDatePicker(Calendar dateCalendar) {
+    public void showDatePicker(Calendar dateCalendar, int pickerId) {
         Bundle args = new Bundle();
+        args.putInt(DatePickerFragment.ARG_PICKER_ID, pickerId);
         args.putInt(DatePickerFragment.ARG_YEAR, dateCalendar.get(Calendar.YEAR));
         args.putInt(DatePickerFragment.ARG_MONTH, dateCalendar.get(Calendar.MONTH));
         args.putInt(DatePickerFragment.ARG_DAY, dateCalendar.get(Calendar.DAY_OF_MONTH));
@@ -147,7 +150,7 @@ public class StudyConfiguration extends FragmentActivity
     }
 
     @Override
-    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+    public void OnDateSet(int pickerId, DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         this.setStartDate(year, monthOfYear, dayOfMonth);
     }
 
