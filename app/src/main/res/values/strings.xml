@@ -72,4 +72,13 @@
     <string name="demoScaleExplanation">This is a scale-type question.
         Drag the slider to answer.</string>
 
+    <string name="error_missingEmail">Enter email address.</string>
+    <string name="error_enterValidEmail">Enter a valid email address.</string>
+    <string name="error_enterParticipantId">Enter participant identification number.</string>
+    <string name="error_enterValidNumber">Enter a valid number.</string>
+    <string name="error_confirmPassword">Password does not match.</string>
+    <string name="error_invalidPasswordLength">Password must be between 8 and 20 characters in length.</string>
+    <string name="error_invalidPassword">Password must contain at least one digit and one letter, and cannot contain whitespace.</string>
+
+
 </resources>

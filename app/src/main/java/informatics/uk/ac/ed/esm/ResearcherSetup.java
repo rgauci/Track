@@ -5,26 +5,47 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class ResearcherSetup extends AppCompatActivity {
 
-    private TextView txtEmail;
+    private EditText txtEmail;
+    private EditText txtPassword;
+    private EditText txtConfirmPassword;
+    private EditText txtParticipantId;
+
     private TextInputLayout txtEmail_inpLyt;
+    private TextInputLayout txtPassword_inpLyt;
+    private TextInputLayout txtConfirmPassword_inpLyt;
+    private TextInputLayout txtParticipantId_inpLyt;
+
+    private ArrayList<TextInputLayout> txtInpLyts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_researcher_setup);
 
-        txtEmail = (TextView) findViewById(R.id.txtEmail);
+        txtEmail = (EditText) findViewById(R.id.txtEmail);
+        txtPassword = (EditText) findViewById(R.id.txtPassword);
+        txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
+        txtParticipantId = (EditText) findViewById(R.id.txtParticipantId);
+
         txtEmail_inpLyt = (TextInputLayout) findViewById(R.id.txtEmail_InpLyt);
+        txtPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtPassword_InpLyt);
+        txtConfirmPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtConfirmPassword_InpLyt);
+        txtParticipantId_inpLyt = (TextInputLayout) findViewById(R.id.txtParticipantId_inpLyt);
     }
 
     @Override
@@ -52,13 +73,55 @@ public class ResearcherSetup extends AppCompatActivity {
     public void btnNext_onClick(View view){
         boolean hasErrors = false;
 
-        String emailAddress = Utils.getTrimmedTextFromTextView(this.txtEmail);
+        /* get values */
+        String emailAddress = Utils.getTrimmedText(this.txtEmail);
+        String password = this.txtPassword.getText().toString(); // do not trim so we can check for whitespace
+        String confirmPassword = this.txtConfirmPassword.getText().toString();
+        String participantId_str = Utils.getTrimmedText(this.txtParticipantId);
+
+        /* validate email address */
         if (emailAddress.isEmpty()) {
-            txtEmail_inpLyt.setError("Enter an email address.");
+            txtEmail_inpLyt.setError(getString(R.string.error_missingEmail));
             hasErrors = true;
+        } else if (!Utils.isValidEmail(emailAddress)){
+            txtEmail_inpLyt.setError(getString(R.string.error_enterValidEmail));
+            hasErrors = true;
+        } else {
+            txtEmail_inpLyt.setError(null);
+        }
+
+        /* validate password */
+        if (!Utils.isValidPasswordLength(password)) {
+            txtPassword_inpLyt.setError(getString(R.string.error_invalidPasswordLength));
+            hasErrors = true;
+        } else if (!Utils.isValidPassword(password)) {
+            txtPassword_inpLyt.setError(getString(R.string.error_invalidPassword));
+            hasErrors = true;
+        } else {
+            txtPassword_inpLyt.setError(null);
+        }
+
+        /* validate confirm password */
+        if (!password.equals(confirmPassword)) {
+            txtConfirmPassword_inpLyt.setError(getString(R.string.error_confirmPassword));
+            hasErrors = true;
+        } else {
+            txtConfirmPassword_inpLyt.setError(null);
+        }
+
+        /* validate participant id */
+        if (participantId_str.isEmpty()) {
+            txtParticipantId_inpLyt.setError(getString(R.string.error_enterParticipantId));
+            hasErrors = true;
+        } else if (!TextUtils.isDigitsOnly(participantId_str)) {
+            txtParticipantId_inpLyt.setError(getString(R.string.error_enterValidNumber));
+            hasErrors = true;
+        } else {
+            txtParticipantId_inpLyt.setError(null);
         }
 
         if (!hasErrors) {
+            // proceed to next activity
             Intent intent = new Intent(this, StudyConfiguration.class);
             startActivity(intent);
         }
