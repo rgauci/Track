@@ -26,6 +26,8 @@ public class StudyConfiguration extends FragmentActivity
     private final static int START_TIMEPICKER_ID = 1;
     private final static int END_TIMEPICKER_ID = 2;
 
+    private long minimumStartDate; // will be set to the following day
+
     private TextView txtVwStartDate;
     private TextView txtVwStartTime;
     private TextView txtVwEndTime;
@@ -41,14 +43,15 @@ public class StudyConfiguration extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_configuration);
 
-        /* initalise UI controls */
+        /* initialise UI controls */
         txtVwStartDate = (TextView) findViewById(R.id.txtStartDate);
         txtVwStartTime = (TextView) findViewById(R.id.txtStartTime);
         txtVwEndTime = (TextView) findViewById(R.id.txtEndTime);
 
-        /* set start date to the following day */
+        /* set start date & minimum start date to the following day */
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, 1);
+        this.minimumStartDate = calendar.getTimeInMillis();
         this.setStartDate(calendar);
 
         /* set start & end times using default values */
@@ -132,6 +135,7 @@ public class StudyConfiguration extends FragmentActivity
         args.putInt(DatePickerFragment.ARG_YEAR, dateCalendar.get(Calendar.YEAR));
         args.putInt(DatePickerFragment.ARG_MONTH, dateCalendar.get(Calendar.MONTH));
         args.putInt(DatePickerFragment.ARG_DAY, dateCalendar.get(Calendar.DAY_OF_MONTH));
+        args.putLong(DatePickerFragment.ARG_MIN_DATE, this.minimumStartDate);
 
         DialogFragment datePicker = new DatePickerFragment();
         datePicker.setArguments(args);

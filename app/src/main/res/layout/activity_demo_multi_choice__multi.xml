@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/demoMultiChoiceSingleQuestion"
+                    android:text="@string/demoMultiChoiceMultiQuestion"
                     android:id="@+id/textView8"
                     style="@style/QuestionText" />
 

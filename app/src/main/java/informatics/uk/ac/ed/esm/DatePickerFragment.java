@@ -22,6 +22,7 @@ public class DatePickerFragment extends DialogFragment
     public static final String ARG_YEAR = "year";
     public static final String ARG_MONTH = "month";
     public static final String ARG_DAY = "day";
+    public static final String ARG_MIN_DATE = "minDate";
 
     private int pickerId;
     private DatePickerDialogListener callbackListener;
@@ -36,14 +37,23 @@ public class DatePickerFragment extends DialogFragment
         Bundle args = getArguments();
 
         int year, month, day;
+        long minDate;
+
         year = args.getInt(ARG_YEAR);
         month = args.getInt(ARG_MONTH);
         day = args.getInt(ARG_DAY);
+        minDate = args.getLong(ARG_MIN_DATE);
 
         pickerId = args.getInt(ARG_PICKER_ID);
 
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), this, year, month, day);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), this, year, month, day);
+
+        if (minDate != 0L) {
+            datePickerDialog.getDatePicker().setMinDate(minDate);
+        }
+
+        return datePickerDialog;
     }
 
     @Override

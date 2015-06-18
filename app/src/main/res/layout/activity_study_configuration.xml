@@ -130,7 +130,7 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
 
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/linearLayout4"
                     android:layout_below="@+id/textView11"
@@ -140,7 +140,7 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
                     android:layout_column="5">
 
                     <EditText
-                        android:layout_width="25dp"
+                        android:layout_width="@dimen/numeric_textview_width"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
@@ -165,7 +165,8 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
                         android:layout_toRightOf="@+id/txtDefaultDuration"
                         android:layout_toEndOf="@+id/txtDefaultDuration"
                         android:layout_row="7"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:layout_weight="0.5" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -183,7 +184,7 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_row="3"
                 android:layout_column="1">
@@ -212,7 +213,7 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
                         android:layout_height="wrap_content">
 
                         <EditText
-                            android:layout_width="25dp"
+                            android:layout_width="@dimen/numeric_textview_width"
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:ems="10"
@@ -237,7 +238,8 @@ tools:context="informatics.uk.ac.ed.esm.StudyConfiguration">
                             android:layout_toRightOf="@+id/editText2"
                             android:layout_toEndOf="@+id/editText2"
                             android:layout_row="6"
-                            android:layout_column="1" />
+                            android:layout_column="1"
+                            android:layout_weight="0.5" />
                     </LinearLayout>
                 </LinearLayout>
 

@@ -27,8 +27,6 @@ public class DemoScale extends AppCompatActivity {
         btnNext.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DemoScale.this, DemoScale.class);
-                startActivity(intent);
             }
         });
 
