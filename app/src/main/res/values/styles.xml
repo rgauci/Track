@@ -157,6 +157,10 @@
         <item name="android:layout_marginBottom">3dp</item>
     </style>
 
+    <style name="TextInputLayout">
+        <item name="android:minHeight">@dimen/floating_text_label_tile_height</item>
+    </style>
+
     <style name="FormImage">
         <item name="android:layout_marginRight">8dp</item>
         <item name="android:height">72dp</item>

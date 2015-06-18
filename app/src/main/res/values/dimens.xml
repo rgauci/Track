@@ -6,4 +6,5 @@
     <dimen name="navigation_button_width">65dp</dimen>
     <dimen name="bottom_margin">@dimen/activity_horizontal_margin</dimen>
     <dimen name="numeric_textview_width">150dp</dimen>
+    <dimen name="floating_text_label_tile_height">80dp</dimen>
 </resources>

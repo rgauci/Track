@@ -48,7 +48,8 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/txtEmail_InpLyt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayout" >
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -59,13 +60,14 @@
                     android:singleLine="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_alignParentEnd="true" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/txtPassword_InpLyt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayout" >
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -82,7 +84,8 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/txtConfirmPassword_InpLyt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayout" >
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,7 +102,8 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/txtParticipantId_inpLyt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayout" >
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
