@@ -153,8 +153,12 @@
     </style>
 
     <style name="HorizontalDivider">
-        <item name="android:layout_marginTop">3dp</item>
-        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">@dimen/horizontal_divider_vertical_margin</item>
+        <item name="android:layout_marginBottom">@dimen/horizontal_divider_vertical_margin</item>
+        <item name="android:layout_marginLeft">@dimen/activity_vertical_margin</item>
+        <item name="android:background">@color/divider</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">@dimen/horizontal_divider_height</item>
     </style>
 
     <style name="TextInputLayout">
@@ -162,12 +166,12 @@
     </style>
 
     <style name="FormImage">
-        <item name="android:layout_marginRight">8dp</item>
         <item name="android:height">72dp</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="ListItem">
+        <item name="android:layout_marginLeft">@dimen/activity_vertical_margin</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
