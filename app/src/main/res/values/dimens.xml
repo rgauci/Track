@@ -10,4 +10,5 @@
     <dimen name="floating_text_label_tile_height">80dp</dimen>
     <dimen name="horizontal_divider_vertical_margin">8dp</dimen>
     <dimen name="horizontal_divider_height">2dp</dimen>
+    <dimen name="list_item_height">72dp</dimen>
 </resources>

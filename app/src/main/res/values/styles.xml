@@ -148,6 +148,12 @@
         <item name="android:layout_marginBottom">@dimen/bottom_margin</item>
     </style>
 
+    <style name="ErrorText" parent="@android:style/TextAppearance.Small">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#DD2C00</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
     <style name="ExplanationText" parent="android:style/TextAppearance.Small">
         <item name="android:layout_marginTop">48dp</item>
     </style>
@@ -173,6 +179,7 @@
     <style name="ListItem">
         <item name="android:layout_marginLeft">@dimen/activity_vertical_margin</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">@dimen/list_item_height</item>
     </style>
 
     <style name="BodyLayout">

@@ -79,6 +79,9 @@
     <string name="error_confirmPassword">Password does not match.</string>
     <string name="error_invalidPasswordLength">Password must be between 8 and 20 characters in length.</string>
     <string name="error_invalidPassword">Password must contain at least one digit and one letter, and cannot contain whitespace.</string>
-
+    <string name="error_startDate">Study cannot start before tomorrow.</string>
+    <string name="error_missingDuration">Enter the number of days.</string>
+    <string name="error_missingSamplesPerDay">Enter the number of surveys to be filled out per day.</string>
+    <string name="error_dailyEndTime">End Time must be after Start Time.</string>
 
 </resources>

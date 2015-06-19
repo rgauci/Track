@@ -1,17 +1,23 @@
 package informatics.uk.ac.ed.esm;
 
-import android.app.DatePickerDialog;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.res.Resources;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,11 +32,20 @@ public class StudyConfiguration extends FragmentActivity
     private final static int START_TIMEPICKER_ID = 1;
     private final static int END_TIMEPICKER_ID = 2;
 
-    private long minimumStartDate; // will be set to the following day
+    private Calendar minimumStartDate; // will be set to the following day
+
+    private EditText txtDuration;
+    private EditText txtSamplesPerDay;
 
     private TextView txtVwStartDate;
     private TextView txtVwStartTime;
     private TextView txtVwEndTime;
+
+    private TextView txtStartDate_errorMsg;
+    private TextView txtDuration_errorMsg;
+    private TextView txtSamplesPerDay_errorMsg;
+    private TextView txtStarTime_errorMsg;
+    private TextView txtEndTime_errorMsg;
 
     private Calendar startDate;
     private int startTime_hour;
@@ -44,14 +59,23 @@ public class StudyConfiguration extends FragmentActivity
         setContentView(R.layout.activity_study_configuration);
 
         /* initialise UI controls */
+        txtDuration = (EditText) findViewById(R.id.txtDuration);
+        txtSamplesPerDay = (EditText) findViewById(R.id.txtSamplesPerDay);
+
         txtVwStartDate = (TextView) findViewById(R.id.txtStartDate);
         txtVwStartTime = (TextView) findViewById(R.id.txtStartTime);
         txtVwEndTime = (TextView) findViewById(R.id.txtEndTime);
 
+        txtStartDate_errorMsg = (TextView) findViewById(R.id.txtStartDate_errorMsg);
+        txtDuration_errorMsg = (TextView) findViewById(R.id.txtDuration_errorMsg);
+        txtSamplesPerDay_errorMsg = (TextView) findViewById(R.id.txtSamplesPerDay_errorMsg);
+        txtStarTime_errorMsg = (TextView) findViewById(R.id.txtStartTime_errorMsg);
+        txtEndTime_errorMsg = (TextView) findViewById(R.id.txtEndTime_errorMsg);
+
         /* set start date & minimum start date to the following day */
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, 1);
-        this.minimumStartDate = calendar.getTimeInMillis();
+        this.minimumStartDate = calendar;
         this.setStartDate(calendar);
 
         /* set start & end times using default values */
@@ -84,6 +108,89 @@ public class StudyConfiguration extends FragmentActivity
         return super.onOptionsItemSelected(item);
     }
 
+    public void btnNext_onClick(View view) {
+        boolean hasErrors = false;
+
+        // validate start date
+        if (this.startDate.before(this.minimumStartDate)) {
+            this.showError(this.txtStartDate_errorMsg, getString(R.string.error_startDate));
+            hasErrors = true;
+        } else {
+            this.hideError(this.txtStartDate_errorMsg);
+        }
+
+        // validate duration
+        if (!validateNumber(this.txtDuration, this.txtDuration_errorMsg,
+                getString(R.string.error_missingDuration))) {
+            hasErrors = true;
+        }
+
+        // validate #samples/day
+        if (!validateNumber(this.txtSamplesPerDay, this.txtSamplesPerDay_errorMsg,
+                getString(R.string.error_missingSamplesPerDay))) {
+            hasErrors = true;
+        }
+
+        // validate end time (must be after start time)
+        if (endTime_hour < startTime_hour) {
+            showError(this.txtEndTime_errorMsg, getString(R.string.error_dailyEndTime));
+            hasErrors = true;
+        } else {
+            this.hideError(this.txtEndTime_errorMsg);
+        }
+
+        if (!hasErrors) {
+            //setupNotifications();
+            Intent intent = new Intent(this, UserAccountSetup.class);
+            startActivity(intent);
+        }
+    }
+
+    private void setupNotifications() {
+        int requestCode = 1;
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, this.startTime_hour);
+        calendar.set(Calendar.MINUTE, this.startTime_minute);
+
+        // A pending intent that fires when the alarm is triggered.
+        // When you set a second alarm that uses the same pending intent, it replaces the original alarm.
+        Intent alarmReceiverIntent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode, alarmReceiverIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(ALARM_SERVICE);
+        // RTC_WAKEUP — Wakes up the device to fire the pending intent at the specified time.
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+        requestCode++;
+    }
+
+    private boolean validateNumber(EditText txtView, TextView txtVwError, String emptyErrorMsg) {
+        String numberString = Utils.getTrimmedText(txtView);
+        boolean valid = true;
+
+        if (numberString.isEmpty()) {
+            this.showError(txtVwError, emptyErrorMsg);
+            valid = false;
+        } else if (!TextUtils.isDigitsOnly(numberString)) {
+            this.showError(txtVwError, getString(R.string.error_enterValidNumber));
+            valid = false;
+        } else {
+            this.hideError(txtVwError);
+        }
+
+        return valid;
+    }
+
+    private void showError(TextView txtVwError, String msg){
+        txtVwError.setText(msg);
+        txtVwError.setVisibility(View.VISIBLE);
+    }
+
+    private void hideError(TextView txtVwError) {
+        txtVwError.setVisibility(View.GONE);
+    }
+
     private void setStartDate(Calendar date) {
         this.startDate = date;
         SimpleDateFormat sdf = new SimpleDateFormat(getResources().getString(R.string.defaultDateFormat));
@@ -112,11 +219,6 @@ public class StudyConfiguration extends FragmentActivity
         txtView.setText(String.format("%02d", hour) + ":" + String.format("%02d", minute));
     }
 
-    public void btnNext_onClick(View view) {
-        Intent intent = new Intent(this, UserAccountSetup.class);
-        startActivity(intent);
-    }
-
     public void lytStartDate_onClick(View view) {
         this.showDatePicker(this.startDate, START_DATEPICKER_ID);
     }
@@ -135,7 +237,7 @@ public class StudyConfiguration extends FragmentActivity
         args.putInt(DatePickerFragment.ARG_YEAR, dateCalendar.get(Calendar.YEAR));
         args.putInt(DatePickerFragment.ARG_MONTH, dateCalendar.get(Calendar.MONTH));
         args.putInt(DatePickerFragment.ARG_DAY, dateCalendar.get(Calendar.DAY_OF_MONTH));
-        args.putLong(DatePickerFragment.ARG_MIN_DATE, this.minimumStartDate);
+        args.putLong(DatePickerFragment.ARG_MIN_DATE, this.minimumStartDate.getTimeInMillis());
 
         DialogFragment datePicker = new DatePickerFragment();
         datePicker.setArguments(args);

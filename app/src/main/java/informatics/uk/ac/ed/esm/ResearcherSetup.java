@@ -73,13 +73,15 @@ public class ResearcherSetup extends AppCompatActivity {
     public void btnNext_onClick(View view){
         boolean hasErrors = false;
 
-        /* get values */
+        /* TODO re-enable validation*/
+        /*
+        // get values
         String emailAddress = Utils.getTrimmedText(this.txtEmail);
         String password = this.txtPassword.getText().toString(); // do not trim so we can check for whitespace
         String confirmPassword = this.txtConfirmPassword.getText().toString();
         String participantId_str = Utils.getTrimmedText(this.txtParticipantId);
 
-        /* validate email address */
+        // validate email address
         if (emailAddress.isEmpty()) {
             txtEmail_inpLyt.setError(getString(R.string.error_missingEmail));
             hasErrors = true;
@@ -90,7 +92,7 @@ public class ResearcherSetup extends AppCompatActivity {
             txtEmail_inpLyt.setError(null);
         }
 
-        /* validate password */
+        // validate password
         if (!Utils.isValidPasswordLength(password)) {
             txtPassword_inpLyt.setError(getString(R.string.error_invalidPasswordLength));
             hasErrors = true;
@@ -101,7 +103,7 @@ public class ResearcherSetup extends AppCompatActivity {
             txtPassword_inpLyt.setError(null);
         }
 
-        /* validate confirm password */
+        // validate confirm password
         if (!password.equals(confirmPassword)) {
             txtConfirmPassword_inpLyt.setError(getString(R.string.error_confirmPassword));
             hasErrors = true;
@@ -109,7 +111,7 @@ public class ResearcherSetup extends AppCompatActivity {
             txtConfirmPassword_inpLyt.setError(null);
         }
 
-        /* validate participant id */
+        // validate participant id
         if (participantId_str.isEmpty()) {
             txtParticipantId_inpLyt.setError(getString(R.string.error_enterParticipantId));
             hasErrors = true;
@@ -119,7 +121,7 @@ public class ResearcherSetup extends AppCompatActivity {
         } else {
             txtParticipantId_inpLyt.setError(null);
         }
-
+        */
         if (!hasErrors) {
             // proceed to next activity
             Intent intent = new Intent(this, StudyConfiguration.class);
