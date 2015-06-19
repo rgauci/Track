@@ -140,7 +140,7 @@ public class StudyConfiguration extends FragmentActivity
         }
 
         if (!hasErrors) {
-            //setupNotifications();
+            setupNotifications();
             Intent intent = new Intent(this, UserAccountSetup.class);
             startActivity(intent);
         }
@@ -150,8 +150,11 @@ public class StudyConfiguration extends FragmentActivity
         int requestCode = 1;
 
         Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(this.startDate.getTimeInMillis());
         calendar.set(Calendar.HOUR_OF_DAY, this.startTime_hour);
         calendar.set(Calendar.MINUTE, this.startTime_minute);
+
+        //Long alertTime = new GregorianCalendar().getTimeInMillis() + 5 * 1000;
 
         // A pending intent that fires when the alarm is triggered.
         // When you set a second alarm that uses the same pending intent, it replaces the original alarm.
@@ -160,7 +163,11 @@ public class StudyConfiguration extends FragmentActivity
 
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(ALARM_SERVICE);
         // RTC_WAKEUP — Wakes up the device to fire the pending intent at the specified time.
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        // setInexactRepeating() - Android synchronizes repeating alarms from multiple apps
+        // and fires them at the same time. This reduces the total number of times
+        // the system must wake the device, thus reducing drain on the battery.
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alertTime, AlarmManager.INTERVAL_DAY, pendingIntent);
 
         requestCode++;
     }
