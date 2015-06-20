@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class DemoFreeText extends AppCompatActivity {
 
+    private EditText txtAnswer;
     private Button btnNext;
 
     @Override
@@ -20,14 +24,31 @@ public class DemoFreeText extends AppCompatActivity {
         setContentView(R.layout.activity_demo_free_text);
 
         btnNext = (Button) findViewById(R.id.btnNext);
+        txtAnswer = (EditText) findViewById(R.id.txtAnswer);
 
         btnNext.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DemoFreeText.this, DemoMultiChoice_Single.class);
-                startActivity(intent);
+                if (isValid()) {
+                    Intent intent = new Intent(DemoFreeText.this, DemoMultiChoice_Single.class);
+                    startActivity(intent);
+                }
             }
         });
+    }
+
+    public boolean isValid() {
+        boolean hasErrors = false;
+
+        String answer = Utils.getTrimmedText(txtAnswer);
+        if (TextUtils.isEmpty(answer)) {
+            Toast toast = Toast.makeText(
+                    this, "Answer the question to proceed.", Toast.LENGTH_SHORT);
+            toast.show();
+            hasErrors = true;
+        }
+
+        return !hasErrors;
     }
 
     @Override

@@ -20,17 +20,10 @@ import java.util.Arrays;
 
 public class ResearcherSetup extends AppCompatActivity {
 
-    private EditText txtEmail;
-    private EditText txtConfirmEmail;
-    private EditText txtPassword;
-    private EditText txtConfirmPassword;
-    private EditText txtParticipantId;
+    private EditText txtEmail, txtConfirmEmail, txtPassword, txtConfirmPassword, txtParticipantId;
 
-    private TextInputLayout txtEmail_inpLyt;
-    private TextInputLayout txtConfirmEmail_inpLyt;
-    private TextInputLayout txtPassword_inpLyt;
-    private TextInputLayout txtConfirmPassword_inpLyt;
-    private TextInputLayout txtParticipantId_inpLyt;
+    private TextInputLayout txtEmail_inpLyt, txtConfirmEmail_inpLyt, txtPassword_inpLyt,
+            txtConfirmPassword_inpLyt, txtParticipantId_inpLyt;
 
     private ArrayList<TextInputLayout> txtInpLyts;
 
@@ -77,8 +70,6 @@ public class ResearcherSetup extends AppCompatActivity {
     public void btnNext_onClick(View view){
         boolean hasErrors = false;
 
-        /* TODO re-enable validation*/
-
         // get values
         String emailAddress = Utils.getTrimmedText(this.txtEmail);
         String confirmEmail = Utils.getTrimmedText(this.txtConfirmEmail);
@@ -86,6 +77,8 @@ public class ResearcherSetup extends AppCompatActivity {
         String confirmPassword = this.txtConfirmPassword.getText().toString();
         String participantId_str = Utils.getTrimmedText(this.txtParticipantId);
 
+        // TODO re-enable validation
+        /*
         // validate email address
         if (emailAddress.isEmpty()) {
             txtEmail_inpLyt.setError(getString(R.string.error_missingEmail));
@@ -134,6 +127,7 @@ public class ResearcherSetup extends AppCompatActivity {
         } else {
             txtParticipantId_inpLyt.setError(null);
         }
+        */
 
         if (!hasErrors) {
             // proceed to next activity
