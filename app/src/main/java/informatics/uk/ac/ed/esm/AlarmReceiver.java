@@ -7,9 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-/**
- * Created by Rachel on 19/06/2015.
- */
 public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
@@ -19,7 +16,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     private void displayNotification(Context context, String msg, String msgText, String msgAlert) {
 
-        PendingIntent notificationIntent = PendingIntent.getActivity(context, 0, new Intent(context, StudyConfiguration.class), 0);
+        PendingIntent notificationIntent = PendingIntent.getActivity(context, 0, new Intent(context, UserLogin.class), 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.ic_mood_white_24dp)

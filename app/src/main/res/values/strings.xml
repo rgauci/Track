@@ -83,5 +83,9 @@
     <string name="error_missingDuration">Enter the number of days.</string>
     <string name="error_missingSamplesPerDay">Enter the number of surveys to be filled out per day.</string>
     <string name="error_dailyEndTime">End Time must be after Start Time.</string>
+    <string name="title_activity_participant_login">Participant Login</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_user_login">User Login</string>
 
 </resources>

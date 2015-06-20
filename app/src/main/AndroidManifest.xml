@@ -3,17 +3,22 @@
     package="informatics.uk.ac.ed.esm" >
 
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+        <receiver android:name=".AlarmReceiver" />
+
         <activity
             android:name=".ResearcherSetup"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -49,8 +54,10 @@
             android:name=".DemoScale"
             android:label="@string/app_name" >
         </activity>
-
-        <receiver android:name=".AlarmReceiver" />
+        <activity
+            android:name=".UserLogin"
+            android:label="@string/title_activity_user_login" >
+        </activity>
     </application>
 
 </manifest>

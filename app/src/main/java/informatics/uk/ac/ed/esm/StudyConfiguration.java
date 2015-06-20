@@ -8,6 +8,7 @@ import android.support.v4.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
-public class StudyConfiguration extends FragmentActivity
+public class StudyConfiguration extends AppCompatActivity
         implements DatePickerFragment.DatePickerDialogListener,
             TimePickerFragment.TimePickerDialogListener {
 
@@ -154,7 +155,7 @@ public class StudyConfiguration extends FragmentActivity
         calendar.set(Calendar.HOUR_OF_DAY, this.startTime_hour);
         calendar.set(Calendar.MINUTE, this.startTime_minute);
 
-        //Long alertTime = new GregorianCalendar().getTimeInMillis() + 5 * 1000;
+        Long alertTime = new GregorianCalendar().getTimeInMillis() + 5 * 1000;
 
         // A pending intent that fires when the alarm is triggered.
         // When you set a second alarm that uses the same pending intent, it replaces the original alarm.
@@ -166,8 +167,8 @@ public class StudyConfiguration extends FragmentActivity
         // setInexactRepeating() - Android synchronizes repeating alarms from multiple apps
         // and fires them at the same time. This reduces the total number of times
         // the system must wake the device, thus reducing drain on the battery.
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
-        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alertTime, AlarmManager.INTERVAL_DAY, pendingIntent);
+        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alertTime, AlarmManager.INTERVAL_HALF_HOUR, pendingIntent);
 
         requestCode++;
     }
