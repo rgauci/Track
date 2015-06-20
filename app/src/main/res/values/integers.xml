@@ -4,4 +4,7 @@
     <integer name="defaultStartTime_Minute">30</integer>
     <integer name="defaultEndTime_Hour">22</integer>
     <integer name="defaultEndTime_Minute">30</integer>
+    <integer name="defaultDuration">6</integer>
+    <integer name="defaultSamplesPerDay">8</integer>
+    <integer name="defaultNotificationWindow">15</integer>
 </resources>

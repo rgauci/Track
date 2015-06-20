@@ -14,6 +14,8 @@
     <string name="title_activity_demo_multi_choice__multi">
         Multiple Choice, Multiple Answer Demo</string>
     <string name="title_activity_demo_scale">Scale Demo</string>
+    <string name="title_activity_participant_login">Participant Login</string>
+    <string name="title_activity_user_login">User Login</string>
 
     <string name="startDate">Start Date</string>
     <string name="duration">Duration</string>
@@ -24,8 +26,6 @@
 
     <string name="defaultTimeFormat">hh:mm</string>
     <string name="defaultDateFormat">EEEE, dd MMM yyyy</string>
-    <string name="defaultDuration">6</string>
-    <string name="defaultSamplesPerDay">8</string>
     <string name="samples">samples</string>
 
 
@@ -74,18 +74,29 @@
 
     <string name="error_missingEmail">Enter email address.</string>
     <string name="error_enterValidEmail">Enter a valid email address.</string>
-    <string name="error_enterParticipantId">Enter participant identification number.</string>
-    <string name="error_enterValidNumber">Enter a valid number.</string>
+    <string name="error_confirmEmail">Email address does not match.</string>
     <string name="error_confirmPassword">Password does not match.</string>
-    <string name="error_invalidPasswordLength">Password must be between 8 and 20 characters in length.</string>
-    <string name="error_invalidPassword">Password must contain at least one digit and one letter, and cannot contain whitespace.</string>
+    <string name="error_invalidPasswordLength">
+        Password must be between 8 and 20 characters in length.</string>
+    <string name="error_invalidPassword">
+        Password must contain at least one digit and one letter,
+        and cannot contain whitespace.</string>
     <string name="error_startDate">Study cannot start before tomorrow.</string>
     <string name="error_missingDuration">Enter the number of days.</string>
-    <string name="error_missingSamplesPerDay">Enter the number of surveys to be filled out per day.</string>
+    <string name="error_missingSamplesPerDay">
+        Enter the number of surveys to be filled out per day.</string>
     <string name="error_dailyEndTime">End Time must be after Start Time.</string>
-    <string name="title_activity_participant_login">Participant Login</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_user_login">User Login</string>
+    <string name="confirmEmailAddress">Confirm Email Address</string>
+    <string name="researcherEmailAddress">Researcher Email Address</string>
+    <string name="researcherPassword">Researcher Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="notificationWindow">Notification Window</string>
+    <string name="minutes">minutes</string>
+    <string name="error_missingNotificationWindow">Enter number of minutes survey will be available
+        for after initial notification.</string>
+    <string name="error_enterParticipantId">Enter participant identification number.</string>
+    <string name="error_enterValidNumber">Enter a valid number.</string>
 
 </resources>

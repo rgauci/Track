@@ -78,7 +78,7 @@
                 android:ems="10"
                 android:id="@+id/editText"
                 android:layout_gravity="right"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:gravity="center_horizontal" />
 
         </LinearLayout>

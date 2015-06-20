@@ -55,7 +55,25 @@
                     android:inputType="textEmailAddress"
                     android:ems="10"
                     android:id="@+id/txtEmail"
-                    android:hint="Researcher Email Address"
+                    android:hint="@string/researcherEmailAddress"
+                    android:singleLine="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/txtConfirmEmail_InpLyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayout" >
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:ems="10"
+                    android:id="@+id/txtConfirmEmail"
+                    android:hint="@string/confirmEmailAddress"
                     android:singleLine="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
@@ -73,7 +91,7 @@
                     android:inputType="textPassword"
                     android:ems="10"
                     android:id="@+id/txtPassword"
-                    android:hint="Researcher Password"
+                    android:hint="@string/researcherPassword"
                     android:singleLine="true"
                     android:layout_alignParentEnd="true"
                     android:layout_below="@+id/txtEmail"
@@ -91,7 +109,7 @@
                     android:inputType="textPassword"
                     android:ems="10"
                     android:id="@+id/txtConfirmPassword"
-                    android:hint="Confirm Password"
+                    android:hint="@string/confirmPassword"
                     android:singleLine="true"
                     android:layout_alignParentEnd="true"
                     android:layout_below="@+id/txtPassword"

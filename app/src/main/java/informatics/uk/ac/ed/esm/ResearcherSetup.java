@@ -21,11 +21,13 @@ import java.util.Arrays;
 public class ResearcherSetup extends AppCompatActivity {
 
     private EditText txtEmail;
+    private EditText txtConfirmEmail;
     private EditText txtPassword;
     private EditText txtConfirmPassword;
     private EditText txtParticipantId;
 
     private TextInputLayout txtEmail_inpLyt;
+    private TextInputLayout txtConfirmEmail_inpLyt;
     private TextInputLayout txtPassword_inpLyt;
     private TextInputLayout txtConfirmPassword_inpLyt;
     private TextInputLayout txtParticipantId_inpLyt;
@@ -38,11 +40,13 @@ public class ResearcherSetup extends AppCompatActivity {
         setContentView(R.layout.activity_researcher_setup);
 
         txtEmail = (EditText) findViewById(R.id.txtEmail);
+        txtConfirmEmail = (EditText) findViewById(R.id.txtConfirmEmail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
         txtParticipantId = (EditText) findViewById(R.id.txtParticipantId);
 
         txtEmail_inpLyt = (TextInputLayout) findViewById(R.id.txtEmail_InpLyt);
+        txtConfirmEmail_inpLyt = (TextInputLayout) findViewById(R.id.txtConfirmEmail_InpLyt);
         txtPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtPassword_InpLyt);
         txtConfirmPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtConfirmPassword_InpLyt);
         txtParticipantId_inpLyt = (TextInputLayout) findViewById(R.id.txtParticipantId_inpLyt);
@@ -74,9 +78,10 @@ public class ResearcherSetup extends AppCompatActivity {
         boolean hasErrors = false;
 
         /* TODO re-enable validation*/
-        /*
+
         // get values
         String emailAddress = Utils.getTrimmedText(this.txtEmail);
+        String confirmEmail = Utils.getTrimmedText(this.txtConfirmEmail);
         String password = this.txtPassword.getText().toString(); // do not trim so we can check for whitespace
         String confirmPassword = this.txtConfirmPassword.getText().toString();
         String participantId_str = Utils.getTrimmedText(this.txtParticipantId);
@@ -92,6 +97,14 @@ public class ResearcherSetup extends AppCompatActivity {
             txtEmail_inpLyt.setError(null);
         }
 
+        // validate confirm email
+        if (!confirmEmail.equals(emailAddress)) {
+            txtConfirmEmail_inpLyt.setError(getString(R.string.error_confirmEmail));
+            hasErrors = true;
+        } else {
+            txtConfirmEmail_inpLyt.setError(null);
+        }
+
         // validate password
         if (!Utils.isValidPasswordLength(password)) {
             txtPassword_inpLyt.setError(getString(R.string.error_invalidPasswordLength));
@@ -104,7 +117,7 @@ public class ResearcherSetup extends AppCompatActivity {
         }
 
         // validate confirm password
-        if (!password.equals(confirmPassword)) {
+        if (!confirmPassword.equals(password)) {
             txtConfirmPassword_inpLyt.setError(getString(R.string.error_confirmPassword));
             hasErrors = true;
         } else {
@@ -121,7 +134,7 @@ public class ResearcherSetup extends AppCompatActivity {
         } else {
             txtParticipantId_inpLyt.setError(null);
         }
-        */
+
         if (!hasErrors) {
             // proceed to next activity
             Intent intent = new Intent(this, StudyConfiguration.class);

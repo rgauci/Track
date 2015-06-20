@@ -83,7 +83,7 @@
                     android:ems="10"
                     android:id="@+id/editText"
                     android:layout_gravity="right"
-                    android:hint="Password"/>
+                    android:hint="@string/password"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -98,7 +98,7 @@
                     android:ems="10"
                     android:id="@+id/editText3"
                     android:layout_gravity="center_horizontal"
-                    android:hint="Confirm Password"/>
+                    android:hint="@string/confirmPassword" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 

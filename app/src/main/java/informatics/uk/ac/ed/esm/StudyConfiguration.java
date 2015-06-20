@@ -35,24 +35,17 @@ public class StudyConfiguration extends AppCompatActivity
 
     private Calendar minimumStartDate; // will be set to the following day
 
-    private EditText txtDuration;
-    private EditText txtSamplesPerDay;
-
-    private TextView txtVwStartDate;
-    private TextView txtVwStartTime;
-    private TextView txtVwEndTime;
-
-    private TextView txtStartDate_errorMsg;
-    private TextView txtDuration_errorMsg;
-    private TextView txtSamplesPerDay_errorMsg;
-    private TextView txtStarTime_errorMsg;
-    private TextView txtEndTime_errorMsg;
-
     private Calendar startDate;
     private int startTime_hour;
     private int startTime_minute;
     private int endTime_hour;
     private int endTime_minute;
+
+    private EditText txtDuration, txtSamplesPerDay, txtNotificationWindow;
+    private TextView txtVwStartDate, txtVwStartTime, txtVwEndTime;
+    private TextView txtStartDate_errorMsg, txtDuration_errorMsg,
+            txtSamplesPerDay_errorMsg, txtNotificationWindow_errorMsg,
+            txtStarTime_errorMsg, txtEndTime_errorMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +55,7 @@ public class StudyConfiguration extends AppCompatActivity
         /* initialise UI controls */
         txtDuration = (EditText) findViewById(R.id.txtDuration);
         txtSamplesPerDay = (EditText) findViewById(R.id.txtSamplesPerDay);
+        txtNotificationWindow = (EditText) findViewById(R.id.txtNotificationWindow);
 
         txtVwStartDate = (TextView) findViewById(R.id.txtStartDate);
         txtVwStartTime = (TextView) findViewById(R.id.txtStartTime);
@@ -70,6 +64,7 @@ public class StudyConfiguration extends AppCompatActivity
         txtStartDate_errorMsg = (TextView) findViewById(R.id.txtStartDate_errorMsg);
         txtDuration_errorMsg = (TextView) findViewById(R.id.txtDuration_errorMsg);
         txtSamplesPerDay_errorMsg = (TextView) findViewById(R.id.txtSamplesPerDay_errorMsg);
+        txtNotificationWindow_errorMsg = (TextView) findViewById(R.id.txtNotificationWindow_errorMsg);
         txtStarTime_errorMsg = (TextView) findViewById(R.id.txtStartTime_errorMsg);
         txtEndTime_errorMsg = (TextView) findViewById(R.id.txtEndTime_errorMsg);
 
@@ -129,6 +124,12 @@ public class StudyConfiguration extends AppCompatActivity
         // validate #samples/day
         if (!validateNumber(this.txtSamplesPerDay, this.txtSamplesPerDay_errorMsg,
                 getString(R.string.error_missingSamplesPerDay))) {
+            hasErrors = true;
+        }
+
+        // validate notification window
+        if (!validateNumber(this.txtNotificationWindow, this.txtNotificationWindow_errorMsg,
+                getString(R.string.error_missingNotificationWindow))) {
             hasErrors = true;
         }
 
