@@ -1,6 +1,8 @@
 package informatics.uk.ac.ed.esm;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
@@ -16,19 +19,31 @@ import org.w3c.dom.Text;
 public class UserAccountSetup extends AppCompatActivity {
 
     private EditText txtPassword, txtConfirmPassword;
+    private TextView txtVwParticipantId;
     private TextInputLayout txtPassword_inpLyt, txtConfirmPassword_inpLyt;
 
+    private SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account_setup);
 
+        /* initialise UI controls */
+        txtVwParticipantId = (TextView) findViewById(R.id.txtVwParticipantId);
+
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
 
         txtPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtPassword_InpLyt);
         txtConfirmPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtConfirmPassword_InpLyt);
+
+        /* get shared preferences */
+        this.settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        /* display participant ID */
+        int participantId = settings.getInt(Constants.PARTICIPANT_ID, -1);
+        txtVwParticipantId.setText(String.valueOf(participantId));
     }
 
     @Override

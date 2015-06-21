@@ -2,10 +2,15 @@ package informatics.uk.ac.ed.esm;
 
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
 import android.widget.EditText;
 
 import org.w3c.dom.Text;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,4 +43,22 @@ public class Utils {
         return matcher.matches();
     }
 
+    public static String computeHash(String plaintext) {
+        MessageDigest digest;
+        String hash;
+
+        try
+        {
+            digest = MessageDigest.getInstance(Constants.HASHING_ALGORITHM);
+        } catch (NoSuchAlgorithmException e1) {
+            Log.e("computeHash", "Error initializing SHA1 message digest");
+            return plaintext;
+        }
+
+        digest.update(plaintext.getBytes());
+        byte[] byteHash = digest.digest();
+
+        hash = Base64.encodeToString(byteHash, Base64.DEFAULT);
+        return hash;
+    }
 }

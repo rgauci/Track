@@ -1,6 +1,8 @@
 package informatics.uk.ac.ed.esm;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -21,11 +23,11 @@ import java.util.Arrays;
 public class ResearcherSetup extends AppCompatActivity {
 
     private EditText txtEmail, txtConfirmEmail, txtPassword, txtConfirmPassword, txtParticipantId;
-
     private TextInputLayout txtEmail_inpLyt, txtConfirmEmail_inpLyt, txtPassword_inpLyt,
             txtConfirmPassword_inpLyt, txtParticipantId_inpLyt;
 
-    private ArrayList<TextInputLayout> txtInpLyts;
+    private String emailAddress, confirmEmail, password, confirmPassword, participantId_str;
+    private int participantId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,17 +70,29 @@ public class ResearcherSetup extends AppCompatActivity {
     }
 
     public void btnNext_onClick(View view){
+        // get values
+        this.emailAddress = Utils.getTrimmedText(this.txtEmail);
+        this.confirmEmail = Utils.getTrimmedText(this.txtConfirmEmail);
+        this.password = this.txtPassword.getText().toString(); // do not trim so we can check for whitespace
+        this.confirmPassword = this.txtConfirmPassword.getText().toString();
+        this.participantId_str = Utils.getTrimmedText(this.txtParticipantId);
+
+        if (this.validate()) {
+            // save settings
+            this.savePreferences();
+            // proceed to next activity
+            Intent intent = new Intent(this, StudyConfiguration.class);
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * Validate form input.
+     * @return true if validation succeeds
+     */
+    public boolean validate() {
         boolean hasErrors = false;
 
-        // get values
-        String emailAddress = Utils.getTrimmedText(this.txtEmail);
-        String confirmEmail = Utils.getTrimmedText(this.txtConfirmEmail);
-        String password = this.txtPassword.getText().toString(); // do not trim so we can check for whitespace
-        String confirmPassword = this.txtConfirmPassword.getText().toString();
-        String participantId_str = Utils.getTrimmedText(this.txtParticipantId);
-
-        // TODO re-enable validation
-        /*
         // validate email address
         if (emailAddress.isEmpty()) {
             txtEmail_inpLyt.setError(getString(R.string.error_missingEmail));
@@ -125,14 +139,26 @@ public class ResearcherSetup extends AppCompatActivity {
             txtParticipantId_inpLyt.setError(getString(R.string.error_enterValidNumber));
             hasErrors = true;
         } else {
+            participantId = Integer.parseInt(participantId_str);
             txtParticipantId_inpLyt.setError(null);
         }
-        */
 
-        if (!hasErrors) {
-            // proceed to next activity
-            Intent intent = new Intent(this, StudyConfiguration.class);
-            startActivity(intent);
-        }
+        return !hasErrors;
+    }
+
+    public void savePreferences() {
+        // getDefaultSharedPreferences() uses a default preference-file name.
+        // This default is set per application, so all activities in the same app context
+        // can access it easily as in the following example:
+        // http://stackoverflow.com/questions/5946135/difference-between-getdefaultsharedpreferences-and-getsharedpreferences
+        SharedPreferences settings =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = settings.edit();
+
+        editor.putString(Constants.RESEARCHER_EMAIL, this.emailAddress);
+        editor.putString(Constants.RESEARCHER_PASSWORD_HASHED, Utils.computeHash(this.password));
+        editor.putInt(Constants.PARTICIPANT_ID, this.participantId);
+
+        editor.commit();
     }
 }
