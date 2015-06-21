@@ -42,8 +42,8 @@ public class DemoFreeText extends AppCompatActivity {
 
         String answer = Utils.getTrimmedText(txtAnswer);
         if (TextUtils.isEmpty(answer)) {
-            Toast toast = Toast.makeText(
-                    this, "Answer the question to proceed.", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this,
+                    getResources().getString(R.string.error_answerToProceed), Toast.LENGTH_SHORT);
             toast.show();
             hasErrors = true;
         }

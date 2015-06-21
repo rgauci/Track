@@ -98,5 +98,6 @@
         for after initial notification.</string>
     <string name="error_enterParticipantId">Enter participant identification number.</string>
     <string name="error_enterValidNumber">Enter a valid number.</string>
+    <string name="error_answerToProceed">Answer the question to proceed.</string>
 
 </resources>
