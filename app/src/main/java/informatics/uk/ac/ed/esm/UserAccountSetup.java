@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -13,8 +12,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 
 public class UserAccountSetup extends AppCompatActivity {
 
@@ -22,7 +19,7 @@ public class UserAccountSetup extends AppCompatActivity {
     private TextView txtVwParticipantId;
     private TextInputLayout txtPassword_inpLyt, txtConfirmPassword_inpLyt;
 
-    private SharedPreferences settings;
+    private String password, confirmPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +36,7 @@ public class UserAccountSetup extends AppCompatActivity {
         txtConfirmPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtConfirmPassword_InpLyt);
 
         /* get shared preferences */
-        this.settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         /* display participant ID */
         int participantId = settings.getInt(Constants.PARTICIPANT_ID, -1);
@@ -69,15 +66,32 @@ public class UserAccountSetup extends AppCompatActivity {
     }
 
     public void btnNext_onClick(View view) {
+        // TODO re-enable validation
+        boolean valid = this.setAndValidate();
+
+        savePreferences();
+
+        if (valid) {
+            // save settings
+            this.savePreferences();
+            // proceed to next activity
+            Intent intent = new Intent(this, SetupComplete.class);
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * Validate form input.
+     * @return true if validation succeeds
+     */
+    private boolean setAndValidate() {
         boolean hasErrors = false;
 
         // get values
-        String password = this.txtPassword.getText().toString(); // do not trim so we can check for whitespace
-        String confirmPassword = this.txtConfirmPassword.getText().toString();
+        this.password = this.txtPassword.getText().toString(); // do not trim so we can check for whitespace
+        this.confirmPassword = this.txtConfirmPassword.getText().toString();
 
-        // TODO re-enable validation
-        /*
-        // validate password
+        // password
         if (!Utils.isValidPasswordLength(password)) {
             txtPassword_inpLyt.setError(getString(R.string.error_invalidPasswordLength));
             hasErrors = true;
@@ -88,18 +102,24 @@ public class UserAccountSetup extends AppCompatActivity {
             txtPassword_inpLyt.setError(null);
         }
 
-        // validate confirm password
+        // confirm password
         if (!confirmPassword.equals(password)) {
             txtConfirmPassword_inpLyt.setError(getString(R.string.error_confirmPassword));
             hasErrors = true;
         } else {
             txtConfirmPassword_inpLyt.setError(null);
         }
-        */
 
-        if (!hasErrors) {
-            Intent intent = new Intent(this, SetupComplete.class);
-            startActivity(intent);
-        }
+        return !hasErrors;
+    }
+
+    public void savePreferences() {
+        SharedPreferences settings =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = settings.edit();
+
+        editor.putString(Constants.PARTICIPANT_PASSWORD_HASHED, Utils.computeHash(this.password));
+
+        editor.commit();
     }
 }

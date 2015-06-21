@@ -29,7 +29,7 @@
     <string name="samples">samples</string>
 
 
-    <string name="Participant">Participant\ </string>
+    <string name="Participant">Participant&#160;</string>
     <string name="ParticipantIdPlaceholder">&lt;Participant ID&gt;</string>
 
     <string name="demoSuggestion">Would you like a short demo?</string>

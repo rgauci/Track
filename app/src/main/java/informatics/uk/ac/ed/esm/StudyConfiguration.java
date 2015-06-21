@@ -2,12 +2,12 @@ package informatics.uk.ac.ed.esm;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.support.design.widget.TextInputLayout;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -17,8 +17,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,10 +34,9 @@ public class StudyConfiguration extends AppCompatActivity
     private Calendar minimumStartDate; // will be set to the following day
 
     private Calendar startDate;
-    private int startTime_hour;
-    private int startTime_minute;
-    private int endTime_hour;
-    private int endTime_minute;
+    private int duration, samplesPerDay, notificationWindow;
+    private int startTime_hour, startTime_minute;
+    private int endTime_hour, endTime_minute;
 
     private EditText txtDuration, txtSamplesPerDay, txtNotificationWindow;
     private TextView txtVwStartDate, txtVwStartTime, txtVwEndTime;
@@ -105,9 +102,31 @@ public class StudyConfiguration extends AppCompatActivity
     }
 
     public void btnNext_onClick(View view) {
+        boolean valid = this.setAndValidate();
+
+        if (valid) {
+            // save settings
+            this.savePreferences();
+            // set up notifications
+            setupNotifications();
+            // proceed to next activity
+            Intent intent = new Intent(this, UserAccountSetup.class);
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * Set instance variables and validate form input.
+     * @return true if validation succeeds
+     */
+    private boolean setAndValidate() {
         boolean hasErrors = false;
 
-        // validate start date
+        String duration_str = Utils.getTrimmedText(this.txtDuration);
+        String samplePerDay_str = Utils.getTrimmedText(this.txtSamplesPerDay);
+        String notificationWindow_str = Utils.getTrimmedText(this.txtNotificationWindow);
+
+        // start date
         if (this.startDate.before(this.minimumStartDate)) {
             this.showError(this.txtStartDate_errorMsg, getString(R.string.error_startDate));
             hasErrors = true;
@@ -115,25 +134,31 @@ public class StudyConfiguration extends AppCompatActivity
             this.hideError(this.txtStartDate_errorMsg);
         }
 
-        // validate duration
-        if (!validateNumber(this.txtDuration, this.txtDuration_errorMsg,
+        // duration
+        if (validateNumber(duration_str, this.txtDuration_errorMsg,
                 getString(R.string.error_missingDuration))) {
+            this.duration = Integer.parseInt(duration_str);
+        } else {
             hasErrors = true;
         }
 
-        // validate #samples/day
-        if (!validateNumber(this.txtSamplesPerDay, this.txtSamplesPerDay_errorMsg,
+        // #samples/day
+        if (validateNumber(samplePerDay_str, this.txtSamplesPerDay_errorMsg,
                 getString(R.string.error_missingSamplesPerDay))) {
+            this.samplesPerDay = Integer.parseInt(samplePerDay_str);
+        } else {
             hasErrors = true;
         }
 
-        // validate notification window
-        if (!validateNumber(this.txtNotificationWindow, this.txtNotificationWindow_errorMsg,
+        // notification window
+        if (validateNumber(notificationWindow_str, this.txtNotificationWindow_errorMsg,
                 getString(R.string.error_missingNotificationWindow))) {
+            this.notificationWindow = Integer.parseInt(notificationWindow_str);
+        } else {
             hasErrors = true;
         }
 
-        // validate end time (must be after start time)
+        // end time (must be after start time)
         if (endTime_hour < startTime_hour) {
             showError(this.txtEndTime_errorMsg, getString(R.string.error_dailyEndTime));
             hasErrors = true;
@@ -141,11 +166,24 @@ public class StudyConfiguration extends AppCompatActivity
             this.hideError(this.txtEndTime_errorMsg);
         }
 
-        if (!hasErrors) {
-            setupNotifications();
-            Intent intent = new Intent(this, UserAccountSetup.class);
-            startActivity(intent);
-        }
+        return !hasErrors;
+    }
+
+    private void savePreferences(){
+        SharedPreferences settings =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = settings.edit();
+
+        editor.putLong(Constants.START_DATE_MILLISECONDS, this.startDate.getTimeInMillis());
+        editor.putInt(Constants.DURATION, this.duration);
+        editor.putInt(Constants.SAMPLES_PER_DAY, this.samplesPerDay);
+        editor.putInt(Constants.NOTIFICATION_WINDOW, this.notificationWindow);
+        editor.putInt(Constants.START_TIME_HOUR, this.startTime_hour);
+        editor.putInt(Constants.START_TIME_MINUTE, this.startTime_minute);
+        editor.putInt(Constants.END_TIME_HOUR, this.endTime_hour);
+        editor.putInt(Constants.END_TIME_MINUTE, this.endTime_minute);
+
+        editor.commit();
     }
 
     private void setupNotifications() {
@@ -174,8 +212,7 @@ public class StudyConfiguration extends AppCompatActivity
         requestCode++;
     }
 
-    private boolean validateNumber(EditText txtView, TextView txtVwError, String emptyErrorMsg) {
-        String numberString = Utils.getTrimmedText(txtView);
+    private boolean validateNumber(String numberString, TextView txtVwError, String emptyErrorMsg) {
         boolean valid = true;
 
         if (numberString.isEmpty()) {

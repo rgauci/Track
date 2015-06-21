@@ -1,18 +1,34 @@
 package informatics.uk.ac.ed.esm;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class UserLogin extends AppCompatActivity {
+
+    private TextView txtVwParticipantId;
+    private SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
+
+        /* initialise UI controls */
+        txtVwParticipantId = (TextView) findViewById(R.id.txtVwParticipantId);
+
+        /* get shared preferences */
+        this.settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        /* display participant ID */
+        int participantId = settings.getInt(Constants.PARTICIPANT_ID, -1);
+        txtVwParticipantId.setText(String.valueOf(participantId));
     }
 
     @Override

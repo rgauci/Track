@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -12,12 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class ResearcherSetup extends AppCompatActivity {
@@ -26,7 +19,7 @@ public class ResearcherSetup extends AppCompatActivity {
     private TextInputLayout txtEmail_inpLyt, txtConfirmEmail_inpLyt, txtPassword_inpLyt,
             txtConfirmPassword_inpLyt, txtParticipantId_inpLyt;
 
-    private String emailAddress, confirmEmail, password, confirmPassword, participantId_str;
+    private String emailAddress, confirmEmail, password, confirmPassword;
     private int participantId;
 
     @Override
@@ -70,14 +63,9 @@ public class ResearcherSetup extends AppCompatActivity {
     }
 
     public void btnNext_onClick(View view){
-        // get values
-        this.emailAddress = Utils.getTrimmedText(this.txtEmail);
-        this.confirmEmail = Utils.getTrimmedText(this.txtConfirmEmail);
-        this.password = this.txtPassword.getText().toString(); // do not trim so we can check for whitespace
-        this.confirmPassword = this.txtConfirmPassword.getText().toString();
-        this.participantId_str = Utils.getTrimmedText(this.txtParticipantId);
+        boolean valid = this.setAndValidate();
 
-        if (this.validate()) {
+        if (valid) {
             // save settings
             this.savePreferences();
             // proceed to next activity
@@ -87,13 +75,21 @@ public class ResearcherSetup extends AppCompatActivity {
     }
 
     /**
-     * Validate form input.
+     * Set instance variables and validate form input.
      * @return true if validation succeeds
      */
-    public boolean validate() {
+    private boolean setAndValidate() {
+        // get values
+        this.emailAddress = Utils.getTrimmedText(this.txtEmail);
+        this.confirmEmail = Utils.getTrimmedText(this.txtConfirmEmail);
+        this.password = this.txtPassword.getText().toString(); // do not trim so we can check for whitespace
+        this.confirmPassword = this.txtConfirmPassword.getText().toString();
+
+        String participantId_str = Utils.getTrimmedText(this.txtParticipantId);
+
         boolean hasErrors = false;
 
-        // validate email address
+        // setAndValidate email address
         if (emailAddress.isEmpty()) {
             txtEmail_inpLyt.setError(getString(R.string.error_missingEmail));
             hasErrors = true;
@@ -104,7 +100,7 @@ public class ResearcherSetup extends AppCompatActivity {
             txtEmail_inpLyt.setError(null);
         }
 
-        // validate confirm email
+        // setAndValidate confirm email
         if (!confirmEmail.equals(emailAddress)) {
             txtConfirmEmail_inpLyt.setError(getString(R.string.error_confirmEmail));
             hasErrors = true;
@@ -112,7 +108,7 @@ public class ResearcherSetup extends AppCompatActivity {
             txtConfirmEmail_inpLyt.setError(null);
         }
 
-        // validate password
+        // setAndValidate password
         if (!Utils.isValidPasswordLength(password)) {
             txtPassword_inpLyt.setError(getString(R.string.error_invalidPasswordLength));
             hasErrors = true;
@@ -123,7 +119,7 @@ public class ResearcherSetup extends AppCompatActivity {
             txtPassword_inpLyt.setError(null);
         }
 
-        // validate confirm password
+        // setAndValidate confirm password
         if (!confirmPassword.equals(password)) {
             txtConfirmPassword_inpLyt.setError(getString(R.string.error_confirmPassword));
             hasErrors = true;
@@ -131,7 +127,7 @@ public class ResearcherSetup extends AppCompatActivity {
             txtConfirmPassword_inpLyt.setError(null);
         }
 
-        // validate participant id
+        // setAndValidate participant id
         if (participantId_str.isEmpty()) {
             txtParticipantId_inpLyt.setError(getString(R.string.error_enterParticipantId));
             hasErrors = true;
