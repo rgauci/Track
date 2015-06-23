@@ -11,4 +11,5 @@
     <dimen name="horizontal_divider_vertical_margin">8dp</dimen>
     <dimen name="horizontal_divider_height">1dp</dimen>
     <dimen name="list_item_height">72dp</dimen>
+    <dimen name="vertical_space">48dp</dimen>
 </resources>

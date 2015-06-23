@@ -51,7 +51,7 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:weightSum="1"
-                android:layout_marginBottom="32dp">
+                android:layout_marginBottom="@dimen/vertical_space">
 
                 <TextView
                     android:layout_width="wrap_content"
