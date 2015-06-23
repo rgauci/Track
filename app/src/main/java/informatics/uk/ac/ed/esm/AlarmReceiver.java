@@ -1,5 +1,6 @@
 package informatics.uk.ac.ed.esm;
 
+import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -7,13 +8,35 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import java.util.GregorianCalendar;
+
 public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        displayNotification(context, "Time to check in!", "This will only take a couple of minutes.", "Survey Time");
+        long currentTime = GregorianCalendar.getInstance().getTimeInMillis();
+        long dayEndTime = intent.getLongExtra(Constants.DAY_END_TME_MILLIS, -1);
+
+        if (currentTime > dayEndTime) {
+            this.cancelRepeatingAlarm(context, intent);
+        } else {
+            // otherwise display notification
+            this.displayNotification(context, "Time to check in!", "This will only take a couple of minutes.", "Survey Time");
+        }
     }
 
+    private void cancelRepeatingAlarm(Context context, Intent intent) {
+        int requestCode = intent.getIntExtra(Constants.REQUEST_CODE, -1);
+        // if we have passed the end time for today
+        // cancel repeating alarm
+        Intent alarmReceiverIntent = new Intent(context, AlarmReceiver.class);
+        PendingIntent pendingAlarmReceiverIntent = PendingIntent.getBroadcast(context, requestCode, intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarmManager =
+                (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(pendingAlarmReceiverIntent);
+    }
+    
     private void displayNotification(Context context, String msg, String msgText, String msgAlert) {
 
         PendingIntent notificationIntent = PendingIntent.getActivity(context, 0, new Intent(context, UserLogin.class), 0);

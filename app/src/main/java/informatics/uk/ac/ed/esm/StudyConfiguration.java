@@ -1,7 +1,6 @@
 package informatics.uk.ac.ed.esm;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
+import android.app.*;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
@@ -108,7 +107,8 @@ public class StudyConfiguration extends AppCompatActivity
             // save settings
             this.savePreferences();
             // set up notifications
-            setupNotifications();
+            NotificationManager  notificationManager = new NotificationManager(getApplicationContext());
+            notificationManager.SetupNotifications();
             // proceed to next activity
             Intent intent = new Intent(this, UserAccountSetup.class);
             startActivity(intent);
@@ -183,33 +183,38 @@ public class StudyConfiguration extends AppCompatActivity
         editor.putInt(Constants.END_TIME_HOUR, this.endTime_hour);
         editor.putInt(Constants.END_TIME_MINUTE, this.endTime_minute);
 
+        // calculate exact date time of study start (start date @ start time)
+        Calendar studyStartDateTime = GregorianCalendar.getInstance();
+        studyStartDateTime.set(this.startDate.get(Calendar.YEAR), this.startDate.get(Calendar.MONTH),
+                this.startDate.get(Calendar.DAY_OF_MONTH),
+                this.startTime_hour, this.startTime_minute);
+
+        // calculate exact date time of study end (start date + duration @ end time)
+        Calendar studyEndDateTime = GregorianCalendar.getInstance();
+        studyEndDateTime .set(this.startDate.get(Calendar.YEAR), this.startDate.get(Calendar.MONTH),
+                this.startDate.get(Calendar.DAY_OF_MONTH),
+                this.endTime_hour, this.endTime_minute);
+
+        // first calculate interval between notifications in milliseconds
+        long timeSpanMillis = (studyEndDateTime.getTimeInMillis() - studyStartDateTime.getTimeInMillis());
+        long intervalMillis = timeSpanMillis / (this.samplesPerDay + 1);
+
+        // add duration to get actual end date
+        studyEndDateTime.add(Calendar.DATE, this.duration);
+
+        // save to shared preferences
+        editor.putLong(Constants.STUDY_START_DATE_TIME_MILLIS, studyStartDateTime.getTimeInMillis());
+        editor.putLong(Constants.STUDY_END_DATE_TIME_MILLIS, studyEndDateTime.getTimeInMillis());
+        editor.putLong(Constants.NOTIFICATION_INTERVAL_MILLIS, intervalMillis);
+
         editor.commit();
     }
 
-    private void setupNotifications() {
-        int requestCode = 1;
-
+    private Calendar getCalendarFromTime(int hour_24, int minute) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(this.startDate.getTimeInMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, this.startTime_hour);
-        calendar.set(Calendar.MINUTE, this.startTime_minute);
-
-        Long alertTime = new GregorianCalendar().getTimeInMillis() + 5 * 1000;
-
-        // A pending intent that fires when the alarm is triggered.
-        // When you set a second alarm that uses the same pending intent, it replaces the original alarm.
-        Intent alarmReceiverIntent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode, alarmReceiverIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) this.getSystemService(ALARM_SERVICE);
-        // RTC_WAKEUP — Wakes up the device to fire the pending intent at the specified time.
-        // setInexactRepeating() - Android synchronizes repeating alarms from multiple apps
-        // and fires them at the same time. This reduces the total number of times
-        // the system must wake the device, thus reducing drain on the battery.
-        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alertTime, AlarmManager.INTERVAL_HALF_HOUR, pendingIntent);
-
-        requestCode++;
+        calendar.set(Calendar.HOUR_OF_DAY, hour_24);
+        calendar.set(Calendar.MINUTE, minute);
+        return calendar;
     }
 
     private boolean validateNumber(String numberString, TextView txtVwError, String emptyErrorMsg) {
