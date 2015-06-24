@@ -120,6 +120,6 @@ public class UserAccountSetup extends AppCompatActivity {
 
         editor.putString(Constants.PARTICIPANT_PASSWORD_HASHED, Utils.computeHash(this.password));
 
-        editor.commit();
+        editor.apply();
     }
 }

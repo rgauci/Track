@@ -1,6 +1,5 @@
 package informatics.uk.ac.ed.esm;
 
-import android.app.*;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
@@ -66,7 +65,9 @@ public class StudyConfiguration extends AppCompatActivity
 
         /* set start date & minimum start date to the following day */
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, 1);
+        // TODO reset minimum date to tomorrow instead of yesterday
+        //calendar.add(Calendar.DATE, 1);
+        calendar.add(Calendar.DATE, -1);
         this.minimumStartDate = calendar;
         this.setStartDate(calendar);
 
@@ -107,8 +108,9 @@ public class StudyConfiguration extends AppCompatActivity
             // save settings
             this.savePreferences();
             // set up notifications
-            NotificationManager  notificationManager = new NotificationManager(getApplicationContext());
-            notificationManager.SetupNotifications();
+            SurveyNotificationManager notificationManager =
+                    new SurveyNotificationManager(getApplicationContext());
+            notificationManager.SetupNotifications(true);
             // proceed to next activity
             Intent intent = new Intent(this, UserAccountSetup.class);
             startActivity(intent);
@@ -174,7 +176,6 @@ public class StudyConfiguration extends AppCompatActivity
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = settings.edit();
 
-        editor.putLong(Constants.START_DATE_MILLISECONDS, this.startDate.getTimeInMillis());
         editor.putInt(Constants.DURATION, this.duration);
         editor.putInt(Constants.SAMPLES_PER_DAY, this.samplesPerDay);
         editor.putInt(Constants.NOTIFICATION_WINDOW, this.notificationWindow);
@@ -185,36 +186,32 @@ public class StudyConfiguration extends AppCompatActivity
 
         // calculate exact date time of study start (start date @ start time)
         Calendar studyStartDateTime = GregorianCalendar.getInstance();
-        studyStartDateTime.set(this.startDate.get(Calendar.YEAR), this.startDate.get(Calendar.MONTH),
-                this.startDate.get(Calendar.DAY_OF_MONTH),
-                this.startTime_hour, this.startTime_minute);
+        studyStartDateTime.set(this.startDate.get(Calendar.YEAR),
+                this.startDate.get(Calendar.MONTH), this.startDate.get(Calendar.DAY_OF_MONTH),
+                this.startTime_hour, this.startTime_minute, 0);
+        studyStartDateTime.set(Calendar.MILLISECOND, 0);
 
         // calculate exact date time of study end (start date + duration @ end time)
         Calendar studyEndDateTime = GregorianCalendar.getInstance();
-        studyEndDateTime .set(this.startDate.get(Calendar.YEAR), this.startDate.get(Calendar.MONTH),
-                this.startDate.get(Calendar.DAY_OF_MONTH),
-                this.endTime_hour, this.endTime_minute);
+        studyEndDateTime .set(this.startDate.get(Calendar.YEAR),
+                this.startDate.get(Calendar.MONTH), this.startDate.get(Calendar.DAY_OF_MONTH),
+                this.endTime_hour, this.endTime_minute, 0);
+        studyEndDateTime.set(Calendar.MILLISECOND, 0);
 
         // first calculate interval between notifications in milliseconds
-        long timeSpanMillis = (studyEndDateTime.getTimeInMillis() - studyStartDateTime.getTimeInMillis());
+        long timeSpanMillis =
+                (studyEndDateTime.getTimeInMillis() - studyStartDateTime.getTimeInMillis());
         long intervalMillis = timeSpanMillis / (this.samplesPerDay + 1);
 
         // add duration to get actual end date
-        studyEndDateTime.add(Calendar.DATE, this.duration);
+        studyEndDateTime.add(Calendar.DATE, (this.duration - 1));
 
         // save to shared preferences
         editor.putLong(Constants.STUDY_START_DATE_TIME_MILLIS, studyStartDateTime.getTimeInMillis());
         editor.putLong(Constants.STUDY_END_DATE_TIME_MILLIS, studyEndDateTime.getTimeInMillis());
         editor.putLong(Constants.NOTIFICATION_INTERVAL_MILLIS, intervalMillis);
 
-        editor.commit();
-    }
-
-    private Calendar getCalendarFromTime(int hour_24, int minute) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, hour_24);
-        calendar.set(Calendar.MINUTE, minute);
-        return calendar;
+        editor.apply();
     }
 
     private boolean validateNumber(String numberString, TextView txtVwError, String emptyErrorMsg) {

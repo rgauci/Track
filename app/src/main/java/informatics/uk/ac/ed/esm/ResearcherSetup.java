@@ -63,7 +63,9 @@ public class ResearcherSetup extends AppCompatActivity {
     }
 
     public void btnNext_onClick(View view){
-        boolean valid = this.setAndValidate();
+        // TODO re-enable validation
+        //boolean valid = this.setAndValidate();
+        boolean valid = true;
 
         if (valid) {
             // save settings
@@ -155,6 +157,6 @@ public class ResearcherSetup extends AppCompatActivity {
         editor.putString(Constants.RESEARCHER_PASSWORD_HASHED, Utils.computeHash(this.password));
         editor.putInt(Constants.PARTICIPANT_ID, this.participantId);
 
-        editor.commit();
+        editor.apply();
     }
 }

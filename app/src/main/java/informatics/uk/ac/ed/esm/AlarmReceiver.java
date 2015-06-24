@@ -1,6 +1,5 @@
 package informatics.uk.ac.ed.esm;
 
-import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -18,23 +17,22 @@ public class AlarmReceiver extends BroadcastReceiver {
         long dayEndTime = intent.getLongExtra(Constants.DAY_END_TME_MILLIS, -1);
 
         if (currentTime > dayEndTime) {
+            // if we have passed the end time for today
+            // cancel repeating alarm
             this.cancelRepeatingAlarm(context, intent);
         } else {
             // otherwise display notification
-            this.displayNotification(context, "Time to check in!", "This will only take a couple of minutes.", "Survey Time");
+            // TODO disable notification after 15 minutes
+            this.displayNotification(context, "Time to check in!",
+                    "This will only take a couple of minutes. Tap to start the survey. " +
+                            "Notification will expire within 15 minutes.", "Survey Time");
         }
     }
 
     private void cancelRepeatingAlarm(Context context, Intent intent) {
         int requestCode = intent.getIntExtra(Constants.REQUEST_CODE, -1);
-        // if we have passed the end time for today
-        // cancel repeating alarm
-        Intent alarmReceiverIntent = new Intent(context, AlarmReceiver.class);
-        PendingIntent pendingAlarmReceiverIntent = PendingIntent.getBroadcast(context, requestCode, intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarmManager =
-                (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(pendingAlarmReceiverIntent);
+        SurveyNotificationManager notificationManager = new SurveyNotificationManager(context);
+        notificationManager.cancelAlarm(requestCode);
     }
     
     private void displayNotification(Context context, String msg, String msgText, String msgAlert) {

@@ -2,6 +2,8 @@ package informatics.uk.ac.ed.esm;
 
 public class Constants {
 
+    public static final String ALARM_REQUEST_CODES = "alarmRequestCodes";
+    public static final String REQUEST_CODES_DELIMITER = ",";
     public static final String DAY_END_TME_MILLIS = "dayEndTimeMillis";
     public static final String DURATION = "duration";
     public static final String END_TIME_HOUR = "endTimeHour";
@@ -15,7 +17,6 @@ public class Constants {
     public static final String RESEARCHER_EMAIL = "researcherEmail";
     public static final String RESEARCHER_PASSWORD_HASHED = "researcherPasswordHashed";
     public static final String SAMPLES_PER_DAY = "samplesPerDay";
-    public static final String START_DATE_MILLISECONDS = "startDateMs";
     public static final String START_TIME_HOUR = "startTimeHour";
     public static final String START_TIME_MINUTE = "startTimeMinute";
     public static final String STUDY_START_DATE_TIME_MILLIS = "studyStartDateTimeMillis";

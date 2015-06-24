@@ -44,6 +44,10 @@ public class Utils {
     }
 
     public static String computeHash(String plaintext) {
+        if ((plaintext == null) || (plaintext.length() == 0)) {
+            return plaintext;
+        }
+
         MessageDigest digest;
         String hash;
 
@@ -51,7 +55,7 @@ public class Utils {
         {
             digest = MessageDigest.getInstance(Constants.HASHING_ALGORITHM);
         } catch (NoSuchAlgorithmException e1) {
-            Log.e("computeHash", "Error initializing SHA1 message digest");
+            Log.e("Utils.computeHash", "Error initializing SHA1 message digest.");
             return plaintext;
         }
 
