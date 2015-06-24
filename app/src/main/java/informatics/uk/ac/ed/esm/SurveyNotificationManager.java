@@ -18,9 +18,6 @@ public class SurveyNotificationManager {
     private Calendar studyStart, studyEnd;
     private long intervalMillis;
 
-    private final int DEF_VALUE_INT = -1;
-    private final String DEF_VALUE_STR = "";
-
     public SurveyNotificationManager(Context appContext) {
         this.appContext = appContext;
 
@@ -29,13 +26,13 @@ public class SurveyNotificationManager {
 
         // get interval between notifications in milliseconds
         this.intervalMillis =
-                settings.getLong(Constants.NOTIFICATION_INTERVAL_MILLIS, DEF_VALUE_INT);
+                settings.getLong(Constants.NOTIFICATION_INTERVAL_MILLIS, Constants.DEF_VALUE_INT);
 
         // get start & end date calendars
         long studyStartMillis =
-                settings.getLong(Constants.STUDY_START_DATE_TIME_MILLIS, DEF_VALUE_INT);
+                settings.getLong(Constants.STUDY_START_DATE_TIME_MILLIS, Constants.DEF_VALUE_INT);
         long studyEndMillis =
-                settings.getLong(Constants.STUDY_END_DATE_TIME_MILLIS, DEF_VALUE_INT);
+                settings.getLong(Constants.STUDY_END_DATE_TIME_MILLIS, Constants.DEF_VALUE_INT);
 
         this.studyStart = GregorianCalendar.getInstance();
         this.studyStart.setTimeInMillis(studyStartMillis);
@@ -52,6 +49,9 @@ public class SurveyNotificationManager {
         if (cancelCurrentAlarms) {
             this.cancelAllAlarms();
         }
+
+        // request codes still need to be reset
+        this.resetRequestCodes();
 
         // get current date & time to determine what alarms needs to be set
         Calendar currentDateTime = GregorianCalendar.getInstance();
@@ -137,7 +137,7 @@ public class SurveyNotificationManager {
 
             // add request code to string builder so it will be saved to preferences
             if (sb.length() > 0) {
-                sb.append(Constants.REQUEST_CODES_DELIMITER);
+                sb.append(Constants.ALARM_REQUEST_CODES_DELIMITER);
             }
 
             sb.append(requestCode);
@@ -190,11 +190,12 @@ public class SurveyNotificationManager {
      */
     private void updateRequestCodes(String requestCodes) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this.appContext);
-        String currentRCs = settings.getString(Constants.ALARM_REQUEST_CODES, DEF_VALUE_STR);
+        String currentRCs =
+                settings.getString(Constants.ALARM_REQUEST_CODES, Constants.DEF_VALUE_STR);
 
-        if (!currentRCs.equals(DEF_VALUE_STR)) {
+        if (!currentRCs.equals(Constants.DEF_VALUE_STR)) {
             requestCodes =
-                    currentRCs.concat(Constants.REQUEST_CODES_DELIMITER).concat(requestCodes);
+                    currentRCs.concat(Constants.ALARM_REQUEST_CODES_DELIMITER).concat(requestCodes);
         }
 
         SharedPreferences.Editor editor = settings.edit();
@@ -204,13 +205,14 @@ public class SurveyNotificationManager {
 
     private void cancelAllAlarms() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this.appContext);
-        String currentRCs = settings.getString(Constants.ALARM_REQUEST_CODES, DEF_VALUE_STR);
+        String currentRCs =
+                settings.getString(Constants.ALARM_REQUEST_CODES, Constants.DEF_VALUE_STR);
 
-        if (currentRCs.equals(DEF_VALUE_STR)) {
+        if (currentRCs.equals(Constants.DEF_VALUE_STR)) {
             return;
         }
 
-        String[] requestCodes = currentRCs.split(Constants.REQUEST_CODES_DELIMITER);
+        String[] requestCodes = currentRCs.split(Constants.ALARM_REQUEST_CODES_DELIMITER);
 
         for (String requestCode: requestCodes) {
             try {
@@ -219,7 +221,10 @@ public class SurveyNotificationManager {
                 Log.e("cancelAllAlarms", "Unable to parse requestCode.");
             }
         }
+    }
 
+    private void resetRequestCodes(){
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this.appContext);
         SharedPreferences.Editor editor = settings.edit();
         editor.remove(Constants.ALARM_REQUEST_CODES);
         editor.apply();

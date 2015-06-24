@@ -2,8 +2,11 @@ package informatics.uk.ac.ed.esm;
 
 public class Constants {
 
+    public static final int DEF_VALUE_INT = -1;
+
     public static final String ALARM_REQUEST_CODES = "alarmRequestCodes";
-    public static final String REQUEST_CODES_DELIMITER = ",";
+    public static final String DEF_VALUE_STR = "";
+    public static final String ALARM_REQUEST_CODES_DELIMITER = ",";
     public static final String DAY_END_TME_MILLIS = "dayEndTimeMillis";
     public static final String DURATION = "duration";
     public static final String END_TIME_HOUR = "endTimeHour";
