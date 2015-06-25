@@ -32,7 +32,7 @@
             android:layout_alignParentEnd="true"
             android:gravity="center"
             android:theme="@style/RaisedButtonColoured_Next"
-            android:text="Finish" />
+            android:text="@string/finish" />
 
         <Button
             android:layout_width="@dimen/navigation_button_width"

@@ -28,7 +28,7 @@ public class DemoMultiChoice_Multi extends AppCompatActivity {
         btnNext = (Button) findViewById(R.id.btnNext);
         btnPrevious = (Button) findViewById(R.id.btnPrevious);
 
-        checkBoxes = new ArrayList<CheckBox>();
+        checkBoxes = new ArrayList<>();
         checkBoxes.add((CheckBox) findViewById(R.id.chkBx1));
         checkBoxes.add((CheckBox) findViewById(R.id.chkBx2));
         checkBoxes.add((CheckBox) findViewById(R.id.chkBx3));
@@ -44,7 +44,7 @@ public class DemoMultiChoice_Multi extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (isValid()) {
-                    Intent intent = new Intent(DemoMultiChoice_Multi.this, DemoScale.class);
+                    Intent intent = new Intent(DemoMultiChoice_Multi.this, DemoScaleVertical.class);
                     startActivity(intent);
                 }
             }

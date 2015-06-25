@@ -14,6 +14,7 @@
     <string name="title_activity_demo_multi_choice__multi">
         Multiple Choice, Multiple Answer Demo</string>
     <string name="title_activity_demo_scale">Scale Demo</string>
+    <string name="title_activity_demo_scale_vertical">Vertical Scale Demo</string>
     <string name="title_activity_participant_login">Participant Login</string>
     <string name="title_activity_user_login">User Login</string>
 
@@ -27,7 +28,6 @@
     <string name="defaultTimeFormat">hh:mm</string>
     <string name="defaultDateFormat">EEEE, dd MMM yyyy</string>
     <string name="samples">samples</string>
-
 
     <string name="Participant">Participant&#160;</string>
     <string name="ParticipantIdPlaceholder">&lt;Participant ID&gt;</string>
@@ -72,6 +72,11 @@
     <string name="demoScaleExplanation">This is a scale-type question.
         Drag the slider to answer.</string>
 
+    <string name="demoScaleVerticalQuestion">Do you have breakfast in the morning?</string>
+    <string name="demoScaleVerticalExplanation">
+        This question makes use of a Likert-type scale. Select one option to answer.</string>
+    <string name="finish">Finish</string>
+
     <string name="error_missingEmail">Enter email address.</string>
     <string name="error_enterValidEmail">Enter a valid email address.</string>
     <string name="error_confirmEmail">Email address does not match.</string>
@@ -101,4 +106,17 @@
     <string name="error_answerToProceed">Answer the question to proceed.</string>
     <string name="smiley">:)</string>
 
+    <string name="likertValue1">1</string>
+    <string name="likertValue2">2</string>
+    <string name="likertValue3">3</string>
+    <string name="likertValue4">4</string>
+    <string name="likertValue5">5</string>
+    <string name="likertValue6">6</string>
+    <string name="likertValue7">7</string>
+
+    <string name="likertFreq5Point_1">Never</string>
+    <string name="likertFreq5Point_2">Rarely</string>
+    <string name="likertFreq5Point_3">Sometimes</string>
+    <string name="likertFreq5Point_4">Often</string>
+    <string name="likertFreq5Point_5">Always</string>
 </resources>

@@ -96,6 +96,9 @@ public class SurveyNotificationManager {
         dayStartTime.set(Calendar.SECOND, this.studyStart.get(Calendar.SECOND));
         dayStartTime.set(Calendar.MILLISECOND, this.studyStart.get(Calendar.MILLISECOND));
 
+        // add interval to start time to space out alarms
+        dayStartTime.add(Calendar.MILLISECOND, (int)this.intervalMillis);
+
         // dayEndTime : daily end time
         Calendar dayEndTime = GregorianCalendar.getInstance();
         dayEndTime.setTimeInMillis(startDate.getTimeInMillis());
@@ -155,6 +158,7 @@ public class SurveyNotificationManager {
         todayStartTime.set(Calendar.MINUTE, this.studyStart.get(Calendar.MINUTE));
         todayStartTime.set(Calendar.SECOND, this.studyStart.get(Calendar.SECOND));
         todayStartTime.set(Calendar.MILLISECOND, this.studyStart.get(Calendar.MILLISECOND));
+        todayStartTime.add(Calendar.MILLISECOND, (int)this.intervalMillis);
 
         Calendar todayEndTime = GregorianCalendar.getInstance();
         todayEndTime.set(Calendar.HOUR_OF_DAY, this.studyEnd.get(Calendar.HOUR_OF_DAY));
@@ -193,7 +197,7 @@ public class SurveyNotificationManager {
         String currentRCs =
                 settings.getString(Constants.ALARM_REQUEST_CODES, Constants.DEF_VALUE_STR);
 
-        if (!currentRCs.equals(Constants.DEF_VALUE_STR)) {
+        if (!((currentRCs == null) || (currentRCs.equals(Constants.DEF_VALUE_STR)))) {
             requestCodes =
                     currentRCs.concat(Constants.ALARM_REQUEST_CODES_DELIMITER).concat(requestCodes);
         }
@@ -208,7 +212,7 @@ public class SurveyNotificationManager {
         String currentRCs =
                 settings.getString(Constants.ALARM_REQUEST_CODES, Constants.DEF_VALUE_STR);
 
-        if (currentRCs.equals(Constants.DEF_VALUE_STR)) {
+        if ((currentRCs == null) || (currentRCs.equals(Constants.DEF_VALUE_STR))) {
             return;
         }
 

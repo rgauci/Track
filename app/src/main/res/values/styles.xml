@@ -93,6 +93,7 @@
     <color name="secondary_text">#727272</color>
     <color name="text_icons">#ffffff</color>
     <color name="divider">#B6B6B6</color>
+    <color name="background_light">#ffffffff</color>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -128,6 +129,10 @@
         <item name="colorControlActivated">@color/primary_dark</item>
     </style>
 
+    <style name="RaisedButtonTransparent" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/background_floating_material_light</item>
+    </style>
+
     <style name="RaisedButtonColoured_Next" parent="RaisedButtonColoured">
         <item name="android:drawableRight">@drawable/ic_ic_ic_navigate_next_white_large_24dp</item>
     </style>
@@ -136,8 +141,11 @@
         <item name="android:drawableRight">@drawable/ic_ic_ic_navigate_before_white_large_24dp</item>
     </style>
 
-    <style name="RaisedButtonTransparent" parent="Widget.AppCompat.Button">
-        <item name="colorButtonNormal">@color/background_floating_material_light</item>
+    <style name="LikertButton" parent="Widget.AppCompat.Button.Small">
+        <item name="android:layout_marginRight">@dimen/grid_vertical_margin</item>
+        <item name="android:background">@color/background_light</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:layout_marginBottom">@dimen/horizontal_divider_height</item>
     </style>
 
     <style name="MediumText" parent="@android:style/TextAppearance.Medium">

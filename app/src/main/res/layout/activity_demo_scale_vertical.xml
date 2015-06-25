@@ -1,0 +1,189 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="informatics.uk.ac.ed.esm.DemoScaleVertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/BodyLayout"
+        android:id="@+id/bodyLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView"
+            android:layout_gravity="right"
+            android:layout_above="@+id/btnNext"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/demoScaleVerticalQuestion"
+                    android:id="@+id/textView8"
+                    style="@style/QuestionText" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="lytLikertOption_onClick">
+
+                    <Button
+                        android:theme="@style/LikertButton"
+                        style="@style/LikertButton"
+                        android:layout_width="@dimen/likert_button_width"
+                        android:layout_height="@dimen/likert_button_height"
+                        android:text="@string/likertValue1"
+                        android:id="@+id/btnLikert1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/likertFreq5Point_1"
+                        android:id="@+id/txtVwLikert1"
+                        android:textSize="@dimen/abc_text_size_button_material" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="lytLikertOption_onClick">
+
+                    <Button
+                        android:theme="@style/LikertButton"
+                        style="@style/LikertButton"
+                        android:layout_width="@dimen/likert_button_width"
+                        android:layout_height="@dimen/likert_button_height"
+                        android:text="@string/likertValue2"
+                        android:id="@+id/btnLikert2"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/likertFreq5Point_2"
+                        android:id="@+id/txtVwLikert2"
+                        android:textSize="@dimen/abc_text_size_button_material" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:onClick="lytLikertOption_onClick">
+
+                    <Button
+                        android:layout_width="@dimen/likert_button_width"
+                        android:layout_height="@dimen/likert_button_height"
+                        android:text="@string/likertValue3"
+                        android:id="@+id/btnLikert3"
+                        android:theme="@style/LikertButton"
+                        style="@style/LikertButton" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/likertFreq5Point_3"
+                        android:id="@+id/txtVwLikert3"
+                        android:textSize="@dimen/abc_text_size_button_material" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="lytLikertOption_onClick">
+
+                    <Button
+                        android:theme="@style/LikertButton"
+                        style="@style/LikertButton"
+                        android:layout_width="@dimen/likert_button_width"
+                        android:layout_height="@dimen/likert_button_height"
+                        android:text="@string/likertValue4"
+                        android:id="@+id/btnLikert4" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/likertFreq5Point_4"
+                        android:id="@+id/txtVwLikert4"
+                        android:textSize="@dimen/abc_text_size_button_material" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="lytLikertOption_onClick">
+
+                    <Button
+                        android:theme="@style/LikertButton"
+                        style="@style/LikertButton"
+                        android:layout_width="@dimen/likert_button_width"
+                        android:layout_height="@dimen/likert_button_height"
+                        android:text="@string/likertValue5"
+                        android:id="@+id/btnLikert5" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/likertFreq5Point_5"
+                        android:id="@+id/txtVwLikert5"
+                        android:textSize="@dimen/abc_text_size_button_material"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/demoScaleVerticalExplanation"
+                    android:id="@+id/txtViewExp"
+                    style="@style/ExplanationText" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:layout_width="@dimen/navigation_button_width"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnPrevious"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:theme="@style/RaisedButtonColoured_Previous"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnNext"
+            android:layout_gravity="right"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:theme="@style/RaisedButtonColoured_Next"
+            android:text="@string/finish" />
+
+    </RelativeLayout>
+</RelativeLayout>
