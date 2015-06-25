@@ -26,8 +26,16 @@ public class SetupComplete extends AppCompatActivity {
 
         btnDemoYes.setOnClickListener(new Button.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
+            public void onClick(View view) {
                 Intent intent = new Intent(SetupComplete.this, DemoIntro.class);
+                startActivity(intent);
+            }
+        });
+
+        btnDemoNo.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SetupComplete.this, BriefingComplete.class);
                 startActivity(intent);
             }
         });

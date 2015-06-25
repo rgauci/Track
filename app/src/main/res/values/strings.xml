@@ -77,6 +77,15 @@
         This question makes use of a Likert-type scale. Select one option to answer.</string>
     <string name="finish">Finish</string>
 
+    <string name="briefCompleteTitle">That\'s all for now.</string>
+    <string name="briefCompleteExplanation">The study will start on &lt;studyStartDate&gt;,
+        and run for &lt;duration&gt; days, until &lt;studyEndDate&gt;.
+        \n\nYou will receive a <b>notification</b> when a survey is available.
+        \n\nThe notification will expire after <b>&lt;notificationWindow&gt; minutes</b>
+        so please try and answer as soon as possible.
+        We promise it will only take a few minutes. :)</string>
+    <string name="briefCompleteThankYou">Thank you for your participation.</string>
+
     <string name="error_missingEmail">Enter email address.</string>
     <string name="error_enterValidEmail">Enter a valid email address.</string>
     <string name="error_confirmEmail">Email address does not match.</string>
@@ -119,4 +128,5 @@
     <string name="likertFreq5Point_3">Sometimes</string>
     <string name="likertFreq5Point_4">Often</string>
     <string name="likertFreq5Point_5">Always</string>
+    <string name="title_activity_briefing_complete">BriefingComplete</string>
 </resources>

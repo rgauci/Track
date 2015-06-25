@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="informatics.uk.ac.ed.esm.BriefingComplete">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/BodyLayout"
+        android:id="@+id/bodyLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView3"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/briefCompleteTitle"
+                    android:id="@+id/textView14"
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/vertical_space" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/textView16"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/briefCompleteExplanation"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/briefCompleteThankYou"
+                    android:id="@+id/textView3"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/vertical_space" />
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

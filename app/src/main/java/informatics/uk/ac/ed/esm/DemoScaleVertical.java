@@ -52,9 +52,8 @@ public class DemoScaleVertical extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (isValid()) {
-                    // TODO proceed to next activity
-                    //Intent intent = new Intent(DemoScaleVertical.this, DemoScaleVertical.class);
-                    //startActivity(intent);
+                    Intent intent = new Intent(DemoScaleVertical.this, BriefingComplete.class);
+                    startActivity(intent);
                 }
             }
         });
