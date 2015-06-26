@@ -176,9 +176,9 @@ public class StudyConfiguration extends AppCompatActivity
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = settings.edit();
 
-        editor.putInt(Constants.DURATION, this.duration);
+        editor.putInt(Constants.DURATION_DAYS, this.duration);
         editor.putInt(Constants.SAMPLES_PER_DAY, this.samplesPerDay);
-        editor.putInt(Constants.NOTIFICATION_WINDOW, this.notificationWindow);
+        editor.putInt(Constants.NOTIFICATION_WINDOW_MINUTES, this.notificationWindow);
         editor.putInt(Constants.START_TIME_HOUR, this.startTime_hour);
         editor.putInt(Constants.START_TIME_MINUTE, this.startTime_minute);
         editor.putInt(Constants.END_TIME_HOUR, this.endTime_hour);

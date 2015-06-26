@@ -27,6 +27,7 @@
 
     <string name="defaultTimeFormat">hh:mm</string>
     <string name="defaultDateFormat">EEEE, dd MMM yyyy</string>
+    <string name="dateFormatFullMonthNoYear">EEEE, dd MMMM</string>
     <string name="samples">samples</string>
 
     <string name="Participant">Participant&#160;</string>
@@ -38,9 +39,12 @@
     <string name="demoNo">No, I got this.</string>
     <string name="demoYes">Yes please!</string>
     <string name="StartDemo">Start Demo</string>
-    <string name="demoIntro">This demo will guide you through a short tour of different question types you may encounter when using the app.\n\nNone of the answers you provide during the demo will be saved, this is merely for you to practise.</string>
+    <string name="demoIntro">This demo will guide you through a short tour of different question
+        types you may encounter when using the app.\n\nNone of the answers you provide during the
+        demo will be saved, this is merely for you to practise.</string>
     <string name="demoFreeTextQuestion">What is your favourite colour?</string>
-    <string name="demoFreeTextExplanation">This is a free-text question. Click on the textbox to bring up the keyboard and write a short answer.</string>
+    <string name="demoFreeTextExplanation">This is a free-text question.
+        Click on the textbox to bring up the keyboard and write a short answer.</string>
 
     <string name="demoMultiChoiceSingleQuestion">What day is it today?</string>
     <string name="mon">Monday</string>
@@ -51,7 +55,8 @@
     <string name="sat">Saturday</string>
     <string name="sun">Sunday</string>
     <string name="demoMultiChoiceSingleExplanation">This is a multiple choice,
-        <b>single</b> answer question. Select one option and proceed using the <i>next</i> button below.</string>
+        <b>single</b> answer question.
+        Select one option and proceed using the <i>next</i> button below.</string>
 
     <string name="demoMultiChoiceMultiQuestion">What type of music do you like?</string>
     <string name="musicOption1">Classic</string>
@@ -78,12 +83,12 @@
     <string name="finish">Finish</string>
 
     <string name="briefCompleteTitle">That\'s all for now.</string>
-    <string name="briefCompleteExplanation">The study will start on &lt;studyStartDate&gt;,
-        and run for &lt;duration&gt; days, until &lt;studyEndDate&gt;.
-        \n\nYou will receive a <b>notification</b> when a survey is available.
-        \n\nThe notification will expire after <b>&lt;notificationWindow&gt; minutes</b>
+    <string name="briefCompleteExplanation"><![CDATA[The study will start on %1$s,
+        and run for %2$d days, until %3$s.
+        <br/><br/>You will receive a <b>notification</b> when a survey is available.
+        <br/><br/>The notification will expire after <b>%4$d minutes</b>
         so please try and answer as soon as possible.
-        We promise it will only take a few minutes. :)</string>
+        We promise it will only take a few minutes. :)]]></string>
     <string name="briefCompleteThankYou">Thank you for your participation.</string>
 
     <string name="error_missingEmail">Enter email address.</string>

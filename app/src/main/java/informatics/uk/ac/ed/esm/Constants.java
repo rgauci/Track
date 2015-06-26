@@ -4,15 +4,17 @@ public class Constants {
 
     public static final int DEF_VALUE_INT = -1;
 
+    public static final long DEF_VALUE_LNG = -1;
+
     public static final String ALARM_REQUEST_CODES = "alarmRequestCodes";
     public static final String DEF_VALUE_STR = "";
     public static final String ALARM_REQUEST_CODES_DELIMITER = ",";
     public static final String DAY_END_TME_MILLIS = "dayEndTimeMillis";
-    public static final String DURATION = "duration";
+    public static final String DURATION_DAYS = "duration";
     public static final String END_TIME_HOUR = "endTimeHour";
     public static final String END_TIME_MINUTE = "endTimeMinute";
     public static final String HASHING_ALGORITHM = "SHA-1";
-    public static final String NOTIFICATION_WINDOW = "notificationWindow";
+    public static final String NOTIFICATION_WINDOW_MINUTES = "notificationWindow";
     public static final String NOTIFICATION_INTERVAL_MILLIS = "notificationIntervalMillis";
     public static final String PARTICIPANT_ID = "participantId";
     public static final String PARTICIPANT_PASSWORD_HASHED = "participantPasswordHashed";

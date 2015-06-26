@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/briefCompleteTitle"
-                    android:id="@+id/textView14"
+                    android:id="@+id/txtVwTitle"
                     android:gravity="center_horizontal"
                     android:layout_marginBottom="@dimen/vertical_space" />
 
@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:id="@+id/textView16"
+                    android:id="@+id/txtVwInfo"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="@string/briefCompleteExplanation"/>
 
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/briefCompleteThankYou"
-                    android:id="@+id/textView3"
+                    android:id="@+id/txtVwThankYou"
                     android:gravity="center_horizontal"
                     android:layout_marginTop="@dimen/vertical_space" />
             </LinearLayout>

@@ -292,48 +292,48 @@
 
                 <TableRow>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView4"
-                    android:src="@drawable/ic_ic_brightness_5_grey_24dp"
-                    android:layout_column="0"
-                    style="@style/FormImage"
-                    android:contentDescription="@string/dailyStartTime"
-                    android:cropToPadding="false" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_column="1"
-                    style="@style/ListItem"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:onClick="lytStartTime_OnClick"
-                    android:id="@+id/lytStartTime">
-
-                    <TextView
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="@string/dailyStartTime"
-                        android:id="@+id/textView12" />
+                        android:id="@+id/imageView4"
+                        android:src="@drawable/ic_ic_brightness_5_grey_24dp"
+                        android:layout_column="0"
+                        style="@style/FormImage"
+                        android:contentDescription="@string/dailyStartTime"
+                        android:cropToPadding="false" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_column="1"
+                        style="@style/ListItem"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="@string/defaultTimeFormat"
-                        android:id="@+id/txtStartTime"/>
+                        android:layout_width="match_parent"
+                        android:onClick="lytStartTime_OnClick"
+                        android:id="@+id/lytStartTime">
 
-                    <TextView
-                        style="@style/ErrorText"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:id="@+id/txtStartTime_errorMsg"
-                        android:layout_weight="0.5" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/dailyStartTime"
+                            android:id="@+id/textView12" />
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/defaultTimeFormat"
+                            android:id="@+id/txtStartTime"/>
+
+                        <TextView
+                            style="@style/ErrorText"
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:id="@+id/txtStartTime_errorMsg"
+                            android:layout_weight="0.5" />
+
+                    </LinearLayout>
 
                 </TableRow>
 
@@ -345,46 +345,54 @@
 
                 <TableRow>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView5"
-                    android:src="@drawable/ic_ic_brightness_3_grey_24dp"
-                    android:layout_column="0"
-                    style="@style/FormImage"
-                    android:contentDescription="@string/dailyEndTime" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    style="@style/ListItem"
-                    android:onClick="lytEndTime_OnClick"
-                    android:id="@+id/lytEndTime">
-
-                    <TextView
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="@string/dailyEndTime"
-                        android:id="@+id/textView15" />
+                        android:id="@+id/imageView5"
+                        android:src="@drawable/ic_ic_brightness_3_grey_24dp"
+                        android:layout_column="0"
+                        style="@style/FormImage"
+                        android:contentDescription="@string/dailyEndTime" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="@string/defaultTimeFormat"
-                        android:id="@+id/txtEndTime" />
+                        android:layout_column="1"
+                        style="@style/ListItem"
+                        android:onClick="lytEndTime_OnClick"
+                        android:id="@+id/lytEndTime">
 
-                    <TextView
-                        style="@style/ErrorText"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:id="@+id/txtEndTime_errorMsg"
-                        android:layout_weight="0.5" />
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/dailyEndTime"
+                            android:id="@+id/textView15" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/defaultTimeFormat"
+                            android:id="@+id/txtEndTime" />
+
+                        <TextView
+                            style="@style/ErrorText"
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:id="@+id/txtEndTime_errorMsg"
+                            android:layout_weight="0.5" />
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow>
+
+                    <View
+                        android:layout_column="1"
+                        style="@style/HorizontalDivider"/>
 
                 </TableRow>
 

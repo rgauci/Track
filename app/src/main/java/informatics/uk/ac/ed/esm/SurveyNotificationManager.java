@@ -26,13 +26,13 @@ public class SurveyNotificationManager {
 
         // get interval between notifications in milliseconds
         this.intervalMillis =
-                settings.getLong(Constants.NOTIFICATION_INTERVAL_MILLIS, Constants.DEF_VALUE_INT);
+                settings.getLong(Constants.NOTIFICATION_INTERVAL_MILLIS, Constants.DEF_VALUE_LNG);
 
         // get start & end date calendars
         long studyStartMillis =
-                settings.getLong(Constants.STUDY_START_DATE_TIME_MILLIS, Constants.DEF_VALUE_INT);
+                settings.getLong(Constants.STUDY_START_DATE_TIME_MILLIS, Constants.DEF_VALUE_LNG);
         long studyEndMillis =
-                settings.getLong(Constants.STUDY_END_DATE_TIME_MILLIS, Constants.DEF_VALUE_INT);
+                settings.getLong(Constants.STUDY_END_DATE_TIME_MILLIS, Constants.DEF_VALUE_LNG);
 
         this.studyStart = GregorianCalendar.getInstance();
         this.studyStart.setTimeInMillis(studyStartMillis);
