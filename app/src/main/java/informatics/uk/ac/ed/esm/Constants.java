@@ -2,6 +2,8 @@ package informatics.uk.ac.ed.esm;
 
 public class Constants {
 
+    public static final boolean DEF_VALUE_BOOL = false;
+
     public static final int DEF_VALUE_INT = -1;
 
     public static final long DEF_VALUE_LNG = -1;
@@ -22,6 +24,7 @@ public class Constants {
     public static final String RESEARCHER_EMAIL = "researcherEmail";
     public static final String RESEARCHER_PASSWORD_HASHED = "researcherPasswordHashed";
     public static final String SAMPLES_PER_DAY = "samplesPerDay";
+    public static final String SETUP_COMPLETE = "setupComplete";
     public static final String START_TIME_HOUR = "startTimeHour";
     public static final String START_TIME_MINUTE = "startTimeMinute";
     public static final String STUDY_START_DATE_TIME_MILLIS = "studyStartDateTimeMillis";

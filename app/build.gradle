@@ -24,8 +24,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.0'
     //compile 'com.android.support:support-v4:22.2.0'
-    compile 'com.android.support:design:22.2.0' /* required for text input layout */
-    compile 'com.github.clans:fab:1.5.0' /* floating action button */
+    /* required for text input layout */
+    /* floating action button */
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:design:22.2.0'
+    compile 'com.github.clans:fab:1.5.0'
+    compile 'com.android.support:support-v4:22.2.0'
 }

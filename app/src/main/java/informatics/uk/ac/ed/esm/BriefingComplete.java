@@ -25,10 +25,15 @@ public class BriefingComplete extends AppCompatActivity {
         // initialise UI controls
         TextView txtViewInfo = (TextView) findViewById(R.id.txtVwInfo);
 
-        // get settings and display info text
+        // get settings
         SharedPreferences settings =
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        // mark setup is complete
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(Constants.SETUP_COMPLETE, true);
+
+        // set info text
         Calendar startDate = GregorianCalendar.getInstance();
         startDate.setTimeInMillis(
                 settings.getLong(Constants.STUDY_START_DATE_TIME_MILLIS, Constants.DEF_VALUE_LNG));

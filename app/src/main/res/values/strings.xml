@@ -134,4 +134,9 @@
     <string name="likertFreq5Point_4">Often</string>
     <string name="likertFreq5Point_5">Always</string>
     <string name="title_activity_briefing_complete">BriefingComplete</string>
+    <string name="title_activity_splash_screen">Splash Screen</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
