@@ -14,7 +14,7 @@ import informatics.uk.ac.ed.esm.util.DefaultActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
-    public static final int SPLASH_DISPLAY_TIME_MILLIS = 500;
+    public static final int SPLASH_DISPLAY_TIME_MILLIS = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class SplashScreen extends AppCompatActivity {
                             settings.getLong(Constants.LAST_NOTIFICATION_TIME_MILLIS,
                                     Constants.DEF_VALUE_LNG);
                     long lastCompletedTime =
+                            // TODO make sure to set value upon survey completion
                             settings.getLong(Constants.LAST_SURVEY_COMPLETED_TIME_MILLIS,
                                     Constants.DEF_VALUE_LNG);
 

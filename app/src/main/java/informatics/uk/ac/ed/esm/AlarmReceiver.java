@@ -5,8 +5,11 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class AlarmReceiver extends BroadcastReceiver {
@@ -21,7 +24,17 @@ public class AlarmReceiver extends BroadcastReceiver {
             // cancel repeating alarm
             this.cancelRepeatingAlarm(context, intent);
         } else {
-            // otherwise display notification
+            // otherwise save notification time in preferences
+            // and display notification
+            Calendar cal = GregorianCalendar.getInstance();
+            cal.getTimeInMillis();
+            cal.set(Calendar.SECOND, 0);
+            cal.set(Calendar.MILLISECOND, 0);
+
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putLong(Constants.LAST_NOTIFICATION_TIME_MILLIS, cal.getTimeInMillis());
+
             // TODO disable notification after 15 minutes
             this.displayNotification(context, "Time to check in!",
                     "This will only take a couple of minutes. Tap to start the survey. " +
