@@ -139,4 +139,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_default">DefaultActivity</string>
+    <string name="noSurveyAvailable">No Survey Currently Available</string>
+    <string name="noSurveyAvailableSubText">Keep an eye out for those notifications.</string>
 </resources>

@@ -20,9 +20,9 @@
         <activity
             android:name=".SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_splash_screen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
-            android:noHistory="true" > <!-- remove activity from stack so user can't return to it -->
+            android:label="@string/app_name"
+            android:noHistory="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" > <!-- remove activity from stack so user can't return to it -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -74,6 +74,10 @@
         </activity>
         <activity
             android:name=".BriefingComplete"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".util.DefaultActivity"
             android:label="@string/app_name" >
         </activity>
     </application>

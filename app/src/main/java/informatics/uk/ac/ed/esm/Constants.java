@@ -16,6 +16,8 @@ public class Constants {
     public static final String END_TIME_HOUR = "endTimeHour";
     public static final String END_TIME_MINUTE = "endTimeMinute";
     public static final String HASHING_ALGORITHM = "SHA-1";
+    public static final String LAST_NOTIFICATION_TIME_MILLIS  = "lastNotificationTimeMillis";
+    public static final String LAST_SURVEY_COMPLETED_TIME_MILLIS = "lastSurveyCompleteMillis";
     public static final String NOTIFICATION_WINDOW_MINUTES = "notificationWindow";
     public static final String NOTIFICATION_INTERVAL_MILLIS = "notificationIntervalMillis";
     public static final String PARTICIPANT_ID = "participantId";

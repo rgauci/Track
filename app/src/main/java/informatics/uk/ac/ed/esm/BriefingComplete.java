@@ -32,6 +32,7 @@ public class BriefingComplete extends AppCompatActivity {
         // mark setup is complete
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(Constants.SETUP_COMPLETE, true);
+        editor.apply();
 
         // set info text
         Calendar startDate = GregorianCalendar.getInstance();
