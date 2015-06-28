@@ -1,19 +1,34 @@
-package informatics.uk.ac.ed.esm.util;
+package informatics.uk.ac.ed.esm;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import informatics.uk.ac.ed.esm.R;
 
 public class DefaultActivity extends AppCompatActivity {
 
+    private Button relaunchSetup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default);
+
+        // TODO remove this and corresponding button
+        relaunchSetup = (Button) findViewById(R.id.btnRelaunchSetup);
+        relaunchSetup.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DefaultActivity.this, ResearcherSetup.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

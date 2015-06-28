@@ -10,8 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import informatics.uk.ac.ed.esm.util.DefaultActivity;
-
 public class SplashScreen extends AppCompatActivity {
 
     public static final int SPLASH_DISPLAY_TIME_MILLIS = 1000;

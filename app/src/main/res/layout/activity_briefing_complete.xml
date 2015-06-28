@@ -11,7 +11,8 @@
         android:id="@+id/bodyLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@color/primary">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -36,25 +37,26 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/briefCompleteTitle"
                     android:id="@+id/txtVwTitle"
-                    android:gravity="center_horizontal"
-                    android:layout_marginBottom="@dimen/vertical_space" />
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/briefCompleteThankYou"
+                    android:id="@+id/txtVwThankYou"
+                    android:textColor="@color/primary_light" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:id="@+id/txtVwInfo"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/briefCompleteExplanation"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/briefCompleteThankYou"
-                    android:id="@+id/txtVwThankYou"
-                    android:gravity="center_horizontal"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/briefCompleteExplanation"
+                    android:textColor="#FFFFFF"
                     android:layout_marginTop="@dimen/vertical_space" />
+
             </LinearLayout>
         </ScrollView>
 

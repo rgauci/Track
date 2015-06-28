@@ -110,6 +110,8 @@
         <item name="android:textColorSecondary">@color/secondary_text</item>
         <item name="background">@color/purple_500</item>
         <item name="android:textAppearanceMedium">@style/MediumText</item>
+        <item name="android:textAppearanceLarge">@style/LargeText</item>
+        <item name="android:textAppearanceSmall">@style/SmallText</item>
         <item name="actionMenuTextColor">@color/primary</item>
         <item name="android:dialogTheme">@style/DialogTheme</item>
         <!-- You can also set colorControlNormal, colorControlActivated
@@ -155,15 +157,22 @@
         <item name="android:layout_marginBottom">@dimen/horizontal_divider_height</item>
     </style>
 
-    <style name="MediumText" parent="@android:style/TextAppearance.Medium">
+    <style name="LargeText" parent="TextAppearance.AppCompat.Large">
+    </style>
+
+    <style name="MediumText" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">@color/primary_text</item>
     </style>
 
-    <style name="QuestionText" parent="android:style/TextAppearance.Medium">
+    <style name="SmallText" parent="TextAppearance.AppCompat.Small">
+
+    </style>
+
+    <style name="QuestionText" parent="MediumText">
         <item name="android:layout_marginBottom">@dimen/bottom_margin</item>
     </style>
 
-    <style name="ErrorText" parent="@android:style/TextAppearance.Small">
+    <style name="ErrorText" parent="TextAppearance.AppCompat.Small">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">#DD2C00</item>
         <item name="android:visibility">gone</item>
