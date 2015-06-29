@@ -165,7 +165,6 @@
     </style>
 
     <style name="SmallText" parent="TextAppearance.AppCompat.Small">
-
     </style>
 
     <style name="QuestionText" parent="MediumText">
