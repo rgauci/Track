@@ -143,7 +143,7 @@
                             android:layout_weight="1">
 
                             <EditText
-                                    android:layout_width="@dimen/numeric_textview_width"
+                                    android:layout_width="@dimen/form_input_width"
                                     android:layout_height="wrap_content"
                                     android:inputType="number"
                                     android:ems="10"
@@ -210,7 +210,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:layout_width="@dimen/numeric_textview_width"
+                                android:layout_width="@dimen/form_input_width"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
                                 android:ems="10"
@@ -275,7 +275,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:layout_width="@dimen/numeric_textview_width"
+                                android:layout_width="@dimen/form_input_width"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
                                 android:ems="10"
@@ -413,6 +413,48 @@
                         android:layout_column="1"
                         style="@style/HorizontalDivider"/>
 
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_ic_watch_grey_24dp"
+                        android:layout_column="0"
+                        style="@style/FormImage"
+                        android:contentDescription="@string/notificationScheduling"
+                        android:cropToPadding="true"
+                        android:id="@+id/imgVwNoticationScheduling" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        style="@style/ListItem">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/notificationScheduling"/>
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinner"
+                            android:entries="@array/notificationSchedulingOptions" />
+
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow>
+                    <View
+                        android:layout_column="1"
+                        style="@style/HorizontalDivider"/>
                 </TableRow>
 
             </TableLayout>

@@ -29,6 +29,11 @@
     <string name="defaultDateFormat">EEEE, dd MMM yyyy</string>
     <string name="dateFormatFullMonthNoYear">EEEE, dd MMMM</string>
     <string name="samples">samples</string>
+    <string name="notificationScheduling">Notification Scheduling</string>
+    <string-array name="notificationSchedulingOptions">
+        <item>Random</item>
+        <item>Fixed</item>
+    </string-array>
 
     <string name="Participant">Participant&#160;</string>
     <string name="ParticipantIdPlaceholder">&lt;Participant ID&gt;</string>
