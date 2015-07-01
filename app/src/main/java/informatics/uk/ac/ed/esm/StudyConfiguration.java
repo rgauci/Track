@@ -108,7 +108,7 @@ public class StudyConfiguration extends AppCompatActivity
             // set up notifications
             SurveyNotificationManager notificationManager =
                     new SurveyNotificationManager(getApplicationContext());
-            notificationManager.SetupNotifications(true);
+            notificationManager.SetupNotifications(true); // TODO handle random notifications
             // proceed to next activity
             Intent intent = new Intent(this, UserAccountSetup.class);
             startActivity(intent);

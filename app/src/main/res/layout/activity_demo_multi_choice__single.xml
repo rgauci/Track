@@ -15,11 +15,12 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/scrollView2"
             android:layout_gravity="center_horizontal"
-            android:layout_above="@+id/btnNext"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:layout_above="@+id/txtViewExp"
+            android:layout_alignParentTop="true">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -84,14 +85,6 @@
                         android:id="@+id/radioButton7" />
                 </RadioGroup>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="@string/demoMultiChoiceSingleExplanation"
-                    android:id="@+id/txtViewExp"
-                    style="@style/ExplanationText" />
-
             </LinearLayout>
         </ScrollView>
 
@@ -116,6 +109,17 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/demoMultiChoiceSingleExplanation"
+            android:id="@+id/txtViewExp"
+            style="@style/ExplanationText"
+            android:layout_above="@+id/btnNext"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
