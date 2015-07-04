@@ -1,40 +1,45 @@
-package informatics.uk.ac.ed.esm;
+package informatics.uk.ac.ed.track;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 
-public class UserLogin extends AppCompatActivity {
+public class DemoScale extends AppCompatActivity {
 
-    private TextView txtVwParticipantId;
-    private SharedPreferences settings;
+    private Button btnNext;
+    private Button btnPrevious;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_login);
+        setContentView(R.layout.activity_demo_scale);
 
-        /* initialise UI controls */
-        txtVwParticipantId = (TextView) findViewById(R.id.txtVwParticipantId);
+        /* set onClick listeners */
+        btnNext = (Button) findViewById(R.id.btnNext);
+        btnPrevious = (Button) findViewById(R.id.btnPrevious);
 
-        /* get shared preferences */
-        this.settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        btnNext.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
 
-        /* display participant ID */
-        int participantId = settings.getInt(Constants.PARTICIPANT_ID, -1);
-        txtVwParticipantId.setText(String.valueOf(participantId));
+        btnPrevious.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DemoScale.super.onBackPressed();
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_user_login, menu);
+        getMenuInflater().inflate(R.menu.menu_demo_scale, menu);
         return true;
     }
 

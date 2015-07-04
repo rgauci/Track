@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.esm.util;
+package informatics.uk.ac.ed.track.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

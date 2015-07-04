@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="@color/primary"
-    tools:context="informatics.uk.ac.ed.esm.DefaultActivity">
+    tools:context="informatics.uk.ac.ed.track.DefaultActivity">
 
     <LinearLayout
         android:orientation="vertical"

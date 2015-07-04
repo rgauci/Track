@@ -7,7 +7,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "informatics.uk.ac.ed.esm"
+        applicationId "informatics.uk.ac.ed.track"
         minSdkVersion 14
         //targetSdkVersion 21
         targetSdkVersion 22

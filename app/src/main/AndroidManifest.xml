@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="informatics.uk.ac.ed.esm" >
+    package="informatics.uk.ac.ed.track" >
 
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -10,15 +10,15 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <receiver android:name=".AlarmReceiver" />
-        <receiver android:name=".BootReceiver" >
+        <receiver android:name="informatics.uk.ac.ed.track.AlarmReceiver" />
+        <receiver android:name="informatics.uk.ac.ed.track.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
         <activity
-            android:name=".SplashScreen"
+            android:name="informatics.uk.ac.ed.track.SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:noHistory="true"
@@ -29,55 +29,55 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ResearcherSetup"
+            android:name="informatics.uk.ac.ed.track.ResearcherSetup"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".StudyConfiguration"
+            android:name="informatics.uk.ac.ed.track.StudyConfiguration"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".UserAccountSetup"
+            android:name="informatics.uk.ac.ed.track.UserAccountSetup"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".SetupComplete"
+            android:name="informatics.uk.ac.ed.track.SetupComplete"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".DemoIntro"
+            android:name="informatics.uk.ac.ed.track.DemoIntro"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".DemoFreeText"
+            android:name="informatics.uk.ac.ed.track.DemoFreeText"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".DemoMultiChoice_Single"
+            android:name="informatics.uk.ac.ed.track.DemoMultiChoice_Single"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".DemoMultiChoice_Multi"
+            android:name="informatics.uk.ac.ed.track.DemoMultiChoice_Multi"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".DemoScale"
+            android:name="informatics.uk.ac.ed.track.DemoScale"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".UserLogin"
+            android:name="informatics.uk.ac.ed.track.UserLogin"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".DemoScaleVertical"
+            android:name="informatics.uk.ac.ed.track.DemoScaleVertical"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".BriefingComplete"
+            android:name="informatics.uk.ac.ed.track.BriefingComplete"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".DefaultActivity"
+            android:name="informatics.uk.ac.ed.track.DefaultActivity"
             android:label="@string/app_name" >
         </activity>
     </application>

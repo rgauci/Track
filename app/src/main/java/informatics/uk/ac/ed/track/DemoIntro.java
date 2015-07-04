@@ -1,7 +1,6 @@
-package informatics.uk.ac.ed.esm;
+package informatics.uk.ac.ed.track;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -10,30 +9,22 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class DemoScale extends AppCompatActivity {
+public class DemoIntro extends AppCompatActivity {
 
-    private Button btnNext;
-    private Button btnPrevious;
+    Button btnStartDemo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo_scale);
+        setContentView(R.layout.activity_demo_intro);
 
-        /* set onClick listeners */
-        btnNext = (Button) findViewById(R.id.btnNext);
-        btnPrevious = (Button) findViewById(R.id.btnPrevious);
+        btnStartDemo = (Button) findViewById(R.id.btnStartDemo);
 
-        btnNext.setOnClickListener(new Button.OnClickListener() {
+        btnStartDemo.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-            }
-        });
-
-        btnPrevious.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DemoScale.super.onBackPressed();
+                Intent intent = new Intent(DemoIntro.this, DemoFreeText.class);
+                startActivity(intent);
             }
         });
     }
@@ -41,7 +32,7 @@ public class DemoScale extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_demo_scale, menu);
+        getMenuInflater().inflate(R.menu.menu_demo_intro, menu);
         return true;
     }
 
@@ -58,5 +49,10 @@ public class DemoScale extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void btnStartDemo_onClick(View view) {
+        Intent intent = new Intent(this, DemoFreeText.class);
+        startActivity(intent);
     }
 }

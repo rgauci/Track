@@ -1,17 +1,12 @@
-package informatics.uk.ac.ed.esm;
+package informatics.uk.ac.ed.track;
 
-import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.EditText;
 
-import org.w3c.dom.Text;
-
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
