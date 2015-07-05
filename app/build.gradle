@@ -23,7 +23,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
     //compile 'com.android.support:support-v4:22.2.0'
     /* required for text input layout */
     /* floating action button */
@@ -31,4 +30,6 @@ dependencies {
     compile 'com.android.support:design:22.2.0'
     compile 'com.github.clans:fab:1.5.0'
     compile 'com.android.support:support-v4:22.2.0'
+    compile files('libs/TrackLib.jar')
+    compile 'com.google.code.gson:gson:2.3.1'
 }
