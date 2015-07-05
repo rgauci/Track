@@ -1,0 +1,586 @@
+[
+  {
+    "type": "MultipleChoiceSingleAnswer",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Right now, I feel cheerful."
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "Right now, I feel satisfied."
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Right now, I feel enthusiastic."
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Right now, I feel relaxed."
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Right now, I feel sad."
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 6,
+        "option": "Right now, I feel guilty."
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 7,
+        "option": "Right now, I feel irritated."
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 8,
+        "option": "Right now, I feel lonely."
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 9,
+        "option": "Right now, I feel anxious."
+      }
+    ],
+    "multiChoiceQuestionType": "SINGLE_ANSWER",
+    "addOther": false,
+    "id": 1,
+    "questionType": "MULTIPLE_CHOICE",
+    "title": "Emotion / Affect",
+    "nextQuestionId": 2,
+    "required": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 2,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about a situation differently?",
+    "nextQuestionId": 3,
+    "required": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 3,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "nextQuestionId": 4,
+    "required": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 4,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "questionPrefix": "How much are you:",
+    "questionText": "Talking about your feelings and reactions with others?",
+    "nextQuestionId": 5,
+    "required": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 5,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying not to show your emotions on the outside?",
+    "nextQuestionId": 6,
+    "required": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 6,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "questionPrefix": "How much are you:",
+    "questionText": "Turning your attention away from what is making you feel emotional?",
+    "nextQuestionId": 7,
+    "required": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 7,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about your emotions over and over?",
+    "nextQuestionId": 8,
+    "required": true
+  },
+  {
+    "type": "FreeTextQuestion",
+    "freeTextType": "MULTI_LINE",
+    "id": 8,
+    "questionType": "FREE_TEXT",
+    "title": "Event Stress",
+    "questionText": "What is the most important event that has happened since your last report.",
+    "nextQuestionId": 9,
+    "required": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 9,
+    "questionType": "LIKERT_SCALE",
+    "title": "Event Stress",
+    "questionText": "How pleasant was this event?",
+    "nextQuestionId": 10,
+    "required": true
+  },
+  {
+    "type": "FreeTextQuestion",
+    "freeTextType": "SINGLE_LINE",
+    "id": 10,
+    "questionType": "FREE_TEXT",
+    "title": "In relation to this activity:",
+    "questionText": "What are you currently doing?",
+    "nextQuestionId": 11,
+    "required": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 11,
+    "questionType": "LIKERT_SCALE",
+    "title": "Activity Stress",
+    "questionPrefix": "In relation to this activity:",
+    "questionText": "I like what I am doing right now.",
+    "nextQuestionId": 12,
+    "required": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Strongly disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "Disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Neither agree nor disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Agree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Strongly agree"
+      }
+    ],
+    "id": 12,
+    "questionType": "LIKERT_SCALE",
+    "title": "Activity Stress",
+    "questionPrefix": "In relation to this activity:",
+    "questionText": "It takes a lot of effort to do this activity.",
+    "nextQuestionId": 13,
+    "required": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Strongly disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "Disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Neither agree nor disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Agree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Strongly agree"
+      }
+    ],
+    "id": 13,
+    "questionType": "LIKERT_SCALE",
+    "title": "Activity Stress",
+    "questionPrefix": "In relation to this activity:",
+    "questionText": "I have the ability to do this activity.",
+    "nextQuestionId": 14,
+    "required": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Strongly disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "Disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Neither agree nor disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Agree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Strongly agree"
+      }
+    ],
+    "id": 14,
+    "questionType": "LIKERT_SCALE",
+    "title": "Activity Stress",
+    "questionPrefix": "In relation to this activity:",
+    "questionText": "I would prefer to be doing something else right now.",
+    "nextQuestionId": 15,
+    "required": true
+  },
+  {
+    "type": "MultipleChoiceSingleAnswer",
+    "isBranchable": true,
+    "answerOptions": [
+      {
+        "nextQuestionId": 16,
+        "optionId": 1,
+        "option": "Alone"
+      },
+      {
+        "nextQuestionId": 17,
+        "optionId": 2,
+        "option": "With others"
+      }
+    ],
+    "multiChoiceQuestionType": "SINGLE_ANSWER",
+    "addOther": false,
+    "id": 15,
+    "questionType": "MULTIPLE_CHOICE",
+    "title": "In relation to this activity:",
+    "questionText": "Are you alone or with others?",
+    "nextQuestionId": 16,
+    "required": true
+  },
+  {
+    "type": "MultipleChoiceSingleAnswer",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Right now, I enjoy being alone."
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "Right now, I\u0027d prefer to be with other people."
+      }
+    ],
+    "multiChoiceQuestionType": "SINGLE_ANSWER",
+    "addOther": false,
+    "id": 16,
+    "questionType": "MULTIPLE_CHOICE",
+    "title": "Social Stress",
+    "nextQuestionId": 17,
+    "required": true
+  },
+  {
+    "type": "MultipleChoiceMultipleAnswer",
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Partner"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "Family"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Friend"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Classmate"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Colleague"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 6,
+        "option": "Stranger"
+      }
+    ],
+    "multiChoiceQuestionType": "MULTIPLE_ANSWER",
+    "addOther": true,
+    "id": 17,
+    "questionType": "MULTIPLE_CHOICE",
+    "title": "Social Stress",
+    "nextQuestionId": 18,
+    "required": true
+  }
+]
