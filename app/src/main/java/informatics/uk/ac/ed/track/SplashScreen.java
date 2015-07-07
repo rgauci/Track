@@ -1,5 +1,6 @@
 package informatics.uk.ac.ed.track;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,12 +25,15 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import informatics.uk.ac.ed.track.lib.FreeTextQuestion;
 import informatics.uk.ac.ed.track.lib.LikertScaleQuestion;
 import informatics.uk.ac.ed.track.lib.MultipleChoiceMultipleAnswer;
 import informatics.uk.ac.ed.track.lib.MultipleChoiceSingleAnswer;
 import informatics.uk.ac.ed.track.lib.TrackQuestion;
+import informatics.uk.ac.ed.track.lib.TrackQuestionType;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -139,11 +143,8 @@ public class SplashScreen extends AppCompatActivity {
         String jsonSurvey = writer.toString();
 
         // create RunTimeAdapterFactory to support Polymorphic types in lists
-        RuntimeTypeAdapterFactory<TrackQuestion> factory = RuntimeTypeAdapterFactory.of(TrackQuestion.class)
-                .registerSubtype(FreeTextQuestion.class)
-                .registerSubtype(MultipleChoiceSingleAnswer.class)
-                .registerSubtype(MultipleChoiceMultipleAnswer.class)
-                .registerSubtype(LikertScaleQuestion.class);
+        RuntimeTypeAdapterFactory<TrackQuestion> factory =
+                informatics.uk.ac.ed.track.lib.Utils.getRuntimeAdapterFactory();
 
         Type listType = new TypeToken<ArrayList<TrackQuestion>>() {}.getType();
 
@@ -151,7 +152,33 @@ public class SplashScreen extends AppCompatActivity {
         builder.registerTypeAdapterFactory(factory);
         Gson gson = builder.create();
 
-        ArrayList<TrackQuestion> fromJson = gson.fromJson(jsonSurvey, listType);
+        ArrayList<TrackQuestion> questions = gson.fromJson(jsonSurvey, listType);
+
+        // create a HashMap indexed by questionId
+        // to enable easy access to each question by Id
+        Map<Integer,TrackQuestion> map = new HashMap<>();
+        for (TrackQuestion i : questions) {
+            map.put(i.getId(), i);
+        }
+
+        Gson questionGson = new Gson();
+
+        // for each question, create a preferences file containing:
+        // - the question type
+        // - the next question's type (to know which activity to launch)
+        // - the question object serialised in JSON format
+
+        for (TrackQuestion question : questions) {
+            SharedPreferences preferences = getSharedPreferences(
+                    Constants.QUESTION_PREFERENCES_PREFIX + question.getId(), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            // save object as JSON string
+            editor.putString(Constants.QUESTION_JSON, questionGson.toJson(question));
+            // also save question type so that previous question can determine type
+            // without having to deserialize the whole object string
+            editor.putInt(Constants.QUESTION_TYPE, TrackQuestionType.toInt(question.getQuestionType()));
+            editor.commit();
+        }
 
         // TODO mark survey import as complete
     }

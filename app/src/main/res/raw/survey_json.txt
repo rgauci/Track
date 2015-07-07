@@ -49,10 +49,9 @@
         "option": "Right now, I feel anxious."
       }
     ],
-    "multiChoiceQuestionType": "SINGLE_ANSWER",
     "addOther": false,
     "id": 1,
-    "questionType": "MULTIPLE_CHOICE",
+    "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",
     "title": "Emotion / Affect",
     "nextQuestionId": 2,
     "required": true
@@ -286,10 +285,9 @@
     "required": true
   },
   {
-    "type": "FreeTextQuestion",
-    "freeTextType": "MULTI_LINE",
+    "type": "FreeTextQuestionMultiLine",
     "id": 8,
-    "questionType": "FREE_TEXT",
+    "questionType": "FREE_TEXT_MULTI_LINE",
     "title": "Event Stress",
     "questionText": "What is the most important event that has happened since your last report.",
     "nextQuestionId": 9,
@@ -333,10 +331,9 @@
     "required": true
   },
   {
-    "type": "FreeTextQuestion",
-    "freeTextType": "SINGLE_LINE",
+    "type": "FreeTextQuestionSingleLine",
     "id": 10,
-    "questionType": "FREE_TEXT",
+    "questionType": "FREE_TEXT_SINGLE_LINE",
     "title": "In relation to this activity:",
     "questionText": "What are you currently doing?",
     "nextQuestionId": 11,
@@ -509,10 +506,9 @@
         "option": "With others"
       }
     ],
-    "multiChoiceQuestionType": "SINGLE_ANSWER",
     "addOther": false,
     "id": 15,
-    "questionType": "MULTIPLE_CHOICE",
+    "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",
     "title": "Activity Stress",
     "questionText": "Are you alone or with others?",
     "nextQuestionId": 16,
@@ -533,10 +529,9 @@
         "option": "Right now, I\u0027d prefer to be with other people."
       }
     ],
-    "multiChoiceQuestionType": "SINGLE_ANSWER",
     "addOther": false,
     "id": 16,
-    "questionType": "MULTIPLE_CHOICE",
+    "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",
     "title": "Social Stress",
     "nextQuestionId": 17,
     "required": true
@@ -575,10 +570,9 @@
         "option": "Stranger"
       }
     ],
-    "multiChoiceQuestionType": "MULTIPLE_ANSWER",
     "addOther": true,
     "id": 17,
-    "questionType": "MULTIPLE_CHOICE",
+    "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",
     "title": "Social Stress",
     "nextQuestionId": 18,
     "required": true

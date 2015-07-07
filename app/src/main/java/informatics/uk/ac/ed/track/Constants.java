@@ -25,6 +25,9 @@ public class Constants {
     public static final String REQUEST_CODE = "requestCode";
     public static final String RESEARCHER_EMAIL = "researcherEmail";
     public static final String RESEARCHER_PASSWORD_HASHED = "researcherPasswordHashed";
+    public static final String QUESTION_PREFERENCES_PREFIX = "informatics.uk.ac.ed.track.question";
+    public static final String QUESTION_TYPE = "questionType";
+    public static final String QUESTION_JSON = "questionJson";
     public static final String SAMPLES_PER_DAY = "samplesPerDay";
     public static final String SETUP_COMPLETE = "setupComplete";
     public static final String START_TIME_HOUR = "startTimeHour";
