@@ -14,6 +14,7 @@ public class Utils {
 
     private static final int MINIMUM_PASSWORD_LENGTH = 8;
     private static final int MAXIMUM_PASSWORD_LENGTH = 20;
+    private static final String LOG_TAG = "TRACK.Utils";
 
     private static final String PASSWORD_PATTERN =
             "((?=.*\\d)(?=.*[a-zA-Z])(?=\\S+$))" + // at least 1 digit, 1 letter, and no whitespace
@@ -49,8 +50,8 @@ public class Utils {
         try
         {
             digest = MessageDigest.getInstance(Constants.HASHING_ALGORITHM);
-        } catch (NoSuchAlgorithmException e1) {
-            Log.e("Utils.computeHash", "Error initializing SHA1 message digest.");
+        } catch (NoSuchAlgorithmException nsae) {
+            Log.e(LOG_TAG, "Error initializing SHA1 message digest.", nsae);
             return plaintext;
         }
 

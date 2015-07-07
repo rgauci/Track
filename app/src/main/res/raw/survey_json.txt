@@ -513,7 +513,7 @@
     "addOther": false,
     "id": 15,
     "questionType": "MULTIPLE_CHOICE",
-    "title": "In relation to this activity:",
+    "title": "Activity Stress",
     "questionText": "Are you alone or with others?",
     "nextQuestionId": 16,
     "required": true

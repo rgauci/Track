@@ -6,13 +6,35 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import informatics.uk.ac.ed.track.lib.FreeTextQuestion;
+import informatics.uk.ac.ed.track.lib.LikertScaleQuestion;
+import informatics.uk.ac.ed.track.lib.MultipleChoiceMultipleAnswer;
+import informatics.uk.ac.ed.track.lib.MultipleChoiceSingleAnswer;
+import informatics.uk.ac.ed.track.lib.TrackQuestion;
+
 public class SplashScreen extends AppCompatActivity {
 
-    public static final int SPLASH_DISPLAY_TIME_MILLIS = 1000;
+    private static final int SPLASH_DISPLAY_TIME_MILLIS = 1000;
+    private static final String LOG_TAG = "TRACK.SplashScreen";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +47,16 @@ public class SplashScreen extends AppCompatActivity {
                 // get settings
                 SharedPreferences settings =
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                boolean surveyImportComplete =
+                        settings.getBoolean(Constants.SURVEY_IMPORT_COMPLETE, Constants.DEF_VALUE_BOOL);
                 boolean setupComplete =
                         settings.getBoolean(Constants.SETUP_COMPLETE, Constants.DEF_VALUE_BOOL);
+
+                // if survey has not yet been imported from survey_json.txt
+                // import survey: cretae shared preference file for each question
+                if (!surveyImportComplete) {
+                    importSurvey();
+                }
 
                 // if setup is complete
                 if (setupComplete) {
@@ -74,5 +104,55 @@ public class SplashScreen extends AppCompatActivity {
                 }
             }
         }, SPLASH_DISPLAY_TIME_MILLIS);
+    }
+
+    private void importSurvey() {
+        boolean resourceFileRead = false;
+
+        // read survey from raw resource file
+        InputStream inpStream = getResources().openRawResource(R.raw.survey_json);
+        Writer writer = new StringWriter();
+        try {
+            char[] buffer = new char[inpStream.available()];
+            Reader reader = new BufferedReader(new InputStreamReader(inpStream));
+            int numCharsRead;
+            while ((numCharsRead = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, numCharsRead);
+            }
+            resourceFileRead = true;
+        } catch (IOException ioe) {
+            Log.e(LOG_TAG, "Error while trying to parse surve file.", ioe);
+        } finally {
+            try {
+                inpStream.close();
+            } catch (IOException ioe) {
+                Log.e(LOG_TAG, "Error trying to close input stream.", ioe);
+            }
+        }
+
+        if (!resourceFileRead) {
+            return;
+        }
+
+        /* convert from JSON string to JSON objects */
+
+        String jsonSurvey = writer.toString();
+
+        // create RunTimeAdapterFactory to support Polymorphic types in lists
+        RuntimeTypeAdapterFactory<TrackQuestion> factory = RuntimeTypeAdapterFactory.of(TrackQuestion.class)
+                .registerSubtype(FreeTextQuestion.class)
+                .registerSubtype(MultipleChoiceSingleAnswer.class)
+                .registerSubtype(MultipleChoiceMultipleAnswer.class)
+                .registerSubtype(LikertScaleQuestion.class);
+
+        Type listType = new TypeToken<ArrayList<TrackQuestion>>() {}.getType();
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapterFactory(factory);
+        Gson gson = builder.create();
+
+        ArrayList<TrackQuestion> fromJson = gson.fromJson(jsonSurvey, listType);
+
+        // TODO mark survey import as complete
     }
 }

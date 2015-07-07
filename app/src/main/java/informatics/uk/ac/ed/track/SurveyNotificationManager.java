@@ -14,6 +14,8 @@ import java.util.GregorianCalendar;
 
 public class SurveyNotificationManager {
 
+    private static final String LOG_TAG = "TRACK.SurveyNotifMngr";
+
     private Context appContext;
     private Calendar studyStart, studyEnd;
     private long intervalMillis;
@@ -222,7 +224,7 @@ public class SurveyNotificationManager {
             try {
                 this.cancelAlarm(Integer.parseInt(requestCode));
             } catch (NumberFormatException nfe) {
-                Log.e("cancelAllAlarms", "Unable to parse requestCode.");
+                Log.e(LOG_TAG, "Unable to parse requestCode.", nfe);
             }
         }
     }

@@ -31,4 +31,5 @@ public class Constants {
     public static final String START_TIME_MINUTE = "startTimeMinute";
     public static final String STUDY_START_DATE_TIME_MILLIS = "studyStartDateTimeMillis";
     public static final String STUDY_END_DATE_TIME_MILLIS = "studyEndDateTimeMillis";
+    public static final String SURVEY_IMPORT_COMPLETE = "surveyImportComplete";
 }
