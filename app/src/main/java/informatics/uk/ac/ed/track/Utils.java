@@ -1,5 +1,9 @@
 package informatics.uk.ac.ed.track;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -9,6 +13,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import informatics.uk.ac.ed.track.lib.TrackQuestionType;
 
 public class Utils {
 
@@ -61,4 +67,53 @@ public class Utils {
         hash = Base64.encodeToString(byteHash, Base64.DEFAULT);
         return hash;
     }
+
+    /**
+     *
+     * @param appContext Application context, used for retrieving default shared preferences.
+     * @return Intent to launch Activity with startActivity()
+     */
+    public static Intent getLaunchSurveyIntent(Context appContext) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(appContext);
+        int firstQuestionId = settings.getInt(Constants.FIRST_QUESTION_ID, Constants.DEF_VALUE_INT);
+        return getLaunchQuestionIntent(appContext, settings, firstQuestionId);
+    }
+
+    public static SharedPreferences getQuestionPreferences(Context appContext, int questionId) {
+        return appContext.getSharedPreferences(
+                Constants.QUESTION_PREFERENCES_PREFIX + questionId, Context.MODE_PRIVATE);
+    }
+
+    public static TrackQuestionType getQuestionType(SharedPreferences settings, int questionId) {
+        int qType = settings.getInt(Constants.QUESTION_TYPE_PREFIX + questionId, Constants.DEF_VALUE_INT);
+        return TrackQuestionType.fromInt(qType);
+    }
+
+    public static Intent getLaunchQuestionIntent(Context context, SharedPreferences settings, int questionId) {
+        TrackQuestionType qType = getQuestionType(settings, questionId);
+
+        Intent intent = null;
+
+        switch (qType) {
+            case FREE_TEXT_SINGLE_LINE:
+                break;
+            case FREE_TEXT_MULTI_LINE:
+                break;
+            case MULTIPLE_CHOICE_SINGLE_ANSWER:
+                intent = new Intent(context, MultiChoice_Single.class);
+                break;
+            case MULTIPLE_CHOICE_MULTI_ANSWER:
+                intent = new Intent(context, MultiChoice_Multi.class);
+                break;
+            case LIKERT_SCALE:
+                break;
+        }
+
+        if (intent != null) {
+            intent.putExtra(Constants.QUESTION_ID, questionId);
+        }
+
+        return intent;
+    }
+
 }

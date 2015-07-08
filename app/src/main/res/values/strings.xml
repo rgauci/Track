@@ -147,4 +147,9 @@
     <string name="title_activity_default">DefaultActivity</string>
     <string name="noSurveyAvailable">No Survey Currently Available</string>
     <string name="noSurveyAvailableSubText">Keep an eye out for those notifications.</string>
+    <string name="title_activity_multi_choice__multi">MultiChoice_Multi</string>
+    <string name="title_activity_multi_choice__single">MultiChoice_Single</string>
+
+    <string name="defaultTitle">Title</string>
+    <string name="defaultQuestion">Question</string>
 </resources>

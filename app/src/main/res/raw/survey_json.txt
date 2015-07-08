@@ -51,7 +51,7 @@
     ],
     "addOther": false,
     "id": 1,
-    "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",
+    "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
     "title": "Emotion / Affect",
     "nextQuestionId": 2,
     "required": true
@@ -508,7 +508,7 @@
     ],
     "addOther": false,
     "id": 15,
-    "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",
+    "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
     "title": "Activity Stress",
     "questionText": "Are you alone or with others?",
     "nextQuestionId": 16,
@@ -531,7 +531,7 @@
     ],
     "addOther": false,
     "id": 16,
-    "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",
+    "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
     "title": "Social Stress",
     "nextQuestionId": 17,
     "required": true

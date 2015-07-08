@@ -1,6 +1,5 @@
 package informatics.uk.ac.ed.track;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,13 +24,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
 
-import informatics.uk.ac.ed.track.lib.FreeTextQuestion;
-import informatics.uk.ac.ed.track.lib.LikertScaleQuestion;
-import informatics.uk.ac.ed.track.lib.MultipleChoiceMultipleAnswer;
-import informatics.uk.ac.ed.track.lib.MultipleChoiceSingleAnswer;
 import informatics.uk.ac.ed.track.lib.TrackQuestion;
 import informatics.uk.ac.ed.track.lib.TrackQuestionType;
 
@@ -57,10 +50,10 @@ public class SplashScreen extends AppCompatActivity {
                         settings.getBoolean(Constants.SETUP_COMPLETE, Constants.DEF_VALUE_BOOL);
 
                 // if survey has not yet been imported from survey_json.txt
-                // import survey: cretae shared preference file for each question
-                if (!surveyImportComplete) {
-                    importSurvey();
-                }
+                // import survey: create shared preference file for each question
+                //if (!surveyImportComplete) {
+                    importSurvey(settings);
+                //}
 
                 // if setup is complete
                 if (setupComplete) {
@@ -91,10 +84,9 @@ public class SplashScreen extends AppCompatActivity {
 
                     Intent intent;
 
-                    // if survey is available
-                    // shower user login screen to start survey
                     if (surveyAvailable) {
-                        intent = new Intent(SplashScreen.this, UserLogin.class);
+                        // if survey is available, launch
+                        intent = Utils.getLaunchSurveyIntent(getApplicationContext());
                     } else {
                         // otherwise show no survey currently available screen
                         intent = new Intent(SplashScreen.this, DefaultActivity.class);
@@ -110,7 +102,7 @@ public class SplashScreen extends AppCompatActivity {
         }, SPLASH_DISPLAY_TIME_MILLIS);
     }
 
-    private void importSurvey() {
+    private void importSurvey(SharedPreferences settings) {
         boolean resourceFileRead = false;
 
         // read survey from raw resource file
@@ -154,32 +146,29 @@ public class SplashScreen extends AppCompatActivity {
 
         ArrayList<TrackQuestion> questions = gson.fromJson(jsonSurvey, listType);
 
-        // create a HashMap indexed by questionId
-        // to enable easy access to each question by Id
-        Map<Integer,TrackQuestion> map = new HashMap<>();
-        for (TrackQuestion i : questions) {
-            map.put(i.getId(), i);
-        }
+        // for each question, create a preferences file containing:
+        // - the question object serialised in JSON format
+        // and save the question type in the shared preferences
 
+        SharedPreferences.Editor settingsEditor = settings.edit();
         Gson questionGson = new Gson();
 
-        // for each question, create a preferences file containing:
-        // - the question type
-        // - the next question's type (to know which activity to launch)
-        // - the question object serialised in JSON format
-
         for (TrackQuestion question : questions) {
-            SharedPreferences preferences = getSharedPreferences(
-                    Constants.QUESTION_PREFERENCES_PREFIX + question.getId(), Context.MODE_PRIVATE);
+            SharedPreferences preferences = Utils.getQuestionPreferences(this, question.getId());
             SharedPreferences.Editor editor = preferences.edit();
+
             // save object as JSON string
             editor.putString(Constants.QUESTION_JSON, questionGson.toJson(question));
-            // also save question type so that previous question can determine type
-            // without having to deserialize the whole object string
-            editor.putInt(Constants.QUESTION_TYPE, TrackQuestionType.toInt(question.getQuestionType()));
             editor.commit();
+
+            // also save question type so that we can determine type of activity to launch
+            // without having to deserialize the whole object string
+            settingsEditor.putInt(Constants.QUESTION_TYPE_PREFIX + question.getId(), TrackQuestionType.toInt(question.getQuestionType()));
         }
 
-        // TODO mark survey import as complete
+        // set first question id to know which one to launch on survey start
+        settingsEditor.putInt(Constants.FIRST_QUESTION_ID, questions.get(0).getId());
+        settingsEditor.putBoolean(Constants.SURVEY_IMPORT_COMPLETE, true);
+        settingsEditor.commit();
     }
 }

@@ -32,6 +32,13 @@
             android:text="Relaunch Setup"
             android:id="@+id/btnRelaunchSetup"
             android:layout_gravity="right" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Launch Survey"
+            android:id="@+id/btnLaunchSurvey"
+            android:layout_gravity="right" />
     </LinearLayout>
 
 </RelativeLayout>

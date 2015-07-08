@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class DefaultActivity extends AppCompatActivity {
 
-    private Button relaunchSetup;
+    private Button relaunchSetup, launchSurvey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,16 @@ public class DefaultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DefaultActivity.this, ResearcherSetup.class);
+                startActivity(intent);
+            }
+        });
+
+        // TODO remove this and corresponding button
+        launchSurvey = (Button) findViewById(R.id.btnLaunchSurvey);
+        launchSurvey.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = Utils.getLaunchSurveyIntent(getApplicationContext());
                 startActivity(intent);
             }
         });

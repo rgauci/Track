@@ -10,74 +10,83 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <receiver android:name="informatics.uk.ac.ed.track.AlarmReceiver" />
-        <receiver android:name="informatics.uk.ac.ed.track.BootReceiver" >
+        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
         <activity
-            android:name="informatics.uk.ac.ed.track.SplashScreen"
+            android:name=".SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:noHistory="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" > <!-- remove activity from stack so user can't return to it -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.ResearcherSetup"
+            android:name=".ResearcherSetup"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.StudyConfiguration"
+            android:name=".StudyConfiguration"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.UserAccountSetup"
+            android:name=".UserAccountSetup"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.SetupComplete"
+            android:name=".SetupComplete"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.DemoIntro"
+            android:name=".DemoIntro"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.DemoFreeText"
+            android:name=".DemoFreeText"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.DemoMultiChoice_Single"
+            android:name=".DemoMultiChoice_Single"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.DemoMultiChoice_Multi"
+            android:name=".DemoMultiChoice_Multi"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.DemoScale"
+            android:name=".DemoScale"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.UserLogin"
+            android:name=".UserLogin"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.DemoScaleVertical"
+            android:name=".DemoScaleVertical"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.BriefingComplete"
+            android:name=".BriefingComplete"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="informatics.uk.ac.ed.track.DefaultActivity"
+            android:name=".DefaultActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".MultiChoice_Multi"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".MultiChoice_Single"
             android:label="@string/app_name" >
         </activity>
     </application>

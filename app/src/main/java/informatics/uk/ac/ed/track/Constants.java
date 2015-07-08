@@ -15,6 +15,7 @@ public class Constants {
     public static final String DURATION_DAYS = "duration";
     public static final String END_TIME_HOUR = "endTimeHour";
     public static final String END_TIME_MINUTE = "endTimeMinute";
+    public static final String FIRST_QUESTION_ID = "firstQuestionId";
     public static final String HASHING_ALGORITHM = "SHA-1";
     public static final String LAST_NOTIFICATION_TIME_MILLIS  = "lastNotificationTimeMillis";
     public static final String LAST_SURVEY_COMPLETED_TIME_MILLIS = "lastSurveyCompleteMillis";
@@ -25,8 +26,9 @@ public class Constants {
     public static final String REQUEST_CODE = "requestCode";
     public static final String RESEARCHER_EMAIL = "researcherEmail";
     public static final String RESEARCHER_PASSWORD_HASHED = "researcherPasswordHashed";
-    public static final String QUESTION_PREFERENCES_PREFIX = "informatics.uk.ac.ed.track.question";
-    public static final String QUESTION_TYPE = "questionType";
+    public static final String QUESTION_ID = "questionId";
+    public static final String QUESTION_PREFERENCES_PREFIX = "informatics.uk.ac.ed.track.question.";
+    public static final String QUESTION_TYPE_PREFIX = "questionType";
     public static final String QUESTION_JSON = "questionJson";
     public static final String SAMPLES_PER_DAY = "samplesPerDay";
     public static final String SETUP_COMPLETE = "setupComplete";
