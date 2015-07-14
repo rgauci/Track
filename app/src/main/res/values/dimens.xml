@@ -13,5 +13,5 @@
     <dimen name="list_item_height">72dp</dimen>
     <dimen name="vertical_space">48dp</dimen>
     <dimen name="likert_button_height">32dp</dimen>
-    <dimen name="likert_button_width">@dimen/likert_button_height</dimen>
+    <dimen name="likert_button_width">32dp</dimen>
 </resources>

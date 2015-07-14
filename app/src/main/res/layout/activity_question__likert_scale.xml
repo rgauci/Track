@@ -46,7 +46,8 @@ tools:context="informatics.uk.ac.ed.track.Question_LikertScale">
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left|center_vertical">
+            android:gravity="left|center_vertical"
+            android:id="@+id/lytScale">
 
             <TextView
                 android:layout_width="wrap_content"

@@ -2,13 +2,23 @@ package informatics.uk.ac.ed.track;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import informatics.uk.ac.ed.track.lib.BranchableAnswerOption;
 import informatics.uk.ac.ed.track.lib.LikertScaleQuestion;
 import informatics.uk.ac.ed.track.lib.MultipleChoiceSingleAnswer;
 
@@ -40,6 +50,14 @@ public class Question_LikertScale extends TrackQuestionActivity {
         /* display title, question and prefix, if available */
         this.displayTitleQuestionAndPrefix(this.question, R.id.toolbar, R.id.txtVwToolbarTitle,
                 R.id.txtVwQuestionText, R.id.txtVwQuestionPrefix);
+
+        /* add likert scale options */
+        LinearLayout lytScale = (LinearLayout) findViewById(R.id.lytScale);
+        Resources res = getResources();
+        ArrayList<BranchableAnswerOption> options = this.question.getAnswerOptions();
+        for (BranchableAnswerOption option : options) {
+            this.addLikertOption(res, lytScale, option);
+        }
     }
 
     @Override
@@ -67,5 +85,30 @@ public class Question_LikertScale extends TrackQuestionActivity {
     @Override
     public void launchNextQuestion() {
 
+    }
+
+    public void addLikertOption(Resources res, LinearLayout lytScale, BranchableAnswerOption option) {
+
+        LinearLayout lytOption = new LinearLayout(this);
+        lytOption.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        lytOption.setOrientation(LinearLayout.HORIZONTAL);
+
+        Button btnLikert = new Button(this);
+        btnLikert.setLayoutParams(new LinearLayout.LayoutParams(
+            (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                    res.getInteger(R.integer.likert_button_width_dp), res.getDisplayMetrics()),
+            (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                    res.getInteger(R.integer.likert_button_height_dp), res.getDisplayMetrics())));
+        btnLikert.setText(Integer.toString(option.getOptionId()));
+
+        TextView txtVwOption = new TextView(this);
+        txtVwOption.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        txtVwOption.setText(option.getOption());
+
+        lytOption.addView(btnLikert);
+        lytOption.addView(txtVwOption);
+        lytScale.addView(lytOption);
     }
 }
