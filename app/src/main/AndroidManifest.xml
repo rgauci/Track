@@ -86,7 +86,11 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".MultiChoice_Single"
+            android:name=".Question_MultiChoice_Single"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".Question_LikertScale"
             android:label="@string/app_name" >
         </activity>
     </application>

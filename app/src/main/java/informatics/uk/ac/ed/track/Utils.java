@@ -93,7 +93,19 @@ public class Utils {
         return TrackQuestionType.fromInt(qType);
     }
 
-    public static Intent getLaunchQuestionIntent(Context context, SharedPreferences settings,
+    public static Intent getLaunchQuestionIntent(Context activityContext,
+                                                 int questionId, boolean isFirstQuestion) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(
+                activityContext.getApplicationContext());
+        return getLaunchQuestionIntent(activityContext, settings, questionId, isFirstQuestion);
+    }
+
+    public static Intent getLaunchQuestionIntent(Context activityContext,
+                                                 int questionId) {
+        return getLaunchQuestionIntent(activityContext, questionId, false);
+    }
+
+    public static Intent getLaunchQuestionIntent(Context activityContext, SharedPreferences settings,
                                                  int questionId, boolean isFirstQuestion) {
         TrackQuestionType qType = getQuestionType(settings, questionId);
 
@@ -105,12 +117,13 @@ public class Utils {
             case FREE_TEXT_MULTI_LINE:
                 break;
             case MULTIPLE_CHOICE_SINGLE_ANSWER:
-                intent = new Intent(context, MultiChoice_Single.class);
+                intent = new Intent(activityContext, Question_MultiChoice_Single.class);
                 break;
             case MULTIPLE_CHOICE_MULTI_ANSWER:
-                intent = new Intent(context, MultiChoice_Multi.class);
+                intent = new Intent(activityContext, MultiChoice_Multi.class);
                 break;
             case LIKERT_SCALE:
+                intent = new Intent(activityContext, Question_LikertScale.class);
                 break;
         }
 

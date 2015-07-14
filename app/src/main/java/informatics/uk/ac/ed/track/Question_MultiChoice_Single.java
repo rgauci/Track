@@ -2,37 +2,27 @@ package informatics.uk.ac.ed.track;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import informatics.uk.ac.ed.track.Constants;
-import informatics.uk.ac.ed.track.R;
-import informatics.uk.ac.ed.track.Utils;
 import informatics.uk.ac.ed.track.lib.BranchableAnswerOption;
-import informatics.uk.ac.ed.track.lib.MultipleChoiceMultipleAnswer;
 import informatics.uk.ac.ed.track.lib.MultipleChoiceSingleAnswer;
-import informatics.uk.ac.ed.track.lib.TrackQuestion;
-import informatics.uk.ac.ed.track.util.TrackQuestionActivity;
 
-public class MultiChoice_Single extends TrackQuestionActivity {
+public class Question_MultiChoice_Single extends TrackQuestionActivity {
 
     private MultipleChoiceSingleAnswer question;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi_choice__single);
+        setContentView(R.layout.activity_question__multi_choice__single);
 
         /* get question preferences using question ID */
         Intent intent = getIntent();
@@ -106,5 +96,15 @@ public class MultiChoice_Single extends TrackQuestionActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void launchNextQuestion() {
+        if (this.question.getIsBranchable()) {
+            // TODO handle branchable
+        } else {
+            Intent intent = Utils.getLaunchQuestionIntent(this, this.question.getNextQuestionId());
+            startActivity(intent);
+        }
     }
 }

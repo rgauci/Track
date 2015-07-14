@@ -154,4 +154,5 @@
     <string name="defaultQuestion">Question</string>
     <string name="defaultQuestionPrefix">Question Prefix</string>
     <string name="other">Other</string>
+    <string name="title_activity_question__likert_scale">Question_LikertScale</string>
 </resources>

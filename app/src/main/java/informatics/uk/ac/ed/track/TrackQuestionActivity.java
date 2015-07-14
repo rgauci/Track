@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track.util;
+package informatics.uk.ac.ed.track;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import informatics.uk.ac.ed.track.Constants;
-import informatics.uk.ac.ed.track.Utils;
 import informatics.uk.ac.ed.track.lib.TrackQuestion;
 
 public abstract class TrackQuestionActivity extends AppCompatActivity {
@@ -70,11 +68,30 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
                 activityIntent.getBooleanExtra(Constants.IS_FIRST_QUESTION,
                         Constants.DEF_VALUE_BOOL);
 
+        Button btnPrevious = (Button) findViewById(btnPreviousViewId);
+        Button btnNext = (Button) findViewById(btnNextViewId);
+
         if (isFirstQuestion) {
-            Button btnBack = (Button) findViewById(btnPreviousViewId);
-            btnBack.setVisibility(View.GONE);
+            btnPrevious.setVisibility(View.GONE);
+        } else {
+            btnPrevious.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TrackQuestionActivity.super.onBackPressed();
+                }
+            });
         }
+
+        // set onClick listeners
+        btnNext.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchNextQuestion();
+            }
+        });
 
         // TODO "Next" Button on Final question
     }
+
+    public abstract void launchNextQuestion();
 }
