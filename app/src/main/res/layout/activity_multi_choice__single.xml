@@ -31,7 +31,8 @@ tools:context="informatics.uk.ac.ed.track.MultiChoice_Single">
         android:id="@+id/bodyLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/toolbar">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -51,6 +52,13 @@ tools:context="informatics.uk.ac.ed.track.MultiChoice_Single">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/defaultQuestionPrefix"
+                    android:id="@+id/txtVwQuestionPrefix" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="@string/defaultQuestion"
                     android:id="@+id/txtVwQuestionText"
@@ -61,7 +69,19 @@ tools:context="informatics.uk.ac.ed.track.MultiChoice_Single">
                     android:layout_height="wrap_content"
                     android:id="@+id/rdGrp">
 
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/other"
+                        android:id="@+id/rdBtnOther"
+                        android:visibility="gone" />
                 </RadioGroup>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtOther"
+                    android:visibility="gone" />
 
             </LinearLayout>
         </ScrollView>

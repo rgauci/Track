@@ -152,4 +152,6 @@
 
     <string name="defaultTitle">Title</string>
     <string name="defaultQuestion">Question</string>
+    <string name="defaultQuestionPrefix">Question Prefix</string>
+    <string name="other">Other</string>
 </resources>

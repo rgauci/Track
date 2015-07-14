@@ -45,6 +45,10 @@ public class Utils {
         return matcher.matches();
     }
 
+    public static boolean isNullOrEmpty(String str) {
+        return ((str == null) || (str.length() == 0) || (str.trim().length() == 0));
+    }
+
     public static String computeHash(String plaintext) {
         if ((plaintext == null) || (plaintext.length() == 0)) {
             return plaintext;
@@ -76,7 +80,7 @@ public class Utils {
     public static Intent getLaunchSurveyIntent(Context appContext) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(appContext);
         int firstQuestionId = settings.getInt(Constants.FIRST_QUESTION_ID, Constants.DEF_VALUE_INT);
-        return getLaunchQuestionIntent(appContext, settings, firstQuestionId);
+        return getLaunchQuestionIntent(appContext, settings, firstQuestionId, true);
     }
 
     public static SharedPreferences getQuestionPreferences(Context appContext, int questionId) {
@@ -89,7 +93,8 @@ public class Utils {
         return TrackQuestionType.fromInt(qType);
     }
 
-    public static Intent getLaunchQuestionIntent(Context context, SharedPreferences settings, int questionId) {
+    public static Intent getLaunchQuestionIntent(Context context, SharedPreferences settings,
+                                                 int questionId, boolean isFirstQuestion) {
         TrackQuestionType qType = getQuestionType(settings, questionId);
 
         Intent intent = null;
@@ -111,9 +116,14 @@ public class Utils {
 
         if (intent != null) {
             intent.putExtra(Constants.QUESTION_ID, questionId);
+            intent.putExtra(Constants.IS_FIRST_QUESTION, isFirstQuestion);
         }
 
         return intent;
+    }
+
+    public static Intent getLaunchQuestionIntent(Context context, SharedPreferences settings, int questionId) {
+        return getLaunchQuestionIntent(context, settings, questionId, false);
     }
 
 }

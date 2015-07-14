@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -22,50 +23,67 @@ import informatics.uk.ac.ed.track.lib.BranchableAnswerOption;
 import informatics.uk.ac.ed.track.lib.MultipleChoiceMultipleAnswer;
 import informatics.uk.ac.ed.track.lib.MultipleChoiceSingleAnswer;
 import informatics.uk.ac.ed.track.lib.TrackQuestion;
+import informatics.uk.ac.ed.track.util.TrackQuestionActivity;
 
-public class MultiChoice_Single extends AppCompatActivity {
+public class MultiChoice_Single extends TrackQuestionActivity {
+
+    private MultipleChoiceSingleAnswer question;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_choice__single);
 
+        /* get question preferences using question ID */
         Intent intent = getIntent();
         SharedPreferences preferences =
                 Utils.getQuestionPreferences(getApplicationContext(),
                         intent.getIntExtra(Constants.QUESTION_ID, Constants.DEF_VALUE_INT));
 
+        /* display back/next (navigation) buttons */
+        this.displayNavigationButtons(intent, R.id.btnPrevious, R.id.btnNext);
+
+        /* deserialize question JSON string into object */
         Gson gson = new Gson();
-        MultipleChoiceSingleAnswer question = gson.fromJson(preferences.getString(Constants.QUESTION_JSON,
-                Constants.DEF_VALUE_STR), MultipleChoiceSingleAnswer.class);
+        this.question = gson.fromJson(
+                preferences.getString(Constants.QUESTION_JSON, Constants.DEF_VALUE_STR),
+                MultipleChoiceSingleAnswer.class);
 
-        String title = question.getTitle();
-        String questionText = question.getQuestionText();
+        /* display title, question and prefix, if available */
+        this.displayTitleQuestionAndPrefix(this.question, R.id.toolbar, R.id.txtVwToolbarTitle,
+                R.id.txtVwQuestionText, R.id.txtVwQuestionPrefix);
 
-        if ((title == null) || title.isEmpty()) {
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            toolbar.setVisibility(View.GONE);
-        } else {
-            TextView textView = (TextView) findViewById(R.id.txtVwToolbarTitle);
-            textView.setText(title);
-        }
 
-        TextView txtVwQuestionText = (TextView) findViewById(R.id.txtVwQuestionText);
-        if ((title == null) || title.isEmpty()) {
-            txtVwQuestionText.setVisibility(View.GONE);
-        } else {
-            txtVwQuestionText.setText(questionText);
-        }
-
+        /* display multiple choice options */
         RadioGroup rdGrp = (RadioGroup) findViewById(R.id.rdGrp);
-
         for (BranchableAnswerOption option : question.getAnswerOptions()) {
             RadioButton rdBtn = new RadioButton(this);
             rdBtn.setText(option.getOption());
             rdBtn.setId(option.getOptionId());
             rdGrp.addView(rdBtn);
+            // TODO RadioButton styling for pre-Lollipop devices
         }
 
+        /* add "Other" if necessary */
+        if (this.question.getAddOther()) {
+            // show "Other" radio button
+            RadioButton rdBtnOther = (RadioButton) findViewById(R.id.rdBtnOther);
+            rdBtnOther.setVisibility(View.VISIBLE);
+
+            // hide / show "Other" textbox depending on whether option is selected
+            rdGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                    RadioButton rb = (RadioButton) radioGroup.findViewById(checkedId);
+                    EditText txtOther = (EditText) findViewById(R.id.txtOther);
+                    if(checkedId == R.id.txtOther){
+                        txtOther.setVisibility(View.VISIBLE);
+                    } else {
+                        txtOther.setVisibility(View.GONE);
+                    }
+                }
+            });
+        }
     }
 
     @Override
