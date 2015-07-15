@@ -24,6 +24,7 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
 
     private MultipleChoiceSingleAnswer question;
     private HashMap<Integer, BranchableAnswerOption> optionsMap;
+    private LinearLayout lytMain;
 
     private RadioGroup rdGrp;
 
@@ -34,6 +35,7 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
 
         // initialise UI controls
         this.rdGrp = (RadioGroup) findViewById(R.id.rdGrp);
+        this.lytMain = (LinearLayout) findViewById(R.id.lytMain);
 
         /* get question preferences using question ID */
         Intent intent = getIntent();
@@ -81,6 +83,18 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
                     getLayoutInflater().inflate(R.layout.template_radio_button, null);
             rdBtnOther.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            rdBtnOther.setId(R.id.rdBtnOther);
+            rdBtnOther.setText(getResources().getString(R.string.other));
+
+            EditText txtOther = (EditText)
+                    getLayoutInflater().inflate(R.layout.template_edit_text_plain, null);
+            txtOther.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            txtOther.setId(R.id.txtOther);
+            txtOther.setVisibility(View.INVISIBLE);
+
+            this.rdGrp.addView(rdBtnOther);
+            this.lytMain.addView(txtOther);
 
             // hide / show "Other" textbox depending on whether option is selected
             rdGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -88,7 +102,7 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
                 public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                     RadioButton rb = (RadioButton) radioGroup.findViewById(checkedId);
                     EditText txtOther = (EditText) findViewById(R.id.txtOther);
-                    if (checkedId == R.id.txtOther) {
+                    if (checkedId == R.id.rdBtnOther) {
                         txtOther.setVisibility(View.VISIBLE);
                     } else {
                         txtOther.setVisibility(View.GONE);

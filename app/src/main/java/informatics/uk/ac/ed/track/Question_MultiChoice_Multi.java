@@ -22,9 +22,6 @@ import informatics.uk.ac.ed.track.lib.TrackQuestion;
 
 public class Question_MultiChoice_Multi extends TrackQuestionActivity {
 
-    private final static String OTHER_CHECK_BOX_ID = "chkBxOther";
-    private final static String OTHER_EDIT_TEXT_ID = "txtOther";
-
     private MultipleChoiceMultipleAnswer question;
     private LinearLayout lytMain;
 
@@ -71,7 +68,7 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
 
         /* add "Other" if necessary */
         if (this.question.getAddOther()) {
-            // show "Other" radio button
+            // show "Other" check box
             CheckBox chkBxOther = (CheckBox)
                     getLayoutInflater().inflate(R.layout.template_check_box, null);
             chkBxOther.setLayoutParams(new LinearLayout.LayoutParams(
@@ -81,7 +78,7 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
 
             EditText txtOther = (EditText)
                     getLayoutInflater().inflate(R.layout.template_edit_text_plain, null);
-            chkBxOther.setLayoutParams(new LinearLayout.LayoutParams(
+            txtOther.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             txtOther.setId(R.id.txtOther);
             txtOther.setVisibility(View.INVISIBLE);
@@ -136,6 +133,7 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
 
     @Override
     public void launchNextQuestion() {
-
+        Intent intent = Utils.getLaunchQuestionIntent(this, this.question.getNextQuestionId());
+        startActivity(intent);
     }
 }

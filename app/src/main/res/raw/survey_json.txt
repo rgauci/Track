@@ -335,7 +335,7 @@
     "type": "FreeTextQuestionSingleLine",
     "id": 10,
     "questionType": "FREE_TEXT_SINGLE_LINE",
-    "title": "In relation to this activity:",
+    "title": "Activity Stress",
     "questionText": "What are you currently doing?",
     "nextQuestionId": 11,
     "required": true
