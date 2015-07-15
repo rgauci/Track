@@ -62,14 +62,19 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
         }
     }
 
-    public void displayNavigationButtons(Intent activityIntent,
-                                         int btnPreviousViewId, int btnNextViewId) {
+    public void displayNavigationButtons(TrackQuestion question, Intent activityIntent,
+                                         int btnPreviousViewId, int btnNextViewId,
+                                         int btnFinishViewId) {
         boolean isFirstQuestion =
                 activityIntent.getBooleanExtra(Constants.IS_FIRST_QUESTION,
                         Constants.DEF_VALUE_BOOL);
 
+        boolean isLastQuestion =
+                question.getNextQuestionId() == -1;
+
         Button btnPrevious = (Button) findViewById(btnPreviousViewId);
         Button btnNext = (Button) findViewById(btnNextViewId);
+        Button btnFinish = (Button) findViewById(btnFinishViewId);
 
         if (isFirstQuestion) {
             btnPrevious.setVisibility(View.GONE);
@@ -82,15 +87,22 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
             });
         }
 
-        // set onClick listeners
-        btnNext.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isValid()) {
-                    launchNextQuestion();
+        if (isLastQuestion) {
+            btnFinish.setVisibility(View.VISIBLE);
+            btnNext.setVisibility(View.INVISIBLE); // do not set to GONE as scrollview is relatively positioned with btnNext
+        } else {
+            btnNext.setVisibility(View.VISIBLE);
+            btnFinish.setVisibility(View.GONE);
+            // set onClick listeners
+            btnNext.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (isValid()) {
+                        launchNextQuestion();
+                    }
                 }
-            }
-        });
+            });
+        }
 
         // TODO "Next" Button on Final question
     }

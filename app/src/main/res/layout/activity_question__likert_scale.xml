@@ -89,5 +89,18 @@ tools:context="informatics.uk.ac.ed.track.Question_LikertScale">
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnFinish"
+            android:layout_gravity="right"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:theme="@style/RaisedButtonColoured_Next"
+            android:text="@string/finish"
+            android:visibility="gone"/>
+
     </RelativeLayout>
 </RelativeLayout>

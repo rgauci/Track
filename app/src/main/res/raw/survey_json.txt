@@ -536,7 +536,7 @@
     "id": 16,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
     "title": "Social Stress",
-    "nextQuestionId": 17,
+    "nextQuestionId": -1,
     "required": true
   },
   {
@@ -578,7 +578,7 @@
     "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",
     "title": "Social Stress",
     "questionText": "I am with:",
-    "nextQuestionId": 18,
+    "nextQuestionId": -1,
     "required": true
   }
 ]

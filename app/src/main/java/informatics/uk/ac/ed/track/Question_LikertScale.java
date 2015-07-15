@@ -48,9 +48,6 @@ public class Question_LikertScale extends TrackQuestionActivity {
                 Utils.getQuestionPreferences(getApplicationContext(),
                         intent.getIntExtra(Constants.QUESTION_ID, Constants.DEF_VALUE_INT));
 
-        /* display back/next (navigation) buttons */
-        this.displayNavigationButtons(intent, R.id.btnPrevious, R.id.btnNext);
-
         /* deserialize question JSON string into object */
         Gson gson = new Gson();
         this.question = gson.fromJson(
@@ -60,6 +57,10 @@ public class Question_LikertScale extends TrackQuestionActivity {
         /* display title, question and prefix, if available */
         this.displayTitleQuestionAndPrefix(this.question, R.id.toolbar, R.id.txtVwToolbarTitle,
                 R.id.txtVwQuestionText, R.id.txtVwQuestionPrefix);
+
+        /* display back/next (navigation) buttons */
+        this.displayNavigationButtons(question, intent,
+                R.id.btnPrevious, R.id.btnNext, R.id.btnFinish);
 
         /* add likert scale options */
         LinearLayout lytScale = (LinearLayout) findViewById(R.id.lytScale);
