@@ -2,7 +2,7 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="informatics.uk.ac.ed.track.Question_MultiChoice_Single">
+tools:context="informatics.uk.ac.ed.track.Question_MultiChoice_Multi">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -47,7 +47,8 @@ tools:context="informatics.uk.ac.ed.track.Question_MultiChoice_Single">
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left|center_vertical">
+                android:gravity="left|center_vertical"
+                android:id="@+id/lytMain">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,26 +64,6 @@ tools:context="informatics.uk.ac.ed.track.Question_MultiChoice_Single">
                     android:text="@string/defaultQuestion"
                     android:id="@+id/txtVwQuestionText"
                     style="@style/QuestionText" />
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rdGrp">
-
-                    <RadioButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/other"
-                        android:id="@+id/rdBtnOther"
-                        android:visibility="gone" />
-                </RadioGroup>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txtOther"
-                    android:visibility="gone"
-                    android:inputType="text" />
 
             </LinearLayout>
         </ScrollView>

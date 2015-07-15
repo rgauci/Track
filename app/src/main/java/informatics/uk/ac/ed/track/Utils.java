@@ -122,7 +122,7 @@ public class Utils {
                 intent = new Intent(activityContext, Question_MultiChoice_Single.class);
                 break;
             case MULTIPLE_CHOICE_MULTI_ANSWER:
-                intent = new Intent(activityContext, MultiChoice_Multi.class);
+                intent = new Intent(activityContext, Question_MultiChoice_Multi.class);
                 break;
             case LIKERT_SCALE:
                 intent = new Intent(activityContext, Question_LikertScale.class);

@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -30,7 +32,7 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question__multi_choice__single);
 
-        // initiliase UI controls
+        // initialise UI controls
         this.rdGrp = (RadioGroup) findViewById(R.id.rdGrp);
 
         /* get question preferences using question ID */
@@ -53,7 +55,7 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
                 R.id.txtVwQuestionText, R.id.txtVwQuestionPrefix);
 
 
-        // display multiple choice options
+        // display multiple choice options (radio buttons)
         // and add to hash map
         optionsMap = new HashMap<>();
 
@@ -62,18 +64,23 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
 
             RadioButton rdBtn = (RadioButton)
                     getLayoutInflater().inflate(R.layout.template_radio_button, null);
+            rdBtn.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
             rdBtn.setText(option.getOption());
             rdBtn.setId(optionId);
-            rdGrp.addView(rdBtn);
+            this.rdGrp.addView(rdBtn);
 
-            optionsMap.put(optionId, option);
+            this.optionsMap.put(optionId, option);
         }
 
         /* add "Other" if necessary */
         if (this.question.getAddOther()) {
             // show "Other" radio button
-            RadioButton rdBtnOther = (RadioButton) findViewById(R.id.rdBtnOther);
-            rdBtnOther.setVisibility(View.VISIBLE);
+            RadioButton rdBtnOther = (RadioButton)
+                    getLayoutInflater().inflate(R.layout.template_radio_button, null);
+            rdBtnOther.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
             // hide / show "Other" textbox depending on whether option is selected
             rdGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

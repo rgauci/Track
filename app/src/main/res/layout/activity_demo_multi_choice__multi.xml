@@ -36,63 +36,63 @@
                     style="@style/QuestionText" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/musicOption1"
                     android:id="@+id/chkBx1"
                     android:checked="false" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/musicOption2"
                     android:id="@+id/chkBx2"
                     android:checked="false" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/musicOption3"
                     android:id="@+id/chkBx3"
                     android:checked="false" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/musicOption4"
                     android:id="@+id/chkBx4"
                     android:checked="false" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/musicOption5"
                     android:id="@+id/chkBx5"
                     android:checked="false" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/musicOption6"
                     android:id="@+id/chkBx6"
                     android:checked="false" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/musicOption7"
                     android:id="@+id/chkBx7"
                     android:checked="false" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/musicOption8"
                     android:id="@+id/chkBx8"
                     android:checked="false" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/musicOption9"
                     android:id="@+id/chkBx9"

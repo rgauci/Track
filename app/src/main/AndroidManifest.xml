@@ -82,7 +82,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".MultiChoice_Multi"
+            android:name=".Question_MultiChoice_Multi"
             android:label="@string/app_name" >
         </activity>
         <activity

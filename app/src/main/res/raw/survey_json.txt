@@ -2,6 +2,7 @@
   {
     "type": "MultipleChoiceSingleAnswer",
     "isBranchable": false,
+    "otherOptionNextQuestionId": 0,
     "answerOptions": [
       {
         "nextQuestionId": 0,
@@ -494,6 +495,7 @@
   {
     "type": "MultipleChoiceSingleAnswer",
     "isBranchable": true,
+    "otherOptionNextQuestionId": 0,
     "answerOptions": [
       {
         "nextQuestionId": 16,
@@ -509,7 +511,7 @@
     "addOther": false,
     "id": 15,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Activity Stress",
+    "title": "Social Stress",
     "questionText": "Are you alone or with others?",
     "nextQuestionId": 16,
     "required": true
@@ -517,6 +519,7 @@
   {
     "type": "MultipleChoiceSingleAnswer",
     "isBranchable": false,
+    "otherOptionNextQuestionId": 0,
     "answerOptions": [
       {
         "nextQuestionId": 0,
@@ -574,6 +577,7 @@
     "id": 17,
     "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",
     "title": "Social Stress",
+    "questionText": "I am with:",
     "nextQuestionId": 18,
     "required": true
   }
