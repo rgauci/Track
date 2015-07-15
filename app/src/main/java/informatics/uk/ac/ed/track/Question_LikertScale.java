@@ -3,11 +3,12 @@ package informatics.uk.ac.ed.track;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -15,22 +16,31 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import informatics.uk.ac.ed.track.lib.BranchableAnswerOption;
 import informatics.uk.ac.ed.track.lib.LikertScaleQuestion;
-import informatics.uk.ac.ed.track.lib.MultipleChoiceSingleAnswer;
 
 
 public class Question_LikertScale extends TrackQuestionActivity {
 
+    private final static int LYT_BUTTON_INDEX = 0;
+    private final static int LYT_TEXT_VIEW_INDEX = 1;
+
     private LikertScaleQuestion question;
+    private LinearLayout checkedOption;
+    private int accentColor, lightBackgroundColor, primaryTextColor, textIconsColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question__likert_scale);
+
+        // get colours for styling likert options on selection / deselection
+        this.accentColor = getResources().getColor(R.color.accent);
+        this.lightBackgroundColor = getResources().getColor(R.color.background_light);
+        this.primaryTextColor = getResources().getColor(R.color.primary_text);
+        this.textIconsColor = getResources().getColor(R.color.text_icons);
 
         /* get question preferences using question ID */
         Intent intent = getIntent();
@@ -55,8 +65,10 @@ public class Question_LikertScale extends TrackQuestionActivity {
         LinearLayout lytScale = (LinearLayout) findViewById(R.id.lytScale);
         Resources res = getResources();
         ArrayList<BranchableAnswerOption> options = this.question.getAnswerOptions();
+        ButtonOnClickListener btnOnClickListener = new ButtonOnClickListener();
+        LayoutOnClickListener lytOnClickListener = new LayoutOnClickListener();
         for (BranchableAnswerOption option : options) {
-            this.addLikertOption(res, lytScale, option);
+            this.addLikertOption(res, lytScale, option, lytOnClickListener, btnOnClickListener);
         }
     }
 
@@ -87,13 +99,18 @@ public class Question_LikertScale extends TrackQuestionActivity {
 
     }
 
-    public void addLikertOption(Resources res, LinearLayout lytScale, BranchableAnswerOption option) {
+    public void addLikertOption(Resources res, LinearLayout lytScale,
+                                BranchableAnswerOption option,
+                                LayoutOnClickListener lytOnClickListener,
+                                ButtonOnClickListener btnOnClickListener) {
 
+        // create horizonatl layout for button and anchor text
         LinearLayout lytOption = new LinearLayout(this);
         lytOption.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         lytOption.setOrientation(LinearLayout.HORIZONTAL);
 
+        // create button
         Button btnLikert =
                 (Button) getLayoutInflater().inflate(R.layout.template_likert_button, null);
         LinearLayout.LayoutParams btnLayoutParams = new LinearLayout.LayoutParams(
@@ -115,16 +132,66 @@ public class Question_LikertScale extends TrackQuestionActivity {
                         res.getInteger(R.integer.likert_button_margin_bottom_dp),
                         res.getDisplayMetrics()));
         btnLikert.setLayoutParams(btnLayoutParams);
-        btnLikert.setText(Integer.toString(option.getOptionId()));
 
+        // create textview
         TextView txtVwOption =
                 (TextView) getLayoutInflater().inflate(R.layout.template_likert_button_anchor, null);
         txtVwOption.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        // set button and anchor text
+        btnLikert.setText(Integer.toString(option.getOptionId()));
         txtVwOption.setText(option.getOption());
 
+        // add onClickListeners listeners
+        lytOption.setOnClickListener(lytOnClickListener);
+        btnLikert.setOnClickListener(btnOnClickListener);
+
+        // add views to layout(s)
         lytOption.addView(btnLikert);
         lytOption.addView(txtVwOption);
         lytScale.addView(lytOption);
+    }
+
+    public class LayoutOnClickListener implements LinearLayout.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            lytLikertOption_onClick(view);
+        }
+    }
+
+    private class ButtonOnClickListener implements Button.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            lytLikertOption_onClick((LinearLayout)view.getParent());
+        }
+    }
+
+    public void lytLikertOption_onClick(View view){
+        this.setCheckedOption((LinearLayout) view);
+    }
+
+    private void setCheckedOption(LinearLayout lyt) {
+        if (this.checkedOption != null) {
+            this.styleLikertOption(this.checkedOption, false);
+        }
+
+        this.checkedOption = lyt;
+        this.styleLikertOption(this.checkedOption, true);
+    }
+
+    private void styleLikertOption(LinearLayout lyt, boolean selected) {
+        Button checkedButton = (Button) lyt.getChildAt(LYT_BUTTON_INDEX);
+        TextView checkedTextView = (TextView) lyt.getChildAt(LYT_TEXT_VIEW_INDEX);
+
+        if (selected) {
+            checkedButton.setBackgroundColor(this.accentColor);
+            checkedButton.setTextColor(this.textIconsColor);
+            checkedTextView.setTextColor(this.accentColor);
+        } else {
+            checkedButton.setBackgroundColor(this.lightBackgroundColor);
+            checkedButton.setTextColor(this.primaryTextColor);
+            checkedTextView.setTextColor(this.primaryTextColor);
+        }
     }
 }

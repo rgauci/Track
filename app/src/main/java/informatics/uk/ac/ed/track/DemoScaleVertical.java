@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 public class DemoScaleVertical extends AppCompatActivity {
 
-    private final static int BUTTON_INDEX = 0;
-    private final static int TEXTVIEW_INDEX = 1;
+    private final static int LYT_BUTTON_INDEX = 0;
+    private final static int LYT_TEXT_VIEW_INDEX = 1;
 
     private Button btnNext, btnPrevious;
     private Button btnLikert1, btnLikert2, btnLikert3, btnLikert4, btnLikert5;
@@ -109,9 +109,6 @@ public class DemoScaleVertical extends AppCompatActivity {
     }
 
     private void setCheckedOption(LinearLayout lyt) {
-        Button checkedButton;
-        TextView checkedTextView;
-
         if (this.checkedOption != null) {
             this.styleLikertOption(this.checkedOption, false);
         }
@@ -121,8 +118,8 @@ public class DemoScaleVertical extends AppCompatActivity {
     }
 
     private void styleLikertOption(LinearLayout lyt, boolean selected) {
-        Button checkedButton = (Button) lyt.getChildAt(BUTTON_INDEX);
-        TextView checkedTextView = (TextView) lyt.getChildAt(TEXTVIEW_INDEX);
+        Button checkedButton = (Button) lyt.getChildAt(LYT_BUTTON_INDEX);
+        TextView checkedTextView = (TextView) lyt.getChildAt(LYT_TEXT_VIEW_INDEX);
 
         if (selected) {
             checkedButton.setBackgroundColor(this.accentColor);
