@@ -47,11 +47,11 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
         /* display multiple choice options */
         RadioGroup rdGrp = (RadioGroup) findViewById(R.id.rdGrp);
         for (BranchableAnswerOption option : question.getAnswerOptions()) {
-            RadioButton rdBtn = new RadioButton(this);
+            RadioButton rdBtn = (RadioButton)
+                    getLayoutInflater().inflate(R.layout.template_radio_button, null);
             rdBtn.setText(option.getOption());
             rdBtn.setId(option.getOptionId());
             rdGrp.addView(rdBtn);
-            // TODO RadioButton styling for pre-Lollipop devices
         }
 
         /* add "Other" if necessary */

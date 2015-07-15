@@ -9,4 +9,6 @@
     <integer name="defaultNotificationWindow">15</integer>
     <integer name="likert_button_height_dp">32</integer>
     <integer name="likert_button_width_dp">32</integer>
+    <integer name="likert_button_margin_right_dp">8</integer>
+    <integer name="likert_button_margin_bottom_dp">1</integer>
 </resources>

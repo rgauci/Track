@@ -94,15 +94,31 @@ public class Question_LikertScale extends TrackQuestionActivity {
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         lytOption.setOrientation(LinearLayout.HORIZONTAL);
 
-        Button btnLikert = new Button(this);
-        btnLikert.setLayoutParams(new LinearLayout.LayoutParams(
-            (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                    res.getInteger(R.integer.likert_button_width_dp), res.getDisplayMetrics()),
-            (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                    res.getInteger(R.integer.likert_button_height_dp), res.getDisplayMetrics())));
+        Button btnLikert =
+                (Button) getLayoutInflater().inflate(R.layout.template_likert_button, null);
+        LinearLayout.LayoutParams btnLayoutParams = new LinearLayout.LayoutParams(
+                (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        res.getInteger(R.integer.likert_button_width_dp),
+                        res.getDisplayMetrics()),
+                (int)TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        res.getInteger(R.integer.likert_button_height_dp),
+                        res.getDisplayMetrics()));
+        btnLayoutParams.setMargins(0, 0,
+                (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        res.getInteger(R.integer.likert_button_margin_right_dp),
+                        res.getDisplayMetrics()),
+                (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        res.getInteger(R.integer.likert_button_margin_bottom_dp),
+                        res.getDisplayMetrics()));
+        btnLikert.setLayoutParams(btnLayoutParams);
         btnLikert.setText(Integer.toString(option.getOptionId()));
 
-        TextView txtVwOption = new TextView(this);
+        TextView txtVwOption =
+                (TextView) getLayoutInflater().inflate(R.layout.template_likert_button_anchor, null);
         txtVwOption.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         txtVwOption.setText(option.getOption());

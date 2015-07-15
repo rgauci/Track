@@ -68,6 +68,10 @@
         <item name="android:layout_marginBottom">@dimen/horizontal_divider_height</item>
     </style>
 
+    <style name="LikertButtonAnchor" parent="MediumText">
+        <item name="android:textSize">@dimen/abc_text_size_button_material</item>
+    </style>
+
     <style name="LargeText" parent="TextAppearance.AppCompat.Large">
     </style>
 

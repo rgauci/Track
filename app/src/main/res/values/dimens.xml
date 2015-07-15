@@ -14,4 +14,6 @@
     <dimen name="vertical_space">48dp</dimen>
     <dimen name="likert_button_height">32dp</dimen>
     <dimen name="likert_button_width">32dp</dimen>
+    <dimen name="likert_button_margin_right">8dp</dimen>
+    <dimen name="likert_button_margin_bottom">1dp</dimen>
 </resources>

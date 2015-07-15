@@ -42,7 +42,6 @@
                     android:onClick="lytLikertOption_onClick">
 
                     <Button
-                        android:theme="@style/LikertButton"
                         style="@style/LikertButton"
                         android:layout_width="@dimen/likert_button_width"
                         android:layout_height="@dimen/likert_button_height"
@@ -52,10 +51,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/likertFreq5Point_1"
                         android:id="@+id/txtVwLikert1"
-                        android:textSize="@dimen/abc_text_size_button_material" />
+                        style="@style/LikertButtonAnchor"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -65,7 +63,6 @@
                     android:onClick="lytLikertOption_onClick">
 
                     <Button
-                        android:theme="@style/LikertButton"
                         style="@style/LikertButton"
                         android:layout_width="@dimen/likert_button_width"
                         android:layout_height="@dimen/likert_button_height"
@@ -75,10 +72,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/likertFreq5Point_2"
                         android:id="@+id/txtVwLikert2"
-                        android:textSize="@dimen/abc_text_size_button_material" />
+                        style="@style/LikertButtonAnchor"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -93,16 +89,14 @@
                         android:layout_height="@dimen/likert_button_height"
                         android:text="@string/likertValue3"
                         android:id="@+id/btnLikert3"
-                        android:theme="@style/LikertButton"
                         style="@style/LikertButton" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/likertFreq5Point_3"
                         android:id="@+id/txtVwLikert3"
-                        android:textSize="@dimen/abc_text_size_button_material" />
+                        style="@style/LikertButtonAnchor" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -112,7 +106,6 @@
                     android:onClick="lytLikertOption_onClick">
 
                     <Button
-                        android:theme="@style/LikertButton"
                         style="@style/LikertButton"
                         android:layout_width="@dimen/likert_button_width"
                         android:layout_height="@dimen/likert_button_height"
@@ -122,10 +115,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/likertFreq5Point_4"
                         android:id="@+id/txtVwLikert4"
-                        android:textSize="@dimen/abc_text_size_button_material" />
+                        style="@style/LikertButtonAnchor" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -135,7 +127,6 @@
                     android:onClick="lytLikertOption_onClick">
 
                     <Button
-                        android:theme="@style/LikertButton"
                         style="@style/LikertButton"
                         android:layout_width="@dimen/likert_button_width"
                         android:layout_height="@dimen/likert_button_height"
@@ -145,10 +136,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/likertFreq5Point_5"
                         android:id="@+id/txtVwLikert5"
-                        android:textSize="@dimen/abc_text_size_button_material"/>
+                        style="@style/LikertButtonAnchor"/>
                 </LinearLayout>
 
             </LinearLayout>
