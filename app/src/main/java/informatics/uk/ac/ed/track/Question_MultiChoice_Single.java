@@ -9,8 +9,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+
+import java.util.HashMap;
 
 import informatics.uk.ac.ed.track.lib.BranchableAnswerOption;
 import informatics.uk.ac.ed.track.lib.MultipleChoiceSingleAnswer;
@@ -18,11 +21,17 @@ import informatics.uk.ac.ed.track.lib.MultipleChoiceSingleAnswer;
 public class Question_MultiChoice_Single extends TrackQuestionActivity {
 
     private MultipleChoiceSingleAnswer question;
+    private HashMap<Integer, BranchableAnswerOption> optionsMap;
+
+    private RadioGroup rdGrp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question__multi_choice__single);
+
+        // initiliase UI controls
+        this.rdGrp = (RadioGroup) findViewById(R.id.rdGrp);
 
         /* get question preferences using question ID */
         Intent intent = getIntent();
@@ -44,14 +53,20 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
                 R.id.txtVwQuestionText, R.id.txtVwQuestionPrefix);
 
 
-        /* display multiple choice options */
-        RadioGroup rdGrp = (RadioGroup) findViewById(R.id.rdGrp);
+        // display multiple choice options
+        // and add to hash map
+        optionsMap = new HashMap<>();
+
         for (BranchableAnswerOption option : question.getAnswerOptions()) {
+            int optionId = option.getOptionId();
+
             RadioButton rdBtn = (RadioButton)
                     getLayoutInflater().inflate(R.layout.template_radio_button, null);
             rdBtn.setText(option.getOption());
-            rdBtn.setId(option.getOptionId());
+            rdBtn.setId(optionId);
             rdGrp.addView(rdBtn);
+
+            optionsMap.put(optionId, option);
         }
 
         /* add "Other" if necessary */
@@ -66,13 +81,27 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
                 public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                     RadioButton rb = (RadioButton) radioGroup.findViewById(checkedId);
                     EditText txtOther = (EditText) findViewById(R.id.txtOther);
-                    if(checkedId == R.id.txtOther){
+                    if (checkedId == R.id.txtOther) {
                         txtOther.setVisibility(View.VISIBLE);
                     } else {
                         txtOther.setVisibility(View.GONE);
                     }
                 }
             });
+
+            // add "Other" option to HashMap to support branching
+            BranchableAnswerOption otherOption;
+            int otherOptionId = rdBtnOther.getId();
+            String otherOptionText = rdBtnOther.getText().toString();
+
+            if (this.question.getIsBranchable()) {
+                otherOption = new BranchableAnswerOption(otherOptionId, otherOptionText,
+                        this.question.getOtherOptionNextQuestionId());
+            } else {
+                otherOption = new BranchableAnswerOption(otherOptionId, otherOptionText);
+            }
+
+            this.optionsMap.put(otherOptionId, otherOption);
         }
     }
 
@@ -99,12 +128,32 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
     }
 
     @Override
-    public void launchNextQuestion() {
-        if (this.question.getIsBranchable()) {
-            // TODO handle branchable
-        } else {
-            Intent intent = Utils.getLaunchQuestionIntent(this, this.question.getNextQuestionId());
-            startActivity(intent);
+    public boolean isValid() {
+        boolean hasErrors = false;
+
+        if (this.rdGrp.getCheckedRadioButtonId() == -1) {
+            Toast toast = Toast.makeText(this,
+                    getResources().getString(R.string.error_answerToProceed), Toast.LENGTH_SHORT);
+            toast.show();
+            hasErrors = true;
         }
+
+        return !hasErrors;
+    }
+
+    @Override
+    public void launchNextQuestion() {
+        int nextQuestionId;
+
+        if (this.question.getIsBranchable()) {
+            int checkedOptionId = this.rdGrp.getCheckedRadioButtonId();
+            BranchableAnswerOption checkedOption = optionsMap.get(checkedOptionId);
+            nextQuestionId = checkedOption.getNextQuestionId();
+        } else {
+            nextQuestionId = this.question.getNextQuestionId();
+        }
+
+        Intent intent = Utils.getLaunchQuestionIntent(this, nextQuestionId);
+        startActivity(intent);
     }
 }

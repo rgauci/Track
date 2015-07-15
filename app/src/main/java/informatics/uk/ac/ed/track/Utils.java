@@ -135,8 +135,4 @@ public class Utils {
         return intent;
     }
 
-    public static Intent getLaunchQuestionIntent(Context context, SharedPreferences settings, int questionId) {
-        return getLaunchQuestionIntent(context, settings, questionId, false);
-    }
-
 }

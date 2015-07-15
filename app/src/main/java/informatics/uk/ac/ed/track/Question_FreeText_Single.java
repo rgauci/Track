@@ -64,6 +64,11 @@ public class Question_FreeText_Single extends TrackQuestionActivity {
     }
 
     @Override
+    public boolean isValid() {
+        return true;
+    }
+
+    @Override
     public void launchNextQuestion() {
         Intent intent = Utils.getLaunchQuestionIntent(this, this.question.getNextQuestionId());
         startActivity(intent);

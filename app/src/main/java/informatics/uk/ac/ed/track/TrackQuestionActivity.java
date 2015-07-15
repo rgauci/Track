@@ -86,12 +86,16 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                launchNextQuestion();
+                if (isValid()) {
+                    launchNextQuestion();
+                }
             }
         });
 
         // TODO "Next" Button on Final question
     }
+
+    public abstract boolean isValid();
 
     public abstract void launchNextQuestion();
 }

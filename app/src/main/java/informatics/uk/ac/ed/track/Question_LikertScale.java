@@ -95,6 +95,11 @@ public class Question_LikertScale extends TrackQuestionActivity {
     }
 
     @Override
+    public boolean isValid() {
+        return true;
+    }
+
+    @Override
     public void launchNextQuestion() {
         if (this.question.getIsBranchable()) {
             // TODO handle branchable
