@@ -97,6 +97,10 @@
             android:name=".Question_FreeText_Multi"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".Question_FreeText_Single"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

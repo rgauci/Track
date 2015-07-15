@@ -113,6 +113,7 @@ public class Utils {
 
         switch (qType) {
             case FREE_TEXT_SINGLE_LINE:
+                intent = new Intent(activityContext, Question_FreeText_Single.class);
                 break;
             case FREE_TEXT_MULTI_LINE:
                 intent = new Intent(activityContext, Question_FreeText_Multi.class);
@@ -128,10 +129,8 @@ public class Utils {
                 break;
         }
 
-        if (intent != null) {
-            intent.putExtra(Constants.QUESTION_ID, questionId);
-            intent.putExtra(Constants.IS_FIRST_QUESTION, isFirstQuestion);
-        }
+        intent.putExtra(Constants.QUESTION_ID, questionId);
+        intent.putExtra(Constants.IS_FIRST_QUESTION, isFirstQuestion);
 
         return intent;
     }
