@@ -115,6 +115,7 @@ public class Utils {
             case FREE_TEXT_SINGLE_LINE:
                 break;
             case FREE_TEXT_MULTI_LINE:
+                intent = new Intent(activityContext, Question_FreeText_Multi.class);
                 break;
             case MULTIPLE_CHOICE_SINGLE_ANSWER:
                 intent = new Intent(activityContext, Question_MultiChoice_Single.class);

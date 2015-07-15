@@ -96,7 +96,12 @@ public class Question_LikertScale extends TrackQuestionActivity {
 
     @Override
     public void launchNextQuestion() {
-
+        if (this.question.getIsBranchable()) {
+            // TODO handle branchable
+        } else {
+            Intent intent = Utils.getLaunchQuestionIntent(this, this.question.getNextQuestionId());
+            startActivity(intent);
+        }
     }
 
     public void addLikertOption(Resources res, LinearLayout lytScale,

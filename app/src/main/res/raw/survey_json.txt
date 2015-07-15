@@ -289,7 +289,7 @@
     "id": 8,
     "questionType": "FREE_TEXT_MULTI_LINE",
     "title": "Event Stress",
-    "questionText": "What is the most important event that has happened since your last report.",
+    "questionText": "What is the most important event that has happened since your last report?",
     "nextQuestionId": 9,
     "required": true
   },
