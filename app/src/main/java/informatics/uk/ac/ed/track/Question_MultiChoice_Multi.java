@@ -2,6 +2,7 @@ package informatics.uk.ac.ed.track;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -12,8 +13,11 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 import informatics.uk.ac.ed.track.lib.AnswerOption;
 import informatics.uk.ac.ed.track.lib.MultipleChoiceMultipleAnswer;
@@ -24,6 +28,10 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
 
     private MultipleChoiceMultipleAnswer question;
     private LinearLayout lytMain;
+
+    private ArrayList<CheckBox> checkBoxes;
+    private CheckBox chkBxOther;
+    private EditText txtOther;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +62,7 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
                 R.id.btnPrevious, R.id.btnNext, R.id.btnFinish);
 
         // display multiple choice options (checkboxes)
+        checkBoxes = new ArrayList<>();
         for (AnswerOption option : question.getAnswerOptions()) {
             int optionId = option.getOptionId();
 
@@ -65,24 +74,27 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
             checkBox.setText(option.getOption());
             checkBox.setId(optionId);
             this.lytMain.addView(checkBox);
+
+            // add to list
+            this.checkBoxes.add(checkBox);
         }
 
         /* add "Other" if necessary */
         if (this.question.getAddOther()) {
             // show "Other" check box
-            CheckBox chkBxOther = (CheckBox)
+            this.chkBxOther = (CheckBox)
                     getLayoutInflater().inflate(R.layout.template_check_box, null);
-            chkBxOther.setLayoutParams(new LinearLayout.LayoutParams(
+            this.chkBxOther.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            chkBxOther.setId(R.id.chkBxOther);
-            chkBxOther.setText(getResources().getString(R.string.other));
+            this.chkBxOther.setId(R.id.chkBxOther);
+            this.chkBxOther.setText(getResources().getString(R.string.other));
 
-            EditText txtOther = (EditText)
+            this.txtOther = (EditText)
                     getLayoutInflater().inflate(R.layout.template_edit_text_plain, null);
-            txtOther.setLayoutParams(new LinearLayout.LayoutParams(
+            this.txtOther.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            txtOther.setId(R.id.txtOther);
-            txtOther.setVisibility(View.INVISIBLE);
+            this.txtOther.setId(R.id.txtOther);
+            this.txtOther.setVisibility(View.INVISIBLE);
 
             this.lytMain.addView(chkBxOther);
             this.lytMain.addView(txtOther);
@@ -99,6 +111,9 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
                     }
                 }
             });
+
+            // add "Other" option to checkbox list
+            this.checkBoxes.add(chkBxOther);
         }
     }
 
@@ -126,10 +141,44 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
 
     @Override
     public boolean isValid() {
-        return true;
+        boolean hasErrors = false;
+        String errorText = null;
+        Resources res = getResources();
 
-        // TODO "Other" Validation (make sure edit text is non-empty)
-        // TODO validate only if required
+        // if "Other" is selected, make sure 'Other text' is non-empty
+        if (this.question.getAddOther() && this.chkBxOther.isChecked()) {
+            String otherText = Utils.getTrimmedText(this.txtOther);
+            if (otherText.isEmpty()) {
+                errorText = String.format(res.getString(R.string.error_enterOtherOptionText),
+                        res.getString(R.string.other));
+                hasErrors = true;
+            }
+        }
+
+        // if question is required, make sure at least one checkbox is selected
+        if (!hasErrors && this.question.getIsRequired()) {
+            boolean atLeastOneSelected = false;
+            int checked = 0;
+
+            while ((!atLeastOneSelected) && (checked < this.checkBoxes.size())) {
+                if (this.checkBoxes.get(checked).isChecked()) {
+                    atLeastOneSelected = true;
+                }
+                checked++;
+            }
+
+            if (!atLeastOneSelected) {
+                errorText = getResources().getString(R.string.error_answerToProceed);
+                hasErrors = true;
+            }
+        }
+
+        if (hasErrors) {
+            Toast toast = Toast.makeText(this, errorText, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        return !hasErrors;
     }
 
     @Override

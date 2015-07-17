@@ -123,6 +123,7 @@
     <string name="error_enterParticipantId">Enter participant identification number.</string>
     <string name="error_enterValidNumber">Enter a valid number.</string>
     <string name="error_answerToProceed">Answer the question to proceed.</string>
+    <string name="error_enterOtherOptionText">Fill in the \'%1$s\' text box to proceed.</string>
     <string name="smiley">:)</string>
 
     <string name="likertValue1">1</string>
@@ -157,4 +158,10 @@
     <string name="title_activity_question__likert_scale">Question_LikertScale</string>
     <string name="title_activity_question__free_text__multi">Question_FreeText_Multi</string>
     <string name="title_activity_question__free_text__single">Question_FreeText_Single</string>
+    <string name="title_activity_survey_complete">SurveyComplete</string>
+
+    <string name="surveyCompleteTitle">Survey Complete</string>
+    <string name="surveyCompleteSubTitle">Thanks for filling that out!</string>
+    <string name="surveyCompleteText">
+        %1$s will send you a notification when the next one is due. :)</string>
 </resources>

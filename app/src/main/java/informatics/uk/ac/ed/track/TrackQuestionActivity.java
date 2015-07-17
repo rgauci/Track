@@ -90,10 +90,20 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
         if (isLastQuestion) {
             btnFinish.setVisibility(View.VISIBLE);
             btnNext.setVisibility(View.INVISIBLE); // do not set to GONE as scrollview is relatively positioned with btnNext
+            // set onClick listener
+            btnFinish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (isValid()) {
+                        Intent intent = new Intent(TrackQuestionActivity.this, SurveyComplete.class);
+                        startActivity(intent);
+                    }
+                }
+            });
         } else {
             btnNext.setVisibility(View.VISIBLE);
             btnFinish.setVisibility(View.GONE);
-            // set onClick listeners
+            // set onClick listener
             btnNext.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -104,7 +114,6 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
             });
         }
 
-        // TODO "Next" Button on Final question
     }
 
     public abstract boolean isValid();

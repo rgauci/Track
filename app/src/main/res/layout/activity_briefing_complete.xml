@@ -54,7 +54,7 @@
                     android:id="@+id/txtVwInfo"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/briefCompleteExplanation"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/text_icons"
                     android:layout_marginTop="@dimen/vertical_space" />
 
             </LinearLayout>

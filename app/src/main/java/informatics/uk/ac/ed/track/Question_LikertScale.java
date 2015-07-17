@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import informatics.uk.ac.ed.track.lib.BranchableAnswerOption;
 import informatics.uk.ac.ed.track.lib.LikertScaleQuestion;
@@ -28,7 +28,9 @@ public class Question_LikertScale extends TrackQuestionActivity {
     private final static int LYT_TEXT_VIEW_INDEX = 1;
 
     private LikertScaleQuestion question;
-    private LinearLayout checkedOption;
+    private HashMap<Integer,BranchableAnswerOption> optionsMap;
+
+    private LinearLayout checkedOptionLyt;
     private int accentColor, lightBackgroundColor, primaryTextColor, textIconsColor;
 
     @Override
@@ -54,6 +56,12 @@ public class Question_LikertScale extends TrackQuestionActivity {
                 preferences.getString(Constants.QUESTION_JSON, Constants.DEF_VALUE_STR),
                 LikertScaleQuestion.class);
 
+        // if question is branchable, make sure to mark it as required
+        // or we will not know which next activity to launch
+        if (this.question.getIsBranchable()) {
+            this.question.setIsRequired(true);
+        }
+
         /* display title, question and prefix, if available */
         this.displayTitleQuestionAndPrefix(this.question, R.id.toolbar, R.id.txtVwToolbarTitle,
                 R.id.txtVwQuestionText, R.id.txtVwQuestionPrefix);
@@ -66,6 +74,7 @@ public class Question_LikertScale extends TrackQuestionActivity {
         LinearLayout lytScale = (LinearLayout) findViewById(R.id.lytScale);
         Resources res = getResources();
         ArrayList<BranchableAnswerOption> options = this.question.getAnswerOptions();
+        optionsMap = new HashMap<>();
         ButtonOnClickListener btnOnClickListener = new ButtonOnClickListener();
         LayoutOnClickListener lytOnClickListener = new LayoutOnClickListener();
         for (BranchableAnswerOption option : options) {
@@ -102,12 +111,17 @@ public class Question_LikertScale extends TrackQuestionActivity {
 
     @Override
     public void launchNextQuestion() {
+        int nextQuestionId;
+
         if (this.question.getIsBranchable()) {
-            // TODO handle branchable
+            BranchableAnswerOption checkedOption = optionsMap.get(this.checkedOptionLyt.getId());
+            nextQuestionId = checkedOption.getNextQuestionId();
         } else {
-            Intent intent = Utils.getLaunchQuestionIntent(this, this.question.getNextQuestionId());
-            startActivity(intent);
+            nextQuestionId = this.question.getNextQuestionId();
         }
+
+        Intent intent = Utils.getLaunchQuestionIntent(this, nextQuestionId);
+        startActivity(intent);
     }
 
     public void addLikertOption(Resources res, LinearLayout lytScale,
@@ -115,11 +129,14 @@ public class Question_LikertScale extends TrackQuestionActivity {
                                 LayoutOnClickListener lytOnClickListener,
                                 ButtonOnClickListener btnOnClickListener) {
 
-        // create horizonatl layout for button and anchor text
+        // create horizontal layout for button and anchor text
         LinearLayout lytOption = new LinearLayout(this);
         lytOption.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         lytOption.setOrientation(LinearLayout.HORIZONTAL);
+
+        // set layout Id to option Id
+        lytOption.setId(option.getOptionId());
 
         // create button
         Button btnLikert =
@@ -162,6 +179,9 @@ public class Question_LikertScale extends TrackQuestionActivity {
         lytOption.addView(btnLikert);
         lytOption.addView(txtVwOption);
         lytScale.addView(lytOption);
+
+        // add option to HashMap
+        this.optionsMap.put(option.getOptionId(), option);
     }
 
     public class LayoutOnClickListener implements LinearLayout.OnClickListener {
@@ -179,16 +199,16 @@ public class Question_LikertScale extends TrackQuestionActivity {
     }
 
     public void lytLikertOption_onClick(View view){
-        this.setCheckedOption((LinearLayout) view);
+        this.setCheckedOptionLyt((LinearLayout) view);
     }
 
-    private void setCheckedOption(LinearLayout lyt) {
-        if (this.checkedOption != null) {
-            this.styleLikertOption(this.checkedOption, false);
+    private void setCheckedOptionLyt(LinearLayout lyt) {
+        if (this.checkedOptionLyt != null) {
+            this.styleLikertOption(this.checkedOptionLyt, false);
         }
 
-        this.checkedOption = lyt;
-        this.styleLikertOption(this.checkedOption, true);
+        this.checkedOptionLyt = lyt;
+        this.styleLikertOption(this.checkedOptionLyt, true);
     }
 
     private void styleLikertOption(LinearLayout lyt, boolean selected) {

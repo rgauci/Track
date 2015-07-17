@@ -55,7 +55,7 @@
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
     "title": "Emotion / Affect",
     "nextQuestionId": 2,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "LikertScaleQuestion",
@@ -93,7 +93,7 @@
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 3,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "LikertScaleQuestion",
@@ -131,7 +131,7 @@
     "questionPrefix": "How much are you:",
     "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 4,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "LikertScaleQuestion",
@@ -169,7 +169,7 @@
     "questionPrefix": "How much are you:",
     "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 5,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "LikertScaleQuestion",
@@ -207,7 +207,7 @@
     "questionPrefix": "How much are you:",
     "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 6,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "LikertScaleQuestion",
@@ -245,7 +245,7 @@
     "questionPrefix": "How much are you:",
     "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 7,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "LikertScaleQuestion",
@@ -283,7 +283,7 @@
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 8,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "FreeTextQuestionMultiLine",
@@ -292,7 +292,7 @@
     "title": "Event Stress",
     "questionText": "What is the most important event that has happened since your last report?",
     "nextQuestionId": 9,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "LikertScaleQuestion",
@@ -329,7 +329,7 @@
     "title": "Event Stress",
     "questionText": "How pleasant was this event?",
     "nextQuestionId": 10,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "FreeTextQuestionSingleLine",
@@ -338,7 +338,7 @@
     "title": "Activity Stress",
     "questionText": "What are you currently doing?",
     "nextQuestionId": 11,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "LikertScaleQuestion",
@@ -376,7 +376,7 @@
     "questionPrefix": "In relation to this activity:",
     "questionText": "I like what I am doing right now.",
     "nextQuestionId": 12,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "LikertScaleQuestion",
@@ -414,7 +414,7 @@
     "questionPrefix": "In relation to this activity:",
     "questionText": "It takes a lot of effort to do this activity.",
     "nextQuestionId": 13,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "LikertScaleQuestion",
@@ -452,7 +452,7 @@
     "questionPrefix": "In relation to this activity:",
     "questionText": "I have the ability to do this activity.",
     "nextQuestionId": 14,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "LikertScaleQuestion",
@@ -490,7 +490,7 @@
     "questionPrefix": "In relation to this activity:",
     "questionText": "I would prefer to be doing something else right now.",
     "nextQuestionId": 15,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -514,7 +514,7 @@
     "title": "Social Stress",
     "questionText": "Are you alone or with others?",
     "nextQuestionId": 16,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -537,7 +537,7 @@
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
     "title": "Social Stress",
     "nextQuestionId": -1,
-    "required": true
+    "isRequired": true
   },
   {
     "type": "MultipleChoiceMultipleAnswer",
@@ -579,6 +579,6 @@
     "title": "Social Stress",
     "questionText": "I am with:",
     "nextQuestionId": -1,
-    "required": true
+    "isRequired": true
   }
 ]

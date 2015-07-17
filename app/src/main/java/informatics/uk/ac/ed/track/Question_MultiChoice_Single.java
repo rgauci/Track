@@ -2,6 +2,7 @@ package informatics.uk.ac.ed.track;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,8 +28,9 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
     private LinearLayout lytMain;
 
     private RadioGroup rdGrp;
+    private RadioButton rdBtnOther;
+    private EditText txtOther;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question__multi_choice__single);
@@ -48,6 +50,12 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
         this.question = gson.fromJson(
                 preferences.getString(Constants.QUESTION_JSON, Constants.DEF_VALUE_STR),
                 MultipleChoiceSingleAnswer.class);
+
+        // if question is branchable, make sure to mark it as required
+        // or we will not know which next activity to launch
+        if (this.question.getIsBranchable()) {
+            this.question.setIsRequired(true);
+        }
 
         /* display title, question and prefix, if available */
         this.displayTitleQuestionAndPrefix(this.question, R.id.toolbar, R.id.txtVwToolbarTitle,
@@ -79,25 +87,25 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
         /* add "Other" if necessary */
         if (this.question.getAddOther()) {
             // show "Other" radio button
-            RadioButton rdBtnOther = (RadioButton)
+            this.rdBtnOther = (RadioButton)
                     getLayoutInflater().inflate(R.layout.template_radio_button, null);
-            rdBtnOther.setLayoutParams(new LinearLayout.LayoutParams(
+            this.rdBtnOther.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            rdBtnOther.setId(R.id.rdBtnOther);
+            this.rdBtnOther.setId(R.id.rdBtnOther);
             rdBtnOther.setText(getResources().getString(R.string.other));
 
-            EditText txtOther = (EditText)
+            this.txtOther = (EditText)
                     getLayoutInflater().inflate(R.layout.template_edit_text_plain, null);
-            txtOther.setLayoutParams(new LinearLayout.LayoutParams(
+            this.txtOther.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            txtOther.setId(R.id.txtOther);
-            txtOther.setVisibility(View.INVISIBLE);
+            this.txtOther.setId(R.id.txtOther);
+            this.txtOther.setVisibility(View.INVISIBLE);
 
             this.rdGrp.addView(rdBtnOther);
             this.lytMain.addView(txtOther);
 
             // hide / show "Other" textbox depending on whether option is selected
-            rdGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            this.rdGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                     RadioButton rb = (RadioButton) radioGroup.findViewById(checkedId);
@@ -151,12 +159,30 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
     @Override
     public boolean isValid() {
         boolean hasErrors = false;
+        String errorText = null;
+        Resources res = getResources();
 
-        if (this.rdGrp.getCheckedRadioButtonId() == -1) {
-            Toast toast = Toast.makeText(this,
-                    getResources().getString(R.string.error_answerToProceed), Toast.LENGTH_SHORT);
+        // if "Other" is selected, make sure 'Other text' is non-empty
+        if (this.question.getAddOther() && this.rdBtnOther.isChecked()) {
+            String otherText = Utils.getTrimmedText(this.txtOther);
+            if (otherText.isEmpty()) {
+                errorText = String.format(res.getString(R.string.error_enterOtherOptionText),
+                                res.getString(R.string.other));
+                hasErrors = true;
+            }
+        }
+
+        // if question is required, make sure an option has been selected
+        if (!hasErrors && this.question.getIsRequired()) {
+            if (this.rdGrp.getCheckedRadioButtonId() == -1) {
+                errorText = res.getString(R.string.error_answerToProceed);
+                hasErrors = true;
+            }
+        }
+
+        if (hasErrors) {
+            Toast toast = Toast.makeText(this, errorText, Toast.LENGTH_SHORT);
             toast.show();
-            hasErrors = true;
         }
 
         return !hasErrors;
