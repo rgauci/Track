@@ -39,7 +39,7 @@ public class DemoFreeText extends AppCompatActivity {
     public boolean isValid() {
         boolean hasErrors = false;
 
-        String answer = Utils.getTrimmedText(txtAnswer);
+        String answer = Utils.getTrimmedText(this.txtAnswer);
         if (TextUtils.isEmpty(answer)) {
             Toast toast = Toast.makeText(this,
                     getResources().getString(R.string.error_answerToProceed), Toast.LENGTH_SHORT);

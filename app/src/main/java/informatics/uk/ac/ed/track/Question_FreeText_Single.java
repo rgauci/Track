@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -16,10 +19,14 @@ public class Question_FreeText_Single extends TrackQuestionActivity {
 
     private FreeTextQuestionSingleLine question;
 
+    private EditText txtAnswer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question__free_text__single);
+
+        this.txtAnswer = (EditText) findViewById(R.id.txtAnswer);
 
         /* get question preferences using question ID */
         Intent intent = getIntent();
@@ -66,7 +73,19 @@ public class Question_FreeText_Single extends TrackQuestionActivity {
 
     @Override
     public boolean isValid() {
-        return true;
+        boolean hasErrors = false;
+
+        if (this.question.getIsRequired()) {
+            String answer = Utils.getTrimmedText(txtAnswer);
+            if (TextUtils.isEmpty(answer)) {
+                Toast toast = Toast.makeText(this,
+                        getResources().getString(R.string.error_answerToProceed), Toast.LENGTH_SHORT);
+                toast.show();
+                hasErrors = true;
+            }
+        }
+
+        return !hasErrors;
     }
 
     @Override

@@ -163,5 +163,5 @@
     <string name="surveyCompleteTitle">Survey Complete</string>
     <string name="surveyCompleteSubTitle">Thanks for filling that out!</string>
     <string name="surveyCompleteText">
-        %1$s will send you a notification when the next one is due. :)</string>
+        %1$s will send you a notification when the next one is due.</string>
 </resources>
