@@ -41,7 +41,8 @@ tools:context="informatics.uk.ac.ed.track.Question_MultiChoice_Single">
             android:layout_gravity="center_horizontal"
             android:fillViewport="true"
             android:layout_alignParentTop="true"
-            android:layout_above="@+id/btnNext">
+            android:layout_above="@+id/btnNext"
+            android:layout_marginBottom="@dimen/activity_vertical_margin">
 
             <LinearLayout
                 android:orientation="vertical"
