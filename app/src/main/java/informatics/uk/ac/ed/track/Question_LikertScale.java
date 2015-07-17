@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -106,7 +107,19 @@ public class Question_LikertScale extends TrackQuestionActivity {
 
     @Override
     public boolean isValid() {
-        return true;
+        boolean hasErrors = false;
+
+        // if question is required, make sure an option has been selected
+        if (this.question.getIsRequired()) {
+            if (this.checkedOptionLyt == null) {
+                Toast toast = Toast.makeText(this,
+                        getResources().getString(R.string.error_answerToProceed), Toast.LENGTH_SHORT);
+                toast.show();
+                hasErrors = true;
+            }
+        }
+
+        return !hasErrors;
     }
 
     @Override

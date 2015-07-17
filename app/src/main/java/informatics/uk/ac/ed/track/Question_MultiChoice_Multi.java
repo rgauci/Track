@@ -142,6 +142,7 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
     @Override
     public boolean isValid() {
         boolean hasErrors = false;
+
         String errorText = null;
         Resources res = getResources();
 
