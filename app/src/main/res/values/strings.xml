@@ -111,7 +111,9 @@
     <string name="error_missingDuration">Enter the number of days.</string>
     <string name="error_missingSamplesPerDay">
         Enter the number of surveys to be filled out per day.</string>
-    <string name="error_dailyEndTime">End Time must be after Start Time.</string>
+    <string name="error_maxSamplesPerDay">Number of samples per day cannot exceed %1$d.</string>
+    <string name="error_dailyEndTime">Make sure there are at least %1$d hours between Start and
+        End Time since there will be %1$d samples per day.</string>
 
     <string name="confirmEmailAddress">Confirm Email Address</string>
     <string name="researcherEmailAddress">Researcher Email Address</string>

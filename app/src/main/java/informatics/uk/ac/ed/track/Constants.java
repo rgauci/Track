@@ -32,6 +32,7 @@ public class Constants {
     public static final String QUESTION_PREFERENCES_PREFIX = "informatics.uk.ac.ed.track.question.";
     public static final String QUESTION_TYPE_PREFIX = "questionType";
     public static final String QUESTION_JSON = "questionJson";
+    public static final String SAMPLE_DAY_GOES_PAST_MIDNIGHT = "sampleDayGoesPostMidnight";
     public static final String SAMPLES_PER_DAY = "samplesPerDay";
     public static final String SETUP_COMPLETE = "setupComplete";
     public static final String START_TIME_HOUR = "startTimeHour";

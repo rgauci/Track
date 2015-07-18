@@ -10,6 +10,7 @@ import android.util.Log;
 
 import java.lang.StringBuilder;
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -19,6 +20,7 @@ public class SurveyNotificationManager {
 
     private Context appContext;
     private Calendar studyStart, studyEnd;
+    private boolean sampleDayGoesPastMidnight;
     private int duration;
     private int samplesPerDay;
     private long intervalMillis;
@@ -37,6 +39,8 @@ public class SurveyNotificationManager {
         // get duration and number of samples per day
         this.duration = settings.getInt(Constants.DURATION_DAYS, Constants.DEF_VALUE_INT);
         this.samplesPerDay = settings.getInt(Constants.SAMPLES_PER_DAY, Constants.DEF_VALUE_INT);
+        this.sampleDayGoesPastMidnight =
+                settings.getBoolean(Constants.SAMPLE_DAY_GOES_PAST_MIDNIGHT, Constants.DEF_VALUE_BOOL);
 
         // get start & end date calendars
         long studyStartMillis =
@@ -98,7 +102,7 @@ public class SurveyNotificationManager {
                     this.setupRemainingAlarms_Random();
                     break;
                 case FIXED:
-                    // set up repeating alarms for the remainder of the study (staring from tomorrow)
+                    // set up repeating alarms for the remainder of the study (starting from tomorrow)
                     if (currentDateTime.get(Calendar.DAY_OF_YEAR)
                             != this.studyEnd.get(Calendar.DAY_OF_YEAR)) {
                         Calendar tomorrow = GregorianCalendar.getInstance();
@@ -152,6 +156,14 @@ public class SurveyNotificationManager {
 
         // actually set up alarms using saved times
         this.setupRemainingAlarms_Random();
+
+        // TODO remove this (only for testing)
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMMM, HH:mm:ss");
+        for (long alarmTime : alarmTimes) {
+            Calendar cal = GregorianCalendar.getInstance();
+            cal.setTimeInMillis(alarmTime);
+            System.out.println(sdf.format(cal.getTime()));
+        }
     }
 
     private void setupRemainingAlarms_Random() {
@@ -176,14 +188,12 @@ public class SurveyNotificationManager {
             long alarmTime = Long.parseLong(alarmTimes[alarmNum]);
             if (alarmTime > currentTime) {
                 // use alarmNum as the request code (this will be different for every alarm)
-                int requestCode = alarmNum;
-
                 // create a pending intent that fires when the alarm is triggered.
                 Intent alarmReceiverIntent = new Intent(this.appContext, AlarmReceiver.class);
                 // add request code as an extra
-                alarmReceiverIntent.putExtra(Constants.REQUEST_CODE, requestCode);
+                alarmReceiverIntent.putExtra(Constants.REQUEST_CODE, alarmNum);
                 PendingIntent pendingAlarmReceiverIntent = PendingIntent.getBroadcast(
-                        this.appContext, requestCode, alarmReceiverIntent,
+                        this.appContext, alarmNum, alarmReceiverIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT);
 
                 // set up alarm using RTC_WAKEUP
@@ -195,7 +205,7 @@ public class SurveyNotificationManager {
                     sb.append(Constants.STRING_ARRAY_DELIMITER);
                 }
 
-                sb.append(requestCode);
+                sb.append(alarmNum);
             }
         }
 
@@ -221,6 +231,9 @@ public class SurveyNotificationManager {
         // dayEndTime : daily end time
         Calendar dayEndTime = GregorianCalendar.getInstance();
         dayEndTime.setTimeInMillis(startDate.getTimeInMillis());
+        if (this.sampleDayGoesPastMidnight) {
+            dayEndTime.add(Calendar.DATE, 1);
+        }
         dayEndTime.set(Calendar.HOUR_OF_DAY, this.studyEnd.get(Calendar.HOUR_OF_DAY));
         dayEndTime.set(Calendar.MINUTE, this.studyEnd.get(Calendar.MINUTE));
         dayEndTime.set(Calendar.SECOND, this.studyEnd.get(Calendar.SECOND));
@@ -234,7 +247,7 @@ public class SurveyNotificationManager {
         // eg: 1,2,3,4,5
         StringBuilder sb = new StringBuilder();
 
-        while (dayStartTime.get(Calendar.DAY_OF_YEAR) != this.studyEnd.get(Calendar.DAY_OF_YEAR)) {
+        while (dayStartTime.getTimeInMillis() < this.studyEnd.getTimeInMillis()) {
             // use DAY_OF_YEAR as the request code (this will be different for every alarm)
             int requestCode = dayStartTime.get(Calendar.DAY_OF_YEAR);
 
@@ -280,6 +293,9 @@ public class SurveyNotificationManager {
         todayStartTime.add(Calendar.MILLISECOND, (int)this.intervalMillis);
 
         Calendar todayEndTime = GregorianCalendar.getInstance();
+        if (this.sampleDayGoesPastMidnight) {
+            todayEndTime.add(Calendar.DATE, 1);
+        }
         todayEndTime.set(Calendar.HOUR_OF_DAY, this.studyEnd.get(Calendar.HOUR_OF_DAY));
         todayEndTime.set(Calendar.MINUTE, this.studyEnd.get(Calendar.MINUTE));
         todayEndTime.set(Calendar.SECOND, this.studyEnd.get(Calendar.SECOND));

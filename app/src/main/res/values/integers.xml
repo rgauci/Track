@@ -6,6 +6,7 @@
     <integer name="defaultEndTime_Minute">30</integer>
     <integer name="defaultDuration">6</integer>
     <integer name="defaultSamplesPerDay">5</integer>
+    <integer name="maxSamplesPerDay">24</integer>
     <integer name="defaultNotificationWindow">15</integer>
     <integer name="likert_button_height_dp">32</integer>
     <integer name="likert_button_width_dp">32</integer>

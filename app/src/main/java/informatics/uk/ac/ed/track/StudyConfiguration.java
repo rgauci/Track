@@ -32,10 +32,12 @@ public class StudyConfiguration extends AppCompatActivity
 
     private Calendar minimumStartDate; // will be set to the following day
 
-    private Calendar startDate;
+    private boolean sampleDayGoesPastMidnight;
+    private Calendar startDate, studyStartDateTime, studyEndDateTime;
     private int duration, samplesPerDay, notificationWindow;
     private int startTime_hour, startTime_minute;
     private int endTime_hour, endTime_minute;
+    private long intervalMillis;
     private NotificationSchedule notificationSchedule;
 
     private EditText txtDuration, txtSamplesPerDay, txtNotificationWindow;
@@ -70,7 +72,7 @@ public class StudyConfiguration extends AppCompatActivity
 
         /* set start date & minimum start date to the following day */
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, -1); // TODO reset to 1 instead of -1
+        calendar.add(Calendar.DATE, 1);
         this.minimumStartDate = calendar;
         this.setStartDate(calendar);
 
@@ -113,7 +115,7 @@ public class StudyConfiguration extends AppCompatActivity
             // set up notifications
             SurveyNotificationManager notificationManager =
                     new SurveyNotificationManager(getApplicationContext());
-            notificationManager.SetupNotifications(true); // TODO handle random notifications
+            notificationManager.SetupNotifications(true);
             // proceed to next activity
             Intent intent = new Intent(this, UserAccountSetup.class);
             startActivity(intent);
@@ -126,6 +128,8 @@ public class StudyConfiguration extends AppCompatActivity
      */
     private boolean setAndValidate() {
         boolean hasErrors = false;
+
+        Resources res = getResources();
 
         String duration_str = Utils.getTrimmedText(this.txtDuration);
         String samplePerDay_str = Utils.getTrimmedText(this.txtSamplesPerDay);
@@ -152,6 +156,15 @@ public class StudyConfiguration extends AppCompatActivity
         if (validateNumber(samplePerDay_str, this.txtSamplesPerDay_errorMsg,
                 getString(R.string.error_missingSamplesPerDay))) {
             this.samplesPerDay = Integer.parseInt(samplePerDay_str);
+
+            // make sure umber of samples per day does not exceed max
+            int maxSamplesPerDay = res.getInteger(R.integer.maxSamplesPerDay);
+            if (this.samplesPerDay > maxSamplesPerDay) {
+                this.showError(this.txtSamplesPerDay_errorMsg,
+                        String.format(
+                                res.getString(R.string.error_maxSamplesPerDay), maxSamplesPerDay));
+                hasErrors = true;
+            }
         } else {
             hasErrors = true;
         }
@@ -164,16 +177,7 @@ public class StudyConfiguration extends AppCompatActivity
             hasErrors = true;
         }
 
-        // end time (must be after start time)
-        if (endTime_hour < startTime_hour) {
-            showError(this.txtEndTime_errorMsg, getString(R.string.error_dailyEndTime));
-            hasErrors = true;
-        } else {
-            this.hideError(this.txtEndTime_errorMsg);
-        }
-
         // notification scheduling: fixed / random
-        Resources res = getResources();
         String[] notifSchedulingOptions = res.getStringArray(R.array.notificationSchedulingOptions);
         String schedule = notifSchedulingOptions[notifSchedulingPosition];
         if (schedule.equals(res.getString(R.string.notificationSchedulingRandom))) {
@@ -181,6 +185,60 @@ public class StudyConfiguration extends AppCompatActivity
         } else if (schedule.equals(res.getString(R.string.notificationSchedulingFixed))) {
             this.notificationSchedule = NotificationSchedule.FIXED;
         }
+
+        // end time (must be 'after' start time)
+        // if past midnight, make sure end time < start time
+        // otherwise each sampling day would be > 24 hours and would overlap
+
+        // calculate exact date time of study start (start date @ start time)
+        this.studyStartDateTime = GregorianCalendar.getInstance();
+        this.studyStartDateTime.set(this.startDate.get(Calendar.YEAR),
+                this.startDate.get(Calendar.MONTH), this.startDate.get(Calendar.DAY_OF_MONTH),
+                this.startTime_hour, this.startTime_minute, 0);
+        studyStartDateTime.set(Calendar.MILLISECOND, 0);
+
+        // calculate exact date time of study end (start date + duration @ end time)
+        // initially use start date to determine whether end-time is past start-time
+        this.studyEndDateTime = GregorianCalendar.getInstance();
+        this.studyEndDateTime .set(this.startDate.get(Calendar.YEAR),
+                this.startDate.get(Calendar.MONTH), this.startDate.get(Calendar.DAY_OF_MONTH),
+                this.endTime_hour, this.endTime_minute, 0);
+        this.studyEndDateTime.set(Calendar.MILLISECOND, 0);
+
+        this.sampleDayGoesPastMidnight = (this.studyEndDateTime.before(this.studyStartDateTime) ||
+                (this.studyEndDateTime.compareTo(this.studyStartDateTime) == 0));
+        if (this.sampleDayGoesPastMidnight) {
+            // if before (or exactly equal, e.g. both 7.30am), sampling day goes past midnight
+            // add 1 day to end time
+            this.studyEndDateTime.add(Calendar.DATE, 1);
+        }
+
+        // make sure that there are at least as many hours between start & end times as samples/day
+        int hours = (int)Math.floor((double)
+                ((this.studyEndDateTime.getTimeInMillis() -
+                        this.studyStartDateTime.getTimeInMillis())
+                        / 1000 / 60 / 60));
+        if (hours < this.samplesPerDay) {
+            this.showError(this.txtEndTime_errorMsg,
+                    String.format(getString(R.string.error_dailyEndTime), this.samplesPerDay));
+            hasErrors = true;
+        }
+
+        if (!hasErrors) {
+            // calculate interval between notifications in milliseconds
+            long timeSpanMillis =
+                    (studyEndDateTime.getTimeInMillis() - studyStartDateTime.getTimeInMillis());
+            if (this.notificationSchedule == NotificationSchedule.RANDOM) {
+                // if random: divide by number of samples per day (on notification per time slice)
+                this.intervalMillis = timeSpanMillis / (this.samplesPerDay);
+            } else {
+                // if fixed: divide by number of sample + 1 (these will be actual notification times)
+                this.intervalMillis = timeSpanMillis / (this.samplesPerDay + 1);
+            }
+        }
+
+        // add duration to get actual end date
+        studyEndDateTime.add(Calendar.DATE, (this.duration - 1));
 
         return !hasErrors;
     }
@@ -202,39 +260,14 @@ public class StudyConfiguration extends AppCompatActivity
         editor.putInt(Constants.NOTIFICATION_SCHEDULE_TYPE,
                 NotificationSchedule.toInt(this.notificationSchedule));
 
-        // calculate exact date time of study start (start date @ start time)
-        Calendar studyStartDateTime = GregorianCalendar.getInstance();
-        studyStartDateTime.set(this.startDate.get(Calendar.YEAR),
-                this.startDate.get(Calendar.MONTH), this.startDate.get(Calendar.DAY_OF_MONTH),
-                this.startTime_hour, this.startTime_minute, 0);
-        studyStartDateTime.set(Calendar.MILLISECOND, 0);
-
-        // calculate exact date time of study end (start date + duration @ end time)
-        Calendar studyEndDateTime = GregorianCalendar.getInstance();
-        studyEndDateTime .set(this.startDate.get(Calendar.YEAR),
-                this.startDate.get(Calendar.MONTH), this.startDate.get(Calendar.DAY_OF_MONTH),
-                this.endTime_hour, this.endTime_minute, 0);
-        studyEndDateTime.set(Calendar.MILLISECOND, 0);
-
-        // first calculate interval between notifications in milliseconds
-        long timeSpanMillis =
-                (studyEndDateTime.getTimeInMillis() - studyStartDateTime.getTimeInMillis());
-        long intervalMillis;
-        if (this.notificationSchedule == NotificationSchedule.RANDOM) {
-            // if random: divide by number of samples per day (on notification per time slice)
-            intervalMillis = timeSpanMillis / (this.samplesPerDay);
-        } else {
-            // if fixed: divide by number of sample + 1 (these will be actual notification times)
-            intervalMillis = timeSpanMillis / (this.samplesPerDay + 1);
-        }
-
-        // add duration to get actual end date
-        studyEndDateTime.add(Calendar.DATE, (this.duration - 1));
-
         // save to shared preferences
-        editor.putLong(Constants.STUDY_START_DATE_TIME_MILLIS, studyStartDateTime.getTimeInMillis());
-        editor.putLong(Constants.STUDY_END_DATE_TIME_MILLIS, studyEndDateTime.getTimeInMillis());
-        editor.putLong(Constants.NOTIFICATION_INTERVAL_MILLIS, intervalMillis);
+        editor.putLong(Constants.STUDY_START_DATE_TIME_MILLIS,
+                this.studyStartDateTime.getTimeInMillis());
+        editor.putLong(Constants.STUDY_END_DATE_TIME_MILLIS,
+                this.studyEndDateTime.getTimeInMillis());
+        editor.putLong(Constants.NOTIFICATION_INTERVAL_MILLIS,
+                this.intervalMillis);
+        editor.putBoolean(Constants.SAMPLE_DAY_GOES_PAST_MIDNIGHT, this.sampleDayGoesPastMidnight);
 
         editor.apply();
     }
