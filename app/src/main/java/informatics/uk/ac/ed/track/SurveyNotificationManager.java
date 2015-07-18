@@ -158,12 +158,12 @@ public class SurveyNotificationManager {
         this.setupRemainingAlarms_Random();
 
         // TODO remove this (only for testing)
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMMM, HH:mm:ss");
+        /*SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMMM, HH:mm:ss");
         for (long alarmTime : alarmTimes) {
             Calendar cal = GregorianCalendar.getInstance();
             cal.setTimeInMillis(alarmTime);
             System.out.println(sdf.format(cal.getTime()));
-        }
+        }*/
     }
 
     private void setupRemainingAlarms_Random() {

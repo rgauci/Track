@@ -76,10 +76,12 @@ public class AlarmReceiver extends BroadcastReceiver {
                 Utils.getLaunchSurveyIntent(context), 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.ic_mood_white_24dp)
+                .setSmallIcon(R.drawable.track_icon_white_36x36)
                 .setContentTitle(msg)
                 .setTicker(msgAlert)
-                .setContentText(msgText);
+                .setContentText(msgText)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText(msgText)); // needed to display more than one line of text
 
         mBuilder.setContentIntent(notificationIntent);
         mBuilder.setDefaults(NotificationCompat.DEFAULT_ALL);
