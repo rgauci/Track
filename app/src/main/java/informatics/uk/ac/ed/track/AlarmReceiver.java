@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 
@@ -52,13 +53,14 @@ public class AlarmReceiver extends BroadcastReceiver {
         int notificationWindow =
                 settings.getInt(Constants.NOTIFICATION_WINDOW_MINUTES, Constants.DEF_VALUE_INT);
 
-        // TODO disable notification after 15 minutes
+        int requestCode = intent.getIntExtra(Constants.REQUEST_CODE, Constants.DEF_VALUE_INT);
+
         Resources res = context.getResources();
         String msg = res.getString(R.string.notificationMsg);
         String msgText = String.format(
                 res.getString(R.string.notificationMsgText), notificationWindow);
         this.displayNotification(context, msg,
-                res.getString(R.string.notificationMsgText), msg);
+                msgText, msg, requestCode, notificationWindow);
     }
 
     private void cancelRepeatingAlarm(Context context, Intent intent) {
@@ -66,8 +68,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         SurveyNotificationManager notificationManager = new SurveyNotificationManager(context);
         notificationManager.cancelAlarm(requestCode);
     }
-    
-    private void displayNotification(Context context, String msg, String msgText, String msgAlert) {
+
+    private void displayNotification(Context context, String msg, String msgText, String msgAlert,
+                                     final int requestCode, int notificationWindow_Minutes) {
 
         PendingIntent notificationIntent = PendingIntent.getActivity(context, 0,
                 Utils.getLaunchSurveyIntent(context), 0);
@@ -82,10 +85,18 @@ public class AlarmReceiver extends BroadcastReceiver {
         mBuilder.setDefaults(NotificationCompat.DEFAULT_ALL);
         mBuilder.setAutoCancel(true); // automatically stopped when clicked on
 
-        NotificationManager mNotificationManager =
+        final NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        // post notification on screen
-        mNotificationManager.notify(1, mBuilder.build());
+        // post notification on screen (use the alarm request code as the notification ID)
+        mNotificationManager.notify(requestCode, mBuilder.build());
+
+        // cancel notification after 15 minutes
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mNotificationManager.cancel(requestCode);
+            }
+        }, notificationWindow_Minutes * 1000);
     }
 }
