@@ -97,6 +97,6 @@ public class AlarmReceiver extends BroadcastReceiver {
             public void run() {
                 mNotificationManager.cancel(requestCode);
             }
-        }, notificationWindow_Minutes * 1000);
+        }, notificationWindow_Minutes * 60 * 1000);
     }
 }
