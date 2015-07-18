@@ -30,9 +30,11 @@
     <string name="dateFormatFullMonthNoYear">EEEE, dd MMMM</string>
     <string name="samples">samples</string>
     <string name="notificationScheduling">Notification Scheduling</string>
+    <string name="notificationSchedulingRandom">Random</string>
+    <string name="notificationSchedulingFixed">Fixed</string>
     <string-array name="notificationSchedulingOptions">
-        <item>Random</item>
-        <item>Fixed</item>
+        <item>@string/notificationSchedulingRandom</item>
+        <item>@string/notificationSchedulingFixed</item>
     </string-array>
 
     <string name="Participant">Participant&#160;</string>

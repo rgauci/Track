@@ -22,6 +22,7 @@ public class Constants {
     public static final String LAST_SURVEY_COMPLETED_TIME_MILLIS = "lastSurveyCompleteMillis";
     public static final String NOTIFICATION_WINDOW_MINUTES = "notificationWindow";
     public static final String NOTIFICATION_INTERVAL_MILLIS = "notificationIntervalMillis";
+    public static final String NOTIFICATION_SCHEDULE_TYPE = "notificationScheduleType";
     public static final String PARTICIPANT_ID = "participantId";
     public static final String PARTICIPANT_PASSWORD_HASHED = "participantPasswordHashed";
     public static final String REQUEST_CODE = "requestCode";

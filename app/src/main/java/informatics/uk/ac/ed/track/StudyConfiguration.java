@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -35,12 +36,14 @@ public class StudyConfiguration extends AppCompatActivity
     private int duration, samplesPerDay, notificationWindow;
     private int startTime_hour, startTime_minute;
     private int endTime_hour, endTime_minute;
+    private NotificationSchedule notificationSchedule;
 
     private EditText txtDuration, txtSamplesPerDay, txtNotificationWindow;
     private TextView txtVwStartDate, txtVwStartTime, txtVwEndTime;
     private TextView txtStartDate_errorMsg, txtDuration_errorMsg,
             txtSamplesPerDay_errorMsg, txtNotificationWindow_errorMsg,
             txtStarTime_errorMsg, txtEndTime_errorMsg;
+    private Spinner spnNotificationScheduling;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class StudyConfiguration extends AppCompatActivity
         setContentView(R.layout.activity_study_configuration);
 
         /* initialise UI controls */
+        spnNotificationScheduling = (Spinner) findViewById(R.id.spnNotificationScheduling);
+
         txtDuration = (EditText) findViewById(R.id.txtDuration);
         txtSamplesPerDay = (EditText) findViewById(R.id.txtSamplesPerDay);
         txtNotificationWindow = (EditText) findViewById(R.id.txtNotificationWindow);
@@ -125,6 +130,7 @@ public class StudyConfiguration extends AppCompatActivity
         String duration_str = Utils.getTrimmedText(this.txtDuration);
         String samplePerDay_str = Utils.getTrimmedText(this.txtSamplesPerDay);
         String notificationWindow_str = Utils.getTrimmedText(this.txtNotificationWindow);
+        int notifSchedulingPosition =  spnNotificationScheduling.getSelectedItemPosition();
 
         // start date
         if (this.startDate.before(this.minimumStartDate)) {
@@ -166,6 +172,16 @@ public class StudyConfiguration extends AppCompatActivity
             this.hideError(this.txtEndTime_errorMsg);
         }
 
+        // notification scheduling: fixed / random
+        Resources res = getResources();
+        String[] notifSchedulingOptions = res.getStringArray(R.array.notificationSchedulingOptions);
+        String schedule = notifSchedulingOptions[notifSchedulingPosition];
+        if (schedule.equals(res.getString(R.string.notificationSchedulingRandom))) {
+            this.notificationSchedule = NotificationSchedule.RANDOM;
+        } else if (schedule.equals(res.getString(R.string.notificationSchedulingFixed))) {
+            this.notificationSchedule = NotificationSchedule.FIXED;
+        }
+
         return !hasErrors;
     }
 
@@ -181,6 +197,10 @@ public class StudyConfiguration extends AppCompatActivity
         editor.putInt(Constants.START_TIME_MINUTE, this.startTime_minute);
         editor.putInt(Constants.END_TIME_HOUR, this.endTime_hour);
         editor.putInt(Constants.END_TIME_MINUTE, this.endTime_minute);
+
+        // save notification schedule type (fixed / random) as int
+        editor.putInt(Constants.NOTIFICATION_SCHEDULE_TYPE,
+                NotificationSchedule.toInt(this.notificationSchedule));
 
         // calculate exact date time of study start (start date @ start time)
         Calendar studyStartDateTime = GregorianCalendar.getInstance();
@@ -199,7 +219,14 @@ public class StudyConfiguration extends AppCompatActivity
         // first calculate interval between notifications in milliseconds
         long timeSpanMillis =
                 (studyEndDateTime.getTimeInMillis() - studyStartDateTime.getTimeInMillis());
-        long intervalMillis = timeSpanMillis / (this.samplesPerDay + 1);
+        long intervalMillis;
+        if (this.notificationSchedule == NotificationSchedule.RANDOM) {
+            // if random: divide by number of samples per day (on notification per time slice)
+            intervalMillis = timeSpanMillis / (this.samplesPerDay);
+        } else {
+            // if fixed: divide by number of sample + 1 (these will be actual notification times)
+            intervalMillis = timeSpanMillis / (this.samplesPerDay + 1);
+        }
 
         // add duration to get actual end date
         studyEndDateTime.add(Calendar.DATE, (this.duration - 1));

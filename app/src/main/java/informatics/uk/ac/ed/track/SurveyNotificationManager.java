@@ -9,8 +9,13 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.lang.StringBuilder;
+import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Random;
+
+import informatics.uk.ac.ed.track.util.SystemUiHider;
 
 public class SurveyNotificationManager {
 
@@ -18,7 +23,10 @@ public class SurveyNotificationManager {
 
     private Context appContext;
     private Calendar studyStart, studyEnd;
+    private int duration;
+    private int samplesPerDay;
     private long intervalMillis;
+    private NotificationSchedule notificationSchedule;
 
     public SurveyNotificationManager(Context appContext) {
         this.appContext = appContext;
@@ -30,11 +38,19 @@ public class SurveyNotificationManager {
         this.intervalMillis =
                 settings.getLong(Constants.NOTIFICATION_INTERVAL_MILLIS, Constants.DEF_VALUE_LNG);
 
+        // get duration and number of samples per day
+        this.duration = settings.getInt(Constants.DURATION_DAYS, Constants.DEF_VALUE_INT);
+        this.samplesPerDay = settings.getInt(Constants.SAMPLES_PER_DAY, Constants.DEF_VALUE_INT);
+
         // get start & end date calendars
         long studyStartMillis =
                 settings.getLong(Constants.STUDY_START_DATE_TIME_MILLIS, Constants.DEF_VALUE_LNG);
         long studyEndMillis =
                 settings.getLong(Constants.STUDY_END_DATE_TIME_MILLIS, Constants.DEF_VALUE_LNG);
+
+        // get notification schedule type: fixed / random
+        this.notificationSchedule = NotificationSchedule.fromInt(
+                settings.getInt(Constants.NOTIFICATION_SCHEDULE_TYPE, Constants.DEF_VALUE_INT));
 
         this.studyStart = GregorianCalendar.getInstance();
         this.studyStart.setTimeInMillis(studyStartMillis);
@@ -61,13 +77,21 @@ public class SurveyNotificationManager {
         // if study is over
         // we are done, no alarms to set
         if (currentDateTime.after(this.studyEnd)) {
+            // TODO maybe cancel boot receiver here
             return;
         }
 
         // if study hasn't even started yet
         // set up notifications for the entire duration of the study
         if (currentDateTime.before(this.studyStart)) {
-            this.setupDailyNotifications(this.studyStart);
+            switch (this.notificationSchedule) {
+                case RANDOM:
+                    this.setupAllNotifications_Random();
+                    break;
+                case FIXED:
+                    this.setupDailyNotifications_Fixed(this.studyStart);
+                    break;
+            }
             return;
         }
 
@@ -78,10 +102,33 @@ public class SurveyNotificationManager {
                     != this.studyEnd.get(Calendar.DAY_OF_YEAR)) {
                 Calendar tomorrow = GregorianCalendar.getInstance();
                 tomorrow.add(Calendar.DATE, 1);
-                this.setupDailyNotifications(tomorrow);
+                this.setupDailyNotifications_Fixed(tomorrow);
             }
             // set up remaining alarms for today
-            this.setupTodaysNotifications(currentDateTime);
+            this.setupTodaysNotifications_Fixed(currentDateTime);
+        }
+    }
+
+    private void setupAllNotifications_Random() {
+        long[] alarmTimes = new long[this.duration * this.samplesPerDay];
+        int alarmNum = 0;
+        SecureRandom randomGenerator = new SecureRandom();
+
+        Calendar intervalStartTime = GregorianCalendar.getInstance();
+
+        for (int i = 0; i < duration; i++) {
+            intervalStartTime.setTimeInMillis(this.studyStart.getTimeInMillis());
+            intervalStartTime.add(Calendar.DATE, i);
+            for (int j = 0; j < samplesPerDay; j++) {
+                if (j > 0) {
+                    intervalStartTime.add(Calendar.MILLISECOND, (int)this.intervalMillis);
+                }
+                long min = intervalStartTime.getTimeInMillis();
+                long max = intervalStartTime.getTimeInMillis() + this.intervalMillis;
+                long alarmTime = min + (Math.abs(randomGenerator.nextLong()) % (max - min));
+                alarmTimes[alarmNum] = alarmTime;
+                alarmNum++;
+            }
         }
     }
 
@@ -89,8 +136,8 @@ public class SurveyNotificationManager {
      * Setup alarms for the remainder of the study.
      * @param startDate The date from which to start broadcasting alarms.
      */
-    private void setupDailyNotifications(Calendar startDate) {
-        // dayStartTime : daily strt time
+    private void setupDailyNotifications_Fixed(Calendar startDate) {
+        // dayStartTime : daily start time
         Calendar dayStartTime = GregorianCalendar.getInstance();
         dayStartTime.setTimeInMillis(startDate.getTimeInMillis());
         dayStartTime.set(Calendar.HOUR_OF_DAY, this.studyStart.get(Calendar.HOUR_OF_DAY));
@@ -154,7 +201,7 @@ public class SurveyNotificationManager {
     /**
      *  Setup remaining alarms for today only.
      */
-    private void setupTodaysNotifications(Calendar currentTime) {
+    private void setupTodaysNotifications_Fixed(Calendar currentTime) {
         Calendar todayStartTime = GregorianCalendar.getInstance();
         todayStartTime.set(Calendar.HOUR_OF_DAY, this.studyStart.get(Calendar.HOUR_OF_DAY));
         todayStartTime.set(Calendar.MINUTE, this.studyStart.get(Calendar.MINUTE));
