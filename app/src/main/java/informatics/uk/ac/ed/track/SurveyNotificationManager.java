@@ -10,12 +10,8 @@ import android.util.Log;
 
 import java.lang.StringBuilder;
 import java.security.SecureRandom;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Random;
-
-import informatics.uk.ac.ed.track.util.SystemUiHider;
 
 public class SurveyNotificationManager {
 
@@ -77,7 +73,6 @@ public class SurveyNotificationManager {
         // if study is over
         // we are done, no alarms to set
         if (currentDateTime.after(this.studyEnd)) {
-            // TODO maybe cancel boot receiver here
             return;
         }
 
@@ -97,15 +92,23 @@ public class SurveyNotificationManager {
 
         // if we are in the middle of the study
         if (currentDateTime.after(this.studyStart) && currentDateTime.before(this.studyEnd)) {
-            // set up repeating alarms for the remainder of the study (staring from tomorrow)
-            if (currentDateTime.get(Calendar.DAY_OF_YEAR)
-                    != this.studyEnd.get(Calendar.DAY_OF_YEAR)) {
-                Calendar tomorrow = GregorianCalendar.getInstance();
-                tomorrow.add(Calendar.DATE, 1);
-                this.setupDailyNotifications_Fixed(tomorrow);
+            switch (this.notificationSchedule) {
+                case RANDOM:
+                    // re-schedule remaining alarms
+                    this.setupRemainingAlarms_Random();
+                    break;
+                case FIXED:
+                    // set up repeating alarms for the remainder of the study (staring from tomorrow)
+                    if (currentDateTime.get(Calendar.DAY_OF_YEAR)
+                            != this.studyEnd.get(Calendar.DAY_OF_YEAR)) {
+                        Calendar tomorrow = GregorianCalendar.getInstance();
+                        tomorrow.add(Calendar.DATE, 1);
+                        this.setupDailyNotifications_Fixed(tomorrow);
+                    }
+                    // set up remaining alarms for today
+                    this.setupTodaysNotifications_Fixed(currentDateTime);
+                    break;
             }
-            // set up remaining alarms for today
-            this.setupTodaysNotifications_Fixed(currentDateTime);
         }
     }
 
@@ -115,7 +118,9 @@ public class SurveyNotificationManager {
         SecureRandom randomGenerator = new SecureRandom();
 
         Calendar intervalStartTime = GregorianCalendar.getInstance();
+        StringBuilder sb = new StringBuilder();
 
+        // generate random times for entire duration of the study
         for (int i = 0; i < duration; i++) {
             intervalStartTime.setTimeInMillis(this.studyStart.getTimeInMillis());
             intervalStartTime.add(Calendar.DATE, i);
@@ -128,8 +133,73 @@ public class SurveyNotificationManager {
                 long alarmTime = min + (Math.abs(randomGenerator.nextLong()) % (max - min));
                 alarmTimes[alarmNum] = alarmTime;
                 alarmNum++;
+
+                // add to string builder
+                // add request code to string builder so it will be saved to preferences
+                if (sb.length() > 0) {
+                    sb.append(Constants.STRING_ARRAY_DELIMITER);
+                }
+
+                sb.append(alarmTime);
             }
         }
+
+        // save times in preferences
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this.appContext);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(Constants.RANDOM_ALARM_TIMES, sb.toString());
+        editor.apply();
+
+        // actually set up alarms using saved times
+        this.setupRemainingAlarms_Random();
+    }
+
+    private void setupRemainingAlarms_Random() {
+        // load times from preferences
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this.appContext);
+        String alarmTimesStr =
+                settings.getString(Constants.RANDOM_ALARM_TIMES, Constants.DEF_VALUE_STR);
+
+        if ((alarmTimesStr == null) || (alarmTimesStr.equals(Constants.DEF_VALUE_STR))) {
+            return;
+        }
+
+        String[] alarmTimes = alarmTimesStr.split(Constants.STRING_ARRAY_DELIMITER);
+        Calendar currentCal = GregorianCalendar.getInstance();
+        long currentTime = currentCal.getTimeInMillis();
+
+        AlarmManager alarmManager =
+                (AlarmManager) this.appContext.getSystemService(Context.ALARM_SERVICE);
+        StringBuilder sb = new StringBuilder();
+
+        for (int alarmNum = 0; alarmNum < alarmTimes.length; alarmNum++) {
+            long alarmTime = Long.parseLong(alarmTimes[alarmNum]);
+            if (alarmTime > currentTime) {
+                // use alarmNum as the request code (this will be different for every alarm)
+                int requestCode = alarmNum;
+
+                // create a pending intent that fires when the alarm is triggered.
+                Intent alarmReceiverIntent = new Intent(this.appContext, AlarmReceiver.class);
+                // add request code as an extra
+                alarmReceiverIntent.putExtra(Constants.REQUEST_CODE, requestCode);
+                PendingIntent pendingAlarmReceiverIntent = PendingIntent.getBroadcast(
+                        this.appContext, requestCode, alarmReceiverIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT);
+
+                // set up alarm using RTC_WAKEUP
+                // wakes up the device to fire the pending intent at the specified time.
+                alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime, pendingAlarmReceiverIntent);
+
+                // add request code to string builder so it will be saved to preferences
+                if (sb.length() > 0) {
+                    sb.append(Constants.STRING_ARRAY_DELIMITER);
+                }
+
+                sb.append(requestCode);
+            }
+        }
+
+        this.updateRequestCodes(sb.toString());
     }
 
     /**
@@ -189,7 +259,7 @@ public class SurveyNotificationManager {
 
             // add request code to string builder so it will be saved to preferences
             if (sb.length() > 0) {
-                sb.append(Constants.ALARM_REQUEST_CODES_DELIMITER);
+                sb.append(Constants.STRING_ARRAY_DELIMITER);
             }
 
             sb.append(requestCode);
@@ -248,7 +318,7 @@ public class SurveyNotificationManager {
 
         if (!((currentRCs == null) || (currentRCs.equals(Constants.DEF_VALUE_STR)))) {
             requestCodes =
-                    currentRCs.concat(Constants.ALARM_REQUEST_CODES_DELIMITER).concat(requestCodes);
+                    currentRCs.concat(Constants.STRING_ARRAY_DELIMITER).concat(requestCodes);
         }
 
         SharedPreferences.Editor editor = settings.edit();
@@ -265,7 +335,7 @@ public class SurveyNotificationManager {
             return;
         }
 
-        String[] requestCodes = currentRCs.split(Constants.ALARM_REQUEST_CODES_DELIMITER);
+        String[] requestCodes = currentRCs.split(Constants.STRING_ARRAY_DELIMITER);
 
         for (String requestCode: requestCodes) {
             try {

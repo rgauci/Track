@@ -10,7 +10,6 @@ public class Constants {
 
     public static final String ALARM_REQUEST_CODES = "alarmRequestCodes";
     public static final String DEF_VALUE_STR = "";
-    public static final String ALARM_REQUEST_CODES_DELIMITER = ",";
     public static final String DAY_END_TME_MILLIS = "dayEndTimeMillis";
     public static final String DURATION_DAYS = "duration";
     public static final String END_TIME_HOUR = "endTimeHour";
@@ -25,6 +24,7 @@ public class Constants {
     public static final String NOTIFICATION_SCHEDULE_TYPE = "notificationScheduleType";
     public static final String PARTICIPANT_ID = "participantId";
     public static final String PARTICIPANT_PASSWORD_HASHED = "participantPasswordHashed";
+    public static final String RANDOM_ALARM_TIMES = "randomAlarmTimes";
     public static final String REQUEST_CODE = "requestCode";
     public static final String RESEARCHER_EMAIL = "researcherEmail";
     public static final String RESEARCHER_PASSWORD_HASHED = "researcherPasswordHashed";
@@ -36,6 +36,7 @@ public class Constants {
     public static final String SETUP_COMPLETE = "setupComplete";
     public static final String START_TIME_HOUR = "startTimeHour";
     public static final String START_TIME_MINUTE = "startTimeMinute";
+    public static final String STRING_ARRAY_DELIMITER = ",";
     public static final String STUDY_START_DATE_TIME_MILLIS = "studyStartDateTimeMillis";
     public static final String STUDY_END_DATE_TIME_MILLIS = "studyEndDateTimeMillis";
     public static final String SURVEY_IMPORT_COMPLETE = "surveyImportComplete";

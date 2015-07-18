@@ -166,4 +166,8 @@
     <string name="surveyCompleteSubTitle">Thanks for filling that out!</string>
     <string name="surveyCompleteText">
         %1$s will send you a notification when the next one is due.</string>
+
+    <string name="notificationMsg">TRACK-time!</string>
+    <string name="notificationMsgText">Tap to start the survey.
+        Notification will expire within %1$d minutes.</string>
 </resources>

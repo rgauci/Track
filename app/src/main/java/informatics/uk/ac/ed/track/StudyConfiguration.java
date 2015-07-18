@@ -70,7 +70,7 @@ public class StudyConfiguration extends AppCompatActivity
 
         /* set start date & minimum start date to the following day */
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, 1);
+        calendar.add(Calendar.DATE, -1); // TODO reset to 1 instead of -1
         this.minimumStartDate = calendar;
         this.setStartDate(calendar);
 

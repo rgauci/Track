@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 
@@ -16,30 +17,48 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        long currentTime = GregorianCalendar.getInstance().getTimeInMillis();
-        long dayEndTime = intent.getLongExtra(Constants.DAY_END_TME_MILLIS, -1);
+        // get shared preferences
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+        // get notification schedule type: fixed / random
+        NotificationSchedule notificationSchedule = NotificationSchedule.fromInt(
+                settings.getInt(Constants.NOTIFICATION_SCHEDULE_TYPE, Constants.DEF_VALUE_INT));
 
-        if (currentTime > dayEndTime) {
-            // if we have passed the end time for today
-            // cancel repeating alarm
-            this.cancelRepeatingAlarm(context, intent);
-        } else {
-            // otherwise save notification time in preferences
-            // and display notification
-            Calendar cal = GregorianCalendar.getInstance();
-            cal.getTimeInMillis();
-            cal.set(Calendar.SECOND, 0);
-            cal.set(Calendar.MILLISECOND, 0);
+        if (notificationSchedule == NotificationSchedule.FIXED) {
+            // if notification schedule is fixed
+            // this alarm might be after daily end time
+            // if yes, cancel the day's repeating alarm
+            long currentTime = GregorianCalendar.getInstance().getTimeInMillis();
+            long dayEndTime = intent.getLongExtra(Constants.DAY_END_TME_MILLIS, -1);
 
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putLong(Constants.LAST_NOTIFICATION_TIME_MILLIS, cal.getTimeInMillis());
-
-            // TODO disable notification after 15 minutes
-            this.displayNotification(context, "Time to check in!",
-                    "This will only take a couple of minutes. Tap to start the survey. " +
-                            "Notification will expire within 15 minutes.", "Survey Time");
+            if (currentTime > dayEndTime) {
+                // if we have passed the end time for today
+                // cancel repeating alarm
+                // and return
+                this.cancelRepeatingAlarm(context, intent);
+                return;
+            }
         }
+
+        // otherwise save notification time in preferences
+        // and display notification
+        Calendar cal = GregorianCalendar.getInstance();
+        cal.getTimeInMillis();
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putLong(Constants.LAST_NOTIFICATION_TIME_MILLIS, cal.getTimeInMillis());
+
+        int notificationWindow =
+                settings.getInt(Constants.NOTIFICATION_WINDOW_MINUTES, Constants.DEF_VALUE_INT);
+
+        // TODO disable notification after 15 minutes
+        Resources res = context.getResources();
+        String msg = res.getString(R.string.notificationMsg);
+        String msgText = String.format(
+                res.getString(R.string.notificationMsgText), notificationWindow);
+        this.displayNotification(context, msg,
+                res.getString(R.string.notificationMsgText), msg);
     }
 
     private void cancelRepeatingAlarm(Context context, Intent intent) {
@@ -50,7 +69,8 @@ public class AlarmReceiver extends BroadcastReceiver {
     
     private void displayNotification(Context context, String msg, String msgText, String msgAlert) {
 
-        PendingIntent notificationIntent = PendingIntent.getActivity(context, 0, new Intent(context, UserLogin.class), 0);
+        PendingIntent notificationIntent = PendingIntent.getActivity(context, 0,
+                Utils.getLaunchSurveyIntent(context), 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.ic_mood_white_24dp)
@@ -62,7 +82,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         mBuilder.setDefaults(NotificationCompat.DEFAULT_ALL);
         mBuilder.setAutoCancel(true); // automatically stopped when clicked on
 
-        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager mNotificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         // post notification on screen
         mNotificationManager.notify(1, mBuilder.build());

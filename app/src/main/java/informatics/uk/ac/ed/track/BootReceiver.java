@@ -12,7 +12,6 @@ import java.util.Calendar;
 
 public class BootReceiver extends BroadcastReceiver {
 
-    // TODO disable boot receiver when study finishes
     @Override
     public void onReceive(Context context, Intent intent) {
         SharedPreferences settings =
