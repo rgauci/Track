@@ -22,7 +22,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:fillViewport="true"
-            android:layout_above="@+id/textView17">
+            android:layout_above="@+id/textView17"
+            android:isScrollContainer="false">
 
             <LinearLayout
                 android:orientation="vertical"

@@ -41,7 +41,8 @@ tools:context="informatics.uk.ac.ed.track.Question_FreeText_Single">
             android:layout_gravity="right"
             android:fillViewport="true"
             android:layout_above="@+id/btnNext"
-            android:layout_marginBottom="@dimen/activity_vertical_margin">
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:isScrollContainer="false">
 
             <LinearLayout
                 android:orientation="vertical"
