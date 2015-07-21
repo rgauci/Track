@@ -93,7 +93,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         // post notification on screen (use the alarm request code as the notification ID)
         mNotificationManager.notify(requestCode, mBuilder.build());
 
-        // cancel notification after 15 minutes
+        // cancel notification after notification window expiry (in minutes)
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

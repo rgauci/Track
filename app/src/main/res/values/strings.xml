@@ -156,6 +156,7 @@
     <string name="title_activity_multi_choice__single">MultiChoice_Single</string>
 
     <string name="defaultTitle">Title</string>
+    <string name="defaultSubTitle">Sub-Title</string>
     <string name="defaultQuestion">Question</string>
     <string name="defaultQuestionPrefix">Question Prefix</string>
     <string name="other">Other</string>
@@ -172,4 +173,5 @@
     <string name="notificationMsg">TRACK-time!</string>
     <string name="notificationMsgText">Tap to start the survey.
         Notification will expire within %1$d minutes.</string>
+
 </resources>

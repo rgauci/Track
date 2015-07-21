@@ -1,59 +1,25 @@
 [
   {
     "type": "MultipleChoiceSingleAnswer",
-    "isBranchable": false,
+    "isBranchable": true,
     "otherOptionNextQuestionId": 0,
     "answerOptions": [
       {
-        "nextQuestionId": 0,
+        "nextQuestionId": 2,
         "optionId": 1,
-        "option": "Right now, I feel cheerful."
+        "option": "Yes"
       },
       {
-        "nextQuestionId": 0,
+        "nextQuestionId": 8,
         "optionId": 2,
-        "option": "Right now, I feel satisfied."
-      },
-      {
-        "nextQuestionId": 0,
-        "optionId": 3,
-        "option": "Right now, I feel enthusiastic."
-      },
-      {
-        "nextQuestionId": 0,
-        "optionId": 4,
-        "option": "Right now, I feel relaxed."
-      },
-      {
-        "nextQuestionId": 0,
-        "optionId": 5,
-        "option": "Right now, I feel sad."
-      },
-      {
-        "nextQuestionId": 0,
-        "optionId": 6,
-        "option": "Right now, I feel guilty."
-      },
-      {
-        "nextQuestionId": 0,
-        "optionId": 7,
-        "option": "Right now, I feel irritated."
-      },
-      {
-        "nextQuestionId": 0,
-        "optionId": 8,
-        "option": "Right now, I feel lonely."
-      },
-      {
-        "nextQuestionId": 0,
-        "optionId": 9,
-        "option": "Right now, I feel anxious."
+        "option": "No"
       }
     ],
     "addOther": false,
     "id": 1,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
     "title": "Emotion / Affect",
+    "questionText": "Right now, I feel cheerful.",
     "nextQuestionId": 2,
     "isRequired": true
   },
@@ -90,6 +56,7 @@
     "id": 2,
     "questionType": "LIKERT_SCALE",
     "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling cheerful.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 3,
@@ -128,6 +95,7 @@
     "id": 3,
     "questionType": "LIKERT_SCALE",
     "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling cheerful.",
     "questionPrefix": "How much are you:",
     "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 4,
@@ -166,6 +134,7 @@
     "id": 4,
     "questionType": "LIKERT_SCALE",
     "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling cheerful.",
     "questionPrefix": "How much are you:",
     "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 5,
@@ -204,6 +173,7 @@
     "id": 5,
     "questionType": "LIKERT_SCALE",
     "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling cheerful.",
     "questionPrefix": "How much are you:",
     "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 6,
@@ -242,6 +212,7 @@
     "id": 6,
     "questionType": "LIKERT_SCALE",
     "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling cheerful.",
     "questionPrefix": "How much are you:",
     "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 7,
@@ -280,17 +251,33 @@
     "id": 7,
     "questionType": "LIKERT_SCALE",
     "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling cheerful.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 8,
     "isRequired": true
   },
   {
-    "type": "FreeTextQuestionMultiLine",
+    "type": "MultipleChoiceSingleAnswer",
+    "isBranchable": true,
+    "otherOptionNextQuestionId": 0,
+    "answerOptions": [
+      {
+        "nextQuestionId": 9,
+        "optionId": 1,
+        "option": "Yes"
+      },
+      {
+        "nextQuestionId": 15,
+        "optionId": 2,
+        "option": "No"
+      }
+    ],
+    "addOther": false,
     "id": 8,
-    "questionType": "FREE_TEXT_MULTI_LINE",
-    "title": "Event Stress",
-    "questionText": "What is the most important event that has happened since your last report?",
+    "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+    "title": "Emotion / Affect",
+    "questionText": "Right now, I feel satisfied.",
     "nextQuestionId": 9,
     "isRequired": true
   },
@@ -326,17 +313,49 @@
     ],
     "id": 9,
     "questionType": "LIKERT_SCALE",
-    "title": "Event Stress",
-    "questionText": "How pleasant was this event?",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling satisfied.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 10,
     "isRequired": true
   },
   {
-    "type": "FreeTextQuestionSingleLine",
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
     "id": 10,
-    "questionType": "FREE_TEXT_SINGLE_LINE",
-    "title": "Activity Stress",
-    "questionText": "What are you currently doing?",
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling satisfied.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 11,
     "isRequired": true
   },
@@ -372,9 +391,10 @@
     ],
     "id": 11,
     "questionType": "LIKERT_SCALE",
-    "title": "Activity Stress",
-    "questionPrefix": "In relation to this activity:",
-    "questionText": "I like what I am doing right now.",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling satisfied.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 12,
     "isRequired": true
   },
@@ -385,34 +405,35 @@
       {
         "nextQuestionId": 0,
         "optionId": 1,
-        "option": "Strongly disagree"
+        "option": "Not at all"
       },
       {
         "nextQuestionId": 0,
         "optionId": 2,
-        "option": "Disagree"
+        "option": "A little bit"
       },
       {
         "nextQuestionId": 0,
         "optionId": 3,
-        "option": "Neither agree nor disagree"
+        "option": "Moderately"
       },
       {
         "nextQuestionId": 0,
         "optionId": 4,
-        "option": "Agree"
+        "option": "Quite a bit"
       },
       {
         "nextQuestionId": 0,
         "optionId": 5,
-        "option": "Strongly agree"
+        "option": "Extremely"
       }
     ],
     "id": 12,
     "questionType": "LIKERT_SCALE",
-    "title": "Activity Stress",
-    "questionPrefix": "In relation to this activity:",
-    "questionText": "It takes a lot of effort to do this activity.",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling satisfied.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 13,
     "isRequired": true
   },
@@ -423,34 +444,35 @@
       {
         "nextQuestionId": 0,
         "optionId": 1,
-        "option": "Strongly disagree"
+        "option": "Not at all"
       },
       {
         "nextQuestionId": 0,
         "optionId": 2,
-        "option": "Disagree"
+        "option": "A little bit"
       },
       {
         "nextQuestionId": 0,
         "optionId": 3,
-        "option": "Neither agree nor disagree"
+        "option": "Moderately"
       },
       {
         "nextQuestionId": 0,
         "optionId": 4,
-        "option": "Agree"
+        "option": "Quite a bit"
       },
       {
         "nextQuestionId": 0,
         "optionId": 5,
-        "option": "Strongly agree"
+        "option": "Extremely"
       }
     ],
     "id": 13,
     "questionType": "LIKERT_SCALE",
-    "title": "Activity Stress",
-    "questionPrefix": "In relation to this activity:",
-    "questionText": "I have the ability to do this activity.",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling satisfied.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 14,
     "isRequired": true
   },
@@ -461,34 +483,35 @@
       {
         "nextQuestionId": 0,
         "optionId": 1,
-        "option": "Strongly disagree"
+        "option": "Not at all"
       },
       {
         "nextQuestionId": 0,
         "optionId": 2,
-        "option": "Disagree"
+        "option": "A little bit"
       },
       {
         "nextQuestionId": 0,
         "optionId": 3,
-        "option": "Neither agree nor disagree"
+        "option": "Moderately"
       },
       {
         "nextQuestionId": 0,
         "optionId": 4,
-        "option": "Agree"
+        "option": "Quite a bit"
       },
       {
         "nextQuestionId": 0,
         "optionId": 5,
-        "option": "Strongly agree"
+        "option": "Extremely"
       }
     ],
     "id": 14,
     "questionType": "LIKERT_SCALE",
-    "title": "Activity Stress",
-    "questionPrefix": "In relation to this activity:",
-    "questionText": "I would prefer to be doing something else right now.",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling satisfied.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 15,
     "isRequired": true
   },
@@ -500,20 +523,2033 @@
       {
         "nextQuestionId": 16,
         "optionId": 1,
-        "option": "Alone"
+        "option": "Yes"
       },
       {
-        "nextQuestionId": 17,
+        "nextQuestionId": 22,
         "optionId": 2,
-        "option": "With others"
+        "option": "No"
       }
     ],
     "addOther": false,
     "id": 15,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+    "title": "Emotion / Affect",
+    "questionText": "Right now, I feel enthusiastic.",
+    "nextQuestionId": 16,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 16,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling enthusiastic.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about a situation differently?",
+    "nextQuestionId": 17,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 17,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling enthusiastic.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "nextQuestionId": 18,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 18,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling enthusiastic.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Talking about your feelings and reactions with others?",
+    "nextQuestionId": 19,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 19,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling enthusiastic.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying not to show your emotions on the outside?",
+    "nextQuestionId": 20,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 20,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling enthusiastic.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Turning your attention away from what is making you feel emotional?",
+    "nextQuestionId": 21,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 21,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling enthusiastic.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about your emotions over and over?",
+    "nextQuestionId": 22,
+    "isRequired": true
+  },
+  {
+    "type": "MultipleChoiceSingleAnswer",
+    "isBranchable": true,
+    "otherOptionNextQuestionId": 0,
+    "answerOptions": [
+      {
+        "nextQuestionId": 23,
+        "optionId": 1,
+        "option": "Yes"
+      },
+      {
+        "nextQuestionId": 29,
+        "optionId": 2,
+        "option": "No"
+      }
+    ],
+    "addOther": false,
+    "id": 22,
+    "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+    "title": "Emotion / Affect",
+    "questionText": "Right now, I feel relaxed.",
+    "nextQuestionId": 23,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 23,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling relaxed.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about a situation differently?",
+    "nextQuestionId": 24,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 24,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling relaxed.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "nextQuestionId": 25,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 25,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling relaxed.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Talking about your feelings and reactions with others?",
+    "nextQuestionId": 26,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 26,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling relaxed.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying not to show your emotions on the outside?",
+    "nextQuestionId": 27,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 27,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling relaxed.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Turning your attention away from what is making you feel emotional?",
+    "nextQuestionId": 28,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 28,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling relaxed.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about your emotions over and over?",
+    "nextQuestionId": 29,
+    "isRequired": true
+  },
+  {
+    "type": "MultipleChoiceSingleAnswer",
+    "isBranchable": true,
+    "otherOptionNextQuestionId": 0,
+    "answerOptions": [
+      {
+        "nextQuestionId": 30,
+        "optionId": 1,
+        "option": "Yes"
+      },
+      {
+        "nextQuestionId": 36,
+        "optionId": 2,
+        "option": "No"
+      }
+    ],
+    "addOther": false,
+    "id": 29,
+    "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+    "title": "Emotion / Affect",
+    "questionText": "Right now, I feel sad.",
+    "nextQuestionId": 30,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 30,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling sad.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about a situation differently?",
+    "nextQuestionId": 31,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 31,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling sad.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "nextQuestionId": 32,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 32,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling sad.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Talking about your feelings and reactions with others?",
+    "nextQuestionId": 33,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 33,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling sad.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying not to show your emotions on the outside?",
+    "nextQuestionId": 34,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 34,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling sad.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Turning your attention away from what is making you feel emotional?",
+    "nextQuestionId": 35,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 35,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling sad.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about your emotions over and over?",
+    "nextQuestionId": 36,
+    "isRequired": true
+  },
+  {
+    "type": "MultipleChoiceSingleAnswer",
+    "isBranchable": true,
+    "otherOptionNextQuestionId": 0,
+    "answerOptions": [
+      {
+        "nextQuestionId": 37,
+        "optionId": 1,
+        "option": "Yes"
+      },
+      {
+        "nextQuestionId": 43,
+        "optionId": 2,
+        "option": "No"
+      }
+    ],
+    "addOther": false,
+    "id": 36,
+    "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+    "title": "Emotion / Affect",
+    "questionText": "Right now, I feel guilty.",
+    "nextQuestionId": 37,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 37,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling guilty.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about a situation differently?",
+    "nextQuestionId": 38,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 38,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling guilty.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "nextQuestionId": 39,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 39,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling guilty.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Talking about your feelings and reactions with others?",
+    "nextQuestionId": 40,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 40,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling guilty.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying not to show your emotions on the outside?",
+    "nextQuestionId": 41,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 41,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling guilty.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Turning your attention away from what is making you feel emotional?",
+    "nextQuestionId": 42,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 42,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling guilty.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about your emotions over and over?",
+    "nextQuestionId": 43,
+    "isRequired": true
+  },
+  {
+    "type": "MultipleChoiceSingleAnswer",
+    "isBranchable": true,
+    "otherOptionNextQuestionId": 0,
+    "answerOptions": [
+      {
+        "nextQuestionId": 44,
+        "optionId": 1,
+        "option": "Yes"
+      },
+      {
+        "nextQuestionId": 50,
+        "optionId": 2,
+        "option": "No"
+      }
+    ],
+    "addOther": false,
+    "id": 43,
+    "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+    "title": "Emotion / Affect",
+    "questionText": "Right now, I feel irritated.",
+    "nextQuestionId": 44,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 44,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling irritated.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about a situation differently?",
+    "nextQuestionId": 45,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 45,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling irritated.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "nextQuestionId": 46,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 46,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling irritated.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Talking about your feelings and reactions with others?",
+    "nextQuestionId": 47,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 47,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling irritated.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying not to show your emotions on the outside?",
+    "nextQuestionId": 48,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 48,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling irritated.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Turning your attention away from what is making you feel emotional?",
+    "nextQuestionId": 49,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 49,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling irritated.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about your emotions over and over?",
+    "nextQuestionId": 50,
+    "isRequired": true
+  },
+  {
+    "type": "MultipleChoiceSingleAnswer",
+    "isBranchable": true,
+    "otherOptionNextQuestionId": 0,
+    "answerOptions": [
+      {
+        "nextQuestionId": 51,
+        "optionId": 1,
+        "option": "Yes"
+      },
+      {
+        "nextQuestionId": 57,
+        "optionId": 2,
+        "option": "No"
+      }
+    ],
+    "addOther": false,
+    "id": 50,
+    "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+    "title": "Emotion / Affect",
+    "questionText": "Right now, I feel lonely.",
+    "nextQuestionId": 51,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 51,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling lonely.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about a situation differently?",
+    "nextQuestionId": 52,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 52,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling lonely.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "nextQuestionId": 53,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 53,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling lonely.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Talking about your feelings and reactions with others?",
+    "nextQuestionId": 54,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 54,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling lonely.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying not to show your emotions on the outside?",
+    "nextQuestionId": 55,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 55,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling lonely.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Turning your attention away from what is making you feel emotional?",
+    "nextQuestionId": 56,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 56,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling lonely.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about your emotions over and over?",
+    "nextQuestionId": 57,
+    "isRequired": true
+  },
+  {
+    "type": "MultipleChoiceSingleAnswer",
+    "isBranchable": true,
+    "otherOptionNextQuestionId": 0,
+    "answerOptions": [
+      {
+        "nextQuestionId": 58,
+        "optionId": 1,
+        "option": "Yes"
+      },
+      {
+        "nextQuestionId": 64,
+        "optionId": 2,
+        "option": "No"
+      }
+    ],
+    "addOther": false,
+    "id": 57,
+    "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+    "title": "Emotion / Affect",
+    "questionText": "Right now, I feel anxious.",
+    "nextQuestionId": 58,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 58,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling anxious.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about a situation differently?",
+    "nextQuestionId": 59,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 59,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling anxious.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "nextQuestionId": 60,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 60,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling anxious.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Talking about your feelings and reactions with others?",
+    "nextQuestionId": 61,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 61,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling anxious.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Trying not to show your emotions on the outside?",
+    "nextQuestionId": 62,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 62,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling anxious.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Turning your attention away from what is making you feel emotional?",
+    "nextQuestionId": 63,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 63,
+    "questionType": "LIKERT_SCALE",
+    "title": "Regulation Strategies",
+    "subTitle": "In relation to feeling anxious.",
+    "questionPrefix": "How much are you:",
+    "questionText": "Thinking about your emotions over and over?",
+    "nextQuestionId": 64,
+    "isRequired": true
+  },
+  {
+    "type": "FreeTextQuestionMultiLine",
+    "id": 64,
+    "questionType": "FREE_TEXT_MULTI_LINE",
+    "title": "Event Stress",
+    "questionText": "What is the most important event that has happened since your last report?",
+    "nextQuestionId": 65,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 65,
+    "questionType": "LIKERT_SCALE",
+    "title": "Event Stress",
+    "questionText": "How pleasant was this event?",
+    "nextQuestionId": 66,
+    "isRequired": true
+  },
+  {
+    "type": "FreeTextQuestionSingleLine",
+    "id": 66,
+    "questionType": "FREE_TEXT_SINGLE_LINE",
+    "title": "Activity Stress",
+    "questionText": "What are you currently doing?",
+    "nextQuestionId": 67,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Not at all"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "A little bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Moderately"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Quite a bit"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Extremely"
+      }
+    ],
+    "id": 67,
+    "questionType": "LIKERT_SCALE",
+    "title": "Activity Stress",
+    "questionPrefix": "In relation to this activity:",
+    "questionText": "I like what I am doing right now.",
+    "nextQuestionId": 68,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Strongly disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "Disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Neither agree nor disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Agree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Strongly agree"
+      }
+    ],
+    "id": 68,
+    "questionType": "LIKERT_SCALE",
+    "title": "Activity Stress",
+    "questionPrefix": "In relation to this activity:",
+    "questionText": "It takes a lot of effort to do this activity.",
+    "nextQuestionId": 69,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Strongly disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "Disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Neither agree nor disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Agree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Strongly agree"
+      }
+    ],
+    "id": 69,
+    "questionType": "LIKERT_SCALE",
+    "title": "Activity Stress",
+    "questionPrefix": "In relation to this activity:",
+    "questionText": "I have the ability to do this activity.",
+    "nextQuestionId": 70,
+    "isRequired": true
+  },
+  {
+    "type": "LikertScaleQuestion",
+    "isBranchable": false,
+    "answerOptions": [
+      {
+        "nextQuestionId": 0,
+        "optionId": 1,
+        "option": "Strongly disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 2,
+        "option": "Disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 3,
+        "option": "Neither agree nor disagree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 4,
+        "option": "Agree"
+      },
+      {
+        "nextQuestionId": 0,
+        "optionId": 5,
+        "option": "Strongly agree"
+      }
+    ],
+    "id": 70,
+    "questionType": "LIKERT_SCALE",
+    "title": "Activity Stress",
+    "questionPrefix": "In relation to this activity:",
+    "questionText": "I would prefer to be doing something else right now.",
+    "nextQuestionId": 71,
+    "isRequired": true
+  },
+  {
+    "type": "MultipleChoiceSingleAnswer",
+    "isBranchable": true,
+    "otherOptionNextQuestionId": 0,
+    "answerOptions": [
+      {
+        "nextQuestionId": 72,
+        "optionId": 1,
+        "option": "Alone"
+      },
+      {
+        "nextQuestionId": 73,
+        "optionId": 2,
+        "option": "With others"
+      }
+    ],
+    "addOther": false,
+    "id": 71,
+    "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
     "title": "Social Stress",
     "questionText": "Are you alone or with others?",
-    "nextQuestionId": 16,
+    "nextQuestionId": 72,
     "isRequired": true
   },
   {
@@ -533,7 +2569,7 @@
       }
     ],
     "addOther": false,
-    "id": 16,
+    "id": 72,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
     "title": "Social Stress",
     "nextQuestionId": -1,
@@ -574,7 +2610,7 @@
       }
     ],
     "addOther": true,
-    "id": 17,
+    "id": 73,
     "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",
     "title": "Social Stress",
     "questionText": "I am with:",

@@ -14,7 +14,9 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "TRACK.TrackQuestActvty";
 
-    public void displayTitleQuestionAndPrefix(TrackQuestion question, int toolbarViewId, int toolbarTxtViewId,
+    public void displayTitleQuestionAndPrefix(TrackQuestion question, int toolbarViewId,
+                                              int toolbarTitleTxtViewId,
+                                              int toolbarSubTitleTxtViewId,
                                               int questionTextTxtViewId,
                                               int questionPrefixTextViewId) {
         if (question == null) {
@@ -23,20 +25,35 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
             Log.e(LOG_TAG, eMsg, npe);
         }
 
-        this.displayTitle(question, toolbarViewId, toolbarTxtViewId);
+        this.displayTitle(question, toolbarViewId, toolbarTitleTxtViewId, toolbarSubTitleTxtViewId);
         this.displayQuestionPrefix(question, questionPrefixTextViewId);
         this.displayQuestionText(question, questionTextTxtViewId);
     }
 
-    private void displayTitle(TrackQuestion question, int toolbarViewId, int toolbarTxtViewId) {
+    private void displayTitle(TrackQuestion question, int toolbarViewId,
+                              int toolbarTxtViewId, int toolbarSubTitleTxtViewId) {
         String title = question.getTitle();
+        String subTitle = question.getSubTitle();
 
-        if (Utils.isNullOrEmpty(title)) {
+        if (Utils.isNullOrEmpty(title) && (Utils.isNullOrEmpty(subTitle))) {
+            // if no title or sub-title, hide toolbar
             Toolbar toolbar = (Toolbar) findViewById(toolbarViewId);
             toolbar.setVisibility(View.GONE);
         } else {
-            TextView textView = (TextView) findViewById(toolbarTxtViewId);
-            textView.setText(title);
+            // show/hide title
+            TextView titleTxtVw = (TextView) findViewById(toolbarTxtViewId);
+            if (Utils.isNullOrEmpty(title)) {
+                titleTxtVw.setVisibility(View.GONE);
+            } else {
+                titleTxtVw.setText(title);
+            }
+            // show/hide sub-title
+            TextView subTitleTxtView = (TextView) findViewById(toolbarSubTitleTxtViewId);
+            if (Utils.isNullOrEmpty(subTitle)) {
+                subTitleTxtView.setVisibility(View.GONE);
+            } else {
+                subTitleTxtView.setText(subTitle);
+            }
         }
     }
 
