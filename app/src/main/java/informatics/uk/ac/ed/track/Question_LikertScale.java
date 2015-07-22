@@ -134,7 +134,22 @@ public class Question_LikertScale extends TrackQuestionActivity {
         }
 
         Intent intent = Utils.getLaunchQuestionIntent(this, nextQuestionId);
+        intent.putExtra(Constants.SURVEY_RESPONSES, this.getSurveyResponsesForNextIntent());
         startActivity(intent);
+    }
+
+    @Override
+    public String getSurveyResponsesForNextIntent() {
+        String surveyResponses;
+        if (this.checkedOptionLyt != null) {
+            // if answered, add selected Likert Anchor ID to response
+            surveyResponses = this.addAnswerToSurveyResponses(this.question.getColumnName(),
+                    Integer.toString(this.checkedOptionLyt.getId()));
+        } else {
+            // otherwise, add nothing
+            surveyResponses = this.getIntentSurveyResponses();
+        }
+        return surveyResponses;
     }
 
     public void addLikertOption(Resources res, LinearLayout lytScale,

@@ -10,6 +10,8 @@ public class Constants {
 
     public static final String ALARM_REQUEST_CODES = "alarmRequestCodes";
     public static final String DEF_VALUE_STR = "";
+    public static final String DATABASE_VERSION = "dbVersion";
+    public static final String DATABASE_SURVEY_COLUMNS_SQL = "dbSurveyColumnsSql";
     public static final String DAY_END_TME_MILLIS = "dayEndTimeMillis";
     public static final String DURATION_DAYS = "duration";
     public static final String END_TIME_HOUR = "endTimeHour";
@@ -41,4 +43,7 @@ public class Constants {
     public static final String STUDY_START_DATE_TIME_MILLIS = "studyStartDateTimeMillis";
     public static final String STUDY_END_DATE_TIME_MILLIS = "studyEndDateTimeMillis";
     public static final String SURVEY_IMPORT_COMPLETE = "surveyImportComplete";
+    public static final String SURVEY_RESPONSES = "surveyResponses";
+    public static final String SURVEY_RESPONSES_CONTENT_VALUE_DELIMITER = "<_C_V_>";
+    public static final String SURVEY_RESPONSES_RESPONSE_DELIMITER =  "<_R_>";
 }

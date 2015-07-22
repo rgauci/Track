@@ -27,6 +27,7 @@ import java.util.GregorianCalendar;
 
 import informatics.uk.ac.ed.track.lib.TrackQuestion;
 import informatics.uk.ac.ed.track.lib.TrackQuestionType;
+import informatics.uk.ac.ed.track.util.DatabaseHelper;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -154,6 +155,9 @@ public class SplashScreen extends AppCompatActivity {
         SharedPreferences.Editor settingsEditor = settings.edit();
         Gson questionGson = new Gson();
 
+        // save SQL-formatted String for columns to be created
+        StringBuilder surveyColumnsSqlSb = new StringBuilder();
+
         for (TrackQuestion question : questions) {
             SharedPreferences preferences = Utils.getQuestionPreferences(this, question.getId());
             SharedPreferences.Editor editor = preferences.edit();
@@ -162,14 +166,47 @@ public class SplashScreen extends AppCompatActivity {
             editor.putString(Constants.QUESTION_JSON, questionGson.toJson(question));
             editor.commit();
 
+            TrackQuestionType qType = question.getQuestionType();
+
             // also save question type so that we can determine type of activity to launch
             // without having to deserialize the whole object string
-            settingsEditor.putInt(Constants.QUESTION_TYPE_PREFIX + question.getId(), TrackQuestionType.toInt(question.getQuestionType()));
+            settingsEditor.putInt(Constants.QUESTION_TYPE_PREFIX + question.getId(),
+                    TrackQuestionType.toInt(qType));
+
+            // prepare SQL for question column
+            surveyColumnsSqlSb.append("`");
+            surveyColumnsSqlSb.append(question.getColumnName());
+            surveyColumnsSqlSb.append("`\t");
+
+            switch (qType) {
+                case FREE_TEXT_SINGLE_LINE:
+                case FREE_TEXT_MULTI_LINE:
+                case MULTIPLE_CHOICE_SINGLE_ANSWER:
+                case MULTIPLE_CHOICE_MULTI_ANSWER:
+                    surveyColumnsSqlSb.append(DatabaseHelper.DATATYPE_TEXT);
+                    break;
+                case LIKERT_SCALE:
+                    surveyColumnsSqlSb.append(DatabaseHelper.DATATYPE_INTEGER);
+                    break;
+            }
+
+            surveyColumnsSqlSb.append(",\n");
         }
 
         // set first question id to know which one to launch on survey start
         settingsEditor.putInt(Constants.FIRST_QUESTION_ID, questions.get(0).getId());
         settingsEditor.putBoolean(Constants.SURVEY_IMPORT_COMPLETE, true);
+
+        // save db version and survey columns sql to preferences
+        int dbVersion = settings.getInt(Constants.DATABASE_VERSION, Constants.DEF_VALUE_INT);
+        dbVersion = (dbVersion == Constants.DEF_VALUE_INT) ? 1 : dbVersion + 1; // 1 if new db, +1 if upgrade
+        settingsEditor.putInt(Constants.DATABASE_VERSION, dbVersion);
+        settingsEditor.putString(Constants.DATABASE_SURVEY_COLUMNS_SQL, surveyColumnsSqlSb.toString());
+
+        // commit changes to shared preferences
         settingsEditor.commit();
+
+        // create database table
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext(), dbVersion);
     }
 }

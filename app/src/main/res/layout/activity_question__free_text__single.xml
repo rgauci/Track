@@ -82,7 +82,8 @@ tools:context="informatics.uk.ac.ed.track.Question_FreeText_Single">
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txtAnswer" />
+                    android:id="@+id/txtAnswer"
+                    android:singleLine="true" />
 
             </LinearLayout>
         </ScrollView>

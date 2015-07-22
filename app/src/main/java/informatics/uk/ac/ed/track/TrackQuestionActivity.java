@@ -14,6 +14,28 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "TRACK.TrackQuestActvty";
 
+    protected String getIntentSurveyResponses() {
+        Intent intent = getIntent();
+
+        /* get survey responses so far */
+        return intent.getStringExtra(Constants.SURVEY_RESPONSES);
+    }
+
+    protected String addAnswerToSurveyResponses(String columnName, String response) {
+        String surveyResponses = this.getIntentSurveyResponses();
+
+        if (surveyResponses == null) {
+            surveyResponses = "";
+        } else {
+            surveyResponses += Constants.SURVEY_RESPONSES_RESPONSE_DELIMITER;
+        }
+
+        surveyResponses += columnName + Constants.SURVEY_RESPONSES_CONTENT_VALUE_DELIMITER+
+                response;
+
+        return surveyResponses;
+    }
+
     public void displayTitleQuestionAndPrefix(TrackQuestion question, int toolbarViewId,
                                               int toolbarTitleTxtViewId,
                                               int toolbarSubTitleTxtViewId,
@@ -113,6 +135,8 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     if (isValid()) {
                         Intent intent = new Intent(TrackQuestionActivity.this, SurveyComplete.class);
+                        intent.putExtra(Constants.SURVEY_RESPONSES,
+                                getSurveyResponsesForNextIntent());
                         startActivity(intent);
                     }
                 }
@@ -136,4 +160,6 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
     public abstract boolean isValid();
 
     public abstract void launchNextQuestion();
+
+    public abstract String getSurveyResponsesForNextIntent();
 }

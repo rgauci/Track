@@ -194,14 +194,40 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
         int nextQuestionId;
 
         if (this.question.getIsBranchable()) {
-            int checkedOptionId = this.rdGrp.getCheckedRadioButtonId();
-            BranchableAnswerOption checkedOption = optionsMap.get(checkedOptionId);
+            BranchableAnswerOption checkedOption = optionsMap.get( this.rdGrp.getCheckedRadioButtonId());
             nextQuestionId = checkedOption.getNextQuestionId();
         } else {
             nextQuestionId = this.question.getNextQuestionId();
         }
 
         Intent intent = Utils.getLaunchQuestionIntent(this, nextQuestionId);
+        intent.putExtra(Constants.SURVEY_RESPONSES, this.getSurveyResponsesForNextIntent());
         startActivity(intent);
+    }
+
+    @Override
+    public String getSurveyResponsesForNextIntent() {
+        String surveyResponses;
+        int checkedOptionId = this.rdGrp.getCheckedRadioButtonId();
+
+        if (checkedOptionId != -1) {
+            // if selected, add option text
+            String response;
+
+            if ((this.rdBtnOther != null) && (checkedOptionId == this.rdBtnOther.getId())) {
+                // if other is selected, read from text box
+                response = this.txtOther.getText().toString();
+            } else {
+                // otherwise read from options map
+                response = optionsMap.get(checkedOptionId).getOption();
+            }
+
+            surveyResponses = this.addAnswerToSurveyResponses(this.question.getColumnName(),
+                    response);
+        } else {
+            surveyResponses = this.getIntentSurveyResponses();
+        }
+
+        return surveyResponses;
     }
 }

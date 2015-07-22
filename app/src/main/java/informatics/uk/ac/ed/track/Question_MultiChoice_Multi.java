@@ -185,6 +185,30 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
     @Override
     public void launchNextQuestion() {
         Intent intent = Utils.getLaunchQuestionIntent(this, this.question.getNextQuestionId());
+        intent.putExtra(Constants.SURVEY_RESPONSES, this.getSurveyResponsesForNextIntent());
         startActivity(intent);
+    }
+
+    @Override
+    public String getSurveyResponsesForNextIntent() {
+        // add all selected options to response
+        StringBuilder responseSb = new StringBuilder();
+
+        for (CheckBox checkBox : this.checkBoxes) {
+            if (checkBox.isChecked()) {
+                if (responseSb.length() > 0) {
+                    responseSb.append(",");
+                }
+                if ((this.chkBxOther != null) && (checkBox.getId() == this.chkBxOther.getId())) {
+                    // if 'Other' checkbox is selected, use Other textbox's text
+                    responseSb.append(this.txtOther.getText());
+                } else {
+                    responseSb.append(checkBox.getText());
+                }
+            }
+        }
+
+        return this.addAnswerToSurveyResponses(this.question.getColumnName(),
+                responseSb.toString());
     }
 }

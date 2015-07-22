@@ -2,7 +2,6 @@ package informatics.uk.ac.ed.track;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -20,6 +19,8 @@ public class Question_FreeText_Single extends TrackQuestionActivity {
     private FreeTextQuestionSingleLine question;
 
     private EditText txtAnswer;
+
+    private String answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +76,10 @@ public class Question_FreeText_Single extends TrackQuestionActivity {
     public boolean isValid() {
         boolean hasErrors = false;
 
+        this.answer = Utils.getTrimmedText(txtAnswer);
+
         if (this.question.getIsRequired()) {
-            String answer = Utils.getTrimmedText(txtAnswer);
-            if (TextUtils.isEmpty(answer)) {
+            if (TextUtils.isEmpty(this.answer)) {
                 Toast toast = Toast.makeText(this,
                         getResources().getString(R.string.error_answerToProceed), Toast.LENGTH_SHORT);
                 toast.show();
@@ -91,6 +93,13 @@ public class Question_FreeText_Single extends TrackQuestionActivity {
     @Override
     public void launchNextQuestion() {
         Intent intent = Utils.getLaunchQuestionIntent(this, this.question.getNextQuestionId());
+        intent.putExtra(Constants.SURVEY_RESPONSES, this.getSurveyResponsesForNextIntent());
         startActivity(intent);
+    }
+
+    @Override
+    public String getSurveyResponsesForNextIntent() {
+        return this.addAnswerToSurveyResponses(this.question.getColumnName(),
+                this.answer);
     }
 }
