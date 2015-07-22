@@ -1,12 +1,17 @@
 package informatics.uk.ac.ed.track;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import informatics.uk.ac.ed.track.lib.TrackQuestion;
 
@@ -134,9 +139,35 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (isValid()) {
-                        Intent intent = new Intent(TrackQuestionActivity.this, SurveyComplete.class);
-                        intent.putExtra(Constants.SURVEY_RESPONSES,
+                        Calendar cal = GregorianCalendar.getInstance();
+                        long surveyCompletedTime = cal.getTimeInMillis();
+
+                        // save survey completed time to shared preferences
+                        SharedPreferences settings = PreferenceManager.
+                                getDefaultSharedPreferences(getApplicationContext());
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putLong(Constants.LAST_SURVEY_COMPLETED_TIME_MILLIS,
+                                surveyCompletedTime);
+                        editor.apply();
+
+                        // launch two intents:
+
+                        // one an Intent Service to save to Local & External DBs
+                        // (using Background Thread)
+                        Intent localDbService = new Intent(TrackQuestionActivity.this,
+                                LocalDatabaseService.class);
+                        localDbService.putExtra(Constants.LAST_NOTIFICATION_TIME_MILLIS,
+                                settings.getLong(Constants.LAST_NOTIFICATION_TIME_MILLIS,
+                                        Constants.DEF_VALUE_LNG));
+                        localDbService.putExtra(Constants.LAST_SURVEY_COMPLETED_TIME_MILLIS,
+                                surveyCompletedTime);
+                        localDbService.putExtra(Constants.SURVEY_RESPONSES,
                                 getSurveyResponsesForNextIntent());
+                        startService(localDbService);
+
+                        // and one to notify user that survey has been complete
+                        Intent intent = new Intent(TrackQuestionActivity.this,
+                                SurveyComplete.class);
                         startActivity(intent);
                     }
                 }

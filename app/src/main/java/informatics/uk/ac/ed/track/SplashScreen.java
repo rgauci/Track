@@ -27,7 +27,6 @@ import java.util.GregorianCalendar;
 
 import informatics.uk.ac.ed.track.lib.TrackQuestion;
 import informatics.uk.ac.ed.track.lib.TrackQuestionType;
-import informatics.uk.ac.ed.track.util.DatabaseHelper;
 
 public class SplashScreen extends AppCompatActivity {
 

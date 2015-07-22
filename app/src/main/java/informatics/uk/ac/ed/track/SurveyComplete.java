@@ -1,5 +1,7 @@
 package informatics.uk.ac.ed.track;
 
+import android.app.IntentService;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,10 +22,13 @@ public class SurveyComplete extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_complete);
 
+        /* initialise UI controls */
         this.txtSurveyComplete = (TextView) findViewById(R.id.txtSurveyCompleteText);
         this.txtSurveyComplete.setText(
                 String.format(getResources().getString(R.string.surveyCompleteText),
                         getResources().getString(R.string.app_name)));
+
+        // TODO make sure can't return to survey
     }
 
     @Override

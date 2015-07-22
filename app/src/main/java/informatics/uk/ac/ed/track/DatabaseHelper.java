@@ -1,10 +1,14 @@
-package informatics.uk.ac.ed.track.util;
+package informatics.uk.ac.ed.track;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.preference.PreferenceManager;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import informatics.uk.ac.ed.track.Constants;
 
@@ -26,11 +30,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS `" + TABLE_NAME_SURVEY_RESPONSES + "`";
 
+    private static final String DATE_ISO_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
+
     private Context appContext;
 
     public DatabaseHelper(Context appContext, int dbVersion) {
         super(appContext, DATABASE_NAME, null, dbVersion);
         this.appContext = appContext;
+    }
+
+    public DatabaseHelper(Context appContext) {
+        this(appContext, PreferenceManager.getDefaultSharedPreferences(appContext)
+                .getInt(Constants.DATABASE_VERSION, Constants.DEF_VALUE_INT));
     }
 
     /*
@@ -69,5 +80,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_ENTRIES);
         // re-create
         onCreate(db);
+    }
+
+    public String getDateInIsoFormat(long timeInMillis) {
+        Calendar cal = GregorianCalendar.getInstance();
+        cal.setTimeInMillis(timeInMillis);
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_ISO_FORMAT);
+        return sdf.format(cal.getTime());
     }
 }
