@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.Utils;
 
 
 public class DemoFreeText extends AppCompatActivity {

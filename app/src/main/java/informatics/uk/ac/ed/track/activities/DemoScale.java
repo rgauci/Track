@@ -1,6 +1,5 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -8,32 +7,33 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class SetupComplete extends AppCompatActivity {
+import informatics.uk.ac.ed.track.R;
 
-    private Button btnDemoNo;
-    private Button btnDemoYes;
+
+public class DemoScale extends AppCompatActivity {
+
+    private Button btnNext;
+    private Button btnPrevious;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setup_complete);
+        setContentView(R.layout.activity_demo_scale);
 
-        btnDemoNo = (Button) findViewById(R.id.btnDemoNo);
-        btnDemoYes = (Button) findViewById(R.id.btnDemoYes);
+        /* set onClick listeners */
+        btnNext = (Button) findViewById(R.id.btnNext);
+        btnPrevious = (Button) findViewById(R.id.btnPrevious);
 
-        btnDemoYes.setOnClickListener(new Button.OnClickListener() {
+        btnNext.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SetupComplete.this, DemoIntro.class);
-                startActivity(intent);
             }
         });
 
-        btnDemoNo.setOnClickListener(new Button.OnClickListener() {
+        btnPrevious.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SetupComplete.this, BriefingComplete.class);
-                startActivity(intent);
+                DemoScale.super.onBackPressed();
             }
         });
     }
@@ -41,7 +41,7 @@ public class SetupComplete extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_setup_complete, menu);
+        getMenuInflater().inflate(R.menu.menu_demo_scale, menu);
         return true;
     }
 

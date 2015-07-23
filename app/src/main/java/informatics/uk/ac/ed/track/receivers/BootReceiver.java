@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -9,6 +9,9 @@ import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 
 import java.util.Calendar;
+
+import informatics.uk.ac.ed.track.Constants;
+import informatics.uk.ac.ed.track.SurveyNotificationManager;
 
 public class BootReceiver extends BroadcastReceiver {
 

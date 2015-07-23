@@ -1,10 +1,9 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,9 +18,11 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+import informatics.uk.ac.ed.track.Constants;
+import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.Utils;
 import informatics.uk.ac.ed.track.lib.AnswerOption;
 import informatics.uk.ac.ed.track.lib.MultipleChoiceMultipleAnswer;
-import informatics.uk.ac.ed.track.lib.TrackQuestion;
 
 
 public class Question_MultiChoice_Multi extends TrackQuestionActivity {

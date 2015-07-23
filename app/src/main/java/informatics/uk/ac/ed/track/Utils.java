@@ -14,6 +14,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import informatics.uk.ac.ed.track.activities.Question_FreeText_Multi;
+import informatics.uk.ac.ed.track.activities.Question_FreeText_Single;
+import informatics.uk.ac.ed.track.activities.Question_LikertScale;
+import informatics.uk.ac.ed.track.activities.Question_MultiChoice_Multi;
+import informatics.uk.ac.ed.track.activities.Question_MultiChoice_Single;
 import informatics.uk.ac.ed.track.lib.TrackQuestionType;
 
 public class Utils {

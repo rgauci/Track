@@ -1,10 +1,13 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.services;
 
 import android.app.IntentService;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
+
+import informatics.uk.ac.ed.track.Constants;
+import informatics.uk.ac.ed.track.DatabaseHelper;
 
 public class LocalDatabaseService extends IntentService {
 

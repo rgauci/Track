@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import informatics.uk.ac.ed.track.Constants;
+import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.Utils;
 
 
 public class ResearcherSetup extends AppCompatActivity {

@@ -1,39 +1,40 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
+
+import informatics.uk.ac.ed.track.R;
 
 
-public class UserLogin extends AppCompatActivity {
+public class DemoIntro extends AppCompatActivity {
 
-    private TextView txtVwParticipantId;
-    private SharedPreferences settings;
+    Button btnStartDemo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_login);
+        setContentView(R.layout.activity_demo_intro);
 
-        /* initialise UI controls */
-        txtVwParticipantId = (TextView) findViewById(R.id.txtVwParticipantId);
+        btnStartDemo = (Button) findViewById(R.id.btnStartDemo);
 
-        /* get shared preferences */
-        this.settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        /* display participant ID */
-        int participantId = settings.getInt(Constants.PARTICIPANT_ID, -1);
-        txtVwParticipantId.setText(String.valueOf(participantId));
+        btnStartDemo.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DemoIntro.this, DemoFreeText.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_user_login, menu);
+        getMenuInflater().inflate(R.menu.menu_demo_intro, menu);
         return true;
     }
 
@@ -50,5 +51,10 @@ public class UserLogin extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void btnStartDemo_onClick(View view) {
+        Intent intent = new Intent(this, DemoFreeText.class);
+        startActivity(intent);
     }
 }

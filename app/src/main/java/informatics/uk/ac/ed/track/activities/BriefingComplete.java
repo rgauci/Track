@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -13,6 +13,9 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import informatics.uk.ac.ed.track.Constants;
+import informatics.uk.ac.ed.track.R;
 
 
 public class BriefingComplete extends AppCompatActivity {

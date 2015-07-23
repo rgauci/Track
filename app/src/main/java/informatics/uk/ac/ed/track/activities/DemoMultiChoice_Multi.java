@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import informatics.uk.ac.ed.track.R;
 
 
 public class DemoMultiChoice_Multi extends AppCompatActivity {

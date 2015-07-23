@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -20,6 +20,14 @@ import android.widget.TimePicker;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import informatics.uk.ac.ed.track.Constants;
+import informatics.uk.ac.ed.track.NotificationSchedule;
+import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.SurveyNotificationManager;
+import informatics.uk.ac.ed.track.Utils;
+import informatics.uk.ac.ed.track.fragments.DatePickerFragment;
+import informatics.uk.ac.ed.track.fragments.TimePickerFragment;
 
 
 public class StudyConfiguration extends AppCompatActivity

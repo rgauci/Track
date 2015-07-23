@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.receivers;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,6 +13,12 @@ import android.support.v4.app.NotificationCompat;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import informatics.uk.ac.ed.track.Constants;
+import informatics.uk.ac.ed.track.NotificationSchedule;
+import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.SurveyNotificationManager;
+import informatics.uk.ac.ed.track.Utils;
 
 public class AlarmReceiver extends BroadcastReceiver {
 

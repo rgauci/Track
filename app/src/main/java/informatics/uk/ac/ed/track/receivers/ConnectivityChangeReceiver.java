@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.net.NetworkInfo;
 
 
 public class ConnectivityChangeReceiver extends BroadcastReceiver {
+
+    // TODO disable receiver on study complete
 
     @Override
     public void onReceive(Context context, Intent intent) {

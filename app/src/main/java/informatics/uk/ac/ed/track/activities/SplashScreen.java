@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +25,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import informatics.uk.ac.ed.track.Constants;
+import informatics.uk.ac.ed.track.DatabaseHelper;
+import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.Utils;
 import informatics.uk.ac.ed.track.lib.TrackQuestion;
 import informatics.uk.ac.ed.track.lib.TrackQuestionType;
 

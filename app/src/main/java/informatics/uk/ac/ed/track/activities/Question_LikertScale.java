@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +19,9 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import informatics.uk.ac.ed.track.Constants;
+import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.Utils;
 import informatics.uk.ac.ed.track.lib.BranchableAnswerOption;
 import informatics.uk.ac.ed.track.lib.LikertScaleQuestion;
 

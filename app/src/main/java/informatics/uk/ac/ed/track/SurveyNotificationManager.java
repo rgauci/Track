@@ -10,9 +10,10 @@ import android.util.Log;
 
 import java.lang.StringBuilder;
 import java.security.SecureRandom;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import informatics.uk.ac.ed.track.receivers.AlarmReceiver;
 
 public class SurveyNotificationManager {
 

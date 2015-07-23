@@ -1,45 +1,40 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
+import android.app.IntentService;
+import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
+import org.w3c.dom.Text;
 
-public class DemoScale extends AppCompatActivity {
+import informatics.uk.ac.ed.track.R;
 
-    private Button btnNext;
-    private Button btnPrevious;
+public class SurveyComplete extends AppCompatActivity {
+
+    private TextView txtSurveyComplete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo_scale);
+        setContentView(R.layout.activity_survey_complete);
 
-        /* set onClick listeners */
-        btnNext = (Button) findViewById(R.id.btnNext);
-        btnPrevious = (Button) findViewById(R.id.btnPrevious);
+        /* initialise UI controls */
+        this.txtSurveyComplete = (TextView) findViewById(R.id.txtSurveyCompleteText);
+        this.txtSurveyComplete.setText(
+                String.format(getResources().getString(R.string.surveyCompleteText),
+                        getResources().getString(R.string.app_name)));
 
-        btnNext.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-
-        btnPrevious.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DemoScale.super.onBackPressed();
-            }
-        });
+        // TODO make sure can't return to survey
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_demo_scale, menu);
+        getMenuInflater().inflate(R.menu.menu_survey_complete, menu);
         return true;
     }
 

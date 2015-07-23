@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track;
+package informatics.uk.ac.ed.track.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import informatics.uk.ac.ed.track.Constants;
+import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.Utils;
 import informatics.uk.ac.ed.track.lib.FreeTextQuestionSingleLine;
 
 

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="informatics.uk.ac.ed.track.Question_FreeText_Multi">
+    tools:context="informatics.uk.ac.ed.track.activities.Question_FreeText_Multi">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
