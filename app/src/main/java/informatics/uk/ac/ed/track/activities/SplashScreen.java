@@ -177,6 +177,9 @@ public class SplashScreen extends AppCompatActivity {
                     TrackQuestionType.toInt(qType));
 
             // prepare SQL for question column
+            if (surveyColumnsSqlSb.length() > 0) {
+                surveyColumnsSqlSb.append(",\n");
+            }
             surveyColumnsSqlSb.append("`");
             surveyColumnsSqlSb.append(question.getColumnName());
             surveyColumnsSqlSb.append("`\t");
@@ -192,8 +195,6 @@ public class SplashScreen extends AppCompatActivity {
                     surveyColumnsSqlSb.append(DatabaseHelper.DATATYPE_INTEGER);
                     break;
             }
-
-            surveyColumnsSqlSb.append(",\n");
         }
 
         // set first question id to know which one to launch on survey start

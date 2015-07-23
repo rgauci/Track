@@ -25,9 +25,10 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".services.LocalDatabaseService"
+        <service android:name=".services.LocalDatabaseService"
             android:exported="false"/> <!-- the service is only available to this app -->
+        <service android:name=".services.ExternalDatabaseService"
+            android:exported="false"/>
 
         <activity
             android:name=".activities.SplashScreen"

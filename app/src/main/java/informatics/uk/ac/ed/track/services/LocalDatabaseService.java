@@ -35,7 +35,7 @@ public class LocalDatabaseService extends IntentService {
                 dbHelper.getDateInIsoFormat(notificationTime));
         columnValues.put("`" + DatabaseHelper.COLUMN_NAME_SURVEY_COMPLETED_TIME + "`",
                 dbHelper.getDateInIsoFormat(surveyCompletedTime));
-        columnValues.put("`" + DatabaseHelper.COLUMN_NAME_SYNCED + "`", false);
+        columnValues.put("`" + DatabaseHelper.COLUMN_NAME_SYNCED + "`", DatabaseHelper.FALSE);
 
         String[] responses = surveyResponses.split(Constants.SURVEY_RESPONSES_RESPONSE_DELIMITER);
         for (String response : responses) {
