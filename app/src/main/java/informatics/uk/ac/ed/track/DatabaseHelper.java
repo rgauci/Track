@@ -98,10 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<SurveyResponse> getUnsyncedRespones() {
         ArrayList<SurveyResponse> responses = new ArrayList<>();
-        // initialise db helper
-        DatabaseHelper dbHelper = new DatabaseHelper(this.appContext);
-        // Gets the data repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
         String query = "SELECT * FROM `" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES + "` " +
                 "WHERE `" + DatabaseHelper.COLUMN_NAME_SYNCED + "` = " + DatabaseHelper.FALSE;
@@ -119,6 +116,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return responses;
+    }
+
+    public SurveyResponse getResponseById(long rowId) {
+        SurveyResponse response = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM `" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES + "` " +
+                "WHERE `" + DatabaseHelper.COLUMN_NAME_ROW_ID + "` = " + rowId;
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            response = this.getSurveyReponseFromCursor(cursor);
+            cursor.close();
+        }
+
+        db.close();
+
+        return response;
     }
 
     private SurveyResponse getSurveyReponseFromCursor(Cursor cursor) {
@@ -142,10 +159,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         response.setQuestionAnswers(questionAnswers);
 
         return response;
-    }
-
-    public SurveyResponse getResponseById(int rowId) {
-        return null;
     }
 
     public boolean getBoolean(int value) {

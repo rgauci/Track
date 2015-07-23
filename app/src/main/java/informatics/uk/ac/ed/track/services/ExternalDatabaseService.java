@@ -22,9 +22,9 @@ public class ExternalDatabaseService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        int rowId = intent.getIntExtra(Constants.SURVEY_RESPONSE_ROW_ID, Constants.DEF_VALUE_INT);
+        long rowId = intent.getLongExtra(Constants.SURVEY_RESPONSE_ROW_ID, Constants.DEF_VALUE_LNG);
 
-        if (rowId == Constants.DEF_VALUE_INT) {
+        if (rowId == Constants.DEF_VALUE_LNG) {
             // if intent extra does not contain a row id
             // try to sync all un-sycned records to external db
             this.syncAllUnsyncedResponses();
@@ -39,7 +39,8 @@ public class ExternalDatabaseService extends IntentService {
         ArrayList<SurveyResponse> responses = dbHelper.getUnsyncedRespones();
     }
 
-    private void syncResponse(int rowId) {
-
+    private void syncResponse(long rowId) {
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        SurveyResponse response = dbHelper.getResponseById(rowId);
     }
 }

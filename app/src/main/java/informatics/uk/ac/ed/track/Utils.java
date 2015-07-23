@@ -3,6 +3,8 @@ package informatics.uk.ac.ed.track;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -52,6 +54,15 @@ public class Utils {
 
     public static boolean isNullOrEmpty(String str) {
         return ((str == null) || (str.length() == 0) || (str.trim().length() == 0));
+    }
+
+    public static boolean isConnectedToInternet(Context context){
+        // query the network and check if we have an Internet connection
+        ConnectivityManager cm =
+                (ConnectivityManager)(context.getSystemService(Context.CONNECTIVITY_SERVICE));
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return (activeNetwork != null) && (activeNetwork.isConnectedOrConnecting());
     }
 
     public static String computeHash(String plaintext) {

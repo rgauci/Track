@@ -55,10 +55,9 @@ public class SplashScreen extends AppCompatActivity {
 
                 // if survey has not yet been imported from survey_json.txt
                 // import survey: create shared preference file for each question
-                //if (!surveyImportComplete) {
-                    // TODO remove comments to re-enable if condition
-                    importSurvey(settings);
-                //}
+                if (!surveyImportComplete) {
+                    importSurvey(settings); // NOTE - re-importing survey will DROP & re-create DB!
+                }
 
                 // if setup is complete
                 if (setupComplete) {

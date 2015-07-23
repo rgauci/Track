@@ -8,6 +8,7 @@ import android.provider.ContactsContract;
 
 import informatics.uk.ac.ed.track.Constants;
 import informatics.uk.ac.ed.track.DatabaseHelper;
+import informatics.uk.ac.ed.track.Utils;
 
 public class LocalDatabaseService extends IntentService {
 
@@ -52,5 +53,20 @@ public class LocalDatabaseService extends IntentService {
                 columnValues);
 
         db.close();
+
+        // now that we have saved to local DB
+        // if we have an Internet connect, send response to external server
+        boolean isConnected = Utils.isConnectedToInternet(this);
+        if (!isConnected) {
+            // if no connection, nothing left to do
+            // connection change receiver will sync all unsycned records
+            // once a connection is available
+            return;
+        }
+
+        // send row ID as Intent extra so service knows which response to sync
+        Intent externalDbService = new Intent(this, ExternalDatabaseService.class);
+        externalDbService.putExtra(Constants.SURVEY_RESPONSE_ROW_ID, newRowId);
+        startService(externalDbService);
     }
 }
