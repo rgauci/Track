@@ -174,4 +174,10 @@
     <string name="notificationMsgText">Tap to start the survey.
         Notification will expire within %1$d minutes.</string>
 
+    <string name="submitDialogTitle">Submit Survey?</string>
+    <string name="submitDialogMessage">Your answers will be saved
+        and you will not be able to make any further changes.</string>
+    <string name="submitDialogPositiveBtn">SUBMIT</string>
+    <string name="submitDialogNegativeBtn">CANCEL</string>
+
 </resources>

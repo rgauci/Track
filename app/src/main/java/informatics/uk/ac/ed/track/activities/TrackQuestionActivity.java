@@ -1,8 +1,11 @@
 package informatics.uk.ac.ed.track.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,6 +17,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import informatics.uk.ac.ed.track.Constants;
+import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.Utils;
 import informatics.uk.ac.ed.track.lib.TrackQuestion;
 import informatics.uk.ac.ed.track.services.LocalDatabaseService;
@@ -142,36 +146,67 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (isValid()) {
-                        Calendar cal = GregorianCalendar.getInstance();
-                        long surveyCompletedTime = cal.getTimeInMillis();
+                        Resources res = getResources();
 
-                        // save survey completed time to shared preferences
-                        SharedPreferences settings = PreferenceManager.
-                                getDefaultSharedPreferences(getApplicationContext());
-                        SharedPreferences.Editor editor = settings.edit();
-                        editor.putLong(Constants.LAST_SURVEY_COMPLETED_TIME_MILLIS,
-                                surveyCompletedTime);
-                        editor.apply();
+                        // show dialog to confirm whether use wants to submit
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                                TrackQuestionActivity.this, R.style.AlertDialogTheme);
+                        // Setting Dialog Title
+                        alertDialog.setTitle(res.getString(R.string.submitDialogTitle));
+                        // Setting Dialog Message
+                        alertDialog.setMessage(res.getString(R.string.submitDialogMessage));
+                        // Setting Positive "Yes" Button
+                        alertDialog.setPositiveButton(
+                                res.getString(R.string.submitDialogPositiveBtn),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // get survey completed time
+                                        Calendar cal = GregorianCalendar.getInstance();
+                                        long surveyCompletedTime = cal.getTimeInMillis();
 
-                        // launch two intents:
+                                        // save survey completed time to shared preferences
+                                        SharedPreferences settings = PreferenceManager.
+                                                getDefaultSharedPreferences(getApplicationContext());
+                                        SharedPreferences.Editor editor = settings.edit();
+                                        editor.putLong(Constants.LAST_SURVEY_COMPLETED_TIME_MILLIS,
+                                                surveyCompletedTime);
+                                        editor.apply();
 
-                        // one an Intent Service to save to Local & External DBs
-                        // (using Background Thread)
-                        Intent localDbService = new Intent(TrackQuestionActivity.this,
-                                LocalDatabaseService.class);
-                        localDbService.putExtra(Constants.LAST_NOTIFICATION_TIME_MILLIS,
-                                settings.getLong(Constants.LAST_NOTIFICATION_TIME_MILLIS,
-                                        Constants.DEF_VALUE_LNG));
-                        localDbService.putExtra(Constants.LAST_SURVEY_COMPLETED_TIME_MILLIS,
-                                surveyCompletedTime);
-                        localDbService.putExtra(Constants.SURVEY_RESPONSES,
-                                getSurveyResponsesForNextIntent());
-                        startService(localDbService);
+                                        // launch two intents:
 
-                        // and one to notify user that survey has been complete
-                        Intent intent = new Intent(TrackQuestionActivity.this,
-                                SurveyComplete.class);
-                        startActivity(intent);
+                                        // one an Intent Service to save to Local & External DBs
+                                        // (using Background Thread)
+                                        Intent localDbService = new Intent(TrackQuestionActivity.this,
+                                                LocalDatabaseService.class);
+                                        localDbService.putExtra(Constants.LAST_NOTIFICATION_TIME_MILLIS,
+                                                settings.getLong(Constants.LAST_NOTIFICATION_TIME_MILLIS,
+                                                        Constants.DEF_VALUE_LNG));
+                                        localDbService.putExtra(Constants.LAST_SURVEY_COMPLETED_TIME_MILLIS,
+                                                surveyCompletedTime);
+                                        localDbService.putExtra(Constants.SURVEY_RESPONSES,
+                                                getSurveyResponsesForNextIntent());
+                                        startService(localDbService);
+
+                                        // and one to notify user that survey has been complete
+                                        Intent intent = new Intent(TrackQuestionActivity.this,
+                                                SurveyComplete.class);
+                                        // close existing activity stack and start new root
+                                        // to prevent user from going back to survey after submit
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                    }
+                                });
+                        // Setting Negative "NO" Button
+                        alertDialog.setNegativeButton(
+                                res.getString(R.string.submitDialogNegativeBtn),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Write your code here to invoke NO event
+                                        dialog.cancel();
+                                    }
+                                });
+                        // Showing Alert Message
+                        alertDialog.show();
                     }
                 }
             });

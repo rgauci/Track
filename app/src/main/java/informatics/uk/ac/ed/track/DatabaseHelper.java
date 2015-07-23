@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context appContext) {
         this(appContext, PreferenceManager.getDefaultSharedPreferences(appContext)
-                .getInt(Constants.DATABASE_VERSION, Constants.DEF_VALUE_INT));
+                .getInt(Constants.DATABASE_VERSION, 1));
     }
 
     /*
