@@ -41,4 +41,8 @@ public class SurveyResponse {
     public long getRowId() {
         return this.rowId;
     }
+
+    public ContentValues getQuestionAnswers() {
+        return this.questionAnswers;
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="trackWebServiceUrl">http://10.0.2.2/webservice/</string> <!-- 10.0.2.2 for PC (localhost refers to emulator itself) -->
+    <string name="trackWebServiceUrl">http://trackserver.no-ip.org/webservice/</string> <!-- 10.0.2.2 for PC (localhost refers to emulator itself) -->
     <string name="addSurveyResponseWebMethod">addSurveyResponse.php</string>
     <string name="paramParticipantId">participantId</string>
     <string name="paramNotificationTime">notificationTime</string>

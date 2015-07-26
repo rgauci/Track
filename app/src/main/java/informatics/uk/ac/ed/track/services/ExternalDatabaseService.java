@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.apache.http.NameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -90,19 +91,38 @@ public class ExternalDatabaseService extends IntentService {
         params.put(res.getString(R.string.paramSurveyCompletedTime),
                 response.getSurveyCompletedTimeIso());
 
+        // Survey Response Column Names
+        JSONArray columnNames = new JSONArray();
+        JSONArray columnValues = new JSONArray();
+        ContentValues questionAnswers =  response.getQuestionAnswers();
+
+        for (String colName : questionAnswers.keySet()) {
+            String colVal = questionAnswers.getAsString(colName);
+            // only send answers (non-null) to web server
+            if (colVal != null) {
+                columnNames.put(colName);
+                columnValues.put(questionAnswers.getAsString(colName));
+            }
+        }
+
+        params.put(WebServiceHelper.PARAM_SURVEY_COLUMN_NAMES, columnNames.toString());
+        params.put(WebServiceHelper.PARAM_SURVEY_RESPONSES, columnValues.toString());
+
         // make request and get response
         JSONObject jsonObject =  WebServiceHelper.makeHttpRequest(url,
                 WebServiceHelper.RequestMethod.POST, params);
 
         // check if request was successful
         boolean success = false;
-        try {
-            int successCode = jsonObject.getInt(res.getString(R.string.outParamSuccess));
-            if (successCode == WebServiceHelper.SUCCESS_CODE) {
-                success = true;
+        if (jsonObject != null) {
+            try {
+                int successCode = jsonObject.getInt(res.getString(R.string.outParamSuccess));
+                if (successCode == WebServiceHelper.SUCCESS_CODE) {
+                    success = true;
+                }
+            } catch (JSONException je) {
+                Log.e(LOG_TAG, "Error parsing JSON object from server.", je);
             }
-        } catch (JSONException je) {
-            Log.e(LOG_TAG, "Error parsing JSON object from server.", je);
         }
 
         if (success) {
