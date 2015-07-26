@@ -7,14 +7,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
-import informatics.uk.ac.ed.track.Constants;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -138,6 +135,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return response;
     }
 
+    public void setResponseAsSynced (long rowId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("`" + DatabaseHelper.COLUMN_NAME_SYNCED + "`", getIntFromBoolean(true));
+
+        String whereClause = "`" + COLUMN_NAME_ROW_ID + "` = " + rowId;
+
+        db.update("`" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES + "`", contentValues, whereClause, null);
+        db.close();
+    }
+
     private SurveyResponse getSurveyReponseFromCursor(Cursor cursor) {
         SurveyResponse response = new SurveyResponse();
 
@@ -148,7 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         response.setSurveyCompletedTimeIso(
                 cursor.getString(DatabaseHelper.COLUMN_ID_SURVEY_COMPLETED_TIME));
         response.setSynced(
-                getBoolean(Integer.parseInt(
+                getBooleanFromInt(Integer.parseInt(
                         cursor.getString(DatabaseHelper.COLUMN_ID_SYNCED))));
 
         ContentValues questionAnswers = new ContentValues();
@@ -161,7 +170,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return response;
     }
 
-    public boolean getBoolean(int value) {
+    private boolean getBooleanFromInt(int value) {
         switch (value) {
             case FALSE:
                 return false;
@@ -169,6 +178,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 return true;
             default:
                 return false;
+        }
+    }
+
+    private int getIntFromBoolean(boolean value) {
+        if (value) {
+            return TRUE;
+        } else {
+            return FALSE;
         }
     }
 

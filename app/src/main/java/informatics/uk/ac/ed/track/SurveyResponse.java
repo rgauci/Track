@@ -29,4 +29,16 @@ public class SurveyResponse {
     public void setQuestionAnswers(ContentValues values) {
         this.questionAnswers = values;
     }
+
+    public String getNotificationTimeIso() {
+        return this.notificationTimeIso;
+    }
+
+    public String getSurveyCompletedTimeIso() {
+        return this.surveyCompletedTimeIso;
+    }
+
+    public long getRowId() {
+        return this.rowId;
+    }
 }

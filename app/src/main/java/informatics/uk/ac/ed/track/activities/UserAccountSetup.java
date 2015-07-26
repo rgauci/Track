@@ -43,7 +43,7 @@ public class UserAccountSetup extends AppCompatActivity {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         /* display participant ID */
-        int participantId = settings.getInt(Constants.PARTICIPANT_ID, -1);
+        int participantId = settings.getInt(Constants.PARTICIPANT_ID, Constants.DEF_VALUE_INT);
         txtVwParticipantId.setText(String.valueOf(participantId));
     }
 
