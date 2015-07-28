@@ -18,11 +18,10 @@
     "addOther": false,
     "id": 1,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Emotion / Affect",
-    "questionText": "Right now, I feel cheerful.",
+    "questionText": "Right now, I feel happy.",
     "nextQuestionId": 2,
     "isRequired": true,
-    "columnName": "Emotion: cheerful"
+    "columnName": "Emotion_happy"
   },
   {
     "type": "LikertScaleQuestion",
@@ -56,13 +55,12 @@
     ],
     "id": 2,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
-    "subTitle": "In relation to feeling cheerful.",
+    "subTitle": "In relation to feeling happy.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 3,
     "isRequired": true,
-    "columnName": "Regulation: cheerful - Thinking Differently"
+    "columnName": "Regulation_happy_ThinkingDifferently"
   },
   {
     "type": "LikertScaleQuestion",
@@ -96,13 +94,12 @@
     ],
     "id": 3,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
-    "subTitle": "In relation to feeling cheerful.",
+    "subTitle": "In relation to feeling happy.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 4,
     "isRequired": true,
-    "columnName": "Regulation: cheerful - Calming Body"
+    "columnName": "Regulation_happy_CalmingYourself"
   },
   {
     "type": "LikertScaleQuestion",
@@ -136,13 +133,12 @@
     ],
     "id": 4,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
-    "subTitle": "In relation to feeling cheerful.",
+    "subTitle": "In relation to feeling happy.",
     "questionPrefix": "How much are you:",
     "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 5,
     "isRequired": true,
-    "columnName": "Regulation: cheerful - Talking"
+    "columnName": "Regulation_happy_Talking"
   },
   {
     "type": "LikertScaleQuestion",
@@ -176,13 +172,12 @@
     ],
     "id": 5,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
-    "subTitle": "In relation to feeling cheerful.",
+    "subTitle": "In relation to feeling happy.",
     "questionPrefix": "How much are you:",
     "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 6,
     "isRequired": true,
-    "columnName": "Regulation: cheerful - Hiding Emotions"
+    "columnName": "Regulation_happy_HidingEmotions"
   },
   {
     "type": "LikertScaleQuestion",
@@ -216,13 +211,12 @@
     ],
     "id": 6,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
-    "subTitle": "In relation to feeling cheerful.",
+    "subTitle": "In relation to feeling happy.",
     "questionPrefix": "How much are you:",
     "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 7,
     "isRequired": true,
-    "columnName": "Regulation: cheerful - Turning Attention"
+    "columnName": "Regulation_happy_TurningAttention"
   },
   {
     "type": "LikertScaleQuestion",
@@ -256,13 +250,12 @@
     ],
     "id": 7,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
-    "subTitle": "In relation to feeling cheerful.",
+    "subTitle": "In relation to feeling happy.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 8,
     "isRequired": true,
-    "columnName": "Regulation: cheerful - Emotion Thinking"
+    "columnName": "Regulation_happy_ThinkingAboutEmotions"
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -283,11 +276,10 @@
     "addOther": false,
     "id": 8,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Emotion / Affect",
     "questionText": "Right now, I feel satisfied.",
     "nextQuestionId": 9,
     "isRequired": true,
-    "columnName": "Emotion: satisfied"
+    "columnName": "Emotion_satisfied"
   },
   {
     "type": "LikertScaleQuestion",
@@ -321,13 +313,12 @@
     ],
     "id": 9,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling satisfied.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 10,
     "isRequired": true,
-    "columnName": "Regulation: satisfied - Thinking Differently"
+    "columnName": "Regulation_satisfied_ThinkingDifferently"
   },
   {
     "type": "LikertScaleQuestion",
@@ -361,13 +352,12 @@
     ],
     "id": 10,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling satisfied.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 11,
     "isRequired": true,
-    "columnName": "Regulation: satisfied - Calming Body"
+    "columnName": "Regulation_satisfied_CalmingYourself"
   },
   {
     "type": "LikertScaleQuestion",
@@ -401,13 +391,12 @@
     ],
     "id": 11,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling satisfied.",
     "questionPrefix": "How much are you:",
     "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 12,
     "isRequired": true,
-    "columnName": "Regulation: satisfied - Talking"
+    "columnName": "Regulation_satisfied_Talking"
   },
   {
     "type": "LikertScaleQuestion",
@@ -441,13 +430,12 @@
     ],
     "id": 12,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling satisfied.",
     "questionPrefix": "How much are you:",
     "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 13,
     "isRequired": true,
-    "columnName": "Regulation: satisfied - Hiding Emotions"
+    "columnName": "Regulation_satisfied_HidingEmotions"
   },
   {
     "type": "LikertScaleQuestion",
@@ -481,13 +469,12 @@
     ],
     "id": 13,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling satisfied.",
     "questionPrefix": "How much are you:",
     "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 14,
     "isRequired": true,
-    "columnName": "Regulation: satisfied - Turning Attention"
+    "columnName": "Regulation_satisfied_TurningAttention"
   },
   {
     "type": "LikertScaleQuestion",
@@ -521,13 +508,12 @@
     ],
     "id": 14,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling satisfied.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 15,
     "isRequired": true,
-    "columnName": "Regulation: satisfied - Emotion Thinking"
+    "columnName": "Regulation_satisfied_ThinkingAboutEmotions"
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -548,11 +534,10 @@
     "addOther": false,
     "id": 15,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Emotion / Affect",
     "questionText": "Right now, I feel enthusiastic.",
     "nextQuestionId": 16,
     "isRequired": true,
-    "columnName": "Emotion: enthusiastic"
+    "columnName": "Emotion_enthusiastic"
   },
   {
     "type": "LikertScaleQuestion",
@@ -586,13 +571,12 @@
     ],
     "id": 16,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling enthusiastic.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 17,
     "isRequired": true,
-    "columnName": "Regulation: enthusiastic - Thinking Differently"
+    "columnName": "Regulation_enthusiastic_ThinkingDifferently"
   },
   {
     "type": "LikertScaleQuestion",
@@ -626,13 +610,12 @@
     ],
     "id": 17,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling enthusiastic.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 18,
     "isRequired": true,
-    "columnName": "Regulation: enthusiastic - Calming Body"
+    "columnName": "Regulation_enthusiastic_CalmingYourself"
   },
   {
     "type": "LikertScaleQuestion",
@@ -666,13 +649,12 @@
     ],
     "id": 18,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling enthusiastic.",
     "questionPrefix": "How much are you:",
     "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 19,
     "isRequired": true,
-    "columnName": "Regulation: enthusiastic - Talking"
+    "columnName": "Regulation_enthusiastic_Talking"
   },
   {
     "type": "LikertScaleQuestion",
@@ -706,13 +688,12 @@
     ],
     "id": 19,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling enthusiastic.",
     "questionPrefix": "How much are you:",
     "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 20,
     "isRequired": true,
-    "columnName": "Regulation: enthusiastic - Hiding Emotions"
+    "columnName": "Regulation_enthusiastic_HidingEmotions"
   },
   {
     "type": "LikertScaleQuestion",
@@ -746,13 +727,12 @@
     ],
     "id": 20,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling enthusiastic.",
     "questionPrefix": "How much are you:",
     "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 21,
     "isRequired": true,
-    "columnName": "Regulation: enthusiastic - Turning Attention"
+    "columnName": "Regulation_enthusiastic_TurningAttention"
   },
   {
     "type": "LikertScaleQuestion",
@@ -786,13 +766,12 @@
     ],
     "id": 21,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling enthusiastic.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 22,
     "isRequired": true,
-    "columnName": "Regulation: enthusiastic - Emotion Thinking"
+    "columnName": "Regulation_enthusiastic_ThinkingAboutEmotions"
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -813,11 +792,10 @@
     "addOther": false,
     "id": 22,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Emotion / Affect",
     "questionText": "Right now, I feel relaxed.",
     "nextQuestionId": 23,
     "isRequired": true,
-    "columnName": "Emotion: relaxed"
+    "columnName": "Emotion_relaxed"
   },
   {
     "type": "LikertScaleQuestion",
@@ -851,13 +829,12 @@
     ],
     "id": 23,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling relaxed.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 24,
     "isRequired": true,
-    "columnName": "Regulation: relaxed - Thinking Differently"
+    "columnName": "Regulation_relaxed_ThinkingDifferently"
   },
   {
     "type": "LikertScaleQuestion",
@@ -891,13 +868,12 @@
     ],
     "id": 24,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling relaxed.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 25,
     "isRequired": true,
-    "columnName": "Regulation: relaxed - Calming Body"
+    "columnName": "Regulation_relaxed_CalmingYourself"
   },
   {
     "type": "LikertScaleQuestion",
@@ -931,13 +907,12 @@
     ],
     "id": 25,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling relaxed.",
     "questionPrefix": "How much are you:",
     "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 26,
     "isRequired": true,
-    "columnName": "Regulation: relaxed - Talking"
+    "columnName": "Regulation_relaxed_Talking"
   },
   {
     "type": "LikertScaleQuestion",
@@ -971,13 +946,12 @@
     ],
     "id": 26,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling relaxed.",
     "questionPrefix": "How much are you:",
     "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 27,
     "isRequired": true,
-    "columnName": "Regulation: relaxed - Hiding Emotions"
+    "columnName": "Regulation_relaxed_HidingEmotions"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1011,13 +985,12 @@
     ],
     "id": 27,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling relaxed.",
     "questionPrefix": "How much are you:",
     "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 28,
     "isRequired": true,
-    "columnName": "Regulation: relaxed - Turning Attention"
+    "columnName": "Regulation_relaxed_TurningAttention"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1051,13 +1024,12 @@
     ],
     "id": 28,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling relaxed.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 29,
     "isRequired": true,
-    "columnName": "Regulation: relaxed - Emotion Thinking"
+    "columnName": "Regulation_relaxed_ThinkingAboutEmotions"
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -1078,11 +1050,10 @@
     "addOther": false,
     "id": 29,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Emotion / Affect",
     "questionText": "Right now, I feel sad.",
     "nextQuestionId": 30,
     "isRequired": true,
-    "columnName": "Emotion: sad"
+    "columnName": "Emotion_sad"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1116,13 +1087,12 @@
     ],
     "id": 30,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling sad.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 31,
     "isRequired": true,
-    "columnName": "Regulation: sad - Thinking Differently"
+    "columnName": "Regulation_sad_ThinkingDifferently"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1156,13 +1126,12 @@
     ],
     "id": 31,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling sad.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 32,
     "isRequired": true,
-    "columnName": "Regulation: sad - Calming Body"
+    "columnName": "Regulation_sad_CalmingYourself"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1196,13 +1165,12 @@
     ],
     "id": 32,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling sad.",
     "questionPrefix": "How much are you:",
     "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 33,
     "isRequired": true,
-    "columnName": "Regulation: sad - Talking"
+    "columnName": "Regulation_sad_Talking"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1236,13 +1204,12 @@
     ],
     "id": 33,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling sad.",
     "questionPrefix": "How much are you:",
     "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 34,
     "isRequired": true,
-    "columnName": "Regulation: sad - Hiding Emotions"
+    "columnName": "Regulation_sad_HidingEmotions"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1276,13 +1243,12 @@
     ],
     "id": 34,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling sad.",
     "questionPrefix": "How much are you:",
     "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 35,
     "isRequired": true,
-    "columnName": "Regulation: sad - Turning Attention"
+    "columnName": "Regulation_sad_TurningAttention"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1316,13 +1282,12 @@
     ],
     "id": 35,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling sad.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 36,
     "isRequired": true,
-    "columnName": "Regulation: sad - Emotion Thinking"
+    "columnName": "Regulation_sad_ThinkingAboutEmotions"
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -1343,11 +1308,10 @@
     "addOther": false,
     "id": 36,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Emotion / Affect",
     "questionText": "Right now, I feel guilty.",
     "nextQuestionId": 37,
     "isRequired": true,
-    "columnName": "Emotion: guilty"
+    "columnName": "Emotion_guilty"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1381,13 +1345,12 @@
     ],
     "id": 37,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling guilty.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 38,
     "isRequired": true,
-    "columnName": "Regulation: guilty - Thinking Differently"
+    "columnName": "Regulation_guilty_ThinkingDifferently"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1421,13 +1384,12 @@
     ],
     "id": 38,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling guilty.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 39,
     "isRequired": true,
-    "columnName": "Regulation: guilty - Calming Body"
+    "columnName": "Regulation_guilty_CalmingYourself"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1461,13 +1423,12 @@
     ],
     "id": 39,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling guilty.",
     "questionPrefix": "How much are you:",
     "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 40,
     "isRequired": true,
-    "columnName": "Regulation: guilty - Talking"
+    "columnName": "Regulation_guilty_Talking"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1501,13 +1462,12 @@
     ],
     "id": 40,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling guilty.",
     "questionPrefix": "How much are you:",
     "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 41,
     "isRequired": true,
-    "columnName": "Regulation: guilty - Hiding Emotions"
+    "columnName": "Regulation_guilty_HidingEmotions"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1541,13 +1501,12 @@
     ],
     "id": 41,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling guilty.",
     "questionPrefix": "How much are you:",
     "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 42,
     "isRequired": true,
-    "columnName": "Regulation: guilty - Turning Attention"
+    "columnName": "Regulation_guilty_TurningAttention"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1581,13 +1540,12 @@
     ],
     "id": 42,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling guilty.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 43,
     "isRequired": true,
-    "columnName": "Regulation: guilty - Emotion Thinking"
+    "columnName": "Regulation_guilty_ThinkingAboutEmotions"
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -1608,11 +1566,10 @@
     "addOther": false,
     "id": 43,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Emotion / Affect",
     "questionText": "Right now, I feel irritated.",
     "nextQuestionId": 44,
     "isRequired": true,
-    "columnName": "Emotion: irritated"
+    "columnName": "Emotion_irritated"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1646,13 +1603,12 @@
     ],
     "id": 44,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling irritated.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 45,
     "isRequired": true,
-    "columnName": "Regulation: irritated - Thinking Differently"
+    "columnName": "Regulation_irritated_ThinkingDifferently"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1686,13 +1642,12 @@
     ],
     "id": 45,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling irritated.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 46,
     "isRequired": true,
-    "columnName": "Regulation: irritated - Calming Body"
+    "columnName": "Regulation_irritated_CalmingYourself"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1726,13 +1681,12 @@
     ],
     "id": 46,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling irritated.",
     "questionPrefix": "How much are you:",
     "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 47,
     "isRequired": true,
-    "columnName": "Regulation: irritated - Talking"
+    "columnName": "Regulation_irritated_Talking"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1766,13 +1720,12 @@
     ],
     "id": 47,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling irritated.",
     "questionPrefix": "How much are you:",
     "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 48,
     "isRequired": true,
-    "columnName": "Regulation: irritated - Hiding Emotions"
+    "columnName": "Regulation_irritated_HidingEmotions"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1806,13 +1759,12 @@
     ],
     "id": 48,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling irritated.",
     "questionPrefix": "How much are you:",
     "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 49,
     "isRequired": true,
-    "columnName": "Regulation: irritated - Turning Attention"
+    "columnName": "Regulation_irritated_TurningAttention"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1846,13 +1798,12 @@
     ],
     "id": 49,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling irritated.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 50,
     "isRequired": true,
-    "columnName": "Regulation: irritated - Emotion Thinking"
+    "columnName": "Regulation_irritated_ThinkingAboutEmotions"
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -1873,11 +1824,10 @@
     "addOther": false,
     "id": 50,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Emotion / Affect",
     "questionText": "Right now, I feel lonely.",
     "nextQuestionId": 51,
     "isRequired": true,
-    "columnName": "Emotion: lonely"
+    "columnName": "Emotion_lonely"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1911,13 +1861,12 @@
     ],
     "id": 51,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling lonely.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 52,
     "isRequired": true,
-    "columnName": "Regulation: lonely - Thinking Differently"
+    "columnName": "Regulation_lonely_ThinkingDifferently"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1951,13 +1900,12 @@
     ],
     "id": 52,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling lonely.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 53,
     "isRequired": true,
-    "columnName": "Regulation: lonely - Calming Body"
+    "columnName": "Regulation_lonely_CalmingYourself"
   },
   {
     "type": "LikertScaleQuestion",
@@ -1991,13 +1939,12 @@
     ],
     "id": 53,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling lonely.",
     "questionPrefix": "How much are you:",
     "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 54,
     "isRequired": true,
-    "columnName": "Regulation: lonely - Talking"
+    "columnName": "Regulation_lonely_Talking"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2031,13 +1978,12 @@
     ],
     "id": 54,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling lonely.",
     "questionPrefix": "How much are you:",
     "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 55,
     "isRequired": true,
-    "columnName": "Regulation: lonely - Hiding Emotions"
+    "columnName": "Regulation_lonely_HidingEmotions"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2071,13 +2017,12 @@
     ],
     "id": 55,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling lonely.",
     "questionPrefix": "How much are you:",
     "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 56,
     "isRequired": true,
-    "columnName": "Regulation: lonely - Turning Attention"
+    "columnName": "Regulation_lonely_TurningAttention"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2111,13 +2056,12 @@
     ],
     "id": 56,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling lonely.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 57,
     "isRequired": true,
-    "columnName": "Regulation: lonely - Emotion Thinking"
+    "columnName": "Regulation_lonely_ThinkingAboutEmotions"
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -2138,11 +2082,10 @@
     "addOther": false,
     "id": 57,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Emotion / Affect",
     "questionText": "Right now, I feel anxious.",
     "nextQuestionId": 58,
     "isRequired": true,
-    "columnName": "Emotion: anxious"
+    "columnName": "Emotion_anxious"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2176,13 +2119,12 @@
     ],
     "id": 58,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling anxious.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about a situation differently?",
     "nextQuestionId": 59,
     "isRequired": true,
-    "columnName": "Regulation: anxious - Thinking Differently"
+    "columnName": "Regulation_anxious_ThinkingDifferently"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2216,13 +2158,12 @@
     ],
     "id": 59,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling anxious.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm your body by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
     "nextQuestionId": 60,
     "isRequired": true,
-    "columnName": "Regulation: anxious - Calming Body"
+    "columnName": "Regulation_anxious_CalmingYourself"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2256,13 +2197,12 @@
     ],
     "id": 60,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling anxious.",
     "questionPrefix": "How much are you:",
     "questionText": "Talking about your feelings and reactions with others?",
     "nextQuestionId": 61,
     "isRequired": true,
-    "columnName": "Regulation: anxious - Talking"
+    "columnName": "Regulation_anxious_Talking"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2296,13 +2236,12 @@
     ],
     "id": 61,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling anxious.",
     "questionPrefix": "How much are you:",
     "questionText": "Trying not to show your emotions on the outside?",
     "nextQuestionId": 62,
     "isRequired": true,
-    "columnName": "Regulation: anxious - Hiding Emotions"
+    "columnName": "Regulation_anxious_HidingEmotions"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2336,13 +2275,12 @@
     ],
     "id": 62,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling anxious.",
     "questionPrefix": "How much are you:",
     "questionText": "Turning your attention away from what is making you feel emotional?",
     "nextQuestionId": 63,
     "isRequired": true,
-    "columnName": "Regulation: anxious - Turning Attention"
+    "columnName": "Regulation_anxious_TurningAttention"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2376,23 +2314,21 @@
     ],
     "id": 63,
     "questionType": "LIKERT_SCALE",
-    "title": "Regulation Strategies",
     "subTitle": "In relation to feeling anxious.",
     "questionPrefix": "How much are you:",
     "questionText": "Thinking about your emotions over and over?",
     "nextQuestionId": 64,
     "isRequired": true,
-    "columnName": "Regulation: anxious - Emotion Thinking"
+    "columnName": "Regulation_anxious_ThinkingAboutEmotions"
   },
   {
     "type": "FreeTextQuestionMultiLine",
     "id": 64,
     "questionType": "FREE_TEXT_MULTI_LINE",
-    "title": "Event Stress",
     "questionText": "What is the most important event that has happened since your last report?",
     "nextQuestionId": 65,
     "isRequired": true,
-    "columnName": "Important Event"
+    "columnName": "ImportantEvent"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2426,21 +2362,19 @@
     ],
     "id": 65,
     "questionType": "LIKERT_SCALE",
-    "title": "Event Stress",
     "questionText": "How pleasant was this event?",
     "nextQuestionId": 66,
     "isRequired": true,
-    "columnName": "Event Pleasure"
+    "columnName": "EventPleasure"
   },
   {
     "type": "FreeTextQuestionSingleLine",
     "id": 66,
     "questionType": "FREE_TEXT_SINGLE_LINE",
-    "title": "Activity Stress",
     "questionText": "What are you currently doing?",
     "nextQuestionId": 67,
     "isRequired": true,
-    "columnName": "Current Activity"
+    "columnName": "CurrentActivity"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2474,12 +2408,11 @@
     ],
     "id": 67,
     "questionType": "LIKERT_SCALE",
-    "title": "Activity Stress",
     "questionPrefix": "In relation to this activity:",
     "questionText": "I like what I am doing right now.",
     "nextQuestionId": 68,
     "isRequired": true,
-    "columnName": "Activity: Like"
+    "columnName": "Activity_Like"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2513,12 +2446,11 @@
     ],
     "id": 68,
     "questionType": "LIKERT_SCALE",
-    "title": "Activity Stress",
     "questionPrefix": "In relation to this activity:",
     "questionText": "It takes a lot of effort to do this activity.",
     "nextQuestionId": 69,
     "isRequired": true,
-    "columnName": "Activity: Effort"
+    "columnName": "Activity_Effort"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2552,12 +2484,11 @@
     ],
     "id": 69,
     "questionType": "LIKERT_SCALE",
-    "title": "Activity Stress",
     "questionPrefix": "In relation to this activity:",
     "questionText": "I have the ability to do this activity.",
     "nextQuestionId": 70,
     "isRequired": true,
-    "columnName": "Activity: Ability"
+    "columnName": "Activity_Ability"
   },
   {
     "type": "LikertScaleQuestion",
@@ -2591,12 +2522,11 @@
     ],
     "id": 70,
     "questionType": "LIKERT_SCALE",
-    "title": "Activity Stress",
     "questionPrefix": "In relation to this activity:",
     "questionText": "I would prefer to be doing something else right now.",
     "nextQuestionId": 71,
     "isRequired": true,
-    "columnName": "Activity: Prefer Other"
+    "columnName": "Activity_Prefer_Other"
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -2617,11 +2547,10 @@
     "addOther": false,
     "id": 71,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Social Stress",
     "questionText": "Are you alone or with others?",
     "nextQuestionId": 72,
     "isRequired": true,
-    "columnName": "Social: Alone?"
+    "columnName": "Social_AreYouAlone"
   },
   {
     "type": "MultipleChoiceSingleAnswer",
@@ -2642,10 +2571,9 @@
     "addOther": false,
     "id": 72,
     "questionType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-    "title": "Social Stress",
     "nextQuestionId": -1,
     "isRequired": true,
-    "columnName": "Social: Alone"
+    "columnName": "Social_Alone"
   },
   {
     "type": "MultipleChoiceMultipleAnswer",
@@ -2684,10 +2612,9 @@
     "addOther": true,
     "id": 73,
     "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",
-    "title": "Social Stress",
     "questionText": "I am with:",
     "nextQuestionId": -1,
     "isRequired": true,
-    "columnName": "Social: With Others"
+    "columnName": "Social_WithOthers"
   }
 ]

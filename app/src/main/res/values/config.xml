@@ -2,8 +2,4 @@
 <resources>
     <string name="trackWebServiceUrl">http://trackserver.no-ip.org/webservice/</string> <!-- 10.0.2.2 for PC (localhost refers to emulator itself) -->
     <string name="addSurveyResponseWebMethod">addSurveyResponse.php</string>
-    <string name="paramParticipantId">participantId</string>
-    <string name="paramNotificationTime">notificationTime</string>
-    <string name="paramSurveyCompletedTime">surveyCompletedTime</string>
-    <string name="outParamSuccess">success</string>
 </resources>

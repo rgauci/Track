@@ -30,10 +30,14 @@ public class WebServiceHelper {
     public final static String UTF8 = "UTF-8";
     public final static String LOG_TAG = "WebServiceHelper";
 
-    public final static int SUCCESS_CODE = 1;
-
+    public final static String PARAM_PARTICIPANT_ID = "participantId";
+    public final static String PARAM_NOTIFICATION_TIME = "notificationTime";
+    public final static String PARAM_SURVEY_COMPLETED_TIME = "surveyCompletedTime";
     public final static String PARAM_SURVEY_COLUMN_NAMES = "surveyColumnNames";
-    public final  static String PARAM_SURVEY_RESPONSES = "surveyResponses";
+    public final static String PARAM_SURVEY_RESPONSES = "surveyResponses";
+
+    public final static int SUCCESS_CODE = 1;
+    public final static String OUT_PARAM_SUCCESS = "success";
 
     private static String getPostDataString(ContentValues params) {
         StringBuilder paramsSb = new StringBuilder();

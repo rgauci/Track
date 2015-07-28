@@ -85,10 +85,10 @@ public class ExternalDatabaseService extends IntentService {
 
         // Build Parameters
         ContentValues params = new ContentValues();
-        params.put(res.getString(R.string.paramParticipantId), participantId);
-        params.put(res.getString(R.string.paramNotificationTime),
+        params.put(WebServiceHelper.PARAM_PARTICIPANT_ID, participantId);
+        params.put(WebServiceHelper.PARAM_NOTIFICATION_TIME,
                 response.getNotificationTimeIso());
-        params.put(res.getString(R.string.paramSurveyCompletedTime),
+        params.put(WebServiceHelper.PARAM_SURVEY_COMPLETED_TIME,
                 response.getSurveyCompletedTimeIso());
 
         // Survey Response Column Names
@@ -116,7 +116,7 @@ public class ExternalDatabaseService extends IntentService {
         boolean success = false;
         if (jsonObject != null) {
             try {
-                int successCode = jsonObject.getInt(res.getString(R.string.outParamSuccess));
+                int successCode = jsonObject.getInt(WebServiceHelper.OUT_PARAM_SUCCESS);
                 if (successCode == WebServiceHelper.SUCCESS_CODE) {
                     success = true;
                 }
