@@ -150,8 +150,8 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_default">DefaultActivity</string>
-    <string name="noSurveyAvailable">No Survey Currently Available</string>
-    <string name="noSurveyAvailableSubText">Keep an eye out for those notifications.</string>
+    <string name="noSurveyAvailableTitle">No Survey Currently Available</string>
+    <string name="noSurveyAvailableSubTitle">Keep an eye out for those notifications.</string>
     <string name="title_activity_multi_choice__multi">MultiChoice_Multi</string>
     <string name="title_activity_multi_choice__single">MultiChoice_Single</string>
 
@@ -167,8 +167,11 @@
 
     <string name="surveyCompleteTitle">Survey Complete</string>
     <string name="surveyCompleteSubTitle">Thanks for filling that out!</string>
-    <string name="surveyCompleteText">
+    <string name="surveyCompleteMsg">
         %1$s will send you a notification when the next one is due.</string>
+
+    <string name="demoCompleteTitle">Demo Complete</string>
+    <string name="demoCompleteSubTitle">@string/noSurveyAvailableSubTitle</string>
 
     <string name="notificationMsg">TRACK-time!</string>
     <string name="notificationMsgText">Tap to start the survey.
@@ -179,5 +182,8 @@
         and you will not be able to make any further changes.</string>
     <string name="submitDialogPositiveBtn">SUBMIT</string>
     <string name="submitDialogNegativeBtn">CANCEL</string>
+
+    <string name="launchDemo">Launch Demo</string>
+    <string name="viewFeedback">View Feedback</string>
 
 </resources>

@@ -25,7 +25,7 @@ public class SurveyComplete extends AppCompatActivity {
         /* initialise UI controls */
         this.txtSurveyComplete = (TextView) findViewById(R.id.txtSurveyCompleteText);
         this.txtSurveyComplete.setText(
-                String.format(getResources().getString(R.string.surveyCompleteText),
+                String.format(getResources().getString(R.string.surveyCompleteMsg),
                         getResources().getString(R.string.app_name)));
 
         // TODO make sure can't return to survey

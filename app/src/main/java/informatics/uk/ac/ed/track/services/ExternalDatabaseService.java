@@ -119,6 +119,9 @@ public class ExternalDatabaseService extends IntentService {
                 int successCode = jsonObject.getInt(WebServiceHelper.OUT_PARAM_SUCCESS);
                 if (successCode == WebServiceHelper.SUCCESS_CODE) {
                     success = true;
+                } else {
+                    String errorMsg = jsonObject.getString(WebServiceHelper.SUCCESS_MESSAGE);
+                    Log.e(LOG_TAG, "Web Service error: " + errorMsg);
                 }
             } catch (JSONException je) {
                 Log.e(LOG_TAG, "Error parsing JSON object from server.", je);

@@ -1,7 +1,10 @@
 package informatics.uk.ac.ed.track.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import informatics.uk.ac.ed.track.Constants;
 import informatics.uk.ac.ed.track.R;
 
 
@@ -50,7 +54,21 @@ public class DemoScaleVertical extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (isValid()) {
-                    Intent intent = new Intent(DemoScaleVertical.this, BriefingComplete.class);
+                    SharedPreferences settings =
+                            PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    boolean setupComplete = settings.getBoolean(Constants.SETUP_COMPLETE,
+                            Constants.DEF_VALUE_BOOL);
+                    Intent intent;
+                    if (setupComplete) {
+                        intent = new Intent(DemoScaleVertical.this, DefaultActivity.class);
+                        Resources res = getResources();
+                        intent.putExtra(Constants.DEFAULT_SCREEN_TITLE,
+                                res.getString(R.string.demoCompleteTitle));
+                        intent.putExtra(Constants.DEFAULT_SCREEN_SUBTITLE,
+                                res.getString(R.string.demoCompleteSubTitle));
+                    } else {
+                        intent = new Intent(DemoScaleVertical.this, BriefingComplete.class);
+                    }
                     startActivity(intent);
                 }
             }

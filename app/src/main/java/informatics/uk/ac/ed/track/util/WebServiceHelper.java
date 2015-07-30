@@ -36,8 +36,9 @@ public class WebServiceHelper {
     public final static String PARAM_SURVEY_COLUMN_NAMES = "surveyColumnNames";
     public final static String PARAM_SURVEY_RESPONSES = "surveyResponses";
 
-    public final static int SUCCESS_CODE = 1;
     public final static String OUT_PARAM_SUCCESS = "success";
+    public final static int SUCCESS_CODE = 1;
+    public final static String SUCCESS_MESSAGE = "message";
 
     private static String getPostDataString(ContentValues params) {
         StringBuilder paramsSb = new StringBuilder();

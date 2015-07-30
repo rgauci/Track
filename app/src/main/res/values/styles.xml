@@ -56,6 +56,14 @@
         <item name="colorControlActivated">@color/primary_dark</item>
     </style>
 
+    <style name="MenuButton" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/accent</item>
+        <item name="android:textColor">@color/text_icons</item>
+        <item name="colorControlHighlight">@color/blue_A400</item>
+        <item name="colorControlActivated">@color/primary_dark</item>
+        <item name="android:minLines">2</item>
+    </style>
+
     <style name="RaisedButtonTransparent" parent="Widget.AppCompat.Button">
         <item name="colorButtonNormal">@color/background_floating_material_light</item>
     </style>

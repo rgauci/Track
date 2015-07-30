@@ -32,7 +32,7 @@ tools:context="informatics.uk.ac.ed.track.activities.SurveyComplete">
         android:ems="10"
         android:id="@+id/txtSurveyCompleteText"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/surveyCompleteText"
+        android:text="@string/surveyCompleteMsg"
         android:textColor="@color/text_icons"
         android:layout_marginTop="@dimen/vertical_space" />
 

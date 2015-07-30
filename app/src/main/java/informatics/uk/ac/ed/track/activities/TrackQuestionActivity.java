@@ -188,8 +188,17 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
                                         startService(localDbService);
 
                                         // and one to notify user that survey has been complete
+                                        Resources res = getResources();
                                         Intent intent = new Intent(TrackQuestionActivity.this,
-                                                SurveyComplete.class);
+                                                DefaultActivity.class);
+                                        intent.putExtra(Constants.DEFAULT_SCREEN_TITLE,
+                                                res.getString(R.string.surveyCompleteTitle));
+                                        intent.putExtra(Constants.DEFAULT_SCREEN_SUBTITLE,
+                                                res.getString(R.string.surveyCompleteSubTitle));
+                                        intent.putExtra(Constants.DEFAULT_SCREEN_MSG,
+                                                String.format(
+                                                        res.getString(R.string.surveyCompleteMsg),
+                                                        res.getString(R.string.app_name)));
                                         // close existing activity stack and start new root
                                         // to prevent user from going back to survey after submit
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
