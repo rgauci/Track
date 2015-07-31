@@ -2,121 +2,132 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="informatics.uk.ac.ed.track"
     android:versionCode="7"
-    android:versionName="0.7">
+    android:versionName="0.7" >
 
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.INTERNET"/> <!-- Allows app to open network sockets. -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Allows app to access information about networks. -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Allows app to open network sockets. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!-- Allows app to access information about networks. -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
-        <receiver android:name=".receivers.AlarmReceiver" />
-        <receiver android:name=".receivers.BootReceiver" >
+        <receiver android:name=".esm.receivers.AlarmReceiver" />
+        <receiver android:name=".esm.receivers.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".receivers.ConnectivityChangeReceiver">
+        <receiver android:name=".esm.receivers.ConnectivityChangeReceiver" >
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 
-        <service android:name=".services.LocalDatabaseService"
-            android:exported="false"/> <!-- the service is only available to this app -->
-        <service android:name=".services.ExternalDatabaseService"
-            android:exported="false"/>
+        <service
+            android:name=".esm.services.LocalDatabaseService"
+            android:exported="false" /> <!-- the service is only available to this app -->
+        <service
+            android:name=".esm.services.ExternalDatabaseService"
+            android:exported="false" />
 
         <activity
-            android:name=".activities.SplashScreen"
+            android:name=".esm.activities.SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:noHistory="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" > <!-- remove activity from stack so user can't return to it -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ResearcherSetup"
+            android:name=".esm.activities.ResearcherSetup"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.StudyConfiguration"
+            android:name=".esm.activities.StudyConfiguration"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.UserAccountSetup"
+            android:name=".esm.activities.UserAccountSetup"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.SetupComplete"
+            android:name=".esm.activities.SetupComplete"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.DemoIntro"
+            android:name=".esm.activities.DemoIntro"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.DemoFreeText"
+            android:name=".esm.activities.DemoFreeText"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.DemoMultiChoice_Single"
+            android:name=".esm.activities.DemoMultiChoice_Single"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.DemoMultiChoice_Multi"
+            android:name=".esm.activities.DemoMultiChoice_Multi"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.DemoScale"
+            android:name=".esm.activities.DemoScale"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.UserLogin"
+            android:name=".esm.activities.UserLogin"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.DemoScaleVertical"
+            android:name=".esm.activities.DemoScaleVertical"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.BriefingComplete"
+            android:name=".esm.activities.BriefingComplete"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.DefaultActivity"
+            android:name=".esm.activities.DefaultActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.Question_MultiChoice_Multi"
+            android:name=".esm.activities.Question_MultiChoice_Multi"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.Question_MultiChoice_Single"
+            android:name=".esm.activities.Question_MultiChoice_Single"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.Question_LikertScale"
+            android:name=".esm.activities.Question_LikertScale"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.Question_FreeText_Multi"
+            android:name=".esm.activities.Question_FreeText_Multi"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.Question_FreeText_Single"
+            android:name=".esm.activities.Question_FreeText_Single"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.SurveyComplete"
+            android:name=".esm.activities.SurveyComplete"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".esm.activities.FeedbackGraphs"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".feedback.activities.FeedbackViewPager"
             android:label="@string/app_name" >
         </activity>
     </application>

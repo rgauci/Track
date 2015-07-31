@@ -186,4 +186,34 @@
     <string name="launchDemo">Launch Demo</string>
     <string name="viewFeedback">View Feedback</string>
 
+    <!-- ######################### Feedback Module strings ########################## -->
+
+    <string name="feedbackPagerInstructions">Swipe left and right to view more feedback graphs.</string>
+
+    <string-array name="emotionColumns">
+        <item>Emotion_happy</item>
+        <item>Emotion_satisfied</item>
+        <item>Emotion_enthusiastic</item>
+        <item>Emotion_relaxed</item>
+        <item>Emotion_sad</item>
+        <item>Emotion_guilty</item>
+        <item>Emotion_irritated</item>
+        <item>Emotion_lonely</item>
+        <item>Emotion_anxious</item>
+    </string-array>
+
+    <string-array name="emotionLabels">
+        <item>Happy</item>
+        <item>Satisfied</item>
+        <item>Enthusiastic</item>
+        <item>Relaxed</item>
+        <item>Sad</item>
+        <item>Guilty</item>
+        <item>Irritated</item>
+        <item>Lonely</item>
+        <item>Anxious</item>
+    </string-array>
+
+    <string name="emotionsPieChartCenterText">Emotions</string>
+
 </resources>
