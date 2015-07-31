@@ -1,7 +1,6 @@
 package informatics.uk.ac.ed.track.feedback.fragments;
 
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,13 +9,9 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.PercentFormatter;
-import com.github.mikephil.charting.utils.ValueFormatter;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -34,11 +29,11 @@ public class EmotionsPieChart extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_emotions_pie_chart, container, false);
-        this.setupPieChart(view);
+        this.initialiseChart(view);
         return view;
     }
 
-    private void setupPieChart(View view) {
+    private void initialiseChart(View view) {
         PieChart pieChart = (PieChart) view.findViewById(R.id.pieChart);
         Resources res = getResources();
 
@@ -67,7 +62,6 @@ public class EmotionsPieChart extends Fragment {
         dataSet.setColors(Utils.getDefaultColorTemplate());
         dataSet.setSliceSpace(2f);
         dataSet.setValueTextColor(res.getColor(R.color.text_icons));
-        dataSet.setValueTextSize(android.R.attr.textAppearanceSmall);
         dataSet.setValueTextSize(12f);
         dataSet.setValueFormatter(new IntegerFormatter());
 
@@ -97,15 +91,9 @@ public class EmotionsPieChart extends Fragment {
     }
 
     private int getEmotionCount(String emotionCol) {
-        // NOTE: Usually this should be a field rather than a method
-        // variable so that it is not re-seeded every call.
         Random rand = new Random();
-
-        // nextInt is normally exclusive of the top value,
-        // so add 1 to make it inclusive
         int max = 20;
         int min = 0;
-
         return rand.nextInt((max - min) + 1) + min;
     }
 

@@ -15,7 +15,7 @@ public class CompanyHorizontalBarChart extends Fragment {
     private HorizontalBarChart horBarChart;
 
     public static Fragment newInstance() {
-        return new EmotionsPieChart();
+        return new CompanyHorizontalBarChart();
     }
 
     @Override

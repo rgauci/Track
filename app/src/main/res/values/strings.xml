@@ -214,6 +214,13 @@
         <item>Anxious</item>
     </string-array>
 
+    <string name="socialColumn">Social_AreYouAlone</string>
+
+    <string-array name="socialLabels">
+        <item>Alone</item>
+        <item>With others</item>
+    </string-array>
+
     <string name="emotionsPieChartCenterText">Emotions</string>
 
 </resources>
