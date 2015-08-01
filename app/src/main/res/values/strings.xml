@@ -189,7 +189,15 @@
     <!-- ######################### Feedback Module strings ########################## -->
 
     <string name="feedbackPagerInstructions">Swipe left and right to view more feedback graphs.</string>
+    <string name="title_fragment_emotions_pie_chart">Reported Emotions</string>
+    <string name="title_fragment_social_emotions_stacked_bar_chart">Emotions per Social State</string>
+    <string name="title_fragment_company_horizontal_chart">Company</string>
 
+    <!--
+        Used to load values from the corresponding columns in the database.
+        Must be updated if any changes are made to related 'columnName' fields in survey_json.txt.
+        Used in 'Emotions' and 'Emotions per Social State' graphs.
+        -->
     <string-array name="emotionColumns">
         <item>Emotion_happy</item>
         <item>Emotion_satisfied</item>
@@ -202,6 +210,19 @@
         <item>Emotion_anxious</item>
     </string-array>
 
+    <!--
+        Database value in emotionColumn (above), meaning that the user was feeling that emotion.
+        Must be updated if any changes are made to 'answerOptions' 'option' text in for
+        Emotion/Affect questions in survey_json.txt.
+        Used in 'Emotions' and 'Emotions per Social State' graphs.
+        -->
+    <string name="emotionColumnYesValue">Yes</string>
+
+    <!--
+        Text used to label emotions in the 'Emotions' pie chart slices
+        and the 'Emotions Per Social State' legend.
+        Order of labels must correspond to order of the emotionColumns array above.
+        -->
     <string-array name="emotionLabels">
         <item>Happy</item>
         <item>Satisfied</item>
@@ -214,7 +235,13 @@
         <item>Anxious</item>
     </string-array>
 
+
     <string name="socialColumn">Social_AreYouAlone</string>
+
+    <string-array name="socialColumnValues">
+        <item>Alone</item>
+        <item>With others</item>
+    </string-array>
 
     <string-array name="socialLabels">
         <item>Alone</item>

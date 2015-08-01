@@ -18,7 +18,7 @@ import java.util.Random;
 
 import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.feedback.IntegerFormatter;
-import informatics.uk.ac.ed.track.feedback.Utils;
+import informatics.uk.ac.ed.track.feedback.FeedbackUtils;
 
 public class CompanyHorizontalBarChart extends Fragment {
 
@@ -40,7 +40,7 @@ public class CompanyHorizontalBarChart extends Fragment {
         horBarChart.setDescription(null);
         horBarChart.setDrawValueAboveBar(false);
         horBarChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM); // vertical axis labels on left instead of right
-        horBarChart.getAxisLeft().setValueFormatter(new IntegerFormatter());
+        horBarChart.getAxisLeft().setEnabled(false); // remove top axis labels
         horBarChart.getAxisRight().setValueFormatter(new IntegerFormatter());
         horBarChart.getLegend().setEnabled(false);
 
@@ -56,9 +56,9 @@ public class CompanyHorizontalBarChart extends Fragment {
         }
 
         BarDataSet dataSet = new BarDataSet(yVals, null);
-        dataSet.setColors(Utils.getDefaultColorTemplate());
+        dataSet.setColors(FeedbackUtils.getDefaultColorTemplate());
         dataSet.setValueTextColor(res.getColor(R.color.text_icons));
-        dataSet.setValueTextSize(Utils.getValueTextSize());
+        dataSet.setValueTextSize(FeedbackUtils.getValueTextSize());
         dataSet.setValueFormatter(new IntegerFormatter());
 
         ArrayList<BarDataSet> dataSets = new ArrayList<>();

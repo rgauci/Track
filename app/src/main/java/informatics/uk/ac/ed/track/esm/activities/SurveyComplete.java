@@ -1,12 +1,16 @@
 package informatics.uk.ac.ed.track.esm.activities;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.esm.Constants;
 
 public class SurveyComplete extends AppCompatActivity {
 
@@ -22,8 +26,6 @@ public class SurveyComplete extends AppCompatActivity {
         this.txtSurveyComplete.setText(
                 String.format(getResources().getString(R.string.surveyCompleteMsg),
                         getResources().getString(R.string.app_name)));
-
-        // TODO make sure can't return to survey
     }
 
     @Override
@@ -46,5 +48,15 @@ public class SurveyComplete extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void btnNext_onClick(View view){
+        Resources res = getResources();
+        Intent intent = new Intent(this, DefaultActivity.class);
+        intent.putExtra(Constants.DEFAULT_SCREEN_TITLE,
+                res.getString(R.string.noSurveyAvailableTitle));
+        intent.putExtra(Constants.DEFAULT_SCREEN_SUBTITLE,
+                res.getString(R.string.noSurveyAvailableSubTitle));
+        startActivity(intent);
     }
 }

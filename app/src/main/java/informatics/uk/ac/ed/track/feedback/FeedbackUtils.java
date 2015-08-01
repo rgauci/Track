@@ -4,7 +4,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-public class Utils {
+public class FeedbackUtils {
 
     public static int[] getDefaultColorTemplate() {
         return ColorTemplate.COLORFUL_COLORS;

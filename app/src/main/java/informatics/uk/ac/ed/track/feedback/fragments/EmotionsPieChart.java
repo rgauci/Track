@@ -1,13 +1,15 @@
 package informatics.uk.ac.ed.track.feedback.fragments;
 
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDoneException;
+import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -17,8 +19,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.esm.DatabaseHelper;
+import informatics.uk.ac.ed.track.feedback.FeedbackUtils;
 import informatics.uk.ac.ed.track.feedback.IntegerFormatter;
-import informatics.uk.ac.ed.track.feedback.Utils;
 
 public class EmotionsPieChart extends Fragment {
 
@@ -51,7 +54,7 @@ public class EmotionsPieChart extends Fragment {
         ArrayList<String> xVals = new ArrayList<>();
 
         for (int i = 0; i < emotionColumns.length; i++) {
-            int count = this.getEmotionCount(emotionColumns[i]);
+            float count = this.getEmotionCount(emotionColumns[i]);
             if (count > 0) {
                 entries.add(new Entry(count, entries.size()));
                 xVals.add(emotionLabels[i]);
@@ -59,10 +62,10 @@ public class EmotionsPieChart extends Fragment {
         }
 
         PieDataSet dataSet = new PieDataSet(entries, null);
-        dataSet.setColors(Utils.getDefaultColorTemplate());
+        dataSet.setColors(FeedbackUtils.getDefaultColorTemplate());
         dataSet.setSliceSpace(2f);
         dataSet.setValueTextColor(res.getColor(R.color.text_icons));
-        dataSet.setValueTextSize(Utils.getValueTextSize());
+        dataSet.setValueTextSize(FeedbackUtils.getValueTextSize());
         dataSet.setValueFormatter(new IntegerFormatter());
 
         PieData data = new PieData(xVals, dataSet);
@@ -71,11 +74,21 @@ public class EmotionsPieChart extends Fragment {
         pieChart.invalidate();
     }
 
-    private int getEmotionCount(String emotionCol) {
-        Random rand = new Random();
-        int max = 20;
-        int min = 0;
-        return rand.nextInt((max - min) + 1) + min;
+    private float getEmotionCount(String emotionCol) {
+        Resources res = getResources();
+
+        SQLiteDatabase db =
+                new DatabaseHelper(getActivity().getApplicationContext()).getReadableDatabase();
+
+        String sql = "SELECT COUNT(*) FROM `" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES + "` " +
+                "WHERE `" + emotionCol + "` = " +
+                "'" + res.getString(R.string.emotionColumnYesValue) + "'";
+
+        SQLiteStatement statement = db.compileStatement(sql);
+        float count = statement.simpleQueryForLong();
+        db.close();
+
+        return count;
     }
 
 }
