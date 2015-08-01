@@ -7,10 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -42,6 +42,7 @@ public class SocialEmotionStackedBarChart extends Fragment {
         barChart.setDescription(null);
         barChart.setDrawValueAboveBar(false);
         barChart.getAxisRight().setEnabled(false); // hide right y-axis
+        barChart.getAxisLeft().setValueFormatter(new IntegerFormatter());
 
         XAxis xLabels = barChart.getXAxis();
         xLabels.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -59,14 +60,14 @@ public class SocialEmotionStackedBarChart extends Fragment {
 
         for (int i = 0; i < socialLabels.length; i++) {
             xVals.add(socialLabels[i]);
-            yVals.add(new BarEntry(this.getEmotionSocialCounts(socialLabels[i], emotionLabels), i));
+            yVals.add(new BarEntry(this.getSocialEmotionCounts(socialLabels[i], emotionLabels), i));
         }
 
         BarDataSet dataSet = new BarDataSet(yVals, null);
         dataSet.setColors(this.getColors(emotionLabels.length));
         dataSet.setStackLabels(emotionLabels);
         dataSet.setValueTextColor(res.getColor(R.color.text_icons));
-        dataSet.setValueTextSize(12f);
+        dataSet.setValueTextSize(Utils.getValueTextSize());
 
         ArrayList<BarDataSet> dataSets = new ArrayList<>();
         dataSets.add(dataSet);
@@ -76,64 +77,21 @@ public class SocialEmotionStackedBarChart extends Fragment {
 
         barChart.setData(data);
         barChart.invalidate();
-
-        /*
-        ArrayList<BarEntry> yVals = new ArrayList<>();
-        for (int i = 0; i < emotionColumns.length; i++) {
-            int count = this.getEmotionCount(emotionColumns[i]);
-            if (count > 0) {
-                entries.add(new Entry(count, entries.size()));
-                xVals.add(emotionLabels[i]);
-            }
-        }
-
-        PieDataSet dataSet = new PieDataSet(entries, null);
-        dataSet.setColors(Utils.getDefaultColorTemplate());
-        dataSet.setSliceSpace(2f);
-        dataSet.setValueTextColor(res.getColor(R.color.text_icons));
-        dataSet.setValueTextSize(android.R.attr.textAppearanceSmall);
-        dataSet.setValueTextSize(12f);
-        dataSet.setValueFormatter(new IntegerFormatter());
-
-        PieData data = new PieData(xVals, dataSet);
-        //d.setValueTypeface(tf);
-
-        pieChart.setData(data);
-        pieChart.animateY(1500, Easing.EasingOption.EaseInOutQuad);
-
-        /*pieChart.setDescription("");
-
-        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
-
-        pieChart.setCenterTextTypeface(tf);
-        pieChart.setCenterText("Revenues");
-        pieChart.setCenterTextSize(22f);
-        pieChart.setCenterTextTypeface(tf);
-
-        // radius of the center hole in percent of maximum radius
-        pieChart.setHoleRadius(45f);
-        pieChart.setTransparentCircleRadius(50f);
-
-        Legend l = pieChart.getLegend();
-        l.setPosition(LegendPosition.RIGHT_OF_CHART);
-
-        pieChart.setData(generatePieData()); */
     }
 
-    private float[] getEmotionSocialCounts(String emotionLabel, String[] socialLabels) {
-        float[] counts = new float[socialLabels.length];
+    private float[] getSocialEmotionCounts(String socialLabel, String[] emotionLabels) {
+        float[] counts = new float[emotionLabels.length];
 
-        for (int i = 0; i < socialLabels.length; i++) {
-            float count = this.getEmotionSocialCounts(emotionLabel, socialLabels[i]);
+        for (int i = 0; i < emotionLabels.length; i++) {
+            float count = this.getSocialEmotionCount(socialLabel, emotionLabels[i]);
             if (count > 0) {
-                // TODO fix legend labels to correspond with non-zero values
                 counts[i] = count;
             }
         }
         return counts;
     }
 
-    private float getEmotionSocialCounts(String emotionLabel, String socialLabel) {
+    private float getSocialEmotionCount(String socialLabel, String emotionLabel) {
         Random rand = new Random();
         int max = 20;
         int min = 0;

@@ -62,32 +62,13 @@ public class EmotionsPieChart extends Fragment {
         dataSet.setColors(Utils.getDefaultColorTemplate());
         dataSet.setSliceSpace(2f);
         dataSet.setValueTextColor(res.getColor(R.color.text_icons));
-        dataSet.setValueTextSize(12f);
+        dataSet.setValueTextSize(Utils.getValueTextSize());
         dataSet.setValueFormatter(new IntegerFormatter());
 
         PieData data = new PieData(xVals, dataSet);
-        //d.setValueTypeface(tf);
 
         pieChart.setData(data);
-        pieChart.animateY(1500, Easing.EasingOption.EaseInOutQuad);
-
-        /*pieChart.setDescription("");
-
-        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
-
-        pieChart.setCenterTextTypeface(tf);
-        pieChart.setCenterText("Revenues");
-        pieChart.setCenterTextSize(22f);
-        pieChart.setCenterTextTypeface(tf);
-
-        // radius of the center hole in percent of maximum radius
-        pieChart.setHoleRadius(45f);
-        pieChart.setTransparentCircleRadius(50f);
-
-        Legend l = pieChart.getLegend();
-        l.setPosition(LegendPosition.RIGHT_OF_CHART);
-
-        pieChart.setData(generatePieData()); */
+        pieChart.invalidate();
     }
 
     private int getEmotionCount(String emotionCol) {

@@ -24,4 +24,8 @@ public class Utils {
         return colors;
     }
 
+    public static float getValueTextSize(){
+        return 12f;
+    }
+
 }

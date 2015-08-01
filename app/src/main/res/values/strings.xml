@@ -218,9 +218,20 @@
 
     <string-array name="socialLabels">
         <item>Alone</item>
-        <item>With others</item>
+        <item>With Others</item>
     </string-array>
 
     <string name="emotionsPieChartCenterText">Emotions</string>
+
+    <string-array name="companyLabels">
+        <item>Alone</item>
+        <item>Partner</item>
+        <item>Family</item>
+        <item>Friend</item>
+        <item>Classmate</item>
+        <item>Colleague</item>
+        <item>Stranger</item>
+        <item>Other</item>
+    </string-array>
 
 </resources>

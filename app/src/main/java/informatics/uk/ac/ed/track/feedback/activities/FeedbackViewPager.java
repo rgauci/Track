@@ -1,5 +1,6 @@
 package informatics.uk.ac.ed.track.feedback.activities;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -25,12 +26,12 @@ public class FeedbackViewPager extends AppCompatActivity {
         setContentView(R.layout.activity_feedback_view_pager);
 
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        PageAdapter a = new PageAdapter(getSupportFragmentManager());
-        pager.setAdapter(a);
+        pager.setOffscreenPageLimit(PageAdapter.NUM_GRAPHS_AVAILABLE);
 
-        Toast toast = Toast.makeText(this,
-                getResources().getString(R.string.feedbackPagerInstructions), Toast.LENGTH_LONG);
-        toast.show();
+        PageAdapter pgAdapter = new PageAdapter(getSupportFragmentManager());
+        pager.setAdapter(pgAdapter);
+
+        Snackbar.make(findViewById(R.id.lytSnackbar), getResources().getString(R.string.feedbackPagerInstructions), Snackbar.LENGTH_LONG).show();
     }
 
     @Override
