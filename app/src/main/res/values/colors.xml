@@ -91,6 +91,7 @@
     <color name="primary_dark">@color/dark_purple_700</color>
     <color name="primary_light">@color/dark_purple_100</color>
     <color name="accent">@color/blue_A200</color>
+    <color name="accent_dark">@color/blue_A400</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
     <color name="text_icons">#ffffff</color>

@@ -1,5 +1,6 @@
 package informatics.uk.ac.ed.track.esm.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -82,5 +84,15 @@ public class BriefingComplete extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void btnNext_onClick(View view){
+        Resources res = getResources();
+        Intent intent = new Intent(this, DefaultActivity.class);
+        intent.putExtra(Constants.DEFAULT_SCREEN_TITLE,
+                res.getString(R.string.noSurveyAvailableTitle));
+        intent.putExtra(Constants.DEFAULT_SCREEN_SUBTITLE,
+                res.getString(R.string.noSurveyAvailableSubTitle));
+        startActivity(intent);
     }
 }

@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="informatics.uk.ac.ed.track.esm.activities.BriefingComplete">
@@ -59,6 +60,20 @@
 
             </LinearLayout>
         </ScrollView>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/ic_home_white_24dp"
+            fab:fab_colorNormal="@color/accent"
+            fab:fab_colorPressed="@color/primary"
+            fab:fab_colorRipple="@color/accent_dark"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="btnNext_onClick" />
 
     </RelativeLayout>
 
