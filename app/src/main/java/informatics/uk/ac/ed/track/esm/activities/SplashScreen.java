@@ -30,6 +30,7 @@ import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.esm.DatabaseHelper;
 import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.esm.Utils;
+import informatics.uk.ac.ed.track.lib.SurveyHelper;
 import informatics.uk.ac.ed.track.lib.TrackQuestion;
 import informatics.uk.ac.ed.track.lib.TrackQuestionType;
 
@@ -140,25 +141,12 @@ public class SplashScreen extends AppCompatActivity {
         }
 
         /* convert from JSON string to JSON objects */
-
         String jsonSurvey = writer.toString();
-
-        // create RunTimeAdapterFactory to support Polymorphic types in lists
-        RuntimeTypeAdapterFactory<TrackQuestion> factory =
-                informatics.uk.ac.ed.track.lib.Utils.getRuntimeAdapterFactory();
-
-        Type listType = new TypeToken<ArrayList<TrackQuestion>>() {}.getType();
-
-        GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapterFactory(factory);
-        Gson gson = builder.create();
-
-        ArrayList<TrackQuestion> questions = gson.fromJson(jsonSurvey, listType);
+        ArrayList<TrackQuestion> questions = SurveyHelper.fromJson(jsonSurvey);
 
         // for each question, create a preferences file containing:
         // - the question object serialised in JSON format
         // and save the question type in the shared preferences
-
         SharedPreferences.Editor settingsEditor = settings.edit();
         Gson questionGson = new Gson();
 

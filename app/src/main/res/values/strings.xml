@@ -128,6 +128,7 @@
     <string name="error_enterValidNumber">Enter a valid number.</string>
     <string name="error_answerToProceed">Answer the question to proceed.</string>
     <string name="error_enterOtherOptionText">Fill in the \'%1$s\' text box to proceed.</string>
+    <string name="error_invalidCharacterInOther">\'%1$s\' text cannot contain \'%2$s\'.</string>
     <string name="smiley">:)</string>
 
     <string name="likertValue1">1</string>
@@ -259,6 +260,56 @@
         <item>Colleague</item>
         <item>Stranger</item>
         <item>Other</item>
+    </string-array>
+
+    <!--
+        Identifies one of the labels from companyLabels (above) which corresponds to a particular
+        value in the socialColumn column (above).
+        Index is zero-based (so 0 corresponds to the 1st item).
+        Used in the 'Company' graph.
+        -->
+    <integer name="companyLabelAloneIndex">0</integer>
+
+    <!--
+        Identifies one of the labels from companyLabels (above) which corresponds to 'Other'.
+        Index is zero-based (so 0 corresponds to the 1st item).
+        Used in the 'Company' graph.
+        -->
+    <integer name="companyLabelOtherIndex">7</integer>
+
+    <!--
+        Identifies the value corresponding to 'Alone' from the socialColumnValues array (above).
+        Used in the 'Company' graph.
+        -->
+    <integer name="socialColumnValueAloneIndex">0</integer>
+
+    <!--
+        Identifies the value corresponding to 'With Others' from the socialColumnValues array (above).
+        Used in the 'Company' graph.
+        -->
+    <integer name="socialColumnValueWithOthersIndex">1</integer>
+
+    <!--
+        The name of the database column holding the company values
+        (who the participant is with if not alone).
+        Used in the 'Company' graph.
+        -->
+    <string name="companyColumnn">Social_WithOthers</string>
+
+    <!-- Actual values in the companyColumn (above)
+         Order of items must correspond to companyLabels (above) which will be used to label
+         the bars in the bar chart.
+         Used in the 'Company' graph.
+        -->
+    <string-array name="companyColumnValues">
+        <item/> <!-- empty value corresponding to 'Alone', will not be in this column -->
+        <item>Partner</item>
+        <item>Family</item>
+        <item>Friend</item>
+        <item>Classmate</item>
+        <item>Colleague</item>
+        <item>Stranger</item>
+        <item/> <!-- empty value corresponding to 'Other' -->
     </string-array>
 
 </resources>

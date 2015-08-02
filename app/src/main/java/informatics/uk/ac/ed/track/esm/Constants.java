@@ -47,6 +47,7 @@ public class Constants {
     public static final String STUDY_END_DATE_TIME_MILLIS = "studyEndDateTimeMillis";
     public static final String SURVEY_IMPORT_COMPLETE = "surveyImportComplete";
     public static final String SURVEY_RESPONSES = "surveyResponses";
+    public static final String SURVEY_RESPONSES_MULTI_CHOICE_MULTI_ANSWER_DELIMITER = ";";
     public static final String SURVEY_RESPONSES_CONTENT_VALUE_DELIMITER = "<_C_V_>";
     public static final String SURVEY_RESPONSES_RESPONSE_DELIMITER =  "<_R_>";
     public static final String SURVEY_RESPONSE_ROW_ID = "surveyResponseRowId";

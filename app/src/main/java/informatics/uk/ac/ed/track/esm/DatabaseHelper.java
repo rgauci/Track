@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATATYPE_INTEGER = "INTEGER";
     public static final String DATATYPE_TEXT = "TEXT";
 
-    public static final String TABLE_NAME_SURVEY_RESPONSES = "Survey Responses";
+    public static final String TABLE_NAME_SURVEY_RESPONSES = "SurveyResponses";
 
     public static final String COLUMN_NAME_ROW_ID = "ROWID";
     public static final String COLUMN_NAME_NOTIFICATION_TIME = "Notification Time";
@@ -105,7 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                responses.add(this.getSurveyReponseFromCursor(cursor));
+                responses.add(this.getSurveyResponseFromCursor(cursor));
             } while (cursor.moveToNext());
         }
 
@@ -126,7 +126,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor != null) {
             cursor.moveToFirst();
-            response = this.getSurveyReponseFromCursor(cursor);
+            response = this.getSurveyResponseFromCursor(cursor);
             cursor.close();
         }
 
@@ -147,7 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    private SurveyResponse getSurveyReponseFromCursor(Cursor cursor) {
+    private SurveyResponse getSurveyResponseFromCursor(Cursor cursor) {
         SurveyResponse response = new SurveyResponse();
 
         response.setRowId(

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.esm.DatabaseHelper;
 import informatics.uk.ac.ed.track.esm.Utils;
 import informatics.uk.ac.ed.track.lib.AnswerOption;
 import informatics.uk.ac.ed.track.lib.MultipleChoiceMultipleAnswer;
@@ -154,6 +155,11 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
                 errorText = String.format(res.getString(R.string.error_enterOtherOptionText),
                         res.getString(R.string.other));
                 hasErrors = true;
+            } else if (otherText.contains(Constants.SURVEY_RESPONSES_MULTI_CHOICE_MULTI_ANSWER_DELIMITER)) {
+                errorText = String.format(res.getString(R.string.error_invalidCharacterInOther),
+                        res.getString(R.string.other),
+                        Constants.SURVEY_RESPONSES_MULTI_CHOICE_MULTI_ANSWER_DELIMITER);
+                hasErrors = true;
             }
         }
 
@@ -198,7 +204,7 @@ public class Question_MultiChoice_Multi extends TrackQuestionActivity {
         for (CheckBox checkBox : this.checkBoxes) {
             if (checkBox.isChecked()) {
                 if (responseSb.length() > 0) {
-                    responseSb.append(",");
+                    responseSb.append(Constants.SURVEY_RESPONSES_MULTI_CHOICE_MULTI_ANSWER_DELIMITER);
                 }
                 if ((this.chkBxOther != null) && (checkBox.getId() == this.chkBxOther.getId())) {
                     // if 'Other' checkbox is selected, use Other textbox's text
