@@ -14,7 +14,7 @@ import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.esm.Utils;
 import informatics.uk.ac.ed.track.feedback.activities.FeedbackViewPager;
 
-public class DefaultActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private Button btnLaunchDemo, btnViewFeedback;
     private TextView txtVwTitle, txtVwSubTitle, txtVwMsg;
@@ -33,9 +33,9 @@ public class DefaultActivity extends AppCompatActivity {
 
         // set text, title & msg (if available)
         Intent intent = getIntent();
-        String title = intent.getStringExtra(Constants.DEFAULT_SCREEN_TITLE);
-        String subTitle = intent.getStringExtra(Constants.DEFAULT_SCREEN_SUBTITLE);
-        String msg = intent.getStringExtra(Constants.DEFAULT_SCREEN_MSG);
+        String title = intent.getStringExtra(Constants.HOME_SCREEN_TITLE);
+        String subTitle = intent.getStringExtra(Constants.HOME_SCREEN_SUBTITLE);
+        String msg = intent.getStringExtra(Constants.HOME_SCREEN_MSG);
 
         this.showOrHideText(this.txtVwTitle, title);
         this.showOrHideText(this.txtVwSubTitle, subTitle);
@@ -45,25 +45,31 @@ public class DefaultActivity extends AppCompatActivity {
         btnLaunchDemo.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DefaultActivity.this, DemoIntro.class);
+                Intent intent = new Intent(HomeActivity.this, DemoIntro.class);
                 startActivity(intent);
             }
         });
 
-        btnViewFeedback.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DefaultActivity.this, FeedbackViewPager.class);
-                startActivity(intent);
-            }
-        });
+        // show / hide feedback button depending on whether feedback module is enabled
+        boolean useFeedbackModule = getResources().getBoolean(R.bool.useFeedbackModule);
+        if (useFeedbackModule) {
+            btnViewFeedback.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(HomeActivity.this, FeedbackViewPager.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            btnViewFeedback.setVisibility(View.GONE);
+        }
 
         // TODO remove this and corresponding button
         Button relaunchSetup = (Button) findViewById(R.id.btnRelaunchSetup);
         relaunchSetup.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DefaultActivity.this, ResearcherSetup.class);
+                Intent intent = new Intent(HomeActivity.this, ResearcherSetup.class);
                 startActivity(intent);
             }
         });

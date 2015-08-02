@@ -24,6 +24,8 @@
     <string name="dailyStartTime">Daily Start Time</string>
     <string name="dailyEndTime">Daily End Time</string>
     <string name="days">days</string>
+    <string name="surveys">completed surveys</string>
+    <string name="feedbackActivation">Feedback Availability</string>
 
     <string name="defaultTimeFormat">hh:mm</string>
     <string name="defaultDateFormat">EEEE, dd MMM yyyy</string>
@@ -37,8 +39,8 @@
         <item>@string/notificationSchedulingFixed</item>
     </string-array>
 
-    <string name="Participant">Participant&#160;</string>
-    <string name="ParticipantIdPlaceholder">&lt;Participant ID&gt;</string>
+    <string name="participantPasswordExplanation">
+        You will need this password to access feedback on your survey responses.</string>
 
     <string name="demoSuggestion">Would you like a short demo?</string>
     <string name="setupCompleteTitleMessage">All Done!</string>

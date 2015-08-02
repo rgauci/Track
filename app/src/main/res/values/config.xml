@@ -2,4 +2,5 @@
 <resources>
     <string name="trackWebServiceUrl">http://trackserver.no-ip.org/webservice/</string> <!-- 10.0.2.2 for PC (localhost refers to emulator itself) -->
     <string name="addSurveyResponseWebMethod">addSurveyResponse.php</string>
+    <bool name="useFeedbackModule">true</bool> <!-- use feedback module (contains non-configurable code, tailor-made for Laura MacLean's study) -->
 </resources>

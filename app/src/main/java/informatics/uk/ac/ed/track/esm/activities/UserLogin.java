@@ -21,16 +21,6 @@ public class UserLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-
-        /* initialise UI controls */
-        txtVwParticipantId = (TextView) findViewById(R.id.txtVwParticipantId);
-
-        /* get shared preferences */
-        this.settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        /* display participant ID */
-        int participantId = settings.getInt(Constants.PARTICIPANT_ID, -1);
-        txtVwParticipantId.setText(String.valueOf(participantId));
     }
 
     @Override

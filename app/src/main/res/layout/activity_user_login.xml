@@ -44,33 +44,6 @@
             android:gravity="center_vertical"
             android:layout_alignBottom="@+id/btnNext">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:weightSum="1"
-                android:layout_marginBottom="@dimen/vertical_space">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/Participant"
-                    android:id="@+id/textView2"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/secondary_text" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/ParticipantIdPlaceholder"
-                    android:id="@+id/txtVwParticipantId"
-                    android:textColor="@color/secondary_text" />
-            </LinearLayout>
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

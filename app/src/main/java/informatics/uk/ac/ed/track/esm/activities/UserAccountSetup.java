@@ -31,20 +31,10 @@ public class UserAccountSetup extends AppCompatActivity {
         setContentView(R.layout.activity_user_account_setup);
 
         /* initialise UI controls */
-        txtVwParticipantId = (TextView) findViewById(R.id.txtVwParticipantId);
-
-        txtPassword = (EditText) findViewById(R.id.txtPassword);
-        txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
-
-        txtPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtPassword_InpLyt);
-        txtConfirmPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtConfirmPassword_InpLyt);
-
-        /* get shared preferences */
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        /* display participant ID */
-        int participantId = settings.getInt(Constants.PARTICIPANT_ID, Constants.DEF_VALUE_INT);
-        txtVwParticipantId.setText(String.valueOf(participantId));
+        this.txtPassword = (EditText) findViewById(R.id.txtPassword);
+        this.txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
+        this.txtPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtPassword_InpLyt);
+        this.txtConfirmPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtConfirmPassword_InpLyt);
     }
 
     @Override

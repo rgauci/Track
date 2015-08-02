@@ -13,9 +13,9 @@ public class Constants {
     public static final String DATABASE_VERSION = "dbVersion";
     public static final String DATABASE_SURVEY_COLUMNS_SQL = "dbSurveyColumnsSql";
     public static final String DAY_END_TME_MILLIS = "dayEndTimeMillis";
-    public static final String DEFAULT_SCREEN_TITLE = "defaultScreenTitle";
-    public static final String DEFAULT_SCREEN_SUBTITLE = "defaultScreenSubTitle";
-    public static final String DEFAULT_SCREEN_MSG = "defaultScreenMsg";
+    public static final String HOME_SCREEN_TITLE = "defaultScreenTitle";
+    public static final String HOME_SCREEN_SUBTITLE = "defaultScreenSubTitle";
+    public static final String HOME_SCREEN_MSG = "defaultScreenMsg";
     public static final String DURATION_DAYS = "duration";
     public static final String END_TIME_HOUR = "endTimeHour";
     public static final String END_TIME_MINUTE = "endTimeMinute";

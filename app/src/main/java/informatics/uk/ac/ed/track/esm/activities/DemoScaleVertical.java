@@ -60,11 +60,11 @@ public class DemoScaleVertical extends AppCompatActivity {
                             Constants.DEF_VALUE_BOOL);
                     Intent intent;
                     if (setupComplete) {
-                        intent = new Intent(DemoScaleVertical.this, DefaultActivity.class);
+                        intent = new Intent(DemoScaleVertical.this, HomeActivity.class);
                         Resources res = getResources();
-                        intent.putExtra(Constants.DEFAULT_SCREEN_TITLE,
+                        intent.putExtra(Constants.HOME_SCREEN_TITLE,
                                 res.getString(R.string.demoCompleteTitle));
-                        intent.putExtra(Constants.DEFAULT_SCREEN_SUBTITLE,
+                        intent.putExtra(Constants.HOME_SCREEN_SUBTITLE,
                                 res.getString(R.string.demoCompleteSubTitle));
                     } else {
                         intent = new Intent(DemoScaleVertical.this, BriefingComplete.class);

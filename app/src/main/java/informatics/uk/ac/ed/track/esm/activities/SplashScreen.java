@@ -10,9 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +18,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -95,11 +91,11 @@ public class SplashScreen extends AppCompatActivity {
                         intent = Utils.getLaunchSurveyIntent(getApplicationContext());
                     } else {
                         // otherwise show no survey currently available screen
-                        intent = new Intent(SplashScreen.this, DefaultActivity.class);
+                        intent = new Intent(SplashScreen.this, HomeActivity.class);
 
                         Resources res = getResources();
-                        intent.putExtra(Constants.DEFAULT_SCREEN_TITLE, res.getString(R.string.noSurveyAvailableTitle));
-                        intent.putExtra(Constants.DEFAULT_SCREEN_SUBTITLE, res.getString(R.string.noSurveyAvailableSubTitle));
+                        intent.putExtra(Constants.HOME_SCREEN_TITLE, res.getString(R.string.noSurveyAvailableTitle));
+                        intent.putExtra(Constants.HOME_SCREEN_SUBTITLE, res.getString(R.string.noSurveyAvailableSubTitle));
                     }
 
                     startActivity(intent);

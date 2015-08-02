@@ -114,6 +114,112 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/imageView4"
+                        android:src="@drawable/ic_ic_brightness_5_grey_24dp"
+                        android:layout_column="0"
+                        style="@style/FormImage"
+                        android:contentDescription="@string/dailyStartTime"
+                        android:cropToPadding="false" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_column="1"
+                        style="@style/ListItem"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:onClick="lytStartTime_OnClick"
+                        android:id="@+id/lytStartTime">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/dailyStartTime"
+                            android:id="@+id/textView12" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/defaultTimeFormat"
+                            android:id="@+id/txtStartTime"/>
+
+                        <TextView
+                            style="@style/ErrorText"
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:id="@+id/txtStartTime_errorMsg"
+                            android:layout_weight="0.5" />
+
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow>
+                    <View
+                        android:layout_column="1"
+                        style="@style/HorizontalDivider"/>
+                </TableRow>
+
+                <TableRow>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView5"
+                        android:src="@drawable/ic_ic_brightness_3_grey_24dp"
+                        android:layout_column="0"
+                        style="@style/FormImage"
+                        android:contentDescription="@string/dailyEndTime" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        style="@style/ListItem"
+                        android:onClick="lytEndTime_OnClick"
+                        android:id="@+id/lytEndTime">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/dailyEndTime"
+                            android:id="@+id/textView15" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/defaultTimeFormat"
+                            android:id="@+id/txtEndTime" />
+
+                        <TextView
+                            style="@style/ErrorText"
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:id="@+id/txtEndTime_errorMsg"
+                            android:layout_weight="0.5" />
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow>
+
+                    <View
+                        android:layout_column="1"
+                        style="@style/HorizontalDivider"/>
+
+                </TableRow>
+
+                <TableRow>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:id="@+id/imageView6"
                         android:src="@drawable/ic_ic_event_note_grey_24dp"
                         android:layout_column="0"
@@ -149,8 +255,7 @@
                                     android:ems="10"
                                     android:id="@+id/txtDuration"
                                     android:text="@integer/defaultDuration"
-                                    android:gravity="center"
-                                    android:layout_weight="0.5" />
+                                    android:gravity="center" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -314,101 +419,62 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/imageView4"
-                        android:src="@drawable/ic_ic_brightness_5_grey_24dp"
+                        android:src="@drawable/ic_ic_equalizer_grey_24dp"
                         android:layout_column="0"
                         style="@style/FormImage"
-                        android:contentDescription="@string/dailyStartTime"
-                        android:cropToPadding="false" />
+                        android:contentDescription="@string/duration"
+                        android:cropToPadding="true" />
 
                     <LinearLayout
                         android:orientation="vertical"
-                        android:layout_column="1"
-                        style="@style/ListItem"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:onClick="lytStartTime_OnClick"
-                        android:id="@+id/lytStartTime">
+                        style="@style/ListItem"
+                        android:layout_column="1">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="@string/dailyStartTime"
-                            android:id="@+id/textView12" />
+                            android:text="@string/feedbackActivation" />
 
-                        <TextView
+                        <LinearLayout
+                            android:orientation="horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@string/defaultTimeFormat"
-                            android:id="@+id/txtStartTime"/>
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:layout_width="@dimen/form_input_width"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:ems="10"
+                                android:id="@+id/txtMinimumSurveysForFeedback"
+                                android:text="@integer/defaultMinimumSurveysForFeedback"
+                                android:gravity="center"
+                                android:layout_weight="0.5" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="@string/surveys" />
+
+                        </LinearLayout>
 
                         <TextView
-                            style="@style/ErrorText"
                             android:layout_width="fill_parent"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:id="@+id/txtStartTime_errorMsg"
-                            android:layout_weight="0.5" />
+                            android:id="@+id/txtFeedbackActivationErrorMsg"
+                            android:layout_weight="0.5"
+                            style="@style/ErrorText"/>
 
                     </LinearLayout>
 
                 </TableRow>
 
                 <TableRow>
-                    <View
-                        android:layout_column="1"
-                        style="@style/HorizontalDivider"/>
-                </TableRow>
-
-                <TableRow>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView5"
-                        android:src="@drawable/ic_ic_brightness_3_grey_24dp"
-                        android:layout_column="0"
-                        style="@style/FormImage"
-                        android:contentDescription="@string/dailyEndTime" />
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        style="@style/ListItem"
-                        android:onClick="lytEndTime_OnClick"
-                        android:id="@+id/lytEndTime">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="@string/dailyEndTime"
-                            android:id="@+id/textView15" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@string/defaultTimeFormat"
-                            android:id="@+id/txtEndTime" />
-
-                        <TextView
-                            style="@style/ErrorText"
-                            android:layout_width="fill_parent"
-                            android:layout_height="0dp"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:id="@+id/txtEndTime_errorMsg"
-                            android:layout_weight="0.5" />
-                    </LinearLayout>
-
-                </TableRow>
-
-                <TableRow>
-
                     <View
                         android:layout_column="1"
                         style="@style/HorizontalDivider"/>
