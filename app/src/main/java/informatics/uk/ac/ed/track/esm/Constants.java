@@ -52,4 +52,5 @@ public class Constants {
     public static final String SURVEY_RESPONSES_CONTENT_VALUE_DELIMITER = "<_C_V_>";
     public static final String SURVEY_RESPONSES_RESPONSE_DELIMITER =  "<_R_>";
     public static final String SURVEY_RESPONSE_ROW_ID = "surveyResponseRowId";
+    public static final String USER_IS_LOGGED_IN = "userIsLoggedIn";
 }

@@ -16,4 +16,5 @@
     <dimen name="likert_button_width">32dp</dimen>
     <dimen name="likert_button_margin_right">8dp</dimen>
     <dimen name="likert_button_margin_bottom">1dp</dimen>
+    <dimen name="left_padding_to_align_to_text_input_layout">4dp</dimen>
 </resources>

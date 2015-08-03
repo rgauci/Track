@@ -51,6 +51,9 @@ public class SplashScreen extends AppCompatActivity {
                 boolean setupComplete =
                         settings.getBoolean(Constants.SETUP_COMPLETE, Constants.DEF_VALUE_BOOL);
 
+                // set user as logged out
+                logUserOut(settings);
+
                 // if survey has not yet been imported from survey_json.txt
                 // import survey: create shared preference file for each question
                 if (!surveyImportComplete) {
@@ -106,6 +109,12 @@ public class SplashScreen extends AppCompatActivity {
                 }
             }
         }, SPLASH_DISPLAY_TIME_MILLIS);
+    }
+
+    private void logUserOut(SharedPreferences settings) {
+        SharedPreferences.Editor settingsEditor = settings.edit();
+        settingsEditor.putBoolean(Constants.USER_IS_LOGGED_IN, false);
+        settingsEditor.apply();
     }
 
     private void importSurvey(SharedPreferences settings) {
@@ -196,7 +205,7 @@ public class SplashScreen extends AppCompatActivity {
         settingsEditor.putString(Constants.DATABASE_SURVEY_COLUMNS_SQL, surveyColumnsSqlSb.toString());
 
         // commit changes to shared preferences
-        settingsEditor.commit();
+        settingsEditor.apply();
 
         // create database table
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext(), dbVersion);

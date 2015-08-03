@@ -82,8 +82,13 @@ public class HomeActivity extends AppCompatActivity {
                     db.close();
 
                     if (surveysCompleted >= minimumSurveys) {
-                        Intent intent = new Intent(HomeActivity.this, FeedbackViewPager.class);
-                        startActivity(intent);
+                        if (Utils.getIsUserLoggedIn(getApplicationContext())) {
+                            Intent intent = new Intent(HomeActivity.this, FeedbackViewPager.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(HomeActivity.this, UserLogin.class);
+                            startActivity(intent);
+                        }
                     } else {
                         // show dialog informing user feature is still locked
                         Resources res = getResources();

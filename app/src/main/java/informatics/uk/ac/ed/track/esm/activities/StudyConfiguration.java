@@ -146,8 +146,13 @@ public class StudyConfiguration extends AppCompatActivity
                     new SurveyNotificationManager(getApplicationContext());
             notificationManager.SetupNotifications(true);
             // proceed to next activity
-            Intent intent = new Intent(this, UserAccountSetup.class);
-            startActivity(intent);
+            if (this.useFeedbackModule) {
+                Intent intent = new Intent(this, UserAccountSetup.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, SetupComplete.class);
+                startActivity(intent);
+            }
         }
     }
 
@@ -417,8 +422,6 @@ public class StudyConfiguration extends AppCompatActivity
 
     @Override
     public void onTimeSet(int pickerId, TimePicker view, int hourOfDay, int minute) {
-        TextView timeTxtView;
-
         switch (pickerId) {
             case START_TIMEPICKER_ID:
                 this.setStartTime(hourOfDay, minute);

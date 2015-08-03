@@ -35,26 +35,53 @@
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/toolbar">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/scrollView5"
+            android:layout_alignRight="@+id/btnNext"
+            android:layout_alignEnd="@+id/btnNext"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:gravity="center_vertical"
-            android:layout_alignBottom="@+id/btnNext">
+            android:fillViewport="true">
 
-            <EditText
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/editText"
-                android:layout_gravity="right"
-                android:hint="@string/password"
-                android:gravity="center_horizontal" />
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"
+                android:layout_alignBottom="@+id/btnNext">
 
-        </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/txtPassword_InpLyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextInputLayout" >
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:ems="10"
+                        android:id="@+id/txtPassword"
+                        android:layout_gravity="right"
+                        android:hint="@string/password" />
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Forgot Password?"
+                    android:id="@+id/txtForgotPassword"
+                    style="@style/ExplanationText"
+                    android:layout_margin="0dp"
+                    android:paddingLeft="@dimen/left_padding_to_align_to_text_input_layout" />
+
+            </LinearLayout>
+
+        </ScrollView>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/btnNext"

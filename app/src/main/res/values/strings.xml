@@ -16,7 +16,7 @@
     <string name="title_activity_demo_scale">Scale Demo</string>
     <string name="title_activity_demo_scale_vertical">Vertical Scale Demo</string>
     <string name="title_activity_participant_login">Participant Login</string>
-    <string name="title_activity_user_login">User Login</string>
+    <string name="title_activity_user_login">Login</string>
 
     <string name="startDate">Start Date</string>
     <string name="duration">Duration</string>
@@ -184,7 +184,7 @@
     <string name="submitDialogNegativeBtn">CANCEL</string>
 
     <string name="feedbackLockedDialogTitle">Feature Locked</string>
-    <string name="feedbackLockedDialogMessage_ManyLeft">This feature is not yet available.
+    <string name="feedbackLockedDialogMessage_ManyLeft">This feature is not yet available.\n\n
         Complete %1$d more surveys to unlock.</string>
     <string name="feedbackLockedDialogMessage_OneLeft">This feature is not yet available.
         Complete %1$d more survey to unlock.</string>

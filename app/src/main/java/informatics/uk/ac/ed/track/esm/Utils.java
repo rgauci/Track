@@ -151,16 +151,9 @@ public class Utils {
         return intent;
     }
 
-    public static boolean tryParseInt(String value)
-    {
-        try
-        {
-            Integer.parseInt(value);
-            return true;
-        } catch(NumberFormatException nfe)
-        {
-            return false;
-        }
+    public static boolean getIsUserLoggedIn(Context appContext) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(appContext);
+        return settings.getBoolean(Constants.USER_IS_LOGGED_IN, Constants.DEF_VALUE_BOOL);
     }
 
 }
