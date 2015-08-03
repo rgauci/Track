@@ -152,14 +152,8 @@
     <string name="title_activity_briefing_complete">BriefingComplete</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_default">DefaultActivity</string>
     <string name="noSurveyAvailableTitle">No Survey Currently Available</string>
     <string name="noSurveyAvailableSubTitle">Keep an eye out for those notifications.</string>
-    <string name="title_activity_multi_choice__multi">MultiChoice_Multi</string>
-    <string name="title_activity_multi_choice__single">MultiChoice_Single</string>
 
     <string name="defaultTitle">Title</string>
     <string name="defaultSubTitle">Sub-Title</string>
@@ -188,6 +182,12 @@
         and you will not be able to make any further changes.</string>
     <string name="submitDialogPositiveBtn">SUBMIT</string>
     <string name="submitDialogNegativeBtn">CANCEL</string>
+
+    <string name="feedbackLockedDialogTitle">Feature Locked</string>
+    <string name="feedbackLockedDialogMessage_ManyLeft">This feature is not yet available.
+        Complete %1$d more surveys to unlock.</string>
+    <string name="feedbackLockedDialogMessage_OneLeft">This feature is not yet available.
+        Complete %1$d more survey to unlock.</string>
 
     <string name="launchDemo">Launch Demo</string>
     <string name="viewFeedback">View Feedback</string>

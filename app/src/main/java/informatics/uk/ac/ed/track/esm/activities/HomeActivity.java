@@ -1,7 +1,13 @@
 package informatics.uk.ac.ed.track.esm.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +17,7 @@ import android.widget.TextView;
 
 import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.esm.DatabaseHelper;
 import informatics.uk.ac.ed.track.esm.Utils;
 import informatics.uk.ac.ed.track.feedback.activities.FeedbackViewPager;
 
@@ -56,8 +63,44 @@ public class HomeActivity extends AppCompatActivity {
             btnViewFeedback.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(HomeActivity.this, FeedbackViewPager.class);
-                    startActivity(intent);
+                    // check if enough surveys have been completed for survey activation
+                    SharedPreferences settings =
+                            PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+                    int minimumSurveys = settings.getInt(
+                            Constants.MINIMUM_SURVEYS_FOR_FEEDBACK_ACTIVATION,
+                            Constants.DEF_VALUE_INT);
+
+                    // get number of surveys completed from DB
+                    SQLiteDatabase db =
+                            new DatabaseHelper(getApplicationContext()).getReadableDatabase();
+
+                    String sql = "SELECT COUNT(*) FROM `" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES + "`";
+
+                    SQLiteStatement statement = db.compileStatement(sql);
+                    long surveysCompleted = statement.simpleQueryForLong();
+                    db.close();
+
+                    if (surveysCompleted >= minimumSurveys) {
+                        Intent intent = new Intent(HomeActivity.this, FeedbackViewPager.class);
+                        startActivity(intent);
+                    } else {
+                        // show dialog informing user feature is still locked
+                        Resources res = getResources();
+
+                        long remaining = minimumSurveys - surveysCompleted;
+                        String msg =
+                                (remaining > 1) ?
+                                        res.getString(R.string.feedbackLockedDialogMessage_ManyLeft)
+                                        :
+                                        res.getString(R.string.feedbackLockedDialogMessage_OneLeft);
+
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                                HomeActivity.this, R.style.AlertDialogTheme);
+                        alertDialog.setTitle(res.getString(R.string.feedbackLockedDialogTitle));
+                        alertDialog.setMessage(String.format(msg, remaining));
+                        alertDialog.show();
+                    }
                 }
             });
         } else {
