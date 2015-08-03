@@ -82,11 +82,18 @@ public class HomeActivity extends AppCompatActivity {
                     db.close();
 
                     if (surveysCompleted >= minimumSurveys) {
+                        // if feedback feature is activated (min # surveys completed)
                         if (Utils.getIsUserLoggedIn(getApplicationContext())) {
+                            // if user is already logged in, show FeedbackViewPager activity
                             Intent intent = new Intent(HomeActivity.this, FeedbackViewPager.class);
                             startActivity(intent);
                         } else {
+                            // otherwise, launch Log In Screen
+                            // passing an extra to tell Log In screen to launch FeedbackViewPager
+                            // on successful login
                             Intent intent = new Intent(HomeActivity.this, UserLogin.class);
+                            intent.putExtra(Constants.ACTIVITY_TO_LAUNCH_ON_LOGIN_SUCCESS,
+                                    UserLogin.LoginSuccessActivity.FeedbackViewPager);
                             startActivity(intent);
                         }
                     } else {

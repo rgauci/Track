@@ -88,9 +88,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/participantPasswordExplanation"
                 android:id="@+id/textView14"
-                android:textColor="@color/accent"
-                android:layout_marginTop="16dp"
-                android:paddingLeft="@dimen/left_padding_to_align_to_text_input_layout" />
+                android:paddingLeft="@dimen/left_padding_to_align_to_text_input_layout"
+                style="@style/ExplanationText_Accent"/>
 
 
         </LinearLayout>

@@ -196,16 +196,13 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
                                         startActivity(intent);
                                     }
                                 });
-                        // Setting Negative "NO" Button
                         alertDialog.setNegativeButton(
                                 res.getString(R.string.submitDialogNegativeBtn),
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        // Write your code here to invoke NO event
                                         dialog.cancel();
                                     }
                                 });
-                        // Showing Alert Message
                         alertDialog.show();
                     }
                 }

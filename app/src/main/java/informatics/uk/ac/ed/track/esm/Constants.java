@@ -8,6 +8,7 @@ public class Constants {
 
     public static final long DEF_VALUE_LNG = -1;
 
+    public static final String ACTIVITY_TO_LAUNCH_ON_LOGIN_SUCCESS = "activityToLaunchOnLoginSuccess";
     public static final String ALARM_REQUEST_CODES = "alarmRequestCodes";
     public static final String DEF_VALUE_STR = "";
     public static final String DATABASE_VERSION = "dbVersion";

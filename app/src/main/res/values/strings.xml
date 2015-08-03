@@ -4,7 +4,6 @@
     <string name="action_settings">Settings</string>
 
     <string name="title_activity_researcher_setup">Researcher Setup</string>
-    <string name="title_activity_study_configuration">Study Configuration</string>
     <string name="title_activity_user_account_setup">User Account Setup</string>
     <string name="title_activity_setup_complete">Setup Complete</string>
     <string name="title_activity_demo_intro">Demo</string>
@@ -16,11 +15,28 @@
     <string name="title_activity_demo_scale">Scale Demo</string>
     <string name="title_activity_demo_scale_vertical">Vertical Scale Demo</string>
 
+    <!-- User Login screen -->
     <string name="title_activity_user_login">Login</string>
+    <string name="forgotPassword">Forgot password?</string>
     <string name="error_user_login_enter_password_">Enter password.</string>
     <string name="error_user_login_invalidPassword">Invalid password.
         Please enter the password created during application setup.</string>
 
+    <!-- Reset Password screen -->
+    <string name="title_activity_reset_password">Reset Password</string>
+    <string name="resetPasswordMsg">Use the fields below to setup a new password.</string>
+    <string name="resetPasswordWarning">You will no longer be able to access any data from
+        surveys completed before password reset.</string>
+    <string name="resetPasswordWarningInfo">Any data shown in the feedback graphs will
+        correspond to surveys completed after password reset.</string>
+    <string name="resetPasswordDialogTitle">Reset Password?</string>
+    <string name="resetPasswordDialogMessage">@string/resetPasswordWarning</string>
+    <string name="resetPasswordDialogPositiveBtn">RESET</string>
+    <string name="resetPasswordDialogNegativeBtn">CANCEL</string>
+    <string name="passwordResetMsg">Your password has been reset.</string>
+
+    <!-- Study Configuration screen -->
+    <string name="title_activity_study_configuration">Study Configuration</string>
     <string name="startDate">Start Date</string>
     <string name="duration">Duration</string>
     <string name="samplesPerDay">Samples per Day</string>
@@ -187,7 +203,7 @@
     <string name="submitDialogNegativeBtn">CANCEL</string>
 
     <string name="feedbackLockedDialogTitle">Feature Locked</string>
-    <string name="feedbackLockedDialogMessage_ManyLeft">This feature is not yet available.\n\n
+    <string name="feedbackLockedDialogMessage_ManyLeft">This feature is not yet available.
         Complete %1$d more surveys to unlock.</string>
     <string name="feedbackLockedDialogMessage_OneLeft">This feature is not yet available.
         Complete %1$d more survey to unlock.</string>
@@ -319,5 +335,7 @@
         <item>Stranger</item>
         <item/> <!-- empty value corresponding to 'Other' -->
     </string-array>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>

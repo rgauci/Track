@@ -116,6 +116,12 @@
         <item name="android:layout_marginBottom">16dp</item>
     </style>
 
+    <style name="ExplanationText_Accent" parent="ExplanationText">
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
     <style name="HorizontalDivider">
         <item name="android:layout_marginTop">@dimen/horizontal_divider_vertical_margin</item>
         <item name="android:layout_marginBottom">@dimen/horizontal_divider_vertical_margin</item>
