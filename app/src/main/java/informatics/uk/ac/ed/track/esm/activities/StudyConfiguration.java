@@ -42,17 +42,18 @@ public class StudyConfiguration extends AppCompatActivity
 
     private boolean sampleDayGoesPastMidnight;
     private Calendar startDate, studyStartDateTime, studyEndDateTime;
-    private int duration, samplesPerDay, notificationWindow;
+    private int duration, samplesPerDay, notificationWindow, feedbackActivation;
     private int startTime_hour, startTime_minute;
     private int endTime_hour, endTime_minute;
     private long intervalMillis;
     private NotificationSchedule notificationSchedule;
 
-    private EditText txtDuration, txtSamplesPerDay, txtNotificationWindow;
+    private EditText txtDuration, txtSamplesPerDay, txtNotificationWindow,
+            txtFeedbackActivation;
     private TextView txtVwStartDate, txtVwStartTime, txtVwEndTime;
     private TextView txtStartDate_errorMsg, txtDuration_errorMsg,
             txtSamplesPerDay_errorMsg, txtNotificationWindow_errorMsg,
-            txtStarTime_errorMsg, txtEndTime_errorMsg;
+            txtStarTime_errorMsg, txtEndTime_errorMsg, txtFeedbackActivation_errorMsg;
     private Spinner spnNotificationScheduling;
 
     @Override
@@ -66,6 +67,7 @@ public class StudyConfiguration extends AppCompatActivity
         txtDuration = (EditText) findViewById(R.id.txtDuration);
         txtSamplesPerDay = (EditText) findViewById(R.id.txtSamplesPerDay);
         txtNotificationWindow = (EditText) findViewById(R.id.txtNotificationWindow);
+        txtFeedbackActivation = (EditText) findViewById(R.id.txtFeedbackActivation);
 
         txtVwStartDate = (TextView) findViewById(R.id.txtStartDate);
         txtVwStartTime = (TextView) findViewById(R.id.txtStartTime);
@@ -75,6 +77,7 @@ public class StudyConfiguration extends AppCompatActivity
         txtDuration_errorMsg = (TextView) findViewById(R.id.txtDuration_errorMsg);
         txtSamplesPerDay_errorMsg = (TextView) findViewById(R.id.txtSamplesPerDay_errorMsg);
         txtNotificationWindow_errorMsg = (TextView) findViewById(R.id.txtNotificationWindow_errorMsg);
+        txtFeedbackActivation_errorMsg = (TextView) findViewById(R.id.txtFeedbackActivation_errorMsg);
         txtStarTime_errorMsg = (TextView) findViewById(R.id.txtStartTime_errorMsg);
         txtEndTime_errorMsg = (TextView) findViewById(R.id.txtEndTime_errorMsg);
 
@@ -142,6 +145,7 @@ public class StudyConfiguration extends AppCompatActivity
         String duration_str = Utils.getTrimmedText(this.txtDuration);
         String samplePerDay_str = Utils.getTrimmedText(this.txtSamplesPerDay);
         String notificationWindow_str = Utils.getTrimmedText(this.txtNotificationWindow);
+        String feedbackActivation_str = Utils.getTrimmedText(this.txtFeedbackActivation);
         int notifSchedulingPosition =  spnNotificationScheduling.getSelectedItemPosition();
 
         // start date
@@ -181,6 +185,14 @@ public class StudyConfiguration extends AppCompatActivity
         if (validateNumber(notificationWindow_str, this.txtNotificationWindow_errorMsg,
                 getString(R.string.error_missingNotificationWindow))) {
             this.notificationWindow = Integer.parseInt(notificationWindow_str);
+        } else {
+            hasErrors = true;
+        }
+
+        // minimum number of completed surveys for feedback module activation
+        if (validateNumber(feedbackActivation_str, this.txtFeedbackActivation_errorMsg,
+                getString(R.string.error_missingFeedbackActivation))){
+            this.feedbackActivation = Integer.parseInt(feedbackActivation_str);
         } else {
             hasErrors = true;
         }
@@ -230,6 +242,8 @@ public class StudyConfiguration extends AppCompatActivity
             this.showError(this.txtEndTime_errorMsg,
                     String.format(getString(R.string.error_dailyEndTime), this.samplesPerDay));
             hasErrors = true;
+        } else {
+            this.hideError(this.txtEndTime_errorMsg);
         }
 
         if (!hasErrors) {
@@ -259,6 +273,7 @@ public class StudyConfiguration extends AppCompatActivity
         editor.putInt(Constants.DURATION_DAYS, this.duration);
         editor.putInt(Constants.SAMPLES_PER_DAY, this.samplesPerDay);
         editor.putInt(Constants.NOTIFICATION_WINDOW_MINUTES, this.notificationWindow);
+        editor.putInt(Constants.MINIMUM_SURVEYS_FOR_FEEDBACK_ACTIVATION, this.feedbackActivation);
         editor.putInt(Constants.START_TIME_HOUR, this.startTime_hour);
         editor.putInt(Constants.START_TIME_MINUTE, this.startTime_minute);
         editor.putInt(Constants.END_TIME_HOUR, this.endTime_hour);
@@ -289,6 +304,8 @@ public class StudyConfiguration extends AppCompatActivity
         } else if (!TextUtils.isDigitsOnly(numberString)) {
             this.showError(txtVwError, getString(R.string.error_enterValidNumber));
             valid = false;
+        } else if (Integer.parseInt(numberString) <= 0){
+            this.showError(txtVwError, getString(R.string.error_enterPositiveNumber));
         } else {
             this.hideError(txtVwError);
         }

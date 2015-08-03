@@ -449,10 +449,9 @@
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
                                 android:ems="10"
-                                android:id="@+id/txtMinimumSurveysForFeedback"
+                                android:id="@+id/txtFeedbackActivation"
                                 android:text="@integer/defaultMinimumSurveysForFeedback"
-                                android:gravity="center"
-                                android:layout_weight="0.5" />
+                                android:gravity="center" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -466,7 +465,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:id="@+id/txtFeedbackActivationErrorMsg"
+                            android:id="@+id/txtFeedbackActivation_errorMsg"
                             android:layout_weight="0.5"
                             style="@style/ErrorText"/>
 

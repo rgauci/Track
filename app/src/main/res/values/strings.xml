@@ -126,8 +126,11 @@
     <string name="minutes">minutes</string>
     <string name="error_missingNotificationWindow">Enter number of minutes survey will be available
         for after initial notification.</string>
+    <string name="error_missingFeedbackActivation">Enter the minimum number of surveys to be
+        completed for in-app feedback to become available.</string>
     <string name="error_enterParticipantId">Enter participant identification number.</string>
     <string name="error_enterValidNumber">Enter a valid number.</string>
+    <string name="error_enterPositiveNumber">Enter a number greater than zero.</string>
     <string name="error_answerToProceed">Answer the question to proceed.</string>
     <string name="error_enterOtherOptionText">Fill in the \'%1$s\' text box to proceed.</string>
     <string name="error_invalidCharacterInOther">\'%1$s\' text cannot contain \'%2$s\'.</string>
