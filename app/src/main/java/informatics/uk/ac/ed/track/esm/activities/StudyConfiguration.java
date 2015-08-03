@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -56,6 +57,9 @@ public class StudyConfiguration extends AppCompatActivity
             txtStarTime_errorMsg, txtEndTime_errorMsg, txtFeedbackActivation_errorMsg;
     private Spinner spnNotificationScheduling;
 
+    private boolean useFeedbackModule;
+    private TableRow tblRowFeedbackActivation, tblRowFeedbackActivationDivider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +71,6 @@ public class StudyConfiguration extends AppCompatActivity
         txtDuration = (EditText) findViewById(R.id.txtDuration);
         txtSamplesPerDay = (EditText) findViewById(R.id.txtSamplesPerDay);
         txtNotificationWindow = (EditText) findViewById(R.id.txtNotificationWindow);
-        txtFeedbackActivation = (EditText) findViewById(R.id.txtFeedbackActivation);
 
         txtVwStartDate = (TextView) findViewById(R.id.txtStartDate);
         txtVwStartTime = (TextView) findViewById(R.id.txtStartTime);
@@ -77,7 +80,6 @@ public class StudyConfiguration extends AppCompatActivity
         txtDuration_errorMsg = (TextView) findViewById(R.id.txtDuration_errorMsg);
         txtSamplesPerDay_errorMsg = (TextView) findViewById(R.id.txtSamplesPerDay_errorMsg);
         txtNotificationWindow_errorMsg = (TextView) findViewById(R.id.txtNotificationWindow_errorMsg);
-        txtFeedbackActivation_errorMsg = (TextView) findViewById(R.id.txtFeedbackActivation_errorMsg);
         txtStarTime_errorMsg = (TextView) findViewById(R.id.txtStartTime_errorMsg);
         txtEndTime_errorMsg = (TextView) findViewById(R.id.txtEndTime_errorMsg);
 
@@ -93,6 +95,22 @@ public class StudyConfiguration extends AppCompatActivity
                 res.getInteger(R.integer.defaultStartTime_Minute));
         setEndTime(res.getInteger(R.integer.defaultEndTime_Hour),
                 res.getInteger(R.integer.defaultEndTime_Minute));
+
+        // show / hide feedback activation section depending on whether feedback module is enabled
+        this.useFeedbackModule = getResources().getBoolean(R.bool.useFeedbackModule);
+        if (this.useFeedbackModule) {
+            this.txtFeedbackActivation =
+                    (EditText) findViewById(R.id.txtFeedbackActivation);
+            this.txtFeedbackActivation_errorMsg =
+                    (TextView) findViewById(R.id.txtFeedbackActivation_errorMsg);
+        } else {
+            this.tblRowFeedbackActivation =
+                    (TableRow) findViewById(R.id.tblRowFeedbackActivation);
+            this.tblRowFeedbackActivationDivider =
+                    (TableRow) findViewById(R.id.tblRowFeedbackActivationDivider);
+            this.tblRowFeedbackActivation.setVisibility(View.GONE);
+            this.tblRowFeedbackActivationDivider.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -145,7 +163,6 @@ public class StudyConfiguration extends AppCompatActivity
         String duration_str = Utils.getTrimmedText(this.txtDuration);
         String samplePerDay_str = Utils.getTrimmedText(this.txtSamplesPerDay);
         String notificationWindow_str = Utils.getTrimmedText(this.txtNotificationWindow);
-        String feedbackActivation_str = Utils.getTrimmedText(this.txtFeedbackActivation);
         int notifSchedulingPosition =  spnNotificationScheduling.getSelectedItemPosition();
 
         // start date
@@ -190,11 +207,14 @@ public class StudyConfiguration extends AppCompatActivity
         }
 
         // minimum number of completed surveys for feedback module activation
-        if (validateNumber(feedbackActivation_str, this.txtFeedbackActivation_errorMsg,
-                getString(R.string.error_missingFeedbackActivation))){
-            this.feedbackActivation = Integer.parseInt(feedbackActivation_str);
-        } else {
-            hasErrors = true;
+        if (this.useFeedbackModule) {
+            String feedbackActivation_str = Utils.getTrimmedText(this.txtFeedbackActivation);
+            if (validateNumber(feedbackActivation_str, this.txtFeedbackActivation_errorMsg,
+                    getString(R.string.error_missingFeedbackActivation))) {
+                this.feedbackActivation = Integer.parseInt(feedbackActivation_str);
+            } else {
+                hasErrors = true;
+            }
         }
 
         // notification scheduling: fixed / random
@@ -273,11 +293,14 @@ public class StudyConfiguration extends AppCompatActivity
         editor.putInt(Constants.DURATION_DAYS, this.duration);
         editor.putInt(Constants.SAMPLES_PER_DAY, this.samplesPerDay);
         editor.putInt(Constants.NOTIFICATION_WINDOW_MINUTES, this.notificationWindow);
-        editor.putInt(Constants.MINIMUM_SURVEYS_FOR_FEEDBACK_ACTIVATION, this.feedbackActivation);
         editor.putInt(Constants.START_TIME_HOUR, this.startTime_hour);
         editor.putInt(Constants.START_TIME_MINUTE, this.startTime_minute);
         editor.putInt(Constants.END_TIME_HOUR, this.endTime_hour);
         editor.putInt(Constants.END_TIME_MINUTE, this.endTime_minute);
+
+        if (this.useFeedbackModule) {
+            editor.putInt(Constants.MINIMUM_SURVEYS_FOR_FEEDBACK_ACTIVATION, this.feedbackActivation);
+        }
 
         // save notification schedule type (fixed / random) as int
         editor.putInt(Constants.NOTIFICATION_SCHEDULE_TYPE,
@@ -306,6 +329,7 @@ public class StudyConfiguration extends AppCompatActivity
             valid = false;
         } else if (Integer.parseInt(numberString) <= 0){
             this.showError(txtVwError, getString(R.string.error_enterPositiveNumber));
+            valid = false;
         } else {
             this.hideError(txtVwError);
         }

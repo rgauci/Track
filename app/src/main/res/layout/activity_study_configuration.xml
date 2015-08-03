@@ -414,7 +414,7 @@
 
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:id="@+id/tblRowFeedbackActivation">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -473,7 +473,7 @@
 
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:id="@+id/tblRowFeedbackActivationDivider">
                     <View
                         android:layout_column="1"
                         style="@style/HorizontalDivider"/>
