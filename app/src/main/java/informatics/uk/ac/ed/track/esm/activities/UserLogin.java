@@ -23,7 +23,6 @@ public class UserLogin extends AppCompatActivity {
 
     private EditText txtPassword;
     private TextInputLayout txtPassword_inpLyt;
-    private LoginSuccessActivity nextActivity;
 
     /**
      * Enum identifying which activity to launch upon user success.
@@ -41,10 +40,6 @@ public class UserLogin extends AppCompatActivity {
         // initialise UI controls
         this.txtPassword = (EditText) findViewById(R.id.txtPassword);
         this.txtPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtPassword_InpLyt);
-
-        // get intent extra (which next activity to launch)
-        this.nextActivity = (LoginSuccessActivity) getIntent()
-                .getSerializableExtra(Constants.ACTIVITY_TO_LAUNCH_ON_LOGIN_SUCCESS);
     }
 
     @Override
@@ -81,9 +76,12 @@ public class UserLogin extends AppCompatActivity {
             editor.apply();
 
             // proceed to next activity
+            LoginSuccessActivity nextActivity = (LoginSuccessActivity) getIntent()
+                    .getSerializableExtra(Constants.ACTIVITY_TO_LAUNCH_ON_LOGIN_SUCCESS);
+
             Intent intent;
 
-            switch (this.nextActivity) {
+            switch (nextActivity) {
                 case FeedbackViewPager:
                     intent = new Intent(this, FeedbackViewPager.class);
                     break;
@@ -100,7 +98,6 @@ public class UserLogin extends AppCompatActivity {
         txtVwForgotPassword.setTextColor(getResources().getColor(R.color.accent));
 
         Intent intent = new Intent(this, ResetPassword.class);
-        intent.putExtra(Constants.ACTIVITY_TO_LAUNCH_ON_LOGIN_SUCCESS, this.nextActivity);
         startActivity(intent);
     }
 

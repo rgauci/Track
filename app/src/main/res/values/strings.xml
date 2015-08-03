@@ -33,7 +33,7 @@
     <string name="resetPasswordDialogMessage">@string/resetPasswordWarning</string>
     <string name="resetPasswordDialogPositiveBtn">RESET</string>
     <string name="resetPasswordDialogNegativeBtn">CANCEL</string>
-    <string name="passwordResetMsg">Your password has been reset.</string>
+    <string name="passwordHasBeenResetMsg">Password has been reset.</string>
 
     <!-- Study Configuration screen -->
     <string name="title_activity_study_configuration">Study Configuration</string>

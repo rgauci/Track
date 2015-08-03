@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.esm.Utils;
@@ -104,11 +107,15 @@ public class UserAccountSetup extends AppCompatActivity {
     }
 
     public void savePreferences() {
+        Calendar calendar = GregorianCalendar.getInstance();
+        long passwordResetTime = calendar.getTimeInMillis();
+
         SharedPreferences settings =
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = settings.edit();
 
         editor.putString(Constants.PARTICIPANT_PASSWORD_HASHED, Utils.computeHash(this.password));
+        editor.putLong(Constants.PARTICIPANT_PASSWORD_RESET_TIME_MILLIS, passwordResetTime);
 
         editor.apply();
     }

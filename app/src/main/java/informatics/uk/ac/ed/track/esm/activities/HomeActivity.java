@@ -26,6 +26,8 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnLaunchDemo, btnViewFeedback;
     private TextView txtVwTitle, txtVwSubTitle, txtVwMsg;
 
+    private Resources res;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +40,21 @@ public class HomeActivity extends AppCompatActivity {
         txtVwSubTitle = (TextView) findViewById(R.id.txtVwSubTitle);
         txtVwMsg = (TextView) findViewById(R.id.txtVwMsg);
 
+        // initialise resoureces
+        this.res = getResources();
+
         // set text, title & msg (if available)
         Intent intent = getIntent();
         String title = intent.getStringExtra(Constants.HOME_SCREEN_TITLE);
         String subTitle = intent.getStringExtra(Constants.HOME_SCREEN_SUBTITLE);
         String msg = intent.getStringExtra(Constants.HOME_SCREEN_MSG);
+
+        // if title, subtitle & msg are all empty
+        // show defaults
+        if (Utils.isNullOrEmpty(title) && Utils.isNullOrEmpty(subTitle) && Utils.isNullOrEmpty(msg)) {
+            title = res.getString(R.string.noSurveyAvailableTitle);
+            subTitle = res.getString(R.string.noSurveyAvailableSubTitle);
+        }
 
         this.showOrHideText(this.txtVwTitle, title);
         this.showOrHideText(this.txtVwSubTitle, subTitle);
@@ -58,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         // show / hide feedback button depending on whether feedback module is enabled
-        boolean useFeedbackModule = getResources().getBoolean(R.bool.useFeedbackModule);
+        boolean useFeedbackModule = this.res.getBoolean(R.bool.useFeedbackModule);
         if (useFeedbackModule) {
             btnViewFeedback.setOnClickListener(new Button.OnClickListener() {
                 @Override
@@ -98,8 +110,6 @@ public class HomeActivity extends AppCompatActivity {
                         }
                     } else {
                         // show dialog informing user feature is still locked
-                        Resources res = getResources();
-
                         long remaining = minimumSurveys - surveysCompleted;
                         String msg =
                                 (remaining > 1) ?

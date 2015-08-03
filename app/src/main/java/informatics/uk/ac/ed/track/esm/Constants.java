@@ -31,6 +31,7 @@ public class Constants {
     public static final String NOTIFICATION_SCHEDULE_TYPE = "notificationScheduleType";
     public static final String PARTICIPANT_ID = "participantId";
     public static final String PARTICIPANT_PASSWORD_HASHED = "participantPasswordHashed";
+    public static final String PARTICIPANT_PASSWORD_RESET_TIME_MILLIS = "participantPasswordSetupTime";
     public static final String RANDOM_ALARM_TIMES = "randomAlarmTimes";
     public static final String REQUEST_CODE = "requestCode";
     public static final String RESEARCHER_EMAIL = "researcherEmail";

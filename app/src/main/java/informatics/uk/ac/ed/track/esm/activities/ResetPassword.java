@@ -13,6 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.esm.Constants;
@@ -24,7 +28,6 @@ public class ResetPassword extends AppCompatActivity {
     private TextInputLayout txtPassword_inpLyt, txtConfirmPassword_inpLyt;
 
     private String password, confirmPassword;
-    private UserLogin.LoginSuccessActivity nextActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +39,6 @@ public class ResetPassword extends AppCompatActivity {
         this.txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
         this.txtPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtPassword_InpLyt);
         this.txtConfirmPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtConfirmPassword_InpLyt);
-
-        // get intent extra (which next activity to launch)
-        this.nextActivity = (UserLogin.LoginSuccessActivity) getIntent()
-                .getSerializableExtra(Constants.ACTIVITY_TO_LAUNCH_ON_LOGIN_SUCCESS);
     }
 
     @Override
@@ -79,7 +78,10 @@ public class ResetPassword extends AppCompatActivity {
                     res.getString(R.string.resetPasswordDialogPositiveBtn),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-
+                            // reset password (updated SharedPreferences)
+                            savePreferences();
+                            // and proceed
+                            proceed();
                         }
                     });
             // Setting Negative "NO" Button
@@ -92,13 +94,17 @@ public class ResetPassword extends AppCompatActivity {
                     });
             // Showing Alert Message
             alertDialog.show();
-
-            // reset password (updated SharedPreferences)
-            // display Toast
-            // and go back to Log In screen (passing next activity as extra)
-            // go back to log in s`
-            // mark user as logged in
         }
+    }
+
+    private void proceed() {
+        // display Toast
+        Toast toast = Toast.makeText(this,
+                getResources().getString(R.string.passwordHasBeenResetMsg), Toast.LENGTH_LONG);
+        toast.show();
+        // go back to home screen
+        Intent intent = new Intent(ResetPassword.this, HomeActivity.class);
+        startActivity(intent);
     }
 
     private boolean setAndValidate() {
@@ -131,11 +137,15 @@ public class ResetPassword extends AppCompatActivity {
     }
 
     public void savePreferences() {
+        Calendar calendar = GregorianCalendar.getInstance();
+        long passwordResetTime = calendar.getTimeInMillis();
+
         SharedPreferences settings =
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = settings.edit();
 
         editor.putString(Constants.PARTICIPANT_PASSWORD_HASHED, Utils.computeHash(this.password));
+        editor.putLong(Constants.PARTICIPANT_PASSWORD_RESET_TIME_MILLIS, passwordResetTime);
 
         editor.apply();
     }

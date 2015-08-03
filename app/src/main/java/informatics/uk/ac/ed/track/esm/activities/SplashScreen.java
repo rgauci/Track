@@ -95,10 +95,6 @@ public class SplashScreen extends AppCompatActivity {
                     } else {
                         // otherwise show no survey currently available screen
                         intent = new Intent(SplashScreen.this, HomeActivity.class);
-
-                        Resources res = getResources();
-                        intent.putExtra(Constants.HOME_SCREEN_TITLE, res.getString(R.string.noSurveyAvailableTitle));
-                        intent.putExtra(Constants.HOME_SCREEN_SUBTITLE, res.getString(R.string.noSurveyAvailableSubTitle));
                     }
 
                     startActivity(intent);

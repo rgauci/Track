@@ -89,10 +89,6 @@ public class BriefingComplete extends AppCompatActivity {
     public void btnNext_onClick(View view){
         Resources res = getResources();
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra(Constants.HOME_SCREEN_TITLE,
-                res.getString(R.string.noSurveyAvailableTitle));
-        intent.putExtra(Constants.HOME_SCREEN_SUBTITLE,
-                res.getString(R.string.noSurveyAvailableSubTitle));
         startActivity(intent);
     }
 }
