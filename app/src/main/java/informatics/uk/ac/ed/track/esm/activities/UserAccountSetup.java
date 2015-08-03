@@ -60,11 +60,7 @@ public class UserAccountSetup extends AppCompatActivity {
     }
 
     public void btnNext_onClick(View view) {
-        // TODO re-enable validation
-        //boolean valid = this.setAndValidate();
-        boolean valid = true;
-
-        savePreferences();
+        boolean valid = this.setAndValidate();
 
         if (valid) {
             // save settings

@@ -15,8 +15,11 @@
         Multiple Choice, Multiple Answer Demo</string>
     <string name="title_activity_demo_scale">Scale Demo</string>
     <string name="title_activity_demo_scale_vertical">Vertical Scale Demo</string>
-    <string name="title_activity_participant_login">Participant Login</string>
+
     <string name="title_activity_user_login">Login</string>
+    <string name="error_user_login_enter_password_">Enter password.</string>
+    <string name="error_user_login_invalidPassword">Invalid password.
+        Please enter the password created during application setup.</string>
 
     <string name="startDate">Start Date</string>
     <string name="duration">Duration</string>
