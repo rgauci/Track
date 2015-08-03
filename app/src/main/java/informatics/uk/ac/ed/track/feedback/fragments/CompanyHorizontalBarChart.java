@@ -1,10 +1,12 @@
 package informatics.uk.ac.ed.track.feedback.fragments;
 
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -129,6 +131,13 @@ public class CompanyHorizontalBarChart extends Fragment {
      * @param otherKey The key used for the 'Other' option in the companyCounts HashMap.
      */
     private void getCompanyCounts(HashMap<String, Float> companyCounts, String otherKey) {
+        SharedPreferences settings = PreferenceManager
+                .getDefaultSharedPreferences(getActivity().getApplicationContext());
+
+        long passwordResetTime = settings.getLong(
+                Constants.PARTICIPANT_PASSWORD_RESET_TIME_MILLIS,
+                Constants.DEF_VALUE_LNG);
+
         Resources res = getResources();
 
         String[] socialColumnValues = res.getStringArray(R.array.socialColumnValues);
@@ -137,13 +146,16 @@ public class CompanyHorizontalBarChart extends Fragment {
         String companyColumn = res.getString(R.string.companyColumnn);
         String socialColumn = res.getString(R.string.socialColumn);
 
-        SQLiteDatabase db =
-                new DatabaseHelper(getActivity().getApplicationContext()).getReadableDatabase();
+        DatabaseHelper dbHelper = new DatabaseHelper(getActivity().getApplicationContext());
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String table = "`" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES +  "`";
         String[] columnsToReturn = { "`" + companyColumn + "`"};
-        String selection = "`" + socialColumn + "` = ?";
-        String[] selectionArgs = { socialColumnValueWithOthers }; // matched to "?" in selection
+        String selection = "`" + socialColumn + "` = ? " +
+                "AND `" + DatabaseHelper.COLUMN_NAME_SURVEY_COMPLETED_TIME + "` > DATETIME(?)";
+        String[] selectionArgs = {
+                socialColumnValueWithOthers,
+                dbHelper.getDateInIsoFormat(passwordResetTime) }; // matched to "?" in selection
 
         Cursor cursor = db.query(table, columnsToReturn, selection, selectionArgs, null, null, null);
 

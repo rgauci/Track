@@ -1,9 +1,11 @@
 package informatics.uk.ac.ed.track.feedback.fragments;
 
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.esm.DatabaseHelper;
 import informatics.uk.ac.ed.track.feedback.IntegerFormatter;
 import informatics.uk.ac.ed.track.feedback.FeedbackUtils;
@@ -99,16 +102,25 @@ public class SocialEmotionStackedBarChart extends Fragment {
     }
 
     private float getSocialEmotionCount(String socialColumnValue, String emotionColumn) {
+        SharedPreferences settings = PreferenceManager
+                .getDefaultSharedPreferences(getActivity().getApplicationContext());
+
+        long passwordResetTime = settings.getLong(
+                Constants.PARTICIPANT_PASSWORD_RESET_TIME_MILLIS,
+                Constants.DEF_VALUE_LNG);
+
         Resources res = getResources();
 
-        SQLiteDatabase db =
-                new DatabaseHelper(getActivity().getApplicationContext()).getReadableDatabase();
+        DatabaseHelper dbHelper = new DatabaseHelper(getActivity().getApplicationContext());
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String sql = "SELECT COUNT(*) FROM `" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES + "` " +
                 "WHERE `" + res.getString(R.string.socialColumn) + "` = " +
                 "'" + socialColumnValue + "' " +
                 "AND `" + emotionColumn + "` = " +
-                "'" + res.getString(R.string.emotionColumnYesValue) + "'";
+                "'" + res.getString(R.string.emotionColumnYesValue) + "' " +
+                "AND `" + DatabaseHelper.COLUMN_NAME_SURVEY_COMPLETED_TIME + "` " +
+                "> DATETIME('" + dbHelper.getDateInIsoFormat(passwordResetTime) + "')";
 
         SQLiteStatement statement = db.compileStatement(sql);
         float count = statement.simpleQueryForLong();

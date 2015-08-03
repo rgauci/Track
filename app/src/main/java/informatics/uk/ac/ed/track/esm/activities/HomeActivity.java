@@ -75,54 +75,7 @@ public class HomeActivity extends AppCompatActivity {
             btnViewFeedback.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // check if enough surveys have been completed for survey activation
-                    SharedPreferences settings =
-                            PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-                    int minimumSurveys = settings.getInt(
-                            Constants.MINIMUM_SURVEYS_FOR_FEEDBACK_ACTIVATION,
-                            Constants.DEF_VALUE_INT);
-
-                    // get number of surveys completed from DB
-                    SQLiteDatabase db =
-                            new DatabaseHelper(getApplicationContext()).getReadableDatabase();
-
-                    String sql = "SELECT COUNT(*) FROM `" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES + "`";
-
-                    SQLiteStatement statement = db.compileStatement(sql);
-                    long surveysCompleted = statement.simpleQueryForLong();
-                    db.close();
-
-                    if (surveysCompleted >= minimumSurveys) {
-                        // if feedback feature is activated (min # surveys completed)
-                        if (Utils.getIsUserLoggedIn(getApplicationContext())) {
-                            // if user is already logged in, show FeedbackViewPager activity
-                            Intent intent = new Intent(HomeActivity.this, FeedbackViewPager.class);
-                            startActivity(intent);
-                        } else {
-                            // otherwise, launch Log In Screen
-                            // passing an extra to tell Log In screen to launch FeedbackViewPager
-                            // on successful login
-                            Intent intent = new Intent(HomeActivity.this, UserLogin.class);
-                            intent.putExtra(Constants.ACTIVITY_TO_LAUNCH_ON_LOGIN_SUCCESS,
-                                    UserLogin.LoginSuccessActivity.FeedbackViewPager);
-                            startActivity(intent);
-                        }
-                    } else {
-                        // show dialog informing user feature is still locked
-                        long remaining = minimumSurveys - surveysCompleted;
-                        String msg =
-                                (remaining > 1) ?
-                                        res.getString(R.string.feedbackLockedDialogMessage_ManyLeft)
-                                        :
-                                        res.getString(R.string.feedbackLockedDialogMessage_OneLeft);
-
-                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(
-                                HomeActivity.this, R.style.AlertDialogTheme);
-                        alertDialog.setTitle(res.getString(R.string.feedbackLockedDialogTitle));
-                        alertDialog.setMessage(String.format(msg, remaining));
-                        alertDialog.show();
-                    }
+                    launchFeedbackModule();
                 }
             });
         } else {
@@ -148,6 +101,63 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void launchFeedbackModule(){
+        // check if enough surveys have been completed for survey activation
+        SharedPreferences settings =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        int minimumSurveys = settings.getInt(
+                Constants.MINIMUM_SURVEYS_FOR_FEEDBACK_ACTIVATION,
+                Constants.DEF_VALUE_INT);
+
+        long passwordResetTime = settings.getLong(
+                Constants.PARTICIPANT_PASSWORD_RESET_TIME_MILLIS,
+                Constants.DEF_VALUE_LNG);
+
+        // get number of surveys completed from DB (since password was last set/reset)
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String sql = "SELECT COUNT(*) FROM `" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES + "` " +
+                "WHERE `" + DatabaseHelper.COLUMN_NAME_SURVEY_COMPLETED_TIME + "` " +
+                "> DATETIME('" + dbHelper.getDateInIsoFormat(passwordResetTime) + "')";
+
+        SQLiteStatement statement = db.compileStatement(sql);
+        long surveysCompleted = statement.simpleQueryForLong();
+        db.close();
+
+        if (surveysCompleted >= minimumSurveys) {
+            // if feedback feature is activated (min # surveys completed)
+            if (Utils.getIsUserLoggedIn(getApplicationContext())) {
+                // if user is already logged in, show FeedbackViewPager activity
+                Intent intent = new Intent(HomeActivity.this, FeedbackViewPager.class);
+                startActivity(intent);
+            } else {
+                // otherwise, launch Log In Screen
+                // passing an extra to tell Log In screen to launch FeedbackViewPager
+                // on successful login
+                Intent intent = new Intent(HomeActivity.this, UserLogin.class);
+                intent.putExtra(Constants.ACTIVITY_TO_LAUNCH_ON_LOGIN_SUCCESS,
+                        UserLogin.LoginSuccessActivity.FeedbackViewPager);
+                startActivity(intent);
+            }
+        } else {
+            // show dialog informing user feature is still locked
+            long remaining = minimumSurveys - surveysCompleted;
+            String msg =
+                    (remaining > 1) ?
+                            res.getString(R.string.feedbackLockedDialogMessage_ManyLeft)
+                            :
+                            res.getString(R.string.feedbackLockedDialogMessage_OneLeft);
+
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                    HomeActivity.this, R.style.AlertDialogTheme);
+            alertDialog.setTitle(res.getString(R.string.feedbackLockedDialogTitle));
+            alertDialog.setMessage(String.format(msg, remaining));
+            alertDialog.show();
+        }
     }
 
     private void showOrHideText(TextView txtVw, String text) {
