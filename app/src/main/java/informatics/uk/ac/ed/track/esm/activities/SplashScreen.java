@@ -74,12 +74,12 @@ public class SplashScreen extends AppCompatActivity {
                     if (lastCompletedTime < lastNotifTime) {
                         long notifWindowMillis =
                                 settings.getInt(Constants.NOTIFICATION_WINDOW_MINUTES,
-                                        Constants.DEF_VALUE_INT) * 1000;
+                                        Constants.DEF_VALUE_INT) * 60 * 1000;
 
                         Calendar cal = GregorianCalendar.getInstance();
                         long currentTime = cal.getTimeInMillis();
 
-                        boolean expired = ((lastNotifTime + notifWindowMillis) > currentTime);
+                        boolean expired = (currentTime > (lastNotifTime + notifWindowMillis));
 
                         if (!expired) {
                             surveyAvailable = true;

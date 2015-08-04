@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import informatics.uk.ac.ed.track.esm.ChangePassword;
 import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.esm.DatabaseHelper;
@@ -23,7 +24,7 @@ import informatics.uk.ac.ed.track.feedback.activities.FeedbackViewPager;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Button btnLaunchDemo, btnViewFeedback;
+    private Button btnLaunchDemo, btnViewFeedback, btnChangePassword;
     private TextView txtVwTitle, txtVwSubTitle, txtVwMsg;
 
     private Resources res;
@@ -36,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         // initialise UI controls
         btnLaunchDemo = (Button) findViewById(R.id.btnLaunchDemo);
         btnViewFeedback = (Button) findViewById(R.id.btnViewFeedback);
+        btnChangePassword = (Button) findViewById(R.id.btnChangePassword);
         txtVwTitle = (TextView) findViewById(R.id.txtVwTitle);
         txtVwSubTitle = (TextView) findViewById(R.id.txtVwSubTitle);
         txtVwMsg = (TextView) findViewById(R.id.txtVwMsg);
@@ -69,7 +71,8 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        // show / hide feedback button depending on whether feedback module is enabled
+        // show / hide feedback & change password buttons
+        // depending on whether feedback module is enabled
         boolean useFeedbackModule = this.res.getBoolean(R.bool.useFeedbackModule);
         if (useFeedbackModule) {
             btnViewFeedback.setOnClickListener(new Button.OnClickListener() {
@@ -78,8 +81,17 @@ public class HomeActivity extends AppCompatActivity {
                     launchFeedbackModule();
                 }
             });
+
+            btnChangePassword.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(HomeActivity.this, ChangePassword.class);
+                    startActivity(intent);
+                }
+            });
         } else {
             btnViewFeedback.setVisibility(View.GONE);
+            btnChangePassword.setVisibility(View.GONE);
         }
 
         // TODO remove this and corresponding button

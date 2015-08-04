@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TRACK</string>
+    <string name="app_name">Track</string>
 
     <string name="action_settings">Settings</string>
 
@@ -34,6 +34,12 @@
     <string name="resetPasswordDialogPositiveBtn">RESET</string>
     <string name="resetPasswordDialogNegativeBtn">CANCEL</string>
     <string name="passwordHasBeenResetMsg">Password has been reset.</string>
+
+    <!-- Change Password screen -->
+    <string name="title_activity_change_password">Change Password</string>
+    <string name="currentPassword">Current Password</string>
+    <string name="newPassword">New Password</string>
+    <string name="confirmNewPassword">Confirm New Password</string>
 
     <!-- Study Configuration screen -->
     <string name="title_activity_study_configuration">Study Configuration</string>
@@ -337,7 +343,5 @@
         <item>Stranger</item>
         <item/> <!-- empty value corresponding to 'Other' -->
     </string-array>
-
-    <string name="hello_world">Hello world!</string>
 
 </resources>
