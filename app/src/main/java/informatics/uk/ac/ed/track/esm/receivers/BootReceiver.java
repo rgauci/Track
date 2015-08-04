@@ -21,9 +21,10 @@ public class BootReceiver extends BroadcastReceiver {
                 PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
 
         long studyEndMillis =
-                settings.getLong(Constants.STUDY_END_DATE_TIME_MILLIS, Constants.DEF_VALUE_INT);
+                settings.getLong(Constants.STUDY_END_DATE_TIME_MILLIS, Constants.DEF_VALUE_LNG);
 
-        if (Calendar.getInstance().getTimeInMillis() > studyEndMillis) {
+        if ((studyEndMillis != Constants.DEF_VALUE_LNG)
+                && (Calendar.getInstance().getTimeInMillis() > studyEndMillis)) {
             // if study is over, disable boot receiver
             // so that it is not called unnecessarily
             this.disableBootReceiver(context);

@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import informatics.uk.ac.ed.track.R;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final int FALSE = 0;
@@ -118,6 +120,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return responses;
+    }
+
+    public long getUnsyncedResponsesCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sql = "SELECT COUNT(*) FROM `" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES + "` " +
+                "WHERE `" + DatabaseHelper.COLUMN_NAME_SYNCED + "` = " + DatabaseHelper.FALSE;
+
+        SQLiteStatement statement = db.compileStatement(sql);
+        long count = statement.simpleQueryForLong();
+        db.close();
+
+        return count;
     }
 
     public SurveyResponse getResponseById(long rowId) {

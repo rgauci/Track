@@ -16,12 +16,12 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <receiver android:name=".esm.receivers.AlarmReceiver" />
-        <receiver android:name=".esm.receivers.BootReceiver" >
+        <receiver android:name=".esm.receivers.BootReceiver" android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".esm.receivers.ConnectivityChangeReceiver" >
+        <receiver android:name=".esm.receivers.ConnectivityChangeReceiver" android:enabled="true" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
