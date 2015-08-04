@@ -96,7 +96,7 @@
             android:noHistory="true" >
         </activity>
         <activity
-            android:name=".esm.ChangePassword"
+            android:name=".esm.activities.ChangePassword"
             android:label="@string/app_name" >
         </activity>
         <activity

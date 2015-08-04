@@ -4,45 +4,47 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
-import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.esm.Utils;
 
+public class ChangePassword extends AppCompatActivity {
 
-public class UserAccountSetup extends AppCompatActivity {
+    private EditText txtOldPassword ,txtPassword, txtConfirmPassword;
+    private TextInputLayout txtOldPassword_inpLyt, txtPassword_inpLyt, txtConfirmPassword_inpLyt;
 
-    private EditText txtPassword, txtConfirmPassword;
-    private TextInputLayout txtPassword_inpLyt, txtConfirmPassword_inpLyt;
-
-    private String password, confirmPassword;
+    String password, confirmPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_account_setup);
+        setContentView(R.layout.activity_change_password);
 
-        /* initialise UI controls */
+        // initialise UI controls
+        this.txtOldPassword = (EditText) findViewById(R.id.txtOldPassword);
         this.txtPassword = (EditText) findViewById(R.id.txtPassword);
         this.txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
-        this.txtPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtPassword_InpLyt);
-        this.txtConfirmPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtConfirmPassword_InpLyt);
+
+        this.txtOldPassword_inpLyt =
+                (TextInputLayout) findViewById(R.id.txtOldPassword_InpLyt);
+        this.txtPassword_inpLyt =
+                (TextInputLayout) findViewById(R.id.txtPassword_InpLyt);
+        this.txtConfirmPassword_inpLyt =
+                (TextInputLayout) findViewById(R.id.txtConfirmPassword_InpLyt);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_user_account_setup, menu);
+        getMenuInflater().inflate(R.menu.menu_change_password, menu);
         return true;
     }
 
@@ -61,24 +63,38 @@ public class UserAccountSetup extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void txtVwForgotPassword_onClick(View view) {
+        TextView txtVwForgotPassword = (TextView) findViewById(R.id.txtVwForgotPassword);
+        txtVwForgotPassword.setTextColor(getResources().getColor(R.color.accent));
+
+        Intent intent = new Intent(this, ResetPassword.class);
+        startActivity(intent);
+    }
+
     public void btnNext_onClick(View view) {
         boolean valid = this.setAndValidate();
 
         if (valid) {
-            // save settings
-            this.savePreferences();
-            // proceed to next activity
-            Intent intent = new Intent(this, SetupComplete.class);
+            // update password in Shared Preferences
+            Utils.saveNewUserPasswordToPreferences(this, this.password, false);
+
+            // display Toast
+            Toast toast = Toast.makeText(this,
+                    getResources().getString(R.string.passwordHasBeenChangedMsg), Toast.LENGTH_LONG);
+            toast.show();
+
+            // go back to home activity
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         }
     }
 
-    /**
-     * Validate form input.
-     * @return true if validation succeeds
-     */
     private boolean setAndValidate() {
         boolean hasErrors = false;
+
+        if (!Utils.validateUserPassword(this, this.txtOldPassword, this.txtOldPassword_inpLyt)) {
+            hasErrors = true;
+        }
 
         // get values
         this.password = this.txtPassword.getText().toString(); // do not trim so we can check for whitespace
@@ -104,9 +120,5 @@ public class UserAccountSetup extends AppCompatActivity {
         }
 
         return !hasErrors;
-    }
-
-    public void savePreferences() {
-        Utils.saveNewUserPasswordToPreferences(this, this.password, true);
     }
 }

@@ -102,33 +102,6 @@ public class UserLogin extends AppCompatActivity {
     }
 
     private boolean validate() {
-        boolean hasErrors = false;
-
-        String password = Utils.getTrimmedText(this.txtPassword);
-
-        // first check if password has been in put
-        if (Utils.isNullOrEmpty(password)) {
-            this.txtPassword_inpLyt.setError(getString(R.string.error_user_login_enter_password_));
-            hasErrors = true;
-        }
-
-        // if yes, hash & confirm whether it matches saved password
-        if (!hasErrors) {
-            String hashedPassword = Utils.computeHash(password);
-
-            SharedPreferences settings =
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            String storedHashedPassword = settings.getString(Constants.PARTICIPANT_PASSWORD_HASHED,
-                    Constants.DEF_VALUE_STR);
-
-            if (!hashedPassword.equals(storedHashedPassword)) {
-                this.txtPassword_inpLyt.setError(getString(R.string.error_user_login_invalidPassword));
-                hasErrors = true;
-            } else {
-                this.txtPassword_inpLyt.setError(null);
-            }
-        }
-
-        return !hasErrors;
+        return Utils.validateUserPassword(this, this.txtPassword, this.txtPassword_inpLyt);
     }
 }

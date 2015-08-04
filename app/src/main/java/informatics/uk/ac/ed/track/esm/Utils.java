@@ -3,19 +3,26 @@ package informatics.uk.ac.ed.track.esm;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.EditText;
 
+import org.w3c.dom.Text;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.esm.activities.Question_FreeText_Multi;
 import informatics.uk.ac.ed.track.esm.activities.Question_FreeText_Single;
 import informatics.uk.ac.ed.track.esm.activities.Question_LikertScale;
@@ -154,6 +161,73 @@ public class Utils {
     public static boolean getIsUserLoggedIn(Context appContext) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(appContext);
         return settings.getBoolean(Constants.USER_IS_LOGGED_IN, Constants.DEF_VALUE_BOOL);
+    }
+
+    /**
+     * Validate plaintext password by hashing it and
+     * comparing it to password saved in Shared Preferences.
+     * @param context Context (pass from Activity as 'this').
+     * @param txtPassword EditText containing user-input password.
+     * @param txtPassword_inpLyt TextInputLayout containing txtPassword (for displaying error messages).
+     * @return True if the password is valid, false otherwise (with corresponding error message set in txtPassword_inpLyt).
+     */
+    public static boolean validateUserPassword(Context context, EditText txtPassword, TextInputLayout txtPassword_inpLyt) {
+        boolean hasErrors = false;
+
+        Resources resources = context.getResources();
+
+        String password = Utils.getTrimmedText(txtPassword);
+
+        // first check if password has been in put
+        if (Utils.isNullOrEmpty(password)) {
+            txtPassword_inpLyt.setError(resources.getString(R.string.error_user_login_enter_password_));
+            hasErrors = true;
+        }
+
+        // if yes, hash & confirm whether it matches saved password
+        if (!hasErrors) {
+            String hashedPassword = Utils.computeHash(password);
+
+            SharedPreferences settings =
+                    PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+            String storedHashedPassword = settings.getString(Constants.PARTICIPANT_PASSWORD_HASHED,
+                    Constants.DEF_VALUE_STR);
+
+            if (!hashedPassword.equals(storedHashedPassword)) {
+                txtPassword_inpLyt.setError(resources.getString(R.string.error_user_login_invalidPassword));
+                hasErrors = true;
+            } else {
+                txtPassword_inpLyt.setError(null);
+            }
+        }
+
+        return !hasErrors;
+    }
+
+    /**
+     * Updates the hashed user password stored in SharedPreferences.
+     * @param context Context (pass from Activity as 'this').
+     * @param password The new password.
+     * @param updateResetTime Set to true if the password reset time saved in SharedPreferences
+     *                        should be updated
+     *                        (user will lose access to data saved prior to password reset).
+     */
+    public static void saveNewUserPasswordToPreferences(Context context, String password,
+                                                        boolean updateResetTime) {
+        Calendar calendar = GregorianCalendar.getInstance();
+        long passwordResetTime = calendar.getTimeInMillis();
+
+        SharedPreferences settings =
+                PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        SharedPreferences.Editor editor = settings.edit();
+
+        editor.putString(Constants.PARTICIPANT_PASSWORD_HASHED, Utils.computeHash(password));
+
+        if (updateResetTime) {
+            editor.putLong(Constants.PARTICIPANT_PASSWORD_RESET_TIME_MILLIS, passwordResetTime);
+        }
+
+        editor.apply();
     }
 
 }

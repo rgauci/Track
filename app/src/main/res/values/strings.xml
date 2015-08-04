@@ -17,10 +17,11 @@
 
     <!-- User Login screen -->
     <string name="title_activity_user_login">Login</string>
+
+    <!-- User Login & Change Password screens -->
     <string name="forgotPassword">Forgot password?</string>
     <string name="error_user_login_enter_password_">Enter password.</string>
-    <string name="error_user_login_invalidPassword">Invalid password.
-        Please enter the password created during application setup.</string>
+    <string name="error_user_login_invalidPassword">Invalid password.</string>
 
     <!-- Reset Password screen -->
     <string name="title_activity_reset_password">Reset Password</string>
@@ -40,6 +41,7 @@
     <string name="currentPassword">Current Password</string>
     <string name="newPassword">New Password</string>
     <string name="confirmNewPassword">Confirm New Password</string>
+    <string name="passwordHasBeenChangedMsg">Password has been changed.</string>
 
     <!-- Study Configuration screen -->
     <string name="title_activity_study_configuration">Study Configuration</string>

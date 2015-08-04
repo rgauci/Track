@@ -137,16 +137,6 @@ public class ResetPassword extends AppCompatActivity {
     }
 
     public void savePreferences() {
-        Calendar calendar = GregorianCalendar.getInstance();
-        long passwordResetTime = calendar.getTimeInMillis();
-
-        SharedPreferences settings =
-                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = settings.edit();
-
-        editor.putString(Constants.PARTICIPANT_PASSWORD_HASHED, Utils.computeHash(this.password));
-        editor.putLong(Constants.PARTICIPANT_PASSWORD_RESET_TIME_MILLIS, passwordResetTime);
-
-        editor.apply();
+        Utils.saveNewUserPasswordToPreferences(this, this.password, true);
     }
 }
