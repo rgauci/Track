@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.preference.PreferenceManager;
 
 import java.text.SimpleDateFormat;
@@ -26,8 +27,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME_SURVEY_RESPONSES = "SurveyResponses";
 
     public static final String COLUMN_NAME_ROW_ID = "ROWID";
-    public static final String COLUMN_NAME_NOTIFICATION_TIME = "Notification Time";
-    public static final String COLUMN_NAME_SURVEY_COMPLETED_TIME = "Survey Completed Time";
+    public static final String COLUMN_NAME_NOTIFICATION_TIME = "NotificationTime";
+    public static final String COLUMN_NAME_SURVEY_COMPLETED_TIME = "SurveyCompletedTime";
     public static final String COLUMN_NAME_SYNCED = "Synced";
 
     public static final int COLUMN_ID_ROW_ID = 0;
@@ -79,7 +80,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         createTblSb.append(surveyColumnsSql);
         createTblSb.append(")");
 
-        db.execSQL(createTblSb.toString());
+        SQLiteStatement stmt = db.compileStatement(createTblSb.toString());
+        stmt.execute();
     }
 
     /*
@@ -88,19 +90,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // delete existing database
-        db.execSQL(SQL_DELETE_ENTRIES);
+        SQLiteStatement stmt = db.compileStatement(SQL_DELETE_ENTRIES);
+        stmt.execute();
         // re-create
         onCreate(db);
     }
 
-    public ArrayList<SurveyResponse> getUnsyncedRespones() {
+    public ArrayList<SurveyResponse> getUnsyncedResponses() {
         ArrayList<SurveyResponse> responses = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String query = "SELECT * FROM `" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES + "` " +
-                "WHERE `" + DatabaseHelper.COLUMN_NAME_SYNCED + "` = " + DatabaseHelper.FALSE;
+        String table = "`" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES +  "`";
+        String selection = "`" + DatabaseHelper.COLUMN_NAME_SYNCED + "` = ?";
+        String[] selectionArgs = { Integer.toString(DatabaseHelper.FALSE) }; // matched to "?" in selection
 
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor cursor =
+                db.query(table, null, selection, selectionArgs, null, null, null);
 
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
@@ -119,10 +124,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SurveyResponse response = null;
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String query = "SELECT * FROM `" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES + "` " +
-                "WHERE `" + DatabaseHelper.COLUMN_NAME_ROW_ID + "` = " + rowId;
+        String table = "`" + DatabaseHelper.TABLE_NAME_SURVEY_RESPONSES +  "`";
+        String selection = "`" + DatabaseHelper.COLUMN_NAME_ROW_ID + "` = ?";
+        String[] selectionArgs = { Long.toString(rowId) }; // matched to "?" in selection
 
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor cursor =
+                db.query(table, null, selection, selectionArgs, null, null, null);
 
         if (cursor != null) {
             cursor.moveToFirst();

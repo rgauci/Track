@@ -48,7 +48,7 @@ public class ExternalDatabaseService extends IntentService {
 
     private void syncAllUnsyncedResponses(){
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        ArrayList<SurveyResponse> responses = dbHelper.getUnsyncedRespones();
+        ArrayList<SurveyResponse> responses = dbHelper.getUnsyncedResponses();
 
         String url = this.getAddSurveyResponseWebMethodUrl();
         int participantId = this.getParticipantId();
