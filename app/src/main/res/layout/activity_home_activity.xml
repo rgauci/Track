@@ -35,7 +35,7 @@
             android:ems="10"
             android:id="@+id/txtVwMsg"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/surveyCompleteMsg"
+            android:text="@string/defaultMessage"
             android:textColor="@color/text_icons"
             android:layout_marginTop="@dimen/vertical_space" />
 
@@ -70,6 +70,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/launchDemo"
                 android:id="@+id/btnLaunchDemo"
+                android:theme="@style/MenuButton"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/changePassword"
+                android:id="@+id/btnChangePassword"
                 android:theme="@style/MenuButton"/>
 
             <Button

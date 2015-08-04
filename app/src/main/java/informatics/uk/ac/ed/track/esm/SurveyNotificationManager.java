@@ -118,8 +118,6 @@ public class SurveyNotificationManager {
     }
 
     private void setupAllNotifications_Random() {
-        long[] alarmTimes = new long[this.duration * this.samplesPerDay];
-        int alarmNum = 0;
         SecureRandom randomGenerator = new SecureRandom();
 
         Calendar intervalStartTime = GregorianCalendar.getInstance();
@@ -136,8 +134,6 @@ public class SurveyNotificationManager {
                 long min = intervalStartTime.getTimeInMillis();
                 long max = intervalStartTime.getTimeInMillis() + this.intervalMillis;
                 long alarmTime = min + (Math.abs(randomGenerator.nextLong()) % (max - min));
-                alarmTimes[alarmNum] = alarmTime;
-                alarmNum++;
 
                 // add to string builder
                 // add request code to string builder so it will be saved to preferences
@@ -157,14 +153,6 @@ public class SurveyNotificationManager {
 
         // actually set up alarms using saved times
         this.setupRemainingAlarms_Random();
-
-        // TODO remove this (only for testing)
-        /*SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMMM, HH:mm:ss");
-        for (long alarmTime : alarmTimes) {
-            Calendar cal = GregorianCalendar.getInstance();
-            cal.setTimeInMillis(alarmTime);
-            System.out.println(sdf.format(cal.getTime()));
-        }*/
     }
 
     private void setupRemainingAlarms_Random() {

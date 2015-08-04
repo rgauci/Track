@@ -8,6 +8,8 @@ import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.widget.DatePicker;
 
+import informatics.uk.ac.ed.track.R;
+
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
@@ -40,7 +42,8 @@ public class DatePickerFragment extends DialogFragment
         pickerId = args.getInt(ARG_PICKER_ID);
 
         // Create a new instance of DatePickerDialog and return it
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), this, year, month, day);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                this, year, month, day);
 
         if (minDate != 0L) {
             datePickerDialog.getDatePicker().setMinDate(minDate);

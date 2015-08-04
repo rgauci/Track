@@ -23,12 +23,14 @@ public class Constants {
     public static final String FIRST_QUESTION_ID = "firstQuestionId";
     public static final String HASHING_ALGORITHM = "SHA-1";
     public static final String IS_FIRST_QUESTION = "isFirstQuestion";
+    public static final String IS_CANCEL_NOTIFICATION_ALARM = "isCancelNotificationAlarm";
     public static final String LAST_NOTIFICATION_TIME_MILLIS  = "lastNotificationTimeMillis";
     public static final String LAST_SURVEY_COMPLETED_TIME_MILLIS = "lastSurveyCompleteMillis";
     public static final String MINIMUM_SURVEYS_FOR_FEEDBACK_ACTIVATION = "feedbackActivation";
-    public static final String NOTIFICATION_WINDOW_MINUTES = "notificationWindow";
+    public static final String NOTIFICATION_ID = "notificationId";
     public static final String NOTIFICATION_INTERVAL_MILLIS = "notificationIntervalMillis";
     public static final String NOTIFICATION_SCHEDULE_TYPE = "notificationScheduleType";
+    public static final String NOTIFICATION_WINDOW_MINUTES = "notificationWindow";
     public static final String PARTICIPANT_ID = "participantId";
     public static final String PARTICIPANT_PASSWORD_HASHED = "participantPasswordHashed";
     public static final String PARTICIPANT_PASSWORD_RESET_TIME_MILLIS = "participantPasswordSetupTime";

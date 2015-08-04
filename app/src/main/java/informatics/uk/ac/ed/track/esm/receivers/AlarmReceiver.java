@@ -1,5 +1,6 @@
 package informatics.uk.ac.ed.track.esm.receivers;
 
+import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -24,6 +25,17 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        // first of all, check whether this is just a request to cancel a notification
+
+        boolean cancelNotification = intent.getBooleanExtra(Constants.IS_CANCEL_NOTIFICATION_ALARM, Constants.DEF_VALUE_BOOL);
+
+        if (cancelNotification) {
+            this.cancelNotification(context, intent);
+            return;
+        }
+
+        // if not, then this is an alarm to display a survey notification
+
         // get shared preferences
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
         // get notification schedule type: fixed / random
@@ -52,9 +64,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         cal.getTimeInMillis();
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
+        long notificationTime = cal.getTimeInMillis();
 
         SharedPreferences.Editor editor = settings.edit();
-        editor.putLong(Constants.LAST_NOTIFICATION_TIME_MILLIS, cal.getTimeInMillis());
+        editor.putLong(Constants.LAST_NOTIFICATION_TIME_MILLIS, notificationTime);
+        editor.apply();
 
         int notificationWindow =
                 settings.getInt(Constants.NOTIFICATION_WINDOW_MINUTES, Constants.DEF_VALUE_INT);
@@ -66,7 +80,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         String msgText = String.format(
                 res.getString(R.string.notificationMsgText), notificationWindow);
         this.displayNotification(context, msg,
-                msgText, msg, requestCode, notificationWindow);
+                msgText, msg, requestCode, notificationTime, notificationWindow);
     }
 
     private void cancelRepeatingAlarm(Context context, Intent intent) {
@@ -75,8 +89,16 @@ public class AlarmReceiver extends BroadcastReceiver {
         notificationManager.cancelAlarm(requestCode);
     }
 
+    private void cancelNotification(Context context, Intent intent) {
+        int notificationId = intent.getIntExtra(Constants.NOTIFICATION_ID, Constants.DEF_VALUE_INT);
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(notificationId);
+    }
+
     private void displayNotification(Context context, String msg, String msgText, String msgAlert,
-                                     final int requestCode, int notificationWindow_Minutes) {
+                                     final int alarmRequestCode,
+                                     long notificationTime_Millis, int notificationWindow_Minutes) {
 
         PendingIntent notificationIntent = PendingIntent.getActivity(context, 0,
                 Utils.getLaunchSurveyIntent(context), 0);
@@ -93,18 +115,32 @@ public class AlarmReceiver extends BroadcastReceiver {
         mBuilder.setDefaults(NotificationCompat.DEFAULT_ALL);
         mBuilder.setAutoCancel(true); // automatically stopped when clicked on
 
-        final NotificationManager mNotificationManager =
+        final NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         // post notification on screen (use the alarm request code as the notification ID)
-        mNotificationManager.notify(requestCode, mBuilder.build());
+        // FIXED alarms request codes are DAY_OF_YEAR [1,366]
+        // Random alarm request codes are numbered starting from 1 to the total number of alarms
+        // in the study
+        // Adding a relatively big number (10,000) should ensure we have a unique notification ID
+        // (Notification will be cancelled once notification window is expired anyway.)
+        int notificationId = alarmRequestCode + 10000; // use also for 'cancel' alarm request code
+        notificationManager.notify(notificationId, mBuilder.build());
 
         // cancel notification after notification window expiry (in minutes)
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mNotificationManager.cancel(requestCode);
-            }
-        }, notificationWindow_Minutes * 60 * 1000);
+        // set up an alarm which will fire once the notification window expires
+        long cancelNotificationTime =
+                notificationTime_Millis + (notificationWindow_Minutes * 60 * 1000);
+
+        Intent alarmReceiverIntent = new Intent(context, AlarmReceiver.class);
+        alarmReceiverIntent.putExtra(Constants.IS_CANCEL_NOTIFICATION_ALARM, true);
+        alarmReceiverIntent.putExtra(Constants.NOTIFICATION_ID, notificationId);
+        PendingIntent pendingAlarmReceiverIntent = PendingIntent.getBroadcast(
+                context, notificationId, alarmReceiverIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager =
+                (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, cancelNotificationTime,
+                pendingAlarmReceiverIntent);
     }
 }

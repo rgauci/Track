@@ -19,7 +19,6 @@
         <item name="android:textAppearanceSmall">@style/SmallText</item>
         <item name="actionMenuTextColor">@color/primary</item>
         <item name="android:dialogTheme">@style/DialogTheme</item>
-        <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
         <item name="android:spinnerItemStyle">@style/TextViewSpinnerItem</item>
         <!-- You can also set colorControlNormal, colorControlActivated
              colorControlHighlight, and colorSwitchThumbNormal. -->

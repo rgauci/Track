@@ -176,6 +176,7 @@
 
     <string name="defaultTitle">Title</string>
     <string name="defaultSubTitle">Sub-Title</string>
+    <string name="defaultMessage">Message...</string>
     <string name="defaultQuestion">Question</string>
     <string name="defaultQuestionPrefix">Question Prefix</string>
     <string name="other">Other</string>
@@ -210,6 +211,7 @@
 
     <string name="launchDemo">Launch Demo</string>
     <string name="viewFeedback">View Feedback</string>
+    <string name="changePassword">Change Password</string>
 
     <!-- ######################### Feedback Module strings ########################## -->
 

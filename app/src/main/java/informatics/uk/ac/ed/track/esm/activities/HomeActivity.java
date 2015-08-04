@@ -31,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_default);
+        setContentView(R.layout.activity_home_activity);
 
         // initialise UI controls
         btnLaunchDemo = (Button) findViewById(R.id.btnLaunchDemo);
