@@ -96,7 +96,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling happy.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing your muscles?",
     "nextQuestionId": 4,
     "isRequired": true,
     "columnName": "Regulation_happy_CalmingYourself"
@@ -174,7 +174,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling happy.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying not to show your emotions on the outside?",
+    "questionText": "Trying not to show your feelings on the outside?",
     "nextQuestionId": 6,
     "isRequired": true,
     "columnName": "Regulation_happy_HidingEmotions"
@@ -252,7 +252,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling happy.",
     "questionPrefix": "How much are you:",
-    "questionText": "Thinking about your emotions over and over?",
+    "questionText": "Thinking about your feelings over and over?",
     "nextQuestionId": 8,
     "isRequired": true,
     "columnName": "Regulation_happy_ThinkingAboutEmotions"
@@ -354,7 +354,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling satisfied.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing your muscles?",
     "nextQuestionId": 11,
     "isRequired": true,
     "columnName": "Regulation_satisfied_CalmingYourself"
@@ -432,7 +432,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling satisfied.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying not to show your emotions on the outside?",
+    "questionText": "Trying not to show your feelings on the outside?",
     "nextQuestionId": 13,
     "isRequired": true,
     "columnName": "Regulation_satisfied_HidingEmotions"
@@ -510,7 +510,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling satisfied.",
     "questionPrefix": "How much are you:",
-    "questionText": "Thinking about your emotions over and over?",
+    "questionText": "Thinking about your feelings over and over?",
     "nextQuestionId": 15,
     "isRequired": true,
     "columnName": "Regulation_satisfied_ThinkingAboutEmotions"
@@ -612,7 +612,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling enthusiastic.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing your muscles?",
     "nextQuestionId": 18,
     "isRequired": true,
     "columnName": "Regulation_enthusiastic_CalmingYourself"
@@ -690,7 +690,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling enthusiastic.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying not to show your emotions on the outside?",
+    "questionText": "Trying not to show your feelings on the outside?",
     "nextQuestionId": 20,
     "isRequired": true,
     "columnName": "Regulation_enthusiastic_HidingEmotions"
@@ -768,7 +768,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling enthusiastic.",
     "questionPrefix": "How much are you:",
-    "questionText": "Thinking about your emotions over and over?",
+    "questionText": "Thinking about your feelings over and over?",
     "nextQuestionId": 22,
     "isRequired": true,
     "columnName": "Regulation_enthusiastic_ThinkingAboutEmotions"
@@ -870,7 +870,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling relaxed.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing your muscles?",
     "nextQuestionId": 25,
     "isRequired": true,
     "columnName": "Regulation_relaxed_CalmingYourself"
@@ -948,7 +948,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling relaxed.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying not to show your emotions on the outside?",
+    "questionText": "Trying not to show your feelings on the outside?",
     "nextQuestionId": 27,
     "isRequired": true,
     "columnName": "Regulation_relaxed_HidingEmotions"
@@ -1026,7 +1026,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling relaxed.",
     "questionPrefix": "How much are you:",
-    "questionText": "Thinking about your emotions over and over?",
+    "questionText": "Thinking about your feelings over and over?",
     "nextQuestionId": 29,
     "isRequired": true,
     "columnName": "Regulation_relaxed_ThinkingAboutEmotions"
@@ -1128,7 +1128,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling sad.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing your muscles?",
     "nextQuestionId": 32,
     "isRequired": true,
     "columnName": "Regulation_sad_CalmingYourself"
@@ -1206,7 +1206,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling sad.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying not to show your emotions on the outside?",
+    "questionText": "Trying not to show your feelings on the outside?",
     "nextQuestionId": 34,
     "isRequired": true,
     "columnName": "Regulation_sad_HidingEmotions"
@@ -1284,7 +1284,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling sad.",
     "questionPrefix": "How much are you:",
-    "questionText": "Thinking about your emotions over and over?",
+    "questionText": "Thinking about your feelings over and over?",
     "nextQuestionId": 36,
     "isRequired": true,
     "columnName": "Regulation_sad_ThinkingAboutEmotions"
@@ -1386,7 +1386,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling guilty.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing your muscles?",
     "nextQuestionId": 39,
     "isRequired": true,
     "columnName": "Regulation_guilty_CalmingYourself"
@@ -1464,7 +1464,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling guilty.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying not to show your emotions on the outside?",
+    "questionText": "Trying not to show your feelings on the outside?",
     "nextQuestionId": 41,
     "isRequired": true,
     "columnName": "Regulation_guilty_HidingEmotions"
@@ -1542,7 +1542,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling guilty.",
     "questionPrefix": "How much are you:",
-    "questionText": "Thinking about your emotions over and over?",
+    "questionText": "Thinking about your feelings over and over?",
     "nextQuestionId": 43,
     "isRequired": true,
     "columnName": "Regulation_guilty_ThinkingAboutEmotions"
@@ -1644,7 +1644,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling irritated.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing your muscles?",
     "nextQuestionId": 46,
     "isRequired": true,
     "columnName": "Regulation_irritated_CalmingYourself"
@@ -1722,7 +1722,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling irritated.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying not to show your emotions on the outside?",
+    "questionText": "Trying not to show your feelings on the outside?",
     "nextQuestionId": 48,
     "isRequired": true,
     "columnName": "Regulation_irritated_HidingEmotions"
@@ -1800,7 +1800,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling irritated.",
     "questionPrefix": "How much are you:",
-    "questionText": "Thinking about your emotions over and over?",
+    "questionText": "Thinking about your feelings over and over?",
     "nextQuestionId": 50,
     "isRequired": true,
     "columnName": "Regulation_irritated_ThinkingAboutEmotions"
@@ -1902,7 +1902,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling lonely.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing your muscles?",
     "nextQuestionId": 53,
     "isRequired": true,
     "columnName": "Regulation_lonely_CalmingYourself"
@@ -1980,7 +1980,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling lonely.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying not to show your emotions on the outside?",
+    "questionText": "Trying not to show your feelings on the outside?",
     "nextQuestionId": 55,
     "isRequired": true,
     "columnName": "Regulation_lonely_HidingEmotions"
@@ -2058,7 +2058,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling lonely.",
     "questionPrefix": "How much are you:",
-    "questionText": "Thinking about your emotions over and over?",
+    "questionText": "Thinking about your feelings over and over?",
     "nextQuestionId": 57,
     "isRequired": true,
     "columnName": "Regulation_lonely_ThinkingAboutEmotions"
@@ -2160,7 +2160,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling anxious.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying to calm yourself by taking deep breaths or relaxing muscles?",
+    "questionText": "Trying to calm yourself by taking deep breaths or relaxing your muscles?",
     "nextQuestionId": 60,
     "isRequired": true,
     "columnName": "Regulation_anxious_CalmingYourself"
@@ -2238,7 +2238,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling anxious.",
     "questionPrefix": "How much are you:",
-    "questionText": "Trying not to show your emotions on the outside?",
+    "questionText": "Trying not to show your feelings on the outside?",
     "nextQuestionId": 62,
     "isRequired": true,
     "columnName": "Regulation_anxious_HidingEmotions"
@@ -2316,7 +2316,7 @@
     "questionType": "LIKERT_SCALE",
     "subTitle": "In relation to feeling anxious.",
     "questionPrefix": "How much are you:",
-    "questionText": "Thinking about your emotions over and over?",
+    "questionText": "Thinking about your feelings over and over?",
     "nextQuestionId": 64,
     "isRequired": true,
     "columnName": "Regulation_anxious_ThinkingAboutEmotions"
@@ -2609,6 +2609,7 @@
         "option": "Stranger"
       }
     ],
+    "ANSWER_DELIMITER": ";",
     "addOther": true,
     "id": 73,
     "questionType": "MULTIPLE_CHOICE_MULTI_ANSWER",

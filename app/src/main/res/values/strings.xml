@@ -245,6 +245,7 @@
     <string name="title_fragment_emotions_pie_chart">Reported Emotions</string>
     <string name="title_fragment_social_emotions_stacked_bar_chart">Emotions per Social State</string>
     <string name="title_fragment_company_horizontal_chart">Company</string>
+    <string name="title_fragment_regulation_horizontal_chart">Emotion Regulation</string>
 
     <!--
         Used to load values from the corresponding columns in the database.
@@ -302,6 +303,94 @@
     </string-array>
 
     <string name="emotionsPieChartCenterText">Emotions</string>
+
+    <!-- Emotion Regulation Strategies (axis labels) -->
+    <!-- Do NOT change order of items (but can change label text) -->
+    <string-array name="regulationLabels">
+        <item>Reappraising</item>
+        <item>Calming</item>
+        <item>Sharing</item>
+        <item>Suppressing</item>
+        <item>Distracting</item>
+        <item>Ruminating</item>
+    </string-array>
+
+    <!-- Emotion Regulation columns -->
+
+    <!-- Likert threshold: values >= this value will be considered as a 'Yes' -->
+    <integer name="likertThreshold">3</integer>
+
+    <string-array name="reappraisingColumns">
+        <item>Regulation_happy_ThinkingDifferently</item>
+        <item>Regulation_satisfied_ThinkingDifferently</item>
+        <item>Regulation_enthusiastic_ThinkingDifferently</item>
+        <item>Regulation_relaxed_ThinkingDifferently</item>
+        <item>Regulation_sad_ThinkingDifferently</item>
+        <item>Regulation_guilty_ThinkingDifferently</item>
+        <item>Regulation_irritated_ThinkingDifferently</item>
+        <item>Regulation_lonely_ThinkingDifferently</item>
+        <item>Regulation_anxious_ThinkingAboutEmotions</item>
+    </string-array>
+
+    <string-array name="calmingColumns">
+        <item>Regulation_happy_CalmingYourself</item>
+        <item>Regulation_satisfied_CalmingYourself</item>
+        <item>Regulation_enthusiastic_CalmingYourself</item>
+        <item>Regulation_relaxed_CalmingYourself</item>
+        <item>Regulation_sad_CalmingYourself</item>
+        <item>Regulation_guilty_CalmingYourself</item>
+        <item>Regulation_irritated_CalmingYourself</item>
+        <item>Regulation_lonely_CalmingYourself</item>
+        <item>Regulation_anxious_CalmingYourself</item>
+    </string-array>
+
+    <string-array name="sharingColumns">
+        <item>Regulation_happy_Talking</item>
+        <item>Regulation_satisfied_Talking</item>
+        <item>Regulation_enthusiastic_Talking</item>
+        <item>Regulation_relaxed_Talking</item>
+        <item>Regulation_sad_Talking</item>
+        <item>Regulation_guilty_Talking</item>
+        <item>Regulation_irritated_Talking</item>
+        <item>Regulation_lonely_Talking</item>
+        <item>Regulation_anxious_Talking</item>
+    </string-array>
+
+    <string-array name="suppressingColumns">
+        <item>Regulation_happy_HidingEmotions</item>
+        <item>Regulation_satisfied_HidingEmotions</item>
+        <item>Regulation_enthusiastic_HidingEmotions</item>
+        <item>Regulation_relaxed_HidingEmotions</item>
+        <item>Regulation_sad_HidingEmotions</item>
+        <item>Regulation_guilty_HidingEmotions</item>
+        <item>Regulation_irritated_HidingEmotions</item>
+        <item>Regulation_lonely_HidingEmotions</item>
+        <item>Regulation_anxious_HidingEmotions</item>
+    </string-array>
+
+    <string-array name="distractingColumns">
+        <item>Regulation_happy_TurningAttention</item>
+        <item>Regulation_satisfied_TurningAttention</item>
+        <item>Regulation_enthusiastic_TurningAttention</item>
+        <item>Regulation_relaxed_TurningAttention</item>
+        <item>Regulation_sad_TurningAttention</item>
+        <item>Regulation_guilty_TurningAttention</item>
+        <item>Regulation_irritated_TurningAttention</item>
+        <item>Regulation_lonely_TurningAttention</item>
+        <item>Regulation_anxious_TurningAttention</item>
+    </string-array>
+
+    <string-array name="ruminatingColumns">
+        <item>Regulation_happy_ThinkingAboutEmotions</item>
+        <item>Regulation_satisfied_ThinkingAboutEmotions</item>
+        <item>Regulation_enthusiastic_ThinkingAboutEmotions</item>
+        <item>Regulation_relaxed_ThinkingAboutEmotions</item>
+        <item>Regulation_sad_ThinkingAboutEmotions</item>
+        <item>Regulation_guilty_ThinkingAboutEmotions</item>
+        <item>Regulation_irritated_ThinkingAboutEmotions</item>
+        <item>Regulation_lonely_ThinkingAboutEmotions</item>
+        <item>Regulation_anxious_ThinkingAboutEmotions</item>
+    </string-array>
 
     <string-array name="companyLabels">
         <item>Alone</item>

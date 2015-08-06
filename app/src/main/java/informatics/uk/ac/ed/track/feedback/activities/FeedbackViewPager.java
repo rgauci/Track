@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.esm.Utils;
 import informatics.uk.ac.ed.track.feedback.fragments.CompanyHorizontalBarChart;
 import informatics.uk.ac.ed.track.feedback.fragments.EmotionsPieChart;
+import informatics.uk.ac.ed.track.feedback.fragments.RegulationHorizontalBarChart;
 import informatics.uk.ac.ed.track.feedback.fragments.SocialEmotionStackedBarChart;
 
 public class FeedbackViewPager extends AppCompatActivity {
@@ -26,9 +28,9 @@ public class FeedbackViewPager extends AppCompatActivity {
         setContentView(R.layout.activity_feedback_view_pager);
 
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(PageAdapter.NUM_GRAPHS_AVAILABLE);
 
         PageAdapter pgAdapter = new PageAdapter(getSupportFragmentManager());
+        pager.setOffscreenPageLimit(pgAdapter.numGraphsAvailable);
         pager.setAdapter(pgAdapter);
 
         Snackbar.make(findViewById(R.id.lytSnackbar), getResources().getString(R.string.feedbackPagerInstructions), Snackbar.LENGTH_LONG).show();
@@ -58,26 +60,57 @@ public class FeedbackViewPager extends AppCompatActivity {
 
     private class PageAdapter extends FragmentPagerAdapter {
 
-        private final static int NUM_GRAPHS_AVAILABLE = 3;
+        private final static int RESEARCH_PARTICIPANT_MINIMUM_NUM_GRAPHS = 3;
+        private final static int NON_RESEARCH_PARTICIPANT_MINIMUM_NUM_GRAPHS = 4;
+
+        private boolean isResearchParticipant;
+
+        public int numGraphsAvailable;
 
         public PageAdapter(FragmentManager fm) {
             super(fm);
+
+            this.isResearchParticipant = Utils.getIsResearchParticipant(getApplicationContext());
+
+            if (this.isResearchParticipant) {
+                this.numGraphsAvailable = RESEARCH_PARTICIPANT_MINIMUM_NUM_GRAPHS + this.getNumberOfEmotionDayGraphsAvailable();
+            } else {
+                this.numGraphsAvailable = NON_RESEARCH_PARTICIPANT_MINIMUM_NUM_GRAPHS + this.getNumberOfEmotionDayGraphsAvailable();
+            }
         }
 
         @Override
         public Fragment getItem(int pos) {
             Fragment f = null;
 
-            switch(pos) {
-                case 0:
-                    f = EmotionsPieChart.newInstance();
-                    break;
-                case 1:
-                    f = SocialEmotionStackedBarChart.newInstance();
-                    break;
-                case 2:
-                    f = CompanyHorizontalBarChart.newInstance();
-                    break;
+            if (this.isResearchParticipant) {
+                switch (pos) {
+                    case 0:
+                        f = EmotionsPieChart.newInstance();
+                        break;
+                    case 1:
+                        f = SocialEmotionStackedBarChart.newInstance();
+                        break;
+                    case 2:
+                        f = RegulationHorizontalBarChart.newInstance();
+                        break;
+                }
+            } else {
+                // Company Horizontal Bar Chart only available for non-participants
+                switch (pos) {
+                    case 0:
+                        f = EmotionsPieChart.newInstance();
+                        break;
+                    case 1:
+                        f = SocialEmotionStackedBarChart.newInstance();
+                        break;
+                    case 2:
+                        f = RegulationHorizontalBarChart.newInstance();
+                        break;
+                    case 3:
+                        f = CompanyHorizontalBarChart.newInstance();
+                        break;
+                }
             }
 
             return f;
@@ -89,7 +122,12 @@ public class FeedbackViewPager extends AppCompatActivity {
          */
         @Override
         public int getCount() {
-            return NUM_GRAPHS_AVAILABLE;
+            return this.numGraphsAvailable;
         }
+
+        private int getNumberOfEmotionDayGraphsAvailable() {
+            return 0;
+        }
+
     }
 }
