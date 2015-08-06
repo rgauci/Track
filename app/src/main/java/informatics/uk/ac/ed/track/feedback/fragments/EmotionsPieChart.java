@@ -65,7 +65,7 @@ public class EmotionsPieChart extends Fragment {
         }
 
         PieDataSet dataSet = new PieDataSet(entries, null);
-        dataSet.setColors(FeedbackUtils.getDefaultColorTemplate());
+        dataSet.setColors(FeedbackUtils.getExtendedColorTemplate());
         dataSet.setSliceSpace(2f);
         dataSet.setValueTextColor(res.getColor(R.color.text_icons));
         dataSet.setValueTextSize(FeedbackUtils.getValueTextSize());
