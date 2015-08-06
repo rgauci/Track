@@ -15,6 +15,15 @@
     <string name="title_activity_demo_scale">Scale Demo</string>
     <string name="title_activity_demo_scale_vertical">Vertical Scale Demo</string>
 
+    <!-- Research Participation Screen -->
+    <string name="title_activity_research_participation">Research Participation</string>
+    <string name="participantQuestion">Are you a participant in %1$s %2$s\'s study?</string>
+    <string name="participantYes">Yes, I am participating in the study and am currently at the initial briefing session.*</string>
+    <string name="participantNo">No, I would like to use this app to personally track my emotions and daily activities.</string>
+    <string name="participantYesMsg">* If you are participating in the study but not currently at
+        the briefing session,
+        kindly exit the application so that %1$s can assist during setup.</string>
+
     <!-- User Login screen -->
     <string name="title_activity_user_login">Login</string>
 
@@ -45,6 +54,7 @@
 
     <!-- Study Configuration screen -->
     <string name="title_activity_study_configuration">Study Configuration</string>
+    <string name="title_activity_study_configuration_nonParticipant">Configuration</string>
     <string name="startDate">Start Date</string>
     <string name="duration">Duration</string>
     <string name="samplesPerDay">Samples per Day</string>
@@ -118,14 +128,22 @@
         This question makes use of a Likert-type scale. Select one option to answer.</string>
     <string name="finish">Finish</string>
 
+    <!-- Briefing Complete -->
     <string name="briefCompleteTitle">That\'s all for now.</string>
+    <string name="briefCompleteSubTitle">Thank you for your participation.</string>
+    <string name="briefCompleteSubTitle_nonParticipant">You are ready to start your tracking experience.</string>
     <string name="briefCompleteExplanation"><![CDATA[The study will start on %1$s,
         and run for %2$d days, until %3$s.
         <br/><br/>You will receive a <b>notification</b> when a survey is available.
         <br/><br/>The notification will expire after <b>%4$d minutes</b>
         so please try and answer as soon as possible.
         We promise it will only take a few minutes. :)]]></string>
-    <string name="briefCompleteThankYou">Thank you for your participation.</string>
+    <string name="briefCompleteExplanation_nonParticipant"><![CDATA[Sampling will start on %1$s,
+        and run for %2$d days, until %3$s.
+        <br/><br/>You will receive a <b>notification</b> when a survey is available.
+        <br/><br/>The notification will expire after <b>%4$d minutes</b>
+        so please try and answer as soon as possible.
+        We promise it will only take a few minutes. :)]]></string>
 
     <string name="error_missingEmail">Enter email address.</string>
     <string name="error_enterValidEmail">Enter a valid email address.</string>

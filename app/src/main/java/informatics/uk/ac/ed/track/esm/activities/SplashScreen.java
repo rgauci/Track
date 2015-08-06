@@ -99,7 +99,7 @@ public class SplashScreen extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     // otherwise start setup
-                    Intent intent = new Intent(SplashScreen.this, ResearcherSetup.class);
+                    Intent intent = new Intent(SplashScreen.this, ResearchParticipation.class);
                     startActivity(intent);
                 }
             }

@@ -98,7 +98,7 @@ public class HomeActivity extends AppCompatActivity {
         relaunchSetup.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, ResearcherSetup.class);
+                Intent intent = new Intent(HomeActivity.this, ResearchParticipation.class);
                 startActivity(intent);
             }
         });

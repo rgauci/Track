@@ -12,15 +12,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.esm.Utils;
 
 
 public class BriefingComplete extends AppCompatActivity {
+
+    private TextView txtVwSubTitle, txtViewInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,8 @@ public class BriefingComplete extends AppCompatActivity {
         setContentView(R.layout.activity_briefing_complete);
 
         // initialise UI controls
-        TextView txtViewInfo = (TextView) findViewById(R.id.txtVwInfo);
+        txtVwSubTitle = (TextView) findViewById(R.id.txtVwSubTitle);
+        txtViewInfo = (TextView) findViewById(R.id.txtVwInfo);
 
         // get settings
         SharedPreferences settings =
@@ -38,6 +44,13 @@ public class BriefingComplete extends AppCompatActivity {
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(Constants.SETUP_COMPLETE, true);
         editor.apply();
+
+        // set subtitle text according to whether user is a research participant
+        boolean isParticipant = Utils.getIsResearchParticipant(getApplicationContext());
+
+        if (!isParticipant) {
+            txtVwSubTitle.setText(getString(R.string.briefCompleteSubTitle_nonParticipant));
+        }
 
         // set info text
         Calendar startDate = GregorianCalendar.getInstance();
@@ -58,10 +71,17 @@ public class BriefingComplete extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(
                 res.getString(R.string.dateFormatFullMonthNoYear, Constants.DEF_VALUE_STR));
 
-        txtViewInfo.setText(Html.fromHtml(res.getString(
-                R.string.briefCompleteExplanation,
-                sdf.format(startDate.getTime()), duration, sdf.format(endDate.getTime()),
-                notificationWindow)));
+        if (isParticipant) {
+            txtViewInfo.setText(Html.fromHtml(res.getString(
+                    R.string.briefCompleteExplanation,
+                    sdf.format(startDate.getTime()), duration, sdf.format(endDate.getTime()),
+                    notificationWindow)));
+        } else {
+            txtViewInfo.setText(Html.fromHtml(res.getString(
+                    R.string.briefCompleteExplanation_nonParticipant,
+                    sdf.format(startDate.getTime()), duration, sdf.format(endDate.getTime()),
+                    notificationWindow)));
+        }
     }
 
     @Override

@@ -44,8 +44,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="@string/briefCompleteThankYou"
-                    android:id="@+id/txtVwThankYou"
+                    android:text="@string/briefCompleteSubTitle"
+                    android:id="@+id/txtVwSubTitle"
                     android:textColor="@color/primary_light" />
 
                 <TextView

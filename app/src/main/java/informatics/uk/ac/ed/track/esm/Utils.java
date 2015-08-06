@@ -230,4 +230,16 @@ public class Utils {
         editor.apply();
     }
 
+    /**
+     * Reads from SharedPreferences and returns true if the user is a research participant.
+     * @param appContext The application context.
+     * @return true if the user is a research participant.
+     */
+    public static boolean getIsResearchParticipant(Context appContext){
+        SharedPreferences settings =
+                PreferenceManager.getDefaultSharedPreferences(appContext);
+
+        return settings.getBoolean(Constants.IS_RESEARCH_PARTICIPANT, Constants.DEF_VALUE_BOOL);
+    }
+
 }

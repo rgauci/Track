@@ -51,6 +51,7 @@ public class StudyConfiguration extends AppCompatActivity
 
     private EditText txtDuration, txtSamplesPerDay, txtNotificationWindow,
             txtFeedbackActivation;
+    private TextView txtVwToolbar;
     private TextView txtVwStartDate, txtVwStartTime, txtVwEndTime;
     private TextView txtStartDate_errorMsg, txtDuration_errorMsg,
             txtSamplesPerDay_errorMsg, txtNotificationWindow_errorMsg,
@@ -67,6 +68,8 @@ public class StudyConfiguration extends AppCompatActivity
 
         /* initialise UI controls */
         spnNotificationScheduling = (Spinner) findViewById(R.id.spnNotificationScheduling);
+
+        txtVwToolbar = (TextView) findViewById(R.id.txtVwToolbar);
 
         txtDuration = (EditText) findViewById(R.id.txtDuration);
         txtSamplesPerDay = (EditText) findViewById(R.id.txtSamplesPerDay);
@@ -110,6 +113,12 @@ public class StudyConfiguration extends AppCompatActivity
                     (TableRow) findViewById(R.id.tblRowFeedbackActivationDivider);
             this.tblRowFeedbackActivation.setVisibility(View.GONE);
             this.tblRowFeedbackActivationDivider.setVisibility(View.GONE);
+        }
+
+        // change title according to whether this is a research participant or not
+        if (!Utils.getIsResearchParticipant(getApplicationContext())) {
+            this.txtVwToolbar.setText(
+                    getString(R.string.title_activity_study_configuration_nonParticipant));
         }
     }
 

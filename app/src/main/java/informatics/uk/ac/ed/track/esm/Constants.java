@@ -24,6 +24,7 @@ public class Constants {
     public static final String HASHING_ALGORITHM = "SHA-1";
     public static final String IS_FIRST_QUESTION = "isFirstQuestion";
     public static final String IS_CANCEL_NOTIFICATION_ALARM = "isCancelNotificationAlarm";
+    public static final String IS_RESEARCH_PARTICIPANT = "isResearchParticipant";
     public static final String LAST_NOTIFICATION_TIME_MILLIS  = "lastNotificationTimeMillis";
     public static final String LAST_SURVEY_COMPLETED_TIME_MILLIS = "lastSurveyCompleteMillis";
     public static final String MINIMUM_SURVEYS_FOR_FEEDBACK_ACTIVATION = "feedbackActivation";
