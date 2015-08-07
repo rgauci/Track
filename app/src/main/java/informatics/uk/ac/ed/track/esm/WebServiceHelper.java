@@ -1,4 +1,4 @@
-package informatics.uk.ac.ed.track.esm.util;
+package informatics.uk.ac.ed.track.esm;
 
 
 import android.content.ContentValues;
@@ -29,6 +29,7 @@ public class WebServiceHelper {
     public final static String LOG_TAG = "WebServiceHelper";
 
     public final static String PARAM_PARTICIPANT_ID = "participantId";
+    public final static String PARAM_DAY_NUMBER = "dayNumber";
     public final static String PARAM_NOTIFICATION_TIME = "notificationTime";
     public final static String PARAM_SURVEY_COMPLETED_TIME = "surveyCompletedTime";
     public final static String PARAM_SURVEY_COLUMN_NAMES = "surveyColumnNames";

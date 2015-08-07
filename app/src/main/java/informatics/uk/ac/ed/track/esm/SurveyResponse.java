@@ -5,6 +5,7 @@ import android.content.ContentValues;
 public class SurveyResponse {
 
     private int rowId;
+    private int dayNumber;
     private String notificationTimeIso;
     private String surveyCompletedTimeIso;
     private boolean synced;
@@ -40,6 +41,14 @@ public class SurveyResponse {
 
     public long getRowId() {
         return this.rowId;
+    }
+
+    public void setDayNumber(int value) {
+        this.dayNumber = value;
+    }
+
+    public int getDayNumber() {
+        return this.dayNumber;
     }
 
     public ContentValues getQuestionAnswers() {

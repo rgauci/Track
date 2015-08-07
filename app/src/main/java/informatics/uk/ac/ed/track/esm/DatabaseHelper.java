@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,9 +36,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NAME_SYNCED = "Synced";
 
     public static final int COLUMN_ID_ROW_ID = 0;
-    public static final int COLUMN_ID_NOTIFICATION_TIME = 1;
-    public static final int COLUMN_ID_SURVEY_COMPLETED_TIME = 2;
-    public static final int COLUMN_ID_SYNCED = 3;
+    public static final int COLUMN_ID_DAY_NUMBER = 1;
+    public static final int COLUMN_ID_NOTIFICATION_TIME = 2;
+    public static final int COLUMN_ID_SURVEY_COMPLETED_TIME = 3;
+    public static final int COLUMN_ID_SYNCED = 4;
 
     public static final String NOT_NULL = "NOT NULL";
 
@@ -177,6 +179,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         response.setRowId(
                 Integer.parseInt(cursor.getString(DatabaseHelper.COLUMN_ID_ROW_ID)));
+        response.setDayNumber(
+                Integer.parseInt(cursor.getString(DatabaseHelper.COLUMN_ID_DAY_NUMBER)));
         response.setNotificationTimeIso(
                 cursor.getString(DatabaseHelper.COLUMN_ID_NOTIFICATION_TIME));
         response.setSurveyCompletedTimeIso(

@@ -18,7 +18,7 @@ import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.esm.DatabaseHelper;
 import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.esm.SurveyResponse;
-import informatics.uk.ac.ed.track.esm.util.WebServiceHelper;
+import informatics.uk.ac.ed.track.esm.WebServiceHelper;
 
 public class ExternalDatabaseService extends IntentService {
 
@@ -83,6 +83,7 @@ public class ExternalDatabaseService extends IntentService {
         // Build Parameters
         ContentValues params = new ContentValues();
         params.put(WebServiceHelper.PARAM_PARTICIPANT_ID, participantId);
+        params.put(WebServiceHelper.PARAM_DAY_NUMBER, response.getDayNumber());
         params.put(WebServiceHelper.PARAM_NOTIFICATION_TIME,
                 response.getNotificationTimeIso());
         params.put(WebServiceHelper.PARAM_SURVEY_COMPLETED_TIME,
