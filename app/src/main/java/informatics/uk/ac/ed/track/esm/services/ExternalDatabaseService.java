@@ -61,7 +61,6 @@ public class ExternalDatabaseService extends IntentService {
     private void syncResponse(long rowId) {
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         SurveyResponse response = dbHelper.getResponseById(rowId);
-        int participantId = this.getParticipantId();
         this.sendResponseToWebServer(
                 this.getAddSurveyResponseWebMethodUrl(), this.getParticipantId(), response);
     }

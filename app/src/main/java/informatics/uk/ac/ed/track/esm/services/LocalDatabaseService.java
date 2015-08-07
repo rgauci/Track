@@ -54,8 +54,16 @@ public class LocalDatabaseService extends IntentService {
         db.close();
 
         // now that we have saved to local DB
+        // if this is a research participant, we need to save to external DB
+
+        if (!Utils.getIsResearchParticipant(getApplicationContext())) {
+            // if not a participant, nothing left to do
+            return;
+        }
+
         // if we have an Internet connect, send response to external server
         boolean isConnected = Utils.isConnectedToInternet(this);
+
         if (!isConnected) {
             // if no connection, nothing left to do
             // connection change receiver will sync all unsycned records

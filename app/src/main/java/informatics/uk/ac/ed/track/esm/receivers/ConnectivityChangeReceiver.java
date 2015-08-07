@@ -39,18 +39,25 @@ public class ConnectivityChangeReceiver extends BroadcastReceiver {
             DatabaseHelper dbHelper = new DatabaseHelper(context.getApplicationContext());
             long numUnsynced = dbHelper.getUnsyncedResponsesCount();
             if (numUnsynced == 0) {
-                this.disableBootReceiver(context);
+                disableReceiver(context);
             }
         }
     }
 
-    private void disableBootReceiver(Context context) {
+    public static void enableReceiver(Context context) {
+        setEnabledSetting(context, PackageManager.COMPONENT_ENABLED_STATE_ENABLED);
+    }
+
+    public static void disableReceiver(Context context) {
+        setEnabledSetting(context, PackageManager.COMPONENT_ENABLED_STATE_DISABLED);
+    }
+
+    private static void setEnabledSetting(Context context, int newState) {
         ComponentName receiver = new ComponentName(context, ConnectivityChangeReceiver.class);
         PackageManager pm = context.getPackageManager();
 
         pm.setComponentEnabledSetting(receiver,
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                newState,
                 PackageManager.DONT_KILL_APP);
     }
-
 }

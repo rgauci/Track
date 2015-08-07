@@ -16,6 +16,7 @@ import org.w3c.dom.Text;
 
 import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.esm.Constants;
+import informatics.uk.ac.ed.track.esm.receivers.ConnectivityChangeReceiver;
 
 public class ResearchParticipation extends AppCompatActivity {
 
@@ -90,6 +91,14 @@ public class ResearchParticipation extends AppCompatActivity {
 
         editor.putBoolean(Constants.IS_RESEARCH_PARTICIPANT, isParticipant);
         editor.apply();
+
+        // enable disable connectivity change receiver
+        // (we will not be saving to external DB if user is not a participant
+        if (isParticipant) {
+            ConnectivityChangeReceiver.enableReceiver(this);
+        } else {
+            ConnectivityChangeReceiver.disableReceiver(this);
+        }
 
         // proceed to next activity
         Intent intent;
