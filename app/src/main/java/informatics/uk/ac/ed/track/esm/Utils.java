@@ -242,4 +242,35 @@ public class Utils {
         return settings.getBoolean(Constants.IS_RESEARCH_PARTICIPANT, Constants.DEF_VALUE_BOOL);
     }
 
+    /**
+     * Gets current study day number, e.g.: '1' on 1st day, '2' on second etc.
+     * @param appContext The application context.
+     * @return Study day number, 1-based. -1 if study has not yet started.
+     */
+    public static int getCurrentStudyDayNumber(Context appContext) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(appContext);
+
+        // get start date
+        long studyStartMillis =
+                settings.getLong(Constants.STUDY_START_DATE_TIME_MILLIS, Constants.DEF_VALUE_LNG);
+        Calendar studyStart = GregorianCalendar.getInstance();
+        studyStart.setTimeInMillis(studyStartMillis);
+
+        // get current date
+        Calendar current = GregorianCalendar.getInstance();
+
+        if (current.before(studyStart)) {
+            return -1;
+        }
+
+        int dayNum = 0;
+
+        // add 1 to start date until it exceeds current date
+        do {
+            dayNum++;
+            studyStart.add(Calendar.DATE, 1);
+        } while (studyStart.before(current));
+
+        return dayNum;
+    }
 }

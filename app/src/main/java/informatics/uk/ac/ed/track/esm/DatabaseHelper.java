@@ -29,6 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME_SURVEY_RESPONSES = "SurveyResponses";
 
     public static final String COLUMN_NAME_ROW_ID = "ROWID";
+    public static final String COLUMN_NAME_DAY_NUMBER = "DayNumber";
     public static final String COLUMN_NAME_NOTIFICATION_TIME = "NotificationTime";
     public static final String COLUMN_NAME_SURVEY_COMPLETED_TIME = "SurveyCompletedTime";
     public static final String COLUMN_NAME_SYNCED = "Synced";
@@ -73,6 +74,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         createTblSb.append("CREATE TABLE `" + TABLE_NAME_SURVEY_RESPONSES + "` (\n");
         createTblSb.append("`" + COLUMN_NAME_ROW_ID + "`\t" + DATATYPE_INTEGER + " PRIMARY KEY,\n");
+        createTblSb.append("`" + COLUMN_NAME_DAY_NUMBER + "`\t" +
+                DATATYPE_INTEGER + " " + NOT_NULL + ",\n");
         createTblSb.append("`" + COLUMN_NAME_NOTIFICATION_TIME + "`\t" +
                 DATATYPE_TEXT + " " + NOT_NULL + ",\n");
         createTblSb.append("`" + COLUMN_NAME_SURVEY_COMPLETED_TIME + "`\t" +

@@ -2,8 +2,11 @@ package informatics.uk.ac.ed.track.esm.services;
 
 import android.app.IntentService;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.preference.PreferenceManager;
 
 import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.esm.DatabaseHelper;
@@ -27,10 +30,16 @@ public class LocalDatabaseService extends IntentService {
                 Constants.DEF_VALUE_LNG);
         String surveyResponses = intent.getStringExtra(Constants.SURVEY_RESPONSES);
 
+        Context appContext = this.getApplicationContext();
+
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(appContext);
+        int dayNum = settings.getInt(Constants.CURRENT_STUDY_DAY_NUMBER, Constants.DEF_VALUE_INT);
+
         // initialise db helper
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
 
         ContentValues columnValues = new ContentValues();
+        columnValues.put("`" + DatabaseHelper.COLUMN_NAME_DAY_NUMBER + "`", dayNum);
         columnValues.put("`" + DatabaseHelper.COLUMN_NAME_NOTIFICATION_TIME + "`",
                 dbHelper.getDateInIsoFormat(notificationTime));
         columnValues.put("`" + DatabaseHelper.COLUMN_NAME_SURVEY_COMPLETED_TIME + "`",

@@ -10,6 +10,7 @@ public class Constants {
 
     public static final String ACTIVITY_TO_LAUNCH_ON_LOGIN_SUCCESS = "activityToLaunchOnLoginSuccess";
     public static final String ALARM_REQUEST_CODES = "alarmRequestCodes";
+    public static final String CURRENT_STUDY_DAY_NUMBER = "currentStudyDayNumber";
     public static final String DEF_VALUE_STR = "";
     public static final String DATABASE_VERSION = "dbVersion";
     public static final String DATABASE_SURVEY_COLUMNS_SQL = "dbSurveyColumnsSql";

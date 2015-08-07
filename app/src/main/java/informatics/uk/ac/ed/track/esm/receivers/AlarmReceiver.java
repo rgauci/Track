@@ -58,8 +58,9 @@ public class AlarmReceiver extends BroadcastReceiver {
             }
         }
 
-        // otherwise save notification time in preferences
-        // and display notification
+        // otherwise:
+        // save notification time in preferences
+        // and current day number
         Calendar cal = GregorianCalendar.getInstance();
         cal.getTimeInMillis();
         cal.set(Calendar.SECOND, 0);
@@ -68,8 +69,11 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         SharedPreferences.Editor editor = settings.edit();
         editor.putLong(Constants.LAST_NOTIFICATION_TIME_MILLIS, notificationTime);
+        editor.putInt(Constants.CURRENT_STUDY_DAY_NUMBER,
+                Utils.getCurrentStudyDayNumber(context.getApplicationContext()));
         editor.apply();
 
+        // display notification
         int notificationWindow =
                 settings.getInt(Constants.NOTIFICATION_WINDOW_MINUTES, Constants.DEF_VALUE_INT);
 
