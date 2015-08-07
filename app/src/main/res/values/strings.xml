@@ -246,6 +246,7 @@
     <string name="title_fragment_social_emotions_stacked_bar_chart">Company and Emotions Reported</string>
     <string name="title_fragment_company_horizontal_chart">Company</string>
     <string name="title_fragment_regulation_horizontal_chart">Managing Emotions</string>
+    <string name="title_fragment_daily_emotions_pie_chart">Daily Emotions Reported</string>
 
     <!--
         Used to load values from the corresponding columns in the database.

@@ -1,5 +1,7 @@
 package informatics.uk.ac.ed.track.feedback.activities;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,8 +14,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import informatics.uk.ac.ed.track.R;
+import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.esm.Utils;
 import informatics.uk.ac.ed.track.feedback.fragments.CompanyHorizontalBarChart;
+import informatics.uk.ac.ed.track.feedback.fragments.DailyEmotionsPieChart;
 import informatics.uk.ac.ed.track.feedback.fragments.EmotionsPieChart;
 import informatics.uk.ac.ed.track.feedback.fragments.RegulationHorizontalBarChart;
 import informatics.uk.ac.ed.track.feedback.fragments.SocialEmotionStackedBarChart;
@@ -73,15 +77,17 @@ public class FeedbackViewPager extends AppCompatActivity {
             this.isResearchParticipant = Utils.getIsResearchParticipant(getApplicationContext());
 
             if (this.isResearchParticipant) {
-                this.numGraphsAvailable = RESEARCH_PARTICIPANT_MINIMUM_NUM_GRAPHS + this.getNumberOfEmotionDayGraphsAvailable();
+                this.numGraphsAvailable = RESEARCH_PARTICIPANT_MINIMUM_NUM_GRAPHS +
+                        this.getNumberOfEmotionDayGraphsAvailable();
             } else {
-                this.numGraphsAvailable = NON_RESEARCH_PARTICIPANT_MINIMUM_NUM_GRAPHS + this.getNumberOfEmotionDayGraphsAvailable();
+                this.numGraphsAvailable = NON_RESEARCH_PARTICIPANT_MINIMUM_NUM_GRAPHS +
+                        this.getNumberOfEmotionDayGraphsAvailable();
             }
         }
 
         @Override
         public Fragment getItem(int pos) {
-            Fragment f = null;
+            Fragment f;
 
             if (this.isResearchParticipant) {
                 switch (pos) {
@@ -93,6 +99,9 @@ public class FeedbackViewPager extends AppCompatActivity {
                         break;
                     case 2:
                         f = RegulationHorizontalBarChart.newInstance();
+                        break;
+                    default:
+                        f = getDailyEmotionsPieChartInstance(pos);
                         break;
                 }
             } else {
@@ -110,6 +119,9 @@ public class FeedbackViewPager extends AppCompatActivity {
                     case 3:
                         f = CompanyHorizontalBarChart.newInstance();
                         break;
+                    default:
+                        f = getDailyEmotionsPieChartInstance(pos);
+                        break;
                 }
             }
 
@@ -125,8 +137,28 @@ public class FeedbackViewPager extends AppCompatActivity {
             return this.numGraphsAvailable;
         }
 
+        private Fragment getDailyEmotionsPieChartInstance(int pos) {
+            if (this.isResearchParticipant) {
+                return DailyEmotionsPieChart.newInstance(pos - RESEARCH_PARTICIPANT_MINIMUM_NUM_GRAPHS + 1);
+            } else {
+                return DailyEmotionsPieChart.newInstance(pos - NON_RESEARCH_PARTICIPANT_MINIMUM_NUM_GRAPHS + 1);
+            }
+        }
+
         private int getNumberOfEmotionDayGraphsAvailable() {
-            return 0;
+
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+            // get value from SharedPreferences
+            // will never exceed study end time since this value is set by the AlarmReceiver
+            // (so the last time it is set is at the time of the last notification)
+            int dayNum = settings.getInt(Constants.CURRENT_STUDY_DAY_NUMBER, Constants.DEF_VALUE_INT);
+
+            if (dayNum == Constants.DEF_VALUE_INT) {
+                return 0;
+            } else {
+                return dayNum;
+            }
         }
 
     }
