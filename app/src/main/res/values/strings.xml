@@ -242,10 +242,10 @@
     <!-- ######################### Feedback Module strings ########################## -->
 
     <string name="feedbackPagerInstructions">Swipe left and right to view more feedback graphs.</string>
-    <string name="title_fragment_emotions_pie_chart">Reported Emotions</string>
-    <string name="title_fragment_social_emotions_stacked_bar_chart">Emotions per Social State</string>
+    <string name="title_fragment_emotions_pie_chart">Emotions Reported</string>
+    <string name="title_fragment_social_emotions_stacked_bar_chart">Company and Emotions Reported</string>
     <string name="title_fragment_company_horizontal_chart">Company</string>
-    <string name="title_fragment_regulation_horizontal_chart">Emotion Regulation</string>
+    <string name="title_fragment_regulation_horizontal_chart">Managing Emotions</string>
 
     <!--
         Used to load values from the corresponding columns in the database.
