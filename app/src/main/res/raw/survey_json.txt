@@ -2323,6 +2323,7 @@
   },
   {
     "type": "FreeTextQuestionMultiLine",
+    "characterLimit": 140,
     "id": 64,
     "questionType": "FREE_TEXT_MULTI_LINE",
     "questionText": "What is the most important event that has happened since your last report?",
@@ -2369,6 +2370,7 @@
   },
   {
     "type": "FreeTextQuestionSingleLine",
+    "characterLimit": 50,
     "id": 66,
     "questionType": "FREE_TEXT_SINGLE_LINE",
     "questionText": "What are you currently doing?",
