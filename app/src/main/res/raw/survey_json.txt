@@ -2369,10 +2369,10 @@
     "columnName": "EventPleasure"
   },
   {
-    "type": "FreeTextQuestionSingleLine",
-    "characterLimit": 50,
+    "type": "FreeTextQuestionMultiLine",
+    "characterLimit": 140,
     "id": 66,
-    "questionType": "FREE_TEXT_SINGLE_LINE",
+    "questionType": "FREE_TEXT_MULTI_LINE",
     "questionText": "What are you currently doing?",
     "nextQuestionId": 67,
     "isRequired": true,

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 
+import informatics.uk.ac.ed.track.esm.CharacterCountErrorWatcher;
 import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.R;
 import informatics.uk.ac.ed.track.esm.Utils;
@@ -33,6 +35,7 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
     private RadioGroup rdGrp;
     private RadioButton rdBtnOther;
     private EditText txtOther;
+    private TextInputLayout txtOther_InpLyt;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,26 +100,39 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
             this.rdBtnOther.setId(R.id.rdBtnOther);
             rdBtnOther.setText(getResources().getString(R.string.other));
 
-            this.txtOther = (EditText)
-                    getLayoutInflater().inflate(R.layout.template_edit_text_plain, null);
+            this.txtOther_InpLyt = (TextInputLayout)
+                    getLayoutInflater().inflate(R.layout.template_text_input_layout, null);
+            this.txtOther_InpLyt.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            this.txtOther_InpLyt.setId(R.id.txtOther_InpLyt);
+            this.txtOther_InpLyt.setVisibility(View.INVISIBLE);
+
+            this.txtOther = this.txtOther_InpLyt.getEditText();
             this.txtOther.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             this.txtOther.setId(R.id.txtOther);
-            this.txtOther.setVisibility(View.INVISIBLE);
 
+            /* set up character counter for edit text */
+            this.txtOther.addTextChangedListener(
+                    new CharacterCountErrorWatcher(this.txtOther_InpLyt, 0,
+                            getResources().
+                                    getInteger(R.integer.other_option_text_max_char_length)));
+
+
+            // add to view
             this.rdGrp.addView(rdBtnOther);
-            this.lytMain.addView(txtOther);
+            this.lytMain.addView(txtOther_InpLyt);
 
             // hide / show "Other" textbox depending on whether option is selected
             this.rdGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                    RadioButton rb = (RadioButton) radioGroup.findViewById(checkedId);
-                    EditText txtOther = (EditText) findViewById(R.id.txtOther);
+                    TextInputLayout txtOther_InpLyt =
+                            (TextInputLayout) findViewById(R.id.txtOther_InpLyt);
                     if (checkedId == R.id.rdBtnOther) {
-                        txtOther.setVisibility(View.VISIBLE);
+                        txtOther_InpLyt.setVisibility(View.VISIBLE);
                     } else {
-                        txtOther.setVisibility(View.GONE);
+                        txtOther_InpLyt.setVisibility(View.GONE);
                     }
                 }
             });
@@ -168,11 +184,22 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
 
         // if "Other" is selected, make sure 'Other text' is non-empty
         if (this.question.getAddOther() && this.rdBtnOther.isChecked()) {
-            String otherText = Utils.getTrimmedText(this.txtOther);
+            String otherText = this.txtOther.getText().toString();
+
             if (otherText.isEmpty()) {
                 errorText = String.format(res.getString(R.string.error_enterOtherOptionText),
                                 res.getString(R.string.other));
                 hasErrors = true;
+            }
+
+            // check if other text exceeds max character limit
+            int maxLength = res.getInteger(R.integer.other_option_text_max_char_length);
+            if (otherText.length() > maxLength) {
+                this.txtOther_InpLyt.setError(String.format(getString(R.string.error_answerTooLong),
+                        maxLength));
+                hasErrors = true;
+            } else {
+                this.txtOther_InpLyt.setError(null);
             }
         }
 
@@ -184,7 +211,7 @@ public class Question_MultiChoice_Single extends TrackQuestionActivity {
             }
         }
 
-        if (hasErrors) {
+        if ((hasErrors) && (!Utils.isNullOrEmpty(errorText))) {
             Toast toast = Toast.makeText(this, errorText, Toast.LENGTH_SHORT);
             toast.show();
         }

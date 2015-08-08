@@ -55,7 +55,8 @@ tools:context="informatics.uk.ac.ed.track.esm.activities.Question_MultiChoice_Mu
             android:fillViewport="true"
             android:layout_alignParentTop="true"
             android:layout_above="@+id/btnNext"
-            android:layout_marginBottom="@dimen/activity_vertical_margin">
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:isScrollContainer="false">
 
             <LinearLayout
                 android:orientation="vertical"
