@@ -78,8 +78,6 @@ public class ExternalDatabaseService extends IntentService {
     }
 
     private void sendResponseToWebServer(String url, int participantId, SurveyResponse response) {
-        Resources res = getResources();
-
         // Build Parameters
         ContentValues params = new ContentValues();
         params.put(WebServiceHelper.PARAM_PARTICIPANT_ID, participantId);

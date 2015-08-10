@@ -28,6 +28,8 @@ public class WebServiceHelper {
     public final static String UTF8 = "UTF-8";
     public final static String LOG_TAG = "WebServiceHelper";
 
+    public final static String PARAM_RESEARCHER_USERNAME = "researcher_username";
+    public final static String PARAM_RESEARCHER_PASSWORD = "researcher_password";
     public final static String PARAM_PARTICIPANT_ID = "participantId";
     public final static String PARAM_DAY_NUMBER = "dayNumber";
     public final static String PARAM_NOTIFICATION_TIME = "notificationTime";
@@ -41,7 +43,6 @@ public class WebServiceHelper {
 
     private static String getPostDataString(ContentValues params) {
         StringBuilder paramsSb = new StringBuilder();
-        boolean first = true;
 
         for (String key : params.keySet()) {
             if (paramsSb.length() > 0) {

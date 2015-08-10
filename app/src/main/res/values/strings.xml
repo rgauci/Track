@@ -145,9 +145,10 @@
         so please try and answer as soon as possible.
         We promise it will only take a few minutes. :)]]></string>
 
-    <string name="error_missingEmail">Enter email address.</string>
-    <string name="error_enterValidEmail">Enter a valid email address.</string>
-    <string name="error_confirmEmail">Email address does not match.</string>
+    <string name="error_missingResearcherUsername">Enter researcher username.</string>
+    <string name="error_missingResearcherPassword">Enter researcher password.</string>
+    <string name="error_verifyingCredentials">
+        Error occurred while verifying credentials online.</string>
     <string name="error_confirmPassword">Password does not match.</string>
     <string name="error_invalidPasswordLength">
         Password must be between 8 and 20 characters in length.</string>
@@ -161,12 +162,13 @@
     <string name="error_maxSamplesPerDay">Number of samples per day cannot exceed %1$d.</string>
     <string name="error_dailyEndTime">Make sure there are at least %1$d hours between Start and
         End Time since there will be %1$d samples per day.</string>
+    <string name="error_invalidResearcherCredentials">Invalid username and/or password.</string>
 
-    <string name="confirmEmailAddress">Confirm Email Address</string>
-    <string name="researcherEmailAddress">Researcher Email Address</string>
+    <string name="researcherUsername">Researcher Username</string>
     <string name="researcherPassword">Researcher Password</string>
-    <string name="confirmPassword">Confirm Password</string>
     <string name="password">Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+
     <string name="notificationWindow">Notification Window</string>
     <string name="minutes">minutes</string>
     <string name="error_missingNotificationWindow">Enter number of minutes survey will be available
@@ -220,7 +222,7 @@
     <string name="demoCompleteTitle">Demo Complete</string>
     <string name="demoCompleteSubTitle">@string/noSurveyAvailableSubTitle</string>
 
-    <string name="notificationMsg">TRACK-time!</string>
+    <string name="notificationMsg">Track-time!</string>
     <string name="notificationMsgText">Tap to start the survey.
         Notification will expire within %1$d minutes.</string>
 

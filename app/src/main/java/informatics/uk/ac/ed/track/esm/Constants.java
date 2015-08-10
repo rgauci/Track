@@ -38,8 +38,6 @@ public class Constants {
     public static final String PARTICIPANT_PASSWORD_RESET_TIME_MILLIS = "participantPasswordSetupTime";
     public static final String RANDOM_ALARM_TIMES = "randomAlarmTimes";
     public static final String REQUEST_CODE = "requestCode";
-    public static final String RESEARCHER_EMAIL = "researcherEmail";
-    public static final String RESEARCHER_PASSWORD_HASHED = "researcherPasswordHashed";
     public static final String QUESTION_ID = "questionId";
     public static final String QUESTION_PREFERENCES_PREFIX = "informatics.uk.ac.ed.track.question.";
     public static final String QUESTION_TYPE_PREFIX = "questionType";
