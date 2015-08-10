@@ -163,6 +163,7 @@
     <string name="error_dailyEndTime">Make sure there are at least %1$d hours between Start and
         End Time since there will be %1$d samples per day.</string>
     <string name="error_invalidResearcherCredentials">Invalid username and/or password.</string>
+    <string name="error_noInternetConnection">Data network unavailable</string>
 
     <string name="researcherUsername">Researcher Username</string>
     <string name="researcherPassword">Researcher Password</string>

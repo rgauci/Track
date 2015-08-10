@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -35,6 +36,7 @@ public class ResearcherSetup extends AppCompatActivity {
 
     private EditText txtUsername, txtPassword, txtParticipantId;
     private TextInputLayout txtUsername_inpLyt, txtPassword_inpLyt, txtParticipantId_inpLyt;
+    private LinearLayout lytNoInternet;
 
     // Progress Dialog
     private ProgressDialog pDialog;
@@ -47,13 +49,19 @@ public class ResearcherSetup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_researcher_setup);
 
-        txtUsername = (EditText) findViewById(R.id.txtUsername);
-        txtPassword = (EditText) findViewById(R.id.txtPassword);
-        txtParticipantId = (EditText) findViewById(R.id.txtParticipantId);
+        this.lytNoInternet = (LinearLayout) findViewById(R.id.lytNoInternet);
 
-        txtUsername_inpLyt = (TextInputLayout) findViewById(R.id.txtUsername_InpLyt);
-        txtPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtPassword_InpLyt);
-        txtParticipantId_inpLyt = (TextInputLayout) findViewById(R.id.txtParticipantId_inpLyt);
+        this.txtUsername = (EditText) findViewById(R.id.txtUsername);
+        this.txtPassword = (EditText) findViewById(R.id.txtPassword);
+        this.txtParticipantId = (EditText) findViewById(R.id.txtParticipantId);
+
+        this.txtUsername_inpLyt = (TextInputLayout) findViewById(R.id.txtUsername_InpLyt);
+        this.txtPassword_inpLyt = (TextInputLayout) findViewById(R.id.txtPassword_InpLyt);
+        this.txtParticipantId_inpLyt = (TextInputLayout) findViewById(R.id.txtParticipantId_inpLyt);
+
+        // confirm user is connected to Internet
+        // (error message will be shown if not)
+        this.confirmInternetConnection();
     }
 
     @Override
@@ -79,13 +87,19 @@ public class ResearcherSetup extends AppCompatActivity {
     }
 
     public void btnNext_onClick(View view){
+        this.confirmInternetConnection(); // will display/clear error msg as neccessary
+
         boolean valid = this.setAndValidate();
 
         if (valid) {
             // save settings
             this.savePreferences();
-            // attempt login and, if successful, proceed to next activity
-            new ResearcherLoginTask().execute(this.username, this.password);
+
+            // re-confirm whether an Internet connection is available
+            if (this.confirmInternetConnection()) {
+                // if yes, attempt login and, if successful, proceed to next activity
+                new ResearcherLoginTask().execute(this.username, this.password);
+            }
         }
     }
 
@@ -131,6 +145,19 @@ public class ResearcherSetup extends AppCompatActivity {
         }
 
         return !hasErrors;
+    }
+
+    private void savePreferences() {
+        // getDefaultSharedPreferences() uses a default preference-file name.
+        // This default is set per application, so all activities in the same app context
+        // can access it easily as in the following example:
+        // http://stackoverflow.com/questions/5946135/difference-between-getdefaultsharedpreferences-and-getsharedpreferences
+        SharedPreferences settings =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = settings.edit();
+
+        editor.putInt(Constants.PARTICIPANT_ID, this.participantId);
+        editor.apply();
     }
 
     private class ResearcherLoginTask extends AsyncTask<String, Void, JSONObject> {
@@ -210,16 +237,19 @@ public class ResearcherSetup extends AppCompatActivity {
         }
     }
 
-    private void savePreferences() {
-        // getDefaultSharedPreferences() uses a default preference-file name.
-        // This default is set per application, so all activities in the same app context
-        // can access it easily as in the following example:
-        // http://stackoverflow.com/questions/5946135/difference-between-getdefaultsharedpreferences-and-getsharedpreferences
-        SharedPreferences settings =
-                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = settings.edit();
+    /**
+     *
+     * @return True if data network is available.
+     */
+    private boolean confirmInternetConnection(){
+        boolean isConnected = Utils.isConnectedToInternet(this);
 
-        editor.putInt(Constants.PARTICIPANT_ID, this.participantId);
-        editor.apply();
+        if (isConnected) {
+            this.lytNoInternet.setVisibility(View.GONE);
+        } else {
+            this.lytNoInternet.setVisibility(View.VISIBLE);
+        }
+
+        return isConnected;
     }
 }
