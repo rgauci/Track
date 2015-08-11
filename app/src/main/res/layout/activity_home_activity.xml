@@ -79,20 +79,6 @@
                 android:id="@+id/btnChangePassword"
                 android:theme="@style/MenuButton"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Launch Survey"
-                android:id="@+id/btnLaunchSurvey"
-                android:theme="@style/MenuButton"/>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Relaunch Setup"
-                android:id="@+id/btnRelaunchSetup"
-                android:theme="@style/MenuButton"/>
-
         </LinearLayout>
     </ScrollView>
 

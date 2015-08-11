@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         txtVwSubTitle = (TextView) findViewById(R.id.txtVwSubTitle);
         txtVwMsg = (TextView) findViewById(R.id.txtVwMsg);
 
-        // initialise resoureces
+        // initialise resources
         this.res = getResources();
 
         // set text, title & msg (if available)
