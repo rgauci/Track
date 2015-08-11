@@ -14,4 +14,6 @@
     <integer name="likert_button_margin_right_dp">8</integer>
     <integer name="likert_button_margin_bottom_dp">1</integer>
     <integer name="other_option_text_max_char_length">50</integer>
+    <integer name="max_allowed_invalid_researchr_credentials">5</integer>
+    <integer name="app_locked_hours">24</integer>
 </resources>

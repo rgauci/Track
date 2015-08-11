@@ -2,6 +2,7 @@ package informatics.uk.ac.ed.track.esm.activities;
 
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -17,12 +18,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.concurrent.ExecutionException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import informatics.uk.ac.ed.track.esm.Constants;
 import informatics.uk.ac.ed.track.R;
@@ -48,6 +52,8 @@ public class ResearcherSetup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_researcher_setup);
+
+        // initialise UI controls
 
         this.lytNoInternet = (LinearLayout) findViewById(R.id.lytNoInternet);
 
@@ -98,7 +104,8 @@ public class ResearcherSetup extends AppCompatActivity {
             // re-confirm whether an Internet connection is available
             if (this.confirmInternetConnection()) {
                 // if yes, attempt login and, if successful, proceed to next activity
-                new ResearcherLoginTask().execute(this.username, this.password);
+                new ResearcherLoginTask(this.getApplicationContext())
+                        .execute(this.username, this.password);
             }
         }
     }
@@ -162,8 +169,14 @@ public class ResearcherSetup extends AppCompatActivity {
 
     private class ResearcherLoginTask extends AsyncTask<String, Void, JSONObject> {
 
+        private SharedPreferences settings;
+
         private boolean success; // true if login was successful
         private boolean error; // true if an exception was thrown
+
+        public ResearcherLoginTask(Context appContext) {
+            this.settings = PreferenceManager.getDefaultSharedPreferences(appContext);
+        }
 
         @Override
         protected void onPreExecute() {
@@ -205,7 +218,13 @@ public class ResearcherSetup extends AppCompatActivity {
                 }
             } else {
                 // no object returned from server - something must have gone wrong!
-                this.error = true;
+
+                // TODO REMOVE if statement and just leave "this.error = true";
+                if (username.equals("userName") && password.equals("tr@cker2015")) {
+                    this.success = true;
+                } else {
+                    this.error = true;
+                }
             }
 
             return jsonObject;
@@ -221,9 +240,16 @@ public class ResearcherSetup extends AppCompatActivity {
                 Toast.makeText(ResearcherSetup.this,
                         getString(R.string.error_verifyingCredentials), Toast.LENGTH_SHORT).show();
             } else {
+                SharedPreferences.Editor editor = this.settings.edit();
+
                 // if not, check whether login was successful
                 if (this.success) {
-                    // if yes, proceed to next activity
+                    // if yes, reset invalid credential count to zero
+                    // (count is only for *subsequent* invalid credentials)
+                    editor.putInt(Constants.INVALID_RESEARCHER_CREDENTIALS_COUNT, 0);
+                    editor.apply();
+
+                    // and proceed to next activity
                     Intent intent = new Intent(ResearcherSetup.this, StudyConfiguration.class);
                     startActivity(intent);
                 } else {
@@ -231,6 +257,36 @@ public class ResearcherSetup extends AppCompatActivity {
                     Toast.makeText(ResearcherSetup.this,
                             getString(R.string.error_invalidResearcherCredentials),
                             Toast.LENGTH_SHORT).show();
+
+                    // and increment incorrect count
+                    int invalidCount = this.settings.getInt(
+                            Constants.INVALID_RESEARCHER_CREDENTIALS_COUNT, Constants.DEF_VALUE_INT);
+
+                    if (invalidCount == Constants.DEF_VALUE_INT) {
+                        invalidCount = 1;
+                    } else {
+                        invalidCount++;
+                    }
+
+                    int maxInvalid = getResources().getInteger(
+                            R.integer.max_allowed_invalid_researchr_credentials);
+
+                    if (invalidCount == maxInvalid) {
+                        // if maximum count has been reached
+                        // go to app locked screen
+                        Intent intent = new Intent(ResearcherSetup.this, AppLocked.class);
+                        // close existing activity stack and start new root
+                        // to prevent user from going back to this or previous screens
+                        intent.setFlags(
+                                Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        // let activity know this is the first time so it can update shared prefs
+                        intent.putExtra(Constants.APP_LOCKED_FIRST_TIME, true);
+                        startActivity(intent);
+                    } else {
+                        // otherwise save updated counter
+                        editor.putInt(Constants.INVALID_RESEARCHER_CREDENTIALS_COUNT, invalidCount);
+                        editor.apply();
+                    }
                 }
             }
 
@@ -252,4 +308,5 @@ public class ResearcherSetup extends AppCompatActivity {
 
         return isConnected;
     }
+
 }

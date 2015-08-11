@@ -167,6 +167,11 @@
 
     <string name="researcherUsername">Researcher Username</string>
     <string name="researcherPassword">Researcher Password</string>
+
+    <string name="appLockedTitle">App Locked for %1$d hours.</string>
+    <string name="appLockedSubTitle">Too many failed login attempts.</string>
+    <string name="appLockedMsg">Please try again later.</string>
+
     <string name="password">Password</string>
     <string name="confirmPassword">Confirm Password</string>
 

@@ -92,26 +92,6 @@ public class HomeActivity extends AppCompatActivity {
             btnViewFeedback.setVisibility(View.GONE);
             btnChangePassword.setVisibility(View.GONE);
         }
-
-        // TODO remove this and corresponding button
-        Button relaunchSetup = (Button) findViewById(R.id.btnRelaunchSetup);
-        relaunchSetup.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, ResearchParticipation.class);
-                startActivity(intent);
-            }
-        });
-
-        // TODO remove this and corresponding button
-        Button launchSurvey = (Button) findViewById(R.id.btnLaunchSurvey);
-        launchSurvey.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = Utils.getLaunchSurveyIntent(getApplicationContext());
-                startActivity(intent);
-            }
-        });
     }
 
     private void launchFeedbackModule(){

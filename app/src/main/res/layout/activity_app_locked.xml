@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="informatics.uk.ac.ed.track.esm.activities.AppLocked">
+
+    <RelativeLayout
+        style="@style/BodyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary"
+        android:id="@+id/lytAppLocked"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView6"
+            android:fillViewport="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/appLockedTitle"
+                    android:id="@+id/txtVwAppLockedTitle"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/appLockedSubTitle"
+                    android:id="@+id/textView21"
+                    android:textColor="@color/primary_light" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/textView22"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/appLockedMsg"
+                    android:textColor="@color/text_icons"
+                    android:layout_marginTop="@dimen/vertical_space" />
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>

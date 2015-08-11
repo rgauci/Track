@@ -9,6 +9,8 @@ public class Constants {
     public static final long DEF_VALUE_LNG = -1;
 
     public static final String ACTIVITY_TO_LAUNCH_ON_LOGIN_SUCCESS = "activityToLaunchOnLoginSuccess";
+    public static final String APP_LOCKED_FIRST_TIME = "appLockedFirstTime";
+    public static final String APP_LOCKED_TIME_MILLIS = "appLockedTimeMillis";
     public static final String ALARM_REQUEST_CODES = "alarmRequestCodes";
     public static final String CURRENT_STUDY_DAY_NUMBER = "currentStudyDayNumber";
     public static final String DEF_VALUE_STR = "";
@@ -23,6 +25,8 @@ public class Constants {
     public static final String END_TIME_MINUTE = "endTimeMinute";
     public static final String FIRST_QUESTION_ID = "firstQuestionId";
     public static final String HASHING_ALGORITHM = "SHA-1";
+    public static final String INVALID_RESEARCHER_CREDENTIALS_COUNT = "invalidResearcherCredentialCount";
+    public static final String IS_APP_LOCKED = "isAppLocked";
     public static final String IS_FIRST_QUESTION = "isFirstQuestion";
     public static final String IS_CANCEL_NOTIFICATION_ALARM = "isCancelNotificationAlarm";
     public static final String IS_RESEARCH_PARTICIPANT = "isResearchParticipant";

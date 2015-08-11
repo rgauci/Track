@@ -60,47 +60,72 @@ public class SplashScreen extends AppCompatActivity {
                     importSurvey(settings); // NOTE - re-importing survey will DROP & re-create DB!
                 }
 
-                // if setup is complete
-                if (setupComplete) {
-                    boolean surveyAvailable = false;
+                // check whether app has been locked due to invalid researcher credentials
+                // before doing anything else
+                boolean appLocked = false;
+                if (settings.getBoolean(Constants.IS_APP_LOCKED, Constants.DEF_VALUE_BOOL)) {
+                    Calendar calendar = GregorianCalendar.getInstance();
+                    long currentTimeMillis = calendar.getTimeInMillis();
 
-                    long lastNotifTime =
-                            settings.getLong(Constants.LAST_NOTIFICATION_TIME_MILLIS,
-                                    Constants.DEF_VALUE_LNG);
-                    long lastCompletedTime =
-                            settings.getLong(Constants.LAST_SURVEY_COMPLETED_TIME_MILLIS,
-                                    Constants.DEF_VALUE_LNG);
+                    long maxLockedTimeMillis =
+                            getResources().getInteger(R.integer.app_locked_hours) * 60 * 60 * 1000;
+                    long lockedTimeMillis = settings.getLong(Constants.APP_LOCKED_TIME_MILLIS, Constants.DEF_VALUE_LNG);
 
-                    if (lastCompletedTime < lastNotifTime) {
-                        long notifWindowMillis =
-                                settings.getInt(Constants.NOTIFICATION_WINDOW_MINUTES,
-                                        Constants.DEF_VALUE_INT) * 60 * 1000;
-
-                        Calendar cal = GregorianCalendar.getInstance();
-                        long currentTime = cal.getTimeInMillis();
-
-                        boolean expired = (currentTime > (lastNotifTime + notifWindowMillis));
-
-                        if (!expired) {
-                            surveyAvailable = true;
-                        }
-                    }
-
-                    Intent intent;
-
-                    if (surveyAvailable) {
-                        // if survey is available, launch
-                        intent = Utils.getLaunchSurveyIntent(getApplicationContext());
+                    if ((lockedTimeMillis + maxLockedTimeMillis) > currentTimeMillis) {
+                        appLocked = true;
+                        Intent intent = new Intent(SplashScreen.this, AppLocked.class);
+                        startActivity(intent);
                     } else {
-                        // otherwise show no survey currently available screen
-                        intent = new Intent(SplashScreen.this, HomeActivity.class);
+                        // if enough time has passed, set app as unlocked
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putBoolean(Constants.IS_APP_LOCKED, false);
+                        editor.apply();
                     }
+                }
 
-                    startActivity(intent);
-                } else {
-                    // otherwise start setup
-                    Intent intent = new Intent(SplashScreen.this, ResearchParticipation.class);
-                    startActivity(intent);
+                if (!appLocked) {
+                    // if setup is complete
+                    if (setupComplete) {
+                        boolean surveyAvailable = false;
+
+                        long lastNotifTime =
+                                settings.getLong(Constants.LAST_NOTIFICATION_TIME_MILLIS,
+                                        Constants.DEF_VALUE_LNG);
+                        long lastCompletedTime =
+                                settings.getLong(Constants.LAST_SURVEY_COMPLETED_TIME_MILLIS,
+                                        Constants.DEF_VALUE_LNG);
+
+                        if (lastCompletedTime < lastNotifTime) {
+                            long notifWindowMillis =
+                                    settings.getInt(Constants.NOTIFICATION_WINDOW_MINUTES,
+                                            Constants.DEF_VALUE_INT) * 60 * 1000;
+
+                            Calendar cal = GregorianCalendar.getInstance();
+                            long currentTime = cal.getTimeInMillis();
+
+                            boolean expired = (currentTime > (lastNotifTime + notifWindowMillis));
+
+                            if (!expired) {
+                                surveyAvailable = true;
+                            }
+                        }
+
+                        Intent intent;
+
+                        if (surveyAvailable) {
+                            // if survey is available, launch
+                            intent = Utils.getLaunchSurveyIntent(getApplicationContext());
+                        } else {
+                            // otherwise show no survey currently available screen
+                            intent = new Intent(SplashScreen.this, HomeActivity.class);
+                        }
+
+                        startActivity(intent);
+                    } else {
+                        // otherwise start setup
+                        Intent intent = new Intent(SplashScreen.this, ResearchParticipation.class);
+                        startActivity(intent);
+                    }
                 }
             }
         }, SPLASH_DISPLAY_TIME_MILLIS);
