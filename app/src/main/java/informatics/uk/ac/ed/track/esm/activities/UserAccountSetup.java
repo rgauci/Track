@@ -81,8 +81,8 @@ public class UserAccountSetup extends AppCompatActivity {
         boolean hasErrors = false;
 
         // get values
-        this.password = this.txtPassword.getText().toString(); // do not trim so we can check for whitespace
-        this.confirmPassword = this.txtConfirmPassword.getText().toString();
+        this.password = Utils.getTrimmedText(this.txtPassword);
+        this.confirmPassword = Utils.getTrimmedText(this.txtConfirmPassword);
 
         // password
         if (!Utils.isValidPasswordLength(password)) {

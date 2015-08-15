@@ -171,7 +171,8 @@ public class Utils {
      * @param txtPassword_inpLyt TextInputLayout containing txtPassword (for displaying error messages).
      * @return True if the password is valid, false otherwise (with corresponding error message set in txtPassword_inpLyt).
      */
-    public static boolean validateUserPassword(Context context, EditText txtPassword, TextInputLayout txtPassword_inpLyt) {
+    public static boolean validateUserPassword(Context context, EditText txtPassword,
+                                               TextInputLayout txtPassword_inpLyt) {
         boolean hasErrors = false;
 
         Resources resources = context.getResources();
