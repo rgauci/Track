@@ -196,13 +196,7 @@ public class ResearcherSetup extends AppCompatActivity {
                 }
             } else {
                 // no object returned from server - something must have gone wrong!
-
-                // TODO REMOVE if statement and just leave "this.error = true";
-                if (username.equals("userName") && password.equals("tr@cker2015")) {
-                    this.success = true;
-                } else {
-                    this.error = true;
-                }
+                this.error = true;
             }
 
             return jsonObject;
