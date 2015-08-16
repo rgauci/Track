@@ -195,7 +195,7 @@ public class ResearcherSetup extends AppCompatActivity {
                     this.error = true;
                 }
             } else {
-                // no object returned from server - something must have gone wrong!
+                // if no object returned from server - something must have gone wrong!
                 this.error = true;
             }
 
