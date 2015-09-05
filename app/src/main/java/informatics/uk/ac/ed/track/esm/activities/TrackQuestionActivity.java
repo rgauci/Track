@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -79,14 +80,14 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
             if (Utils.isNullOrEmpty(title)) {
                 titleTxtVw.setVisibility(View.GONE);
             } else {
-                titleTxtVw.setText(title);
+                titleTxtVw.setText(Html.fromHtml(title));
             }
             // show/hide sub-title
             TextView subTitleTxtView = (TextView) findViewById(toolbarSubTitleTxtViewId);
             if (Utils.isNullOrEmpty(subTitle)) {
                 subTitleTxtView.setVisibility(View.GONE);
             } else {
-                subTitleTxtView.setText(subTitle);
+                subTitleTxtView.setText(Html.fromHtml(subTitle));
             }
         }
     }
@@ -98,7 +99,7 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
         if (Utils.isNullOrEmpty(questionText)) {
             txtVwQuestionText.setVisibility(View.GONE);
         } else {
-            txtVwQuestionText.setText(questionText);
+            txtVwQuestionText.setText(Html.fromHtml(questionText));
         }
     }
 
@@ -109,7 +110,7 @@ public abstract class TrackQuestionActivity extends AppCompatActivity {
         if (Utils.isNullOrEmpty(questionPrefix)) {
             txtVwQuestionPrefix.setVisibility(View.GONE);
         } else {
-            txtVwQuestionPrefix.setText(questionPrefix);
+            txtVwQuestionPrefix.setText(Html.fromHtml(questionPrefix));
         }
     }
 

@@ -105,7 +105,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                                      long notificationTime_Millis, int notificationWindow_Minutes) {
 
         PendingIntent notificationIntent = PendingIntent.getActivity(context, 0,
-                Utils.getLaunchSurveyIntent(context), 0);
+                Utils.getLaunchSurveyIntent(context), PendingIntent.FLAG_CANCEL_CURRENT);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.track_icon_white_36x36)
